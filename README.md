@@ -3,13 +3,14 @@
 Lightweight VS Code extension that validates file paths referenced in TUFLOW control files and reports issues in the Problems panel.
 
 ## Features
-- Missing file diagnostics for `Command == Value` lines.
-- Handles multiple paths separated by `|`.
+- Missing file diagnostics for `Command == Value` lines that look like paths.
+- Resolves relative paths from the current file and supports multiple paths separated by `|`.
 - Ignores GeoPackage layer selectors after `>>` (e.g. `file.gpkg >> layer1 && layer2`).
+- Skips unresolved tokens/macros that contain `<<...>>`.
 - Recursively checks referenced control files and summarizes nested issues.
-- Flags missing filename tokens required by `XF Files Include in Filename`.
-- Checks `Set Variable Version` tokens against the current filename.
-- Configurable minimum diagnostic severity.
+- Warns when scenario/event tokens `<<~s1~>>`-`<<~s9~>>` or `<<~e1~>>`-`<<~e9~>>` listed anywhere in a TCF value are missing from the filename.
+- Checks `Set Variable Version` tokens against the current filename (info when present, warning when missing).
+- Configurable minimum diagnostic severity (default: `hint`).
 
 ## Supported control files (recursive)
 - `.tcf`
@@ -39,7 +40,7 @@ Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
 ## Settings
-- `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint`, or `none`.
+- `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
 
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored.

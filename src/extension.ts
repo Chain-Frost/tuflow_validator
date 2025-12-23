@@ -122,7 +122,7 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
 
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
-            checkXfFilesIncludeTokens(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
+            checkScenarioEventTokensInValue(valueText, valueStartIndex, i, normalizedPath, diagnostics);
         }
 
         if (shouldSkipKeyForFileLookup(keyText)) {
@@ -222,20 +222,17 @@ function checkVersionTokenInFilename(
     ));
 }
 
-function checkXfFilesIncludeTokens(
-    keyText: string,
+function checkScenarioEventTokensInValue(
     valueText: string,
     valueStartIndex: number,
     lineIndex: number,
     filePath: string,
     diagnostics: vscode.Diagnostic[]
 ): void {
-    if (normalizeKey(keyText) !== 'XF FILES INCLUDE IN FILENAME') {
-        return;
-    }
-
-    const baseName = path.basename(filePath);
+    const baseName = path.basename(filePath).toLowerCase();
     const tokenRegex = /<<([^>]+)>>/g;
+    const scenarioEventToken = /^~[se][1-9]~$/i;
+    const seenTokens = new Set<string>();
     let match: RegExpExecArray | null;
 
     while ((match = tokenRegex.exec(valueText)) !== null) {
@@ -244,13 +241,23 @@ function checkXfFilesIncludeTokens(
             continue;
         }
 
-        if (!baseName.includes(token)) {
+        if (!scenarioEventToken.test(token)) {
+            continue;
+        }
+
+        const normalizedToken = token.toLowerCase();
+        if (seenTokens.has(normalizedToken)) {
+            continue;
+        }
+        seenTokens.add(normalizedToken);
+
+        if (!baseName.includes(normalizedToken)) {
             const startChar = valueStartIndex + match.index;
             const endChar = startChar + match[0].length;
             diagnostics.push(new vscode.Diagnostic(
                 new vscode.Range(lineIndex, startChar, lineIndex, endChar),
-                `Filename is missing token "${token}" required by XF Files Include in Filename.`,
-                vscode.DiagnosticSeverity.Error
+                `Filename is missing token "${token}" listed in this control file.`,
+                vscode.DiagnosticSeverity.Warning
             ));
         }
     }
@@ -258,7 +265,7 @@ function checkXfFilesIncludeTokens(
 
 function getConfiguredDiagnosticLevel(): string {
     const config = vscode.workspace.getConfiguration('tuflowValidator');
-    return (config.get<string>('diagnosticLevel') || 'warning').toLowerCase();
+    return (config.get<string>('diagnosticLevel') || 'hint').toLowerCase();
 }
 
 function filterDiagnosticsByLevel(
