@@ -5,6 +5,8 @@ import * as fs from 'fs';
 const CONTROL_FILE_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.tef', '.ecf', '.qcf']);
 const ISSUE_SUMMARY_SEVERITY = vscode.DiagnosticSeverity.Warning;
 const lastFilesByRoot = new Map<string, Set<string>>();
+const LATEST_CHECK_CONTROL_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.ecf']);
+const SCENARIO_EVENT_TOKEN_REGEX = /~[se][1-9]~/gi;
 
 export function activate(context: vscode.ExtensionContext) {
     const collection = vscode.languages.createDiagnosticCollection('tuflow');
@@ -101,6 +103,7 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
     const isTcf = path.extname(normalizedPath).toLowerCase() === '.tcf';
+    const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(normalizedPath, diagnostics);
 
     for (let i = 0; i < lines.length; i++) {
         const text = lines[i];
@@ -145,6 +148,10 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
                 continue;
             }
 
+            if (shouldCheckLatestReferencedFiles) {
+                checkReferencedFileLatestVersion(resolvedPath, candidate.range, diagnostics);
+            }
+
             if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
                 const childContents = safeReadFile(resolvedPath);
                 if (childContents === null) {
@@ -185,6 +192,159 @@ function shouldSkipKeyForFileLookup(keyText: string): boolean {
 
 function normalizeKey(keyText: string): string {
     return keyText.replace(/\s+/g, ' ').trim().toUpperCase();
+}
+
+type LatestVersionStatus = 'no-version' | 'ambiguous' | 'latest' | 'not-latest';
+
+interface VersionMatch {
+    raw: string;
+    value: number;
+    start: number;
+    end: number;
+}
+
+interface LatestVersionResult {
+    status: LatestVersionStatus;
+    currentVersion?: number;
+    latestVersion?: number;
+}
+
+function shouldCheckLatestReferencedVersions(filePath: string, diagnostics: vscode.Diagnostic[]): boolean {
+    const ext = path.extname(filePath).toLowerCase();
+    if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext)) {
+        return false;
+    }
+
+    const status = getLatestVersionStatus(filePath);
+    if (status.status === 'ambiguous') {
+        diagnostics.push(new vscode.Diagnostic(
+            new vscode.Range(0, 0, 0, 0),
+            `Unable to determine latest version for "${path.basename(filePath)}" because multiple numeric tokens were found.`,
+            vscode.DiagnosticSeverity.Warning
+        ));
+        return false;
+    }
+
+    return status.status === 'latest';
+}
+
+function checkReferencedFileLatestVersion(
+    filePath: string,
+    range: vscode.Range,
+    diagnostics: vscode.Diagnostic[]
+): void {
+    const status = getLatestVersionStatus(filePath);
+    if (status.status === 'ambiguous') {
+        diagnostics.push(new vscode.Diagnostic(
+            range,
+            `Unable to determine latest version for "${path.basename(filePath)}" because multiple numeric tokens were found.`,
+            vscode.DiagnosticSeverity.Warning
+        ));
+        return;
+    }
+
+    if (status.status === 'not-latest') {
+        const currentVersion = status.currentVersion ?? 0;
+        const latestVersion = status.latestVersion ?? currentVersion;
+        diagnostics.push(new vscode.Diagnostic(
+            range,
+            `Referenced file is not the latest version in its folder: ${path.basename(filePath)} (found ${currentVersion}, latest ${latestVersion}).`,
+            vscode.DiagnosticSeverity.Error
+        ));
+    }
+}
+
+function getLatestVersionStatus(filePath: string): LatestVersionResult {
+    const ext = path.extname(filePath).toLowerCase();
+    const baseName = path.basename(filePath, ext);
+    const cleanedBaseName = stripScenarioEventTokens(baseName).toLowerCase();
+    const matches = getVersionMatches(cleanedBaseName);
+
+    if (matches.length === 0) {
+        return { status: 'no-version' };
+    }
+
+    if (matches.length > 1) {
+        return { status: 'ambiguous' };
+    }
+
+    const currentMatch = matches[0];
+    const currentVersion = currentMatch.value;
+    const currentPattern = buildVersionPattern(cleanedBaseName, currentMatch);
+    let latestVersion = currentVersion;
+
+    let entries: fs.Dirent[] = [];
+    try {
+        entries = fs.readdirSync(path.dirname(filePath), { withFileTypes: true });
+    } catch {
+        return { status: 'latest', currentVersion, latestVersion };
+    }
+
+    for (const entry of entries) {
+        if (!entry.isFile()) {
+            continue;
+        }
+
+        if (path.extname(entry.name).toLowerCase() !== ext) {
+            continue;
+        }
+
+        const entryBaseName = path.basename(entry.name, ext);
+        const entryCleaned = stripScenarioEventTokens(entryBaseName).toLowerCase();
+        const entryMatches = getVersionMatches(entryCleaned);
+        if (entryMatches.length !== 1) {
+            continue;
+        }
+
+        const entryPattern = buildVersionPattern(entryCleaned, entryMatches[0]);
+        if (entryPattern !== currentPattern) {
+            continue;
+        }
+
+        const entryVersion = entryMatches[0].value;
+        if (entryVersion > latestVersion) {
+            latestVersion = entryVersion;
+        }
+    }
+
+    return currentVersion === latestVersion
+        ? { status: 'latest', currentVersion, latestVersion }
+        : { status: 'not-latest', currentVersion, latestVersion };
+}
+
+function stripScenarioEventTokens(value: string): string {
+    return value.replace(SCENARIO_EVENT_TOKEN_REGEX, '');
+}
+
+function getVersionMatches(baseName: string): VersionMatch[] {
+    const matches: VersionMatch[] = [];
+    const regex = /\d+/g;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(baseName)) !== null) {
+        const start = match.index;
+        const end = start + match[0].length;
+        const prevChar = start > 0 ? baseName[start - 1] : '';
+        const nextChar = end < baseName.length ? baseName[end] : '';
+        const prevIsLetter = /[a-z]/i.test(prevChar);
+        const nextIsLetter = /[a-z]/i.test(nextChar);
+        const prevIsV = prevIsLetter && prevChar.toLowerCase() === 'v';
+
+        if (!nextIsLetter && (!prevIsLetter || prevIsV)) {
+            matches.push({
+                raw: match[0],
+                value: Number.parseInt(match[0], 10),
+                start,
+                end
+            });
+        }
+    }
+
+    return matches;
+}
+
+function buildVersionPattern(baseName: string, match: VersionMatch): string {
+    return `${baseName.slice(0, match.start)}#${baseName.slice(match.end)}`;
 }
 
 function checkVersionTokenInFilename(

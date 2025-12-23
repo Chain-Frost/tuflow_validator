@@ -3,7 +3,7 @@
   "publisher": "Chain-Frost",
   "displayName": "TUFLOW Path Validator",
   "description": "Validate file paths referenced in TUFLOW control files.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "icon": "resources/icon.png",
   "galleryBanner": {
     "color": "#0b5ea8",
@@ -57,6 +57,11 @@
             "none"
           ],
           "description": "Minimum diagnostic severity to display (error shows only errors; warning includes errors and warnings; info includes info; hint includes all; none disables diagnostics)."
+        },
+        "tuflowValidator.enableLatestVersionChecks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check versioned filenames to ensure the latest referenced files are used."
         }
       }
     },

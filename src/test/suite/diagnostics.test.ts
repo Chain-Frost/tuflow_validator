@@ -7,6 +7,9 @@ const ROOT_TCF = path.join(FIXTURE_ROOT, 'root.tcf');
 const NESTED_TGC = path.join(FIXTURE_ROOT, 'subdir', 'nested.tgc');
 const TOKEN_MISSING_TCF = path.join(FIXTURE_ROOT, 'token_missing.tcf');
 const TOKEN_PRESENT_TCF = path.join(FIXTURE_ROOT, 'token_present_~s1~_~e2~.tcf');
+const LATEST_ROOT = path.join(FIXTURE_ROOT, 'latest');
+const LATEST_TCF = path.join(LATEST_ROOT, 'runs', 'LatestRun_~s1~_v02.tcf');
+const LATEST_TGC = path.join(LATEST_ROOT, 'model', 'geom_v02.tgc');
 const EXAMPLE_TCF = path.join(
     __dirname,
     '../../../example/runs/BigBoyCk_01_~s1~_~s2~_~e1~_~e2~_~e3~_~e4~_~s4~.tcf'
@@ -63,6 +66,26 @@ suite('TUFLOW diagnostics', () => {
         const diagnostics = vscode.languages.getDiagnostics(doc.uri);
         const tokenWarnings = diagnostics.filter(d => d.message.includes('Filename is missing token'));
         assert.strictEqual(tokenWarnings.length, 0);
+    });
+
+    test('latest TCF enforces latest referenced versions', async () => {
+        const doc = await vscode.workspace.openTextDocument(LATEST_TCF);
+        await vscode.window.showTextDocument(doc);
+        await waitForDiagnostics(doc.uri);
+
+        const diagnostics = vscode.languages.getDiagnostics(doc.uri);
+        const notLatest = diagnostics.filter(d => d.message.includes('not the latest version'));
+        assert.ok(notLatest.length >= 2);
+        assert.ok(diagnostics.some(d => d.message.includes('Unable to determine latest version')));
+    });
+
+    test('latest TGC enforces latest referenced versions', async () => {
+        const doc = await vscode.workspace.openTextDocument(LATEST_TGC);
+        await vscode.window.showTextDocument(doc);
+        await waitForDiagnostics(doc.uri);
+
+        const diagnostics = vscode.languages.getDiagnostics(doc.uri);
+        assert.ok(diagnostics.some(d => d.message.includes('not the latest version')));
     });
 
     test('example run file does not report missing files or tokens', async () => {

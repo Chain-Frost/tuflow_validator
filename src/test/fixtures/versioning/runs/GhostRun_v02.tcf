@@ -1,0 +1,2 @@
+! Latest run references older control file; newer is only in non-latest TCF
+Geometry Control File == ..\model\ghost_v01.tgc

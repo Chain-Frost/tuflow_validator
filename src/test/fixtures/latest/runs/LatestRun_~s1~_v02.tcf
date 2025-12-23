@@ -1,0 +1,4 @@
+! Latest run - newest version
+Geometry Control File == ..\model\geom_v02.tgc
+Read GIS Z Shape == ..\shapes\levee_v01.shp
+Read GIS Z Shape == ..\shapes\ambiguous_01_v02.shp

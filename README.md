@@ -9,6 +9,7 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - Skips unresolved tokens/macros that contain `<<...>>`.
 - Recursively checks referenced control files and summarizes nested issues.
 - Warns when scenario/event tokens `<<~s1~>>`-`<<~s9~>>` or `<<~e1~>>`-`<<~e9~>>` listed anywhere in a TCF value are missing from the filename.
+- When a versioned TCF/TGC/TBC/ECF is the latest in its folder, referenced files with numeric versions (e.g. `v07`, `011`, `Model12`) are checked for latest versions (warns when newness is ambiguous). Latest control files are determined per folder and must be referenced by a latest TCF.
 - Checks `Set Variable Version` tokens against the current filename (info when present, warning when missing).
 - Configurable minimum diagnostic severity (default: `hint`).
 
@@ -41,6 +42,7 @@ Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 
 ## Settings
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
+- `tuflowValidator.enableLatestVersionChecks`: Enable latest-version checks for versioned filenames (default: `true`).
 
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored.

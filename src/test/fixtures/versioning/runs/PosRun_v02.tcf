@@ -1,0 +1,11 @@
+! Latest positive version checks
+Geometry Control File == ..\model\geomPos_v02.tgc
+BC Control File == ..\model\boundPos_v02.tbc
+ESTRY Control File == ..\model\ecfPos_v02.ecf
+Read GIS Z Shape == ..\shapes\levee_v02.shp
+Read GIS Z Shape == ..\shapes\channel13.shp
+Read File == ..\data\rain04.csv
+Read File == ..\data\model13.tif
+Read File == ..\data\caseA_002.csv
+Read File == ..\data\mapV8.tif
+Read File == ..\data\grid9.tif

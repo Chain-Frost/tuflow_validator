@@ -1,0 +1,3 @@
+! Geometry v02
+Read GIS Z Shape == ..\shapes\levee_v02.shp
+Read GIS Z Shape == ..\shapes\channel13.shp
