@@ -1,5 +1,6 @@
 {
   "name": "tuflow-validator",
+  "publisher": "Chain-Frost",
   "displayName": "TUFLOW Validator",
   "description": "Validates file paths in TUFLOW Control Files (.tcf)",
   "version": "0.0.1",
@@ -29,7 +30,8 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "test:container": "bash scripts/test-container.sh"
+    "test:container": "bash scripts/test-container.sh",
+    "package:vsix": "bash scripts/package-vsix.sh"
   },
   "devDependencies": {
     "@types/vscode": "^1.70.0",
@@ -42,6 +44,7 @@
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
     "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.2.0"
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.26.0"
   }
 }
