@@ -20,7 +20,10 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.workspace.onDidOpenTextDocument(doc => updateDiagnostics(doc, collection)),
         vscode.workspace.onDidChangeTextDocument(event => updateDiagnostics(event.document, collection)),
         vscode.workspace.onDidChangeConfiguration(event => {
-            if (event.affectsConfiguration('tuflowValidator.diagnosticLevel')) {
+            if (
+                event.affectsConfiguration('tuflowValidator.diagnosticLevel') ||
+                event.affectsConfiguration('tuflowValidator.enableLatestVersionChecks')
+            ) {
                 refreshDiagnostics(collection);
             }
         })
@@ -86,11 +89,17 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
 function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
-    analyzeFile(rootPath, document.getText(), visited);
+    const latestCheckContext = buildLatestCheckContext(document);
+    analyzeFile(rootPath, document.getText(), visited, latestCheckContext);
     return visited;
 }
 
-function analyzeFile(filePath: string, contents: string, visited: Map<string, vscode.Diagnostic[]>): vscode.Diagnostic[] {
+function analyzeFile(
+    filePath: string,
+    contents: string,
+    visited: Map<string, vscode.Diagnostic[]>,
+    latestCheckContext: LatestCheckContext
+): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
     const cached = visited.get(normalizedPath);
     if (cached) {
@@ -103,7 +112,11 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
     const isTcf = path.extname(normalizedPath).toLowerCase() === '.tcf';
-    const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(normalizedPath, diagnostics);
+    const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
+        normalizedPath,
+        diagnostics,
+        latestCheckContext
+    );
 
     for (let i = 0; i < lines.length; i++) {
         const text = lines[i];
@@ -149,7 +162,11 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
             }
 
             if (shouldCheckLatestReferencedFiles) {
-                checkReferencedFileLatestVersion(resolvedPath, candidate.range, diagnostics);
+                checkReferencedFileLatestVersion(
+                    resolvedPath,
+                    candidate.range,
+                    diagnostics
+                );
             }
 
             if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
@@ -158,7 +175,7 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
                     continue;
                 }
 
-                const childDiagnostics = analyzeFile(resolvedPath, childContents, visited);
+                const childDiagnostics = analyzeFile(resolvedPath, childContents, visited, latestCheckContext);
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(new vscode.Diagnostic(
                         candidate.range,
@@ -194,6 +211,11 @@ function normalizeKey(keyText: string): string {
     return keyText.replace(/\s+/g, ' ').trim().toUpperCase();
 }
 
+interface LatestCheckContext {
+    tcfFilesByFolder: Map<string, string[]>;
+    latestTcfReferencedControls: Set<string>;
+}
+
 type LatestVersionStatus = 'no-version' | 'ambiguous' | 'latest' | 'not-latest';
 
 interface VersionMatch {
@@ -209,13 +231,169 @@ interface LatestVersionResult {
     latestVersion?: number;
 }
 
-function shouldCheckLatestReferencedVersions(filePath: string, diagnostics: vscode.Diagnostic[]): boolean {
+function buildLatestCheckContext(document: vscode.TextDocument): LatestCheckContext {
+    if (!getConfiguredLatestVersionChecksEnabled()) {
+        return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
+    }
+
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+
+    const tcfFilesByFolder = new Map<string, string[]>();
+    if (workspaceFolders && workspaceFolders.length > 0) {
+        for (const folder of workspaceFolders) {
+            collectTcfFilesRecursively(folder.uri.fsPath, tcfFilesByFolder);
+        }
+    } else {
+        collectTcfFilesRecursively(path.dirname(document.fileName), tcfFilesByFolder);
+    }
+
+    const latestTcfs = collectLatestTcfFiles(tcfFilesByFolder);
+    const latestTcfReferencedControls = collectReferencedControlFilesFromTcfs(latestTcfs);
+
+    return { tcfFilesByFolder, latestTcfReferencedControls };
+}
+
+function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<string, string[]>): void {
+    let entries: fs.Dirent[] = [];
+    try {
+        entries = fs.readdirSync(rootDir, { withFileTypes: true });
+    } catch {
+        return;
+    }
+
+    for (const entry of entries) {
+        const entryPath = path.join(rootDir, entry.name);
+        if (entry.isDirectory()) {
+            if (shouldSkipFolderScan(entry.name)) {
+                continue;
+            }
+            collectTcfFilesRecursively(entryPath, tcfFilesByFolder);
+            continue;
+        }
+
+        if (!entry.isFile()) {
+            continue;
+        }
+
+        if (path.extname(entry.name).toLowerCase() !== '.tcf') {
+            continue;
+        }
+
+        const folder = path.dirname(entryPath);
+        const files = tcfFilesByFolder.get(folder) ?? [];
+        files.push(entryPath);
+        tcfFilesByFolder.set(folder, files);
+    }
+}
+
+function shouldSkipFolderScan(folderName: string): boolean {
+    const normalized = folderName.toLowerCase();
+    return (
+        normalized === '.git' ||
+        normalized === 'node_modules' ||
+        normalized === '.vscode' ||
+        normalized === '.vscode-test' ||
+        normalized === 'out' ||
+        normalized === 'dist'
+    );
+}
+
+function collectLatestTcfFiles(tcfFilesByFolder: Map<string, string[]>): string[] {
+    const latestTcfs: string[] = [];
+
+    for (const files of tcfFilesByFolder.values()) {
+        for (const file of files) {
+            const status = getLatestVersionStatus(file, files);
+            if (status.status === 'latest') {
+                latestTcfs.push(path.normalize(file));
+            }
+        }
+    }
+
+    return latestTcfs;
+}
+
+function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> {
+    const referenced = new Set<string>();
+
+    for (const tcfFile of tcfFiles) {
+        const contents = safeReadFile(tcfFile);
+        if (contents === null) {
+            continue;
+        }
+
+        collectReferencedControlFiles(tcfFile, contents, referenced);
+    }
+
+    return referenced;
+}
+
+function collectReferencedControlFiles(tcfPath: string, contents: string, referenced: Set<string>): void {
+    const lines = contents.split(/\r?\n/);
+    const docDir = path.dirname(tcfPath);
+
+    for (let i = 0; i < lines.length; i++) {
+        const text = lines[i];
+        if (text.trim().startsWith('!') || text.trim().length === 0) {
+            continue;
+        }
+
+        const separatorIndex = text.indexOf('==');
+        if (separatorIndex === -1) {
+            continue;
+        }
+
+        const valueStartIndex = separatorIndex + 2;
+        const valueWithComment = text.slice(valueStartIndex);
+        const commentIndex = valueWithComment.indexOf('!');
+        const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
+
+        const candidates = extractPathCandidates(valueText, valueStartIndex, i);
+        for (const candidate of candidates) {
+            if (!isLikelyFile(candidate.text) || containsUnresolvedToken(candidate.text)) {
+                continue;
+            }
+
+            const resolvedPath = resolvePath(docDir, candidate.text);
+            const ext = path.extname(resolvedPath).toLowerCase();
+            if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext) || ext === '.tcf') {
+                continue;
+            }
+
+            if (!fs.existsSync(resolvedPath)) {
+                continue;
+            }
+
+            referenced.add(path.normalize(resolvedPath));
+        }
+    }
+}
+
+function shouldCheckLatestReferencedVersions(
+    filePath: string,
+    diagnostics: vscode.Diagnostic[],
+    latestCheckContext: LatestCheckContext
+): boolean {
+    if (!getConfiguredLatestVersionChecksEnabled()) {
+        return false;
+    }
+
     const ext = path.extname(filePath).toLowerCase();
     if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext)) {
         return false;
     }
 
-    const status = getLatestVersionStatus(filePath);
+    const normalizedPath = path.normalize(filePath);
+    if (
+        ext !== '.tcf' &&
+        latestCheckContext.latestTcfReferencedControls.size > 0 &&
+        !latestCheckContext.latestTcfReferencedControls.has(normalizedPath)
+    ) {
+        return false;
+    }
+
+    const candidateFiles = getCandidateFilesForLatestStatus(filePath, latestCheckContext);
+    const status = getLatestVersionStatus(filePath, candidateFiles);
     if (status.status === 'ambiguous') {
         diagnostics.push(new vscode.Diagnostic(
             new vscode.Range(0, 0, 0, 0),
@@ -233,6 +411,10 @@ function checkReferencedFileLatestVersion(
     range: vscode.Range,
     diagnostics: vscode.Diagnostic[]
 ): void {
+    if (!getConfiguredLatestVersionChecksEnabled()) {
+        return;
+    }
+
     const status = getLatestVersionStatus(filePath);
     if (status.status === 'ambiguous') {
         diagnostics.push(new vscode.Diagnostic(
@@ -246,15 +428,57 @@ function checkReferencedFileLatestVersion(
     if (status.status === 'not-latest') {
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
+        const severity = vscode.DiagnosticSeverity.Warning;
         diagnostics.push(new vscode.Diagnostic(
             range,
             `Referenced file is not the latest version in its folder: ${path.basename(filePath)} (found ${currentVersion}, latest ${latestVersion}).`,
-            vscode.DiagnosticSeverity.Error
+            severity
         ));
     }
 }
 
-function getLatestVersionStatus(filePath: string): LatestVersionResult {
+function getCandidateFilesForLatestStatus(
+    filePath: string,
+    latestCheckContext: LatestCheckContext
+): string[] | undefined {
+    const ext = path.extname(filePath).toLowerCase();
+    if (ext === '.tcf') {
+        return latestCheckContext.tcfFilesByFolder.get(path.dirname(filePath));
+    }
+
+    if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext) || ext === '.tcf') {
+        return undefined;
+    }
+
+    if (latestCheckContext.latestTcfReferencedControls.size === 0) {
+        return undefined;
+    }
+
+    return filterReferencedControlCandidates(filePath, latestCheckContext.latestTcfReferencedControls);
+}
+
+function filterReferencedControlCandidates(
+    filePath: string,
+    referencedControls: Set<string>
+): string[] {
+    const ext = path.extname(filePath).toLowerCase();
+    const dir = path.dirname(filePath);
+    const candidates: string[] = [];
+
+    for (const referencedPath of referencedControls) {
+        if (path.extname(referencedPath).toLowerCase() !== ext) {
+            continue;
+        }
+        if (path.dirname(referencedPath) !== dir) {
+            continue;
+        }
+        candidates.push(referencedPath);
+    }
+
+    return candidates;
+}
+
+function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): LatestVersionResult {
     const ext = path.extname(filePath).toLowerCase();
     const baseName = path.basename(filePath, ext);
     const cleanedBaseName = stripScenarioEventTokens(baseName).toLowerCase();
@@ -272,24 +496,27 @@ function getLatestVersionStatus(filePath: string): LatestVersionResult {
     const currentVersion = currentMatch.value;
     const currentPattern = buildVersionPattern(cleanedBaseName, currentMatch);
     let latestVersion = currentVersion;
+    let entries: string[] = [];
 
-    let entries: fs.Dirent[] = [];
-    try {
-        entries = fs.readdirSync(path.dirname(filePath), { withFileTypes: true });
-    } catch {
-        return { status: 'latest', currentVersion, latestVersion };
+    if (candidateFiles) {
+        entries = candidateFiles;
+    } else {
+        try {
+            entries = fs
+                .readdirSync(path.dirname(filePath), { withFileTypes: true })
+                .filter(entry => entry.isFile())
+                .map(entry => path.join(path.dirname(filePath), entry.name));
+        } catch {
+            return { status: 'latest', currentVersion, latestVersion };
+        }
     }
 
-    for (const entry of entries) {
-        if (!entry.isFile()) {
+    for (const entryPath of entries) {
+        if (path.extname(entryPath).toLowerCase() !== ext) {
             continue;
         }
 
-        if (path.extname(entry.name).toLowerCase() !== ext) {
-            continue;
-        }
-
-        const entryBaseName = path.basename(entry.name, ext);
+        const entryBaseName = path.basename(entryPath, ext);
         const entryCleaned = stripScenarioEventTokens(entryBaseName).toLowerCase();
         const entryMatches = getVersionMatches(entryCleaned);
         if (entryMatches.length !== 1) {
@@ -324,13 +551,10 @@ function getVersionMatches(baseName: string): VersionMatch[] {
     while ((match = regex.exec(baseName)) !== null) {
         const start = match.index;
         const end = start + match[0].length;
-        const prevChar = start > 0 ? baseName[start - 1] : '';
         const nextChar = end < baseName.length ? baseName[end] : '';
-        const prevIsLetter = /[a-z]/i.test(prevChar);
         const nextIsLetter = /[a-z]/i.test(nextChar);
-        const prevIsV = prevIsLetter && prevChar.toLowerCase() === 'v';
 
-        if (!nextIsLetter && (!prevIsLetter || prevIsV)) {
+        if (!nextIsLetter) {
             matches.push({
                 raw: match[0],
                 value: Number.parseInt(match[0], 10),
@@ -426,6 +650,11 @@ function checkScenarioEventTokensInValue(
 function getConfiguredDiagnosticLevel(): string {
     const config = vscode.workspace.getConfiguration('tuflowValidator');
     return (config.get<string>('diagnosticLevel') || 'hint').toLowerCase();
+}
+
+function getConfiguredLatestVersionChecksEnabled(): boolean {
+    const config = vscode.workspace.getConfiguration('tuflowValidator');
+    return config.get<boolean>('enableLatestVersionChecks', true);
 }
 
 function filterDiagnosticsByLevel(
