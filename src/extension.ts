@@ -92,6 +92,7 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
 
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
+    const isTcf = path.extname(normalizedPath).toLowerCase() === '.tcf';
 
     for (let i = 0; i < lines.length; i++) {
         const text = lines[i];
@@ -109,6 +110,16 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
         const valueWithComment = text.slice(valueStartIndex);
         const commentIndex = valueWithComment.indexOf('!');
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
+        const keyText = text.slice(0, separatorIndex).trim();
+
+        if (isTcf) {
+            checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
+            checkXfFilesIncludeTokens(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
+        }
+
+        if (shouldSkipKeyForFileLookup(keyText)) {
+            continue;
+        }
 
         const candidates = extractPathCandidates(valueText, valueStartIndex, i);
         for (const candidate of candidates) {
@@ -145,6 +156,96 @@ function analyzeFile(filePath: string, contents: string, visited: Map<string, vs
     }
 
     return diagnostics;
+}
+
+function shouldSkipKeyForFileLookup(keyText: string): boolean {
+    const normalized = normalizeKey(keyText);
+    if (normalized === 'PAUSE') {
+        return true;
+    }
+
+    const skipPrefixes = [
+        'DEFINE EVENT',
+        'IF EVENT',
+        'ELSE IF EVENT',
+        'ELSEIF EVENT',
+        'BC EVENT SOURCE'
+    ];
+
+    return skipPrefixes.some(prefix => normalized.startsWith(prefix));
+}
+
+function normalizeKey(keyText: string): string {
+    return keyText.replace(/\s+/g, ' ').trim().toUpperCase();
+}
+
+function checkVersionTokenInFilename(
+    keyText: string,
+    valueText: string,
+    valueStartIndex: number,
+    lineIndex: number,
+    filePath: string,
+    diagnostics: vscode.Diagnostic[]
+): void {
+    if (normalizeKey(keyText) !== 'SET VARIABLE VERSION') {
+        return;
+    }
+
+    const versionValue = valueText.trim().split(/\s+/)[0];
+    if (!versionValue) {
+        return;
+    }
+
+    const baseName = path.basename(filePath);
+    const message = baseName.includes(versionValue)
+        ? `Version token "${versionValue}" found in filename.`
+        : `Version token "${versionValue}" not found in filename.`;
+    const severity = baseName.includes(versionValue)
+        ? vscode.DiagnosticSeverity.Information
+        : vscode.DiagnosticSeverity.Warning;
+
+    const valueIndex = valueText.indexOf(versionValue);
+    const startChar = valueStartIndex + (valueIndex >= 0 ? valueIndex : 0);
+    const endChar = startChar + versionValue.length;
+    diagnostics.push(new vscode.Diagnostic(
+        new vscode.Range(lineIndex, startChar, lineIndex, endChar),
+        message,
+        severity
+    ));
+}
+
+function checkXfFilesIncludeTokens(
+    keyText: string,
+    valueText: string,
+    valueStartIndex: number,
+    lineIndex: number,
+    filePath: string,
+    diagnostics: vscode.Diagnostic[]
+): void {
+    if (normalizeKey(keyText) !== 'XF FILES INCLUDE IN FILENAME') {
+        return;
+    }
+
+    const baseName = path.basename(filePath);
+    const tokenRegex = /<<([^>]+)>>/g;
+    let match: RegExpExecArray | null;
+
+    while ((match = tokenRegex.exec(valueText)) !== null) {
+        const token = match[1].trim();
+        if (!token) {
+            continue;
+        }
+
+        if (!baseName.includes(token)) {
+            const startChar = valueStartIndex + match.index;
+            const endChar = startChar + match[0].length;
+            diagnostics.push(new vscode.Diagnostic(
+                new vscode.Range(lineIndex, startChar, lineIndex, endChar),
+                `Filename is missing token "${token}" required by XF Files Include in Filename.`,
+                vscode.DiagnosticSeverity.Error
+            ));
+        }
+    }
 }
 
 function extractPathCandidates(valueText: string, valueStartIndex: number, lineIndex: number): Array<{ text: string; range: vscode.Range }> {
