@@ -1,12 +1,21 @@
 {
-  "name": "tuflow-validator",
+  "name": "tuflow-path-validator",
   "publisher": "Chain-Frost",
-  "displayName": "TUFLOW Validator",
-  "description": "Validates file paths in TUFLOW Control Files (.tcf)",
-  "version": "0.1.1",
+  "displayName": "TUFLOW Path Validator",
+  "description": "Validate file paths referenced in TUFLOW control files.",
+  "version": "0.1.2",
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#0b5ea8",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Chain-Frost/tuflow_validator"
+  },
+  "homepage": "https://github.com/Chain-Frost/tuflow_validator#readme",
+  "bugs": {
+    "url": "https://github.com/Chain-Frost/tuflow_validator/issues"
   },
   "engines": {
     "vscode": "^1.70.0"
@@ -15,12 +24,42 @@
     "Programming Languages",
     "Linters"
   ],
+  "keywords": [
+    "tuflow",
+    "tcf",
+    "tgc",
+    "tbc",
+    "trd",
+    "tef",
+    "ecf",
+    "qcf",
+    "path",
+    "validator",
+    "lint"
+  ],
   "activationEvents": [
     "onLanguage:tuflow",
     "workspaceContains:**/*.tcf"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "TUFLOW Path Validator",
+      "properties": {
+        "tuflowValidator.diagnosticLevel": {
+          "type": "string",
+          "default": "warning",
+          "enum": [
+            "error",
+            "warning",
+            "info",
+            "hint",
+            "none"
+          ],
+          "description": "Minimum diagnostic severity to display (error shows only errors; warning includes errors and warnings; info includes info; hint includes all; none disables diagnostics)."
+        }
+      }
+    },
     "languages": [{
       "id": "tuflow",
       "aliases": ["TUFLOW", "tuflow"],
@@ -35,7 +74,11 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "test:container": "bash scripts/test-container.sh",
-    "package:vsix": "bash scripts/package-vsix.sh"
+    "package:vsix": "bash scripts/package-vsix.sh",
+    "publish:vsix": "npx vsce publish -p \"$VSCE_PAT\"",
+    "publish:vsix:pre": "npm run package:vsix",
+    "publish:ovsx": "npx ovsx publish -p \"$OVSX_PAT\"",
+    "publish:all": "npm run publish:vsix && npm run publish:ovsx"
   },
   "devDependencies": {
     "@types/vscode": "^1.70.0",
@@ -49,6 +92,7 @@
     "mocha": "^10.1.0",
     "typescript": "^4.8.4",
     "@vscode/test-electron": "^2.2.0",
-    "@vscode/vsce": "^2.26.0"
+    "@vscode/vsce": "^2.26.0",
+    "ovsx": "^0.9.1"
   }
 }

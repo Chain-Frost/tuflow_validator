@@ -1,12 +1,15 @@
-# TUFLOW Validator (VS Code Extension)
+# TUFLOW Path Validator
 
-This extension surfaces diagnostics in TUFLOW control files by checking that referenced files exist on disk. It is intentionally lightweight and focuses on path validation rather than full syntax validation.
+Lightweight VS Code extension that validates file paths referenced in TUFLOW control files and reports issues in the Problems panel.
 
-## What it does
-- Scans control files for `Command == Value` lines and checks paths in the value field.
-- Supports multiple paths on a line separated by `|`.
-- Supports GeoPackage layer syntax and ignores layer selectors after `>>` (for example, `file.gpkg >> layer1 && layer2`).
-- Recursively parses referenced control files and reports their issues in the parent file as a warning.
+## Features
+- Missing file diagnostics for `Command == Value` lines.
+- Handles multiple paths separated by `|`.
+- Ignores GeoPackage layer selectors after `>>` (e.g. `file.gpkg >> layer1 && layer2`).
+- Recursively checks referenced control files and summarizes nested issues.
+- Flags missing filename tokens required by `XF Files Include in Filename`.
+- Checks `Set Variable Version` tokens against the current filename.
+- Configurable minimum diagnostic severity.
 
 ## Supported control files (recursive)
 - `.tcf`
@@ -17,15 +20,35 @@ This extension surfaces diagnostics in TUFLOW control files by checking that ref
 - `.ecf`
 - `.qcf`
 
-## Platform behavior
-- Treats `/` and `\` as path separators for relative paths to be platform-agnostic.
+## Installation
+Marketplace:
+1. Open Extensions (Ctrl+Shift+X).
+2. Search for "TUFLOW Path Validator".
+3. Click Install.
+
+Manual:
+1. Download the `.vsix` from a release.
+2. Extensions → "..." → Install from VSIX.
+
+## Usage
+Open any supported control file. Diagnostics appear automatically as you edit. Example:
+
+```tuflow
+Read GIS Z Shape == gis/terrain.gpkg >> contours
+Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
+```
+
+## Settings
+- `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint`, or `none`.
 
 ## Limitations and non-goals
-- Does not resolve TUFLOW variables/macros (for example `<<OutputRoot>>` or `<<~s1~>>`); these values are ignored.
-- Does not implement a full TUFLOW grammar; it only checks file paths in `Command == Value` lines.
-- Does not validate layer names, dataset contents, or runtime options.
+- Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored.
+- This does not implement a full TUFLOW grammar; it only validates file paths.
+- Dataset contents, layer names, and runtime options are not validated.
 
-## Roadmap ideas
-- More robust parsing of list values and complex syntax.
-- Optional configuration for severity levels and parsing depth.
-- Additional TUFLOW file types if needed.
+## Development
+```bash
+npm run compile
+npm run test:container
+npm run package:vsix
+```

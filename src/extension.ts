@@ -16,7 +16,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.workspace.onDidOpenTextDocument(doc => updateDiagnostics(doc, collection)),
-        vscode.workspace.onDidChangeTextDocument(event => updateDiagnostics(event.document, collection))
+        vscode.workspace.onDidChangeTextDocument(event => updateDiagnostics(event.document, collection)),
+        vscode.workspace.onDidChangeConfiguration(event => {
+            if (event.affectsConfiguration('tuflowValidator.diagnosticLevel')) {
+                refreshDiagnostics(collection);
+            }
+        })
     );
 }
 
@@ -24,6 +29,8 @@ function updateDiagnostics(document: vscode.TextDocument, collection: vscode.Dia
     if (!shouldProcessDocument(document)) {
         return;
     }
+
+    const severityLevel = getConfiguredDiagnosticLevel();
 
     const rootKey = document.uri.toString();
     const previousFiles = lastFilesByRoot.get(rootKey);
@@ -37,7 +44,8 @@ function updateDiagnostics(document: vscode.TextDocument, collection: vscode.Dia
     const updatedFiles = new Set<string>();
 
     for (const [filePath, diagnostics] of diagnosticsByFile.entries()) {
-        collection.set(vscode.Uri.file(filePath), diagnostics);
+        const filtered = filterDiagnosticsByLevel(diagnostics, severityLevel);
+        collection.set(vscode.Uri.file(filePath), filtered);
         updatedFiles.add(filePath);
     }
 
@@ -245,6 +253,64 @@ function checkXfFilesIncludeTokens(
                 vscode.DiagnosticSeverity.Error
             ));
         }
+    }
+}
+
+function getConfiguredDiagnosticLevel(): string {
+    const config = vscode.workspace.getConfiguration('tuflowValidator');
+    return (config.get<string>('diagnosticLevel') || 'warning').toLowerCase();
+}
+
+function filterDiagnosticsByLevel(
+    diagnostics: vscode.Diagnostic[],
+    level: string
+): vscode.Diagnostic[] {
+    if (level === 'none') {
+        return [];
+    }
+
+    const threshold = severityRank(level);
+    if (threshold === null) {
+        return diagnostics;
+    }
+
+    return diagnostics.filter(diagnostic => severityRankValue(diagnostic.severity) <= threshold);
+}
+
+function severityRank(level: string): number | null {
+    switch (level) {
+        case 'error':
+            return 0;
+        case 'warning':
+            return 1;
+        case 'info':
+        case 'information':
+            return 2;
+        case 'hint':
+            return 3;
+        default:
+            return null;
+    }
+}
+
+function severityRankValue(severity: vscode.DiagnosticSeverity): number {
+    switch (severity) {
+        case vscode.DiagnosticSeverity.Error:
+            return 0;
+        case vscode.DiagnosticSeverity.Warning:
+            return 1;
+        case vscode.DiagnosticSeverity.Information:
+            return 2;
+        case vscode.DiagnosticSeverity.Hint:
+            return 3;
+        default:
+            return 2;
+    }
+}
+
+function refreshDiagnostics(collection: vscode.DiagnosticCollection): void {
+    for (const document of vscode.workspace.textDocuments) {
+        updateDiagnostics(document, collection);
     }
 }
 
