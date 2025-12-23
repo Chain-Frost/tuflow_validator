@@ -1,0 +1,15 @@
+! BigBoyCk - negative test
+! File assumed to be in TUFLOW/runs
+
+Set Variable Version == 01
+Set Variable BranchRoot == <<Version>>\<<~s1~>>\<<~s2~>>\<<~e4~>>
+Set Variable OutputRoot == ..\results\<<BranchRoot>>\
+
+Geometry Control File == ..\model\GEOM_missing.tgc
+BC Control File == ..\model\BOUND_01.tbc
+BC Event File == ..\bc_dbase\Event_File.tef
+
+! Intentional missing files for tests
+Read GIS Z Shape == ..\model\missing_surface.gpkg
+Read File == ..\bc_dbase\BigBoy\missing_soils.tsoilf
+Read File == ..\runs\missing_run_times.trd

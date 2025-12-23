@@ -1,0 +1,3 @@
+Read GIS Z Shape == <<OutputRoot>>/terrain.gpkg
+Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
+Read GIS Location == subdir/nested.tgc

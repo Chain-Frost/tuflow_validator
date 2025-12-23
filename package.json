@@ -3,7 +3,7 @@
   "publisher": "Chain-Frost",
   "displayName": "TUFLOW Path Validator",
   "description": "Validate file paths referenced in TUFLOW control files.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "icon": "resources/icon.png",
   "galleryBanner": {
     "color": "#0b5ea8",
