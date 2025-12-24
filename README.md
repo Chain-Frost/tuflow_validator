@@ -59,6 +59,22 @@ Clicking on an error suggests Quick Fixes to automatically add these ignore comm
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
 - `tuflowValidator.enableLatestVersionChecks`: Enable latest-version checks for versioned filenames (default: `true`).
 
+## Latest TCF behavior
+Latest-version checks are scoped to the "latest" TCFs in each folder. A TCF is considered "latest" using these rules:
+- If the filename contains a number, it participates in a versioned series and only the highest version in that series is "latest".
+- If the filename contains no number, it is treated as "latest" on its own.
+
+This means multiple "latest" TCFs can exist in a folder when there are multiple unversioned files or multiple versioned series.
+
+Example:
+```tuflow
+file.tcf       # latest (no version token)
+file_01.tcf
+file02.tcf     # latest (highest in its series)
+king05.tcf
+king08.tcf     # latest (highest in its series)
+```
+
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored.
 - This does not implement a full TUFLOW grammar; it only validates file paths.

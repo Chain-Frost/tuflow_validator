@@ -17,12 +17,12 @@ suite('TUFLOW Ignore Diagnostics', function () {
         const diagnostics = vscode.languages.getDiagnostics(doc.uri);
         // Line 1 has ! tpf-ignore, so no error. Line 2 has no ignore, so error.
         
-        const line1Error = diagnostics.find(d => d.range.start.line === 1); // 0-indexed, so line 2 is index 1
+        const line1Error = diagnostics.find(d => d.range.start.line === 2); // 0-indexed, so line 3 is index 2
         const line0Error = diagnostics.find(d => d.range.start.line === 0);
 
         assert.strictEqual(line0Error, undefined, 'Line 0 should be ignored');
-        assert.ok(line1Error, 'Line 1 should have an error');
-        assert.ok(line1Error.message.includes('File not found'), 'Line 1 should error on missing file');
+        assert.ok(line1Error, 'Line 2 should have an error');
+        assert.ok(line1Error.message.includes('File not found'), 'Line 2 should error on missing file');
     });
 
     test('ignores file errors with ! tpf-ignore-file at top', async () => {

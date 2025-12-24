@@ -2,10 +2,15 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
+// Supported control file types for diagnostics/recursion.
 const CONTROL_FILE_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.ecf', '.qcf', '.tef']);
+// Severity used when summarizing child-file issues on the parent reference line.
 const ISSUE_SUMMARY_SEVERITY = vscode.DiagnosticSeverity.Warning;
+// Tracks which files were last updated for each root doc so we can clear stale diagnostics.
 const lastFilesByRoot = new Map<string, Set<string>>();
+// Extensions eligible for latest-version checks (control files only; data files are excluded). Data files are checked elsewhere.
 const LATEST_CHECK_CONTROL_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.ecf', '.qcf']);
+// Matches scenario/event tokens embedded in filenames (e.g. ~s1~, ~e4~).
 const SCENARIO_EVENT_TOKEN_REGEX = /~[se][1-9]~/gi;
 
 export function activate(context: vscode.ExtensionContext) {
@@ -420,8 +425,16 @@ function shouldSkipFolderScan(folderName: string): boolean {
 }
 
 /**
- * Identifies the "latest" .tcf file in each folder based on version numbering.
- * 
+ * Identifies the "latest" .tcf file(s) in each folder based on version numbering.
+ *
+ * Behavior:
+ * - If a TCF filename contains a numeric token (e.g. file_01.tcf, file02.tcf),
+ *   it participates in a versioned series and only the highest version in that
+ *   series is "latest".
+ * - If a TCF filename contains no numeric token, it is treated as "latest" on
+ *   its own. This means multiple "latest" TCFs can exist in a folder when there
+ *   are multiple unversioned files or multiple versioned series.
+ *
  * @param tcfFilesByFolder - Map of folders to their .tcf files.
  * @returns A list of absolute paths to the latest .tcf files.
  */
@@ -431,7 +444,7 @@ function collectLatestTcfFiles(tcfFilesByFolder: Map<string, string[]>): string[
     for (const files of tcfFilesByFolder.values()) {
         for (const file of files) {
             const status = getLatestVersionStatus(file, files);
-            if (status.status === 'latest') {
+            if (status.status === 'latest' || status.status === 'no-version') {
                 latestTcfs.push(path.normalize(file));
             }
         }
@@ -512,7 +525,10 @@ function collectReferencedControlFiles(tcfPath: string, contents: string, refere
 
 /**
  * checks if a referenced file needs a version check.
- * 
+ *
+ * Note: Unversioned TCFs are treated as "latest" so their referenced files
+ * still participate in latest-version checks.
+ *
  * @param filePath - The referenced file path.
  * @param diagnostics - Diagnostics array to push warnings to.
  * @param latestCheckContext - Context for latest version checking.
@@ -552,7 +568,7 @@ function shouldCheckLatestReferencedVersions(
         return false;
     }
 
-    return status.status === 'latest';
+    return status.status === 'latest' || (ext === '.tcf' && status.status === 'no-version');
 }
 
 function checkReferencedFileLatestVersion(
