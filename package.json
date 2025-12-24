@@ -3,7 +3,7 @@
   "publisher": "Chain-Frost",
   "displayName": "TUFLOW Path Validator",
   "description": "Validate file paths referenced in TUFLOW control files.",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "icon": "resources/icon.png",
   "galleryBanner": {
     "color": "#0b5ea8",
@@ -70,11 +70,18 @@
         }
       }
     },
-    "languages": [{
-      "id": "tuflow",
-      "aliases": ["TUFLOW", "tuflow"],
-      "extensions": [".tcf"]
-    }]
+    "languages": [
+      {
+        "id": "tuflow",
+        "aliases": [
+          "TUFLOW",
+          "tuflow"
+        ],
+        "extensions": [
+          ".tcf"
+        ]
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

@@ -1,6 +1,4 @@
-import * as path from 'path';
 import * as vscode from 'vscode';
-import { normalizeKey } from './pathParsing';
 
 /**
  * Provides Quick Fix code actions for TUFLOW diagnostics.
@@ -43,7 +41,6 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         }
 
         const actions: vscode.CodeAction[] = [];
-        const canUpdateToLatest = shouldOfferLatestVersionFix(document);
 
         // 1. Ignore this line: Append "! tpf-ignore" to the end of the line (or inject into existing comment)
         const lineFix = new vscode.CodeAction('Ignore this line (TUFLOW)', vscode.CodeActionKind.QuickFix);
@@ -69,53 +66,24 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         fileFix.diagnostics = diagnostics;
         actions.push(fileFix);
 
-        if (canUpdateToLatest) {
-            for (const diagnostic of diagnostics) {
-                if (!diagnostic.message.includes('not the latest version')) {
-                    continue;
-                }
-                const updatedText = buildLatestVersionReplacement(document, diagnostic.range, diagnostic.message);
-                if (!updatedText) {
-                    continue;
-                }
-
-                const latestFix = new vscode.CodeAction('Update to latest version (TUFLOW)', vscode.CodeActionKind.QuickFix);
-                latestFix.edit = new vscode.WorkspaceEdit();
-                latestFix.edit.replace(document.uri, diagnostic.range, updatedText);
-                latestFix.diagnostics = [diagnostic];
-                actions.push(latestFix);
+        for (const diagnostic of diagnostics) {
+            if (!diagnostic.message.includes('not the latest version')) {
+                continue;
             }
+            const updatedText = buildLatestVersionReplacement(document, diagnostic.range, diagnostic.message);
+            if (!updatedText) {
+                continue;
+            }
+
+            const latestFix = new vscode.CodeAction('Update to latest version (TUFLOW)', vscode.CodeActionKind.QuickFix);
+            latestFix.edit = new vscode.WorkspaceEdit();
+            latestFix.edit.replace(document.uri, diagnostic.range, updatedText);
+            latestFix.diagnostics = [diagnostic];
+            actions.push(latestFix);
         }
 
         return actions;
     }
-}
-
-function shouldOfferLatestVersionFix(document: vscode.TextDocument): boolean {
-    if (path.extname(document.fileName).toLowerCase() !== '.tcf') {
-        return false;
-    }
-
-    return hasSetVariableVersion(document);
-}
-
-function hasSetVariableVersion(document: vscode.TextDocument): boolean {
-    const lines = document.getText().split(/\r?\n/);
-    for (const line of lines) {
-        if (line.trim().startsWith('!') || line.trim().length === 0) {
-            continue;
-        }
-        const separatorIndex = line.indexOf('==');
-        if (separatorIndex === -1) {
-            continue;
-        }
-        const keyText = line.slice(0, separatorIndex).trim();
-        if (normalizeKey(keyText) === 'SET VARIABLE VERSION') {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 function buildLatestVersionReplacement(
