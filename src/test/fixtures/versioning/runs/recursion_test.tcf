@@ -1,0 +1,2 @@
+! This TCF references a TRD which references an old GPKG.
+Read Materials File == ..\model\props_v01.trd

@@ -1,0 +1,3 @@
+! This file tests line-level ignores
+Read GIS Z Shape == missing_file.shp ! tpf-ignore
+Read GIS BC == another_missing.shp

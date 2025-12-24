@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
-const CONTROL_FILE_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.tef', '.ecf', '.qcf']);
+const CONTROL_FILE_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.ecf', '.qcf', '.tef']);
 const ISSUE_SUMMARY_SEVERITY = vscode.DiagnosticSeverity.Warning;
 const lastFilesByRoot = new Map<string, Set<string>>();
-const LATEST_CHECK_CONTROL_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.ecf']);
+const LATEST_CHECK_CONTROL_EXTENSIONS = new Set(['.tcf', '.tgc', '.tbc', '.trd', '.ecf', '.qcf']);
 const SCENARIO_EVENT_TOKEN_REGEX = /~[se][1-9]~/gi;
 
 export function activate(context: vscode.ExtensionContext) {
@@ -27,6 +27,31 @@ export function activate(context: vscode.ExtensionContext) {
                 refreshDiagnostics(collection);
             }
         })
+    );
+
+    context.subscriptions.push(
+        vscode.languages.registerCodeActionsProvider(
+            { scheme: 'file', language: 'tuflow' },
+            new IgnoreCodeActionProvider(),
+            { providedCodeActionKinds: IgnoreCodeActionProvider.providedCodeActionKinds }
+        )
+    );
+    // Also register for our supported extensions if language ID is not strictly 'tuflow'
+    // Since document selector can take an array or filter. 
+    // The previous logic checked extensions manually.
+    // For simplicity, let's register for all files and let the provider filter or use a specific selector.
+    // Actually, VS Code usually requires a language ID or specific patterns.
+    // Let's use a document selector that matches our files.
+    const selector: vscode.DocumentSelector = [
+        { language: 'tuflow' },
+        { pattern: '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf}' }
+    ];
+    context.subscriptions.push(
+        vscode.languages.registerCodeActionsProvider(
+            selector,
+            new IgnoreCodeActionProvider(),
+            { providedCodeActionKinds: IgnoreCodeActionProvider.providedCodeActionKinds }
+        )
     );
 }
 
@@ -57,6 +82,17 @@ function updateDiagnostics(document: vscode.TextDocument, collection: vscode.Dia
     lastFilesByRoot.set(rootKey, updatedFiles);
 }
 
+/**
+ * Determines if a string value looks like a potential file path.
+ * Heuristics used:
+ * 1. Checks if it is NOT a pure number.
+ * 2. Checks for path separators (/ or \).
+ * 3. Checks for a file extension.
+ * 4. Filters out common TUFLOW keywords that often appear in similar contexts (ON, OFF, GPU, etc.).
+ * 
+ * @param value - The string to check.
+ * @returns True if the string is likely a file path, false otherwise.
+ */
 function isLikelyFile(value: string): boolean {
     // 1. Shouldn't be a number
     if (!isNaN(Number(value))) {
@@ -78,6 +114,13 @@ function isLikelyFile(value: string): boolean {
     return false;
 }
 
+/**
+ * Determines if a document should be processed by this extension.
+ * Checks language ID and file extension.
+ * 
+ * @param document - The VS Code TextDocument.
+ * @returns True if the document is a supported TUFLOW control file.
+ */
 function shouldProcessDocument(document: vscode.TextDocument): boolean {
     if (document.languageId === 'tuflow') {
         return true;
@@ -86,6 +129,13 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
     return CONTROL_FILE_EXTENSIONS.has(path.extname(document.fileName).toLowerCase());
 }
 
+/**
+ * Entry point for analyzing the root document.
+ * Initializes context and starts analysis.
+ * 
+ * @param document - The root document opened by the user.
+ * @returns A map of file paths to their diagnostics.
+ */
 function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
@@ -94,6 +144,16 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
     return visited;
 }
 
+/**
+ * Analyzes a single file for path validation issues.
+ * This is the core logic function that parses the file content line by line.
+ * 
+ * @param filePath - The absolute path of the file to analyze.
+ * @param contents - The raw text content of the file.
+ * @param visited - A map of visited file paths to their diagnostics (memoization/recursion tracking).
+ * @param latestCheckContext - Context for checking latest version status of referenced files.
+ * @returns An array of diagnostics found in the file.
+ */
 function analyzeFile(
     filePath: string,
     contents: string,
@@ -121,7 +181,20 @@ function analyzeFile(
     for (let i = 0; i < lines.length; i++) {
         const text = lines[i];
 
-        if (text.trim().startsWith('!') || text.trim().length === 0) {
+        // Check for file-level ignore comment: "! tpf-ignore-file"
+        // This MUST be the first thing checked to effectively skip the whole file.
+        if (text.trim().startsWith('!')) {
+            const commentContent = text.trim().slice(1).trim();
+            if (commentContent.startsWith('tpf-ignore-file')) {
+                // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
+                diagnostics.length = 0;
+                visited.set(normalizedPath, []);
+                return [];
+            }
+            continue;
+        }
+
+        if (text.trim().length === 0) {
             continue;
         }
 
@@ -133,6 +206,15 @@ function analyzeFile(
         const valueStartIndex = separatorIndex + 2;
         const valueWithComment = text.slice(valueStartIndex);
         const commentIndex = valueWithComment.indexOf('!');
+        
+        // Check for line-level ignore comment: "Command == Path ! tpf-ignore"
+        if (commentIndex >= 0) {
+            const commentContent = valueWithComment.slice(commentIndex + 1).trim();
+            if (commentContent.startsWith('tpf-ignore')) {
+                continue;
+            }
+        }
+
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
 
@@ -169,6 +251,7 @@ function analyzeFile(
                 );
             }
 
+            // Recursive check for referenced control files
             if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
                 const childContents = safeReadFile(resolvedPath);
                 if (childContents === null) {
@@ -190,6 +273,13 @@ function analyzeFile(
     return diagnostics;
 }
 
+/**
+ * Determines if a specific key should be skipped during file lookup.
+ * Certain TUFLOW commands (like PAUSE or events) do not reference files in the standard way.
+ * 
+ * @param keyText - The command key (left side of '==').
+ * @returns True if the key should be ignored, false otherwise.
+ */
 function shouldSkipKeyForFileLookup(keyText: string): boolean {
     const normalized = normalizeKey(keyText);
     if (normalized === 'PAUSE') {
@@ -207,12 +297,23 @@ function shouldSkipKeyForFileLookup(keyText: string): boolean {
     return skipPrefixes.some(prefix => normalized.startsWith(prefix));
 }
 
+/**
+ * Normalizes a command key for comparison by trimming, replacing multiple spaces, and uppercasing.
+ * 
+ * @param keyText - The raw key text.
+ * @returns The normalized key string.
+ */
 function normalizeKey(keyText: string): string {
     return keyText.replace(/\s+/g, ' ').trim().toUpperCase();
 }
 
+/**
+ * Context required for performing latest version checks across the workspace.
+ */
 interface LatestCheckContext {
+    /** Map of folder paths to lists of .tcf files within them. */
     tcfFilesByFolder: Map<string, string[]>;
+    /** Set of control files that are referenced by the "latest" .tcf file in their respective folders. */
     latestTcfReferencedControls: Set<string>;
 }
 
@@ -231,6 +332,14 @@ interface LatestVersionResult {
     latestVersion?: number;
 }
 
+/**
+ * Builds the context needed to verify if files are the latest version.
+ * This involves scanning the workspace (or current folder) for TCF files to determine
+ * which TCF is the "latest" and what it references.
+ * 
+ * @param document - The current document to anchor the search (if no workspace folders).
+ * @returns The populated LatestCheckContext.
+ */
 function buildLatestCheckContext(document: vscode.TextDocument): LatestCheckContext {
     if (!getConfiguredLatestVersionChecksEnabled()) {
         return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
@@ -253,6 +362,12 @@ function buildLatestCheckContext(document: vscode.TextDocument): LatestCheckCont
     return { tcfFilesByFolder, latestTcfReferencedControls };
 }
 
+/**
+ * Recursively finds all .tcf files in a directory data structure.
+ * 
+ * @param rootDir - The directory to start searching from.
+ * @param tcfFilesByFolder - Accumulator map of folder paths to TCF files.
+ */
 function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<string, string[]>): void {
     let entries: fs.Dirent[] = [];
     try {
@@ -286,6 +401,12 @@ function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<strin
     }
 }
 
+/**
+ * Checks if a directory should be skipped during recursive scanning (e.g. node_modules).
+ * 
+ * @param folderName - The name of the folder.
+ * @returns True if the folder should be skipped.
+ */
 function shouldSkipFolderScan(folderName: string): boolean {
     const normalized = folderName.toLowerCase();
     return (
@@ -298,6 +419,12 @@ function shouldSkipFolderScan(folderName: string): boolean {
     );
 }
 
+/**
+ * Identifies the "latest" .tcf file in each folder based on version numbering.
+ * 
+ * @param tcfFilesByFolder - Map of folders to their .tcf files.
+ * @returns A list of absolute paths to the latest .tcf files.
+ */
 function collectLatestTcfFiles(tcfFilesByFolder: Map<string, string[]>): string[] {
     const latestTcfs: string[] = [];
 
@@ -313,6 +440,13 @@ function collectLatestTcfFiles(tcfFilesByFolder: Map<string, string[]>): string[
     return latestTcfs;
 }
 
+/**
+ * Collects all control files referenced by a given list of TCF files.
+ * This effectively defines the "active set" of files for the latest simulation runs.
+ * 
+ * @param tcfFiles - List of TCF file paths.
+ * @returns Set of referenced file paths.
+ */
 function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> {
     const referenced = new Set<string>();
 
@@ -328,6 +462,13 @@ function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> 
     return referenced;
 }
 
+/**
+ * Parses a TCF file content and extracts referenced control file paths.
+ * 
+ * @param tcfPath - Path to the TCF file.
+ * @param contents - Content of the TCF file.
+ * @param referenced - Accumulator set for referenced files.
+ */
 function collectReferencedControlFiles(tcfPath: string, contents: string, referenced: Set<string>): void {
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(tcfPath);
@@ -369,6 +510,14 @@ function collectReferencedControlFiles(tcfPath: string, contents: string, refere
     }
 }
 
+/**
+ * checks if a referenced file needs a version check.
+ * 
+ * @param filePath - The referenced file path.
+ * @param diagnostics - Diagnostics array to push warnings to.
+ * @param latestCheckContext - Context for latest version checking.
+ * @returns True if we should proceed with version checking for this file.
+ */
 function shouldCheckLatestReferencedVersions(
     filePath: string,
     diagnostics: vscode.Diagnostic[],
@@ -710,6 +859,15 @@ function refreshDiagnostics(collection: vscode.DiagnosticCollection): void {
     }
 }
 
+/**
+ * Extracts potential file path candidates from a line of text.
+ * Handles paths separated by '|' and removes TUFLOW layer selectors ('>>').
+ * 
+ * @param valueText - The value part of the command (right side of '==').
+ * @param valueStartIndex - The index where the value starts in the line.
+ * @param lineIndex - The line number in the document.
+ * @returns An array of path candidates with their ranges.
+ */
 function extractPathCandidates(valueText: string, valueStartIndex: number, lineIndex: number): Array<{ text: string; range: vscode.Range }> {
     const candidates: Array<{ text: string; range: vscode.Range }> = [];
     const segmentRegex = /[^|]+/g;
@@ -737,6 +895,13 @@ function extractPathCandidates(valueText: string, valueStartIndex: number, lineI
     return candidates;
 }
 
+/**
+ * Resolves a potentially relative path to an absolute path.
+ * 
+ * @param baseDir - Generally the directory of the current file.
+ * @param rawPath - The path string found in the file.
+ * @returns The absolute path.
+ */
 function resolvePath(baseDir: string, rawPath: string): string {
     const normalized = rawPath.replace(/\\/g, '/');
     if (path.isAbsolute(normalized) || path.win32.isAbsolute(normalized)) {
@@ -746,10 +911,22 @@ function resolvePath(baseDir: string, rawPath: string): string {
     return path.resolve(baseDir, normalized);
 }
 
+/**
+ * Checks if a string contains unresolved TUFLOW tokens/macros (e.g. <<...>>).
+ * 
+ * @param value - The string to check.
+ * @returns True if unresolved tokens are present.
+ */
 function containsUnresolvedToken(value: string): boolean {
     return value.includes('<<') || value.includes('>>');
 }
 
+/**
+ * safely reads a file's content, returning null on failure (e.g. file not found).
+ * 
+ * @param filePath - The absolute path of the file.
+ * @returns The file content as a string, or null if reading failed.
+ */
 function safeReadFile(filePath: string): string | null {
     try {
         return fs.readFileSync(filePath, 'utf8');
@@ -759,3 +936,68 @@ function safeReadFile(filePath: string): string | null {
 }
 
 export function deactivate() {}
+
+/**
+ * Provides Quick Fix code actions for TUFLOW diagnostics.
+ * Offers options to ignore errors on a specific line or for the entire file.
+ */
+export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
+    /**
+     * The kinds of code actions provided by this provider.
+     */
+    public static readonly providedCodeActionKinds = [
+        vscode.CodeActionKind.QuickFix
+    ];
+
+    /**
+     * Computes code actions for the given range in the document.
+     * 
+     * @param document - The document in which the command was invoked.
+     * @param range - The range for which the command was invoked.
+     * @param context - The context for the code action, including diagnostics.
+     * @param token - A cancellation token.
+     * @returns An array of CodeActions or undefined if none are applicable.
+     */
+    provideCodeActions(document: vscode.TextDocument, range: vscode.Range | vscode.Selection, context: vscode.CodeActionContext, token: vscode.CancellationToken): vscode.ProviderResult<(vscode.Command | vscode.CodeAction)[]> {
+        // Filter diagnostics to only those relevant to this extension
+        const diagnostics = context.diagnostics.filter(diagnostic => {
+            return diagnostic.message.includes('File not found') || 
+                   diagnostic.message.includes('Referenced file has') ||
+                   diagnostic.message.includes('Filename is missing token') ||
+                   diagnostic.message.includes('not the latest version') ||
+                   diagnostic.message.includes('Unable to determine');
+        });
+
+        if (diagnostics.length === 0) {
+            return;
+        }
+
+        const actions: vscode.CodeAction[] = [];
+
+        // 1. Ignore this line: Append "! tpf-ignore" to the end of the line (or inject into existing comment)
+        const lineFix = new vscode.CodeAction('Ignore this line (TUFLOW)', vscode.CodeActionKind.QuickFix);
+        lineFix.edit = new vscode.WorkspaceEdit();
+        const line = document.lineAt(range.start.line);
+        const text = line.text;
+        const commentIndex = text.indexOf('!');
+        
+        if (commentIndex >= 0) {
+           // Insert ' tpf-ignore' after the exclamation mark to ensure it's the first token in the comment
+           lineFix.edit.insert(document.uri, new vscode.Position(range.start.line, commentIndex + 1), ' tpf-ignore');
+        } else {
+            // No existing comment, append one at the end of the line
+            lineFix.edit.insert(document.uri, line.range.end, ' ! tpf-ignore');
+        }
+        lineFix.diagnostics = diagnostics;
+        actions.push(lineFix);
+
+        // 2. Ignore entire file: Insert "! tpf-ignore-file" at the very beginning of the document
+        const fileFix = new vscode.CodeAction('Ignore entire file (TUFLOW)', vscode.CodeActionKind.QuickFix);
+        fileFix.edit = new vscode.WorkspaceEdit();
+        fileFix.edit.insert(document.uri, new vscode.Position(0, 0), '! tpf-ignore-file\n');
+        fileFix.diagnostics = diagnostics;
+        actions.push(fileFix);
+
+        return actions;
+    }
+}

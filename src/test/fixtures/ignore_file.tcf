@@ -1,0 +1,4 @@
+! tpf-ignore-file
+! This file tests file-level ignores
+Read GIS Z Shape == missing_file_1.shp
+Read GIS BC == missing_file_2.shp

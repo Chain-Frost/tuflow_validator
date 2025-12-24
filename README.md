@@ -12,6 +12,7 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - When a versioned TCF/TGC/TBC/ECF is the latest in its folder, referenced files with numeric versions (e.g. `v07`, `011`, `Model12`) are checked for latest versions (warns when newness is ambiguous or a newer version exists). Latest control files are determined per folder and must be referenced by a latest TCF.
 - Checks `Set Variable Version` tokens against the current filename (info when present, warning when missing).
 - Configurable minimum diagnostic severity (default: `hint`).
+- **Quick Fixes**: Automatically resolve issues by ignoring specific lines or files.
 
 ## Supported control files (recursive)
 - `.tcf`
@@ -35,10 +36,24 @@ Manual:
 ## Usage
 Open any supported control file. Diagnostics appear automatically as you edit. Example:
 
-```tuflow
 Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
+
+### Ignoring Issues
+You can suppress validation errors using comments:
+- **Ignore a specific line**: Add `! tpf-ignore` at the end of the line.
+    ```tuflow
+    Read GIS Z Shape == missing_file.shp ! tpf-ignore
+    ```
+- **Ignore an entire file**: Add `! tpf-ignore-file` anywhere in the file (conventionally at the top).
+    ```tuflow
+    ! tpf-ignore-file
+    Read GIS Z Shape == missing_file.shp
+    ```
+
+**Quick Fixes**:
+Clicking on an error suggests Quick Fixes to automatically add these ignore comments.
 
 ## Settings
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
