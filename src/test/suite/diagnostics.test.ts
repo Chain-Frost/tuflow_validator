@@ -15,6 +15,9 @@ const VERSION_POS_TGC = path.join(VERSIONING_ROOT, 'model', 'geomPos_v02.tgc');
 const LATEST_ROOT = path.join(FIXTURE_ROOT, 'latest');
 const LATEST_TCF = path.join(LATEST_ROOT, 'runs', 'LatestRun_~s1~_v02.tcf');
 const LATEST_TGC = path.join(LATEST_ROOT, 'model', 'geom_v02.tgc');
+const MULTI_ROOT_A = path.join(FIXTURE_ROOT, 'multi-root', 'root_a.tcf');
+const MULTI_ROOT_B = path.join(FIXTURE_ROOT, 'multi-root', 'root_b.tcf');
+const ANALYZE_ALL_ORPHAN = path.join(FIXTURE_ROOT, 'all', 'orphan.tgc');
 const EXAMPLE_TCF = path.join(
     __dirname,
     '../../../example/runs/BigBoyCk_01_~s1~_~s2~_~e1~_~e2~_~e3~_~e4~_~s4~.tcf'
@@ -165,6 +168,41 @@ suite('TUFLOW diagnostics', function () {
         const missingFiles = diagnostics.filter(d => d.message.includes('File not found:'));
         assert.ok(missingFiles.length >= 3);
         assert.ok(diagnostics.some(d => d.message.includes('Referenced file has')));
+    });
+
+    test('keeps diagnostics for multiple roots open', async () => {
+        const docA = await vscode.workspace.openTextDocument(MULTI_ROOT_A);
+        await vscode.window.showTextDocument(docA);
+        await waitForDiagnostics(docA.uri);
+
+        const docB = await vscode.workspace.openTextDocument(MULTI_ROOT_B);
+        await vscode.window.showTextDocument(docB);
+        await waitForDiagnostics(docB.uri);
+
+        const diagnosticsA = vscode.languages.getDiagnostics(docA.uri);
+        const diagnosticsB = vscode.languages.getDiagnostics(docB.uri);
+
+        assert.ok(diagnosticsA.some(d => d.message.includes('File not found:')));
+        assert.ok(diagnosticsB.some(d => d.message.includes('File not found:')));
+    });
+
+    test('analyzeAllControlFiles reports diagnostics for unopened control files when enabled', async () => {
+        const config = vscode.workspace.getConfiguration('tuflowValidator');
+        await config.update('analyzeAllControlFiles', true, vscode.ConfigurationTarget.Global);
+
+        try {
+            const doc = await vscode.workspace.openTextDocument(ROOT_TCF);
+            await vscode.window.showTextDocument(doc);
+            await waitForDiagnostics(doc.uri);
+
+            const orphanUri = vscode.Uri.file(ANALYZE_ALL_ORPHAN);
+            await waitForDiagnostics(orphanUri);
+
+            const orphanDiagnostics = vscode.languages.getDiagnostics(orphanUri);
+            assert.ok(orphanDiagnostics.some(d => d.message.includes('File not found:')));
+        } finally {
+            await config.update('analyzeAllControlFiles', false, vscode.ConfigurationTarget.Global);
+        }
     });
 });
 

@@ -1,10 +1,9 @@
 # Release Process
 
-This extension is published to the VS Code Marketplace (vsce) and Open VSX (ovsx).
+This extension is published to the VS Code Marketplace (vsce).
 
 ## Prereqs
 - VS Code Marketplace Personal Access Token in `VSCE_PAT`.
-- Open VSX token in `OVSX_PAT`.
 - Logged in to GitHub and permission to create releases.
 
 ## Steps
@@ -13,8 +12,13 @@ This extension is published to the VS Code Marketplace (vsce) and Open VSX (ovsx
 3. Create the VSIX with `npm run package:vsix` (this creates a versioned `.vsix` file).
 4. Publish:
    - Marketplace: `npm run publish:vsix`
-   - Open VSX: `npm run publish:ovsx`
-   - Both: `npm run publish:all`
 5. Tag and release on GitHub:
    - Create a tag like `v0.1.8`.
    - Create a GitHub Release and attach the `.vsix`.
+
+## Scripted workflow
+- `scripts/release.sh` runs compile/test/package/publish and can optionally tag and create a GitHub release.
+- Container usage: set `DOCKER_EXEC="docker exec -i <container>"` to run npm/npx inside your container.
+- Examples:
+  - `scripts/release.sh` (compile/test/package/publish)
+  - `scripts/release.sh --tag --gh-release` (also tag and create a GitHub release)

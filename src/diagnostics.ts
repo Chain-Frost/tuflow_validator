@@ -16,9 +16,15 @@ import {
 
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
 let mergedFiles = new Set<string>();
+let isRefreshing = false;
 
 export function updateDiagnostics(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
     if (!shouldProcessDocument(document)) {
+        return;
+    }
+
+    if (getConfiguredAnalyzeAllControlFilesEnabled() && !isRefreshing && !hasWorkspaceFolders()) {
+        void refreshDiagnostics(collection);
         return;
     }
 
@@ -37,18 +43,23 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
 }
 
 export async function refreshDiagnostics(collection: vscode.DiagnosticCollection): Promise<void> {
-    const documents = await collectDocumentsForRefresh();
-    const nextRootDiagnostics = new Map<string, Map<string, vscode.Diagnostic[]>>();
+    isRefreshing = true;
+    try {
+        const documents = await collectDocumentsForRefresh();
+        const nextRootDiagnostics = new Map<string, Map<string, vscode.Diagnostic[]>>();
 
-    for (const document of documents) {
-        if (!shouldProcessDocument(document)) {
-            continue;
+        for (const document of documents) {
+            if (!shouldProcessDocument(document)) {
+                continue;
+            }
+            nextRootDiagnostics.set(document.uri.toString(), computeDiagnosticsForDocument(document));
         }
-        nextRootDiagnostics.set(document.uri.toString(), computeDiagnosticsForDocument(document));
-    }
 
-    rootDiagnosticsByRoot = nextRootDiagnostics;
-    rebuildMergedDiagnostics(collection);
+        rootDiagnosticsByRoot = nextRootDiagnostics;
+        rebuildMergedDiagnostics(collection);
+    } finally {
+        isRefreshing = false;
+    }
 }
 
 function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
@@ -92,6 +103,7 @@ function rebuildMergedDiagnostics(collection: vscode.DiagnosticCollection): void
 
 async function collectDocumentsForRefresh(): Promise<vscode.TextDocument[]> {
     const documents = new Map<string, vscode.TextDocument>();
+    const workspaceFolders = vscode.workspace.workspaceFolders;
 
     for (const document of vscode.workspace.textDocuments) {
         if (shouldProcessDocument(document)) {
@@ -103,9 +115,23 @@ async function collectDocumentsForRefresh(): Promise<vscode.TextDocument[]> {
         return [...documents.values()];
     }
 
-    const pattern = '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf}';
-    const exclude = '**/{node_modules,.git,out,dist,.vscode-test}/**';
-    const uris = await vscode.workspace.findFiles(pattern, exclude);
+    let uris: vscode.Uri[] = [];
+    if (workspaceFolders && workspaceFolders.length > 0) {
+        const pattern = '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf}';
+        const exclude = '**/{node_modules,.git,out,dist,.vscode-test}/**';
+        uris = await vscode.workspace.findFiles(pattern, exclude);
+    } else {
+        const roots = new Set<string>();
+        for (const document of documents.values()) {
+            roots.add(path.dirname(document.fileName));
+        }
+
+        const filePaths = new Set<string>();
+        for (const root of roots) {
+            collectControlFilesRecursively(root, filePaths);
+        }
+        uris = [...filePaths].map(filePath => vscode.Uri.file(filePath));
+    }
 
     for (const uri of uris) {
         if (documents.has(uri.toString())) {
@@ -326,4 +352,50 @@ function severityRankValue(severity: vscode.DiagnosticSeverity): number {
         default:
             return 2;
     }
+}
+
+function hasWorkspaceFolders(): boolean {
+    return !!(vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0);
+}
+
+function collectControlFilesRecursively(rootDir: string, files: Set<string>): void {
+    let entries: fs.Dirent[] = [];
+    try {
+        entries = fs.readdirSync(rootDir, { withFileTypes: true });
+    } catch {
+        return;
+    }
+
+    for (const entry of entries) {
+        const entryPath = path.join(rootDir, entry.name);
+        if (entry.isDirectory()) {
+            if (shouldSkipFolderScan(entry.name)) {
+                continue;
+            }
+            collectControlFilesRecursively(entryPath, files);
+            continue;
+        }
+
+        if (!entry.isFile()) {
+            continue;
+        }
+
+        if (!CONTROL_FILE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+            continue;
+        }
+
+        files.add(entryPath);
+    }
+}
+
+function shouldSkipFolderScan(folderName: string): boolean {
+    const normalized = folderName.toLowerCase();
+    return (
+        normalized === '.git' ||
+        normalized === 'node_modules' ||
+        normalized === '.vscode' ||
+        normalized === '.vscode-test' ||
+        normalized === 'out' ||
+        normalized === 'dist'
+    );
 }

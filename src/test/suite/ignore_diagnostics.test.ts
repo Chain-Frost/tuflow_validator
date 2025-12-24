@@ -27,7 +27,11 @@ suite('TUFLOW Ignore Diagnostics', function () {
 
     test('ignores file errors with ! tpf-ignore-file at top', async () => {
         const doc = await vscode.workspace.openTextDocument(IGNORE_FILE_TCF);
-        // ... (existing test code)
+        await vscode.window.showTextDocument(doc);
+        await waitForDiagnostics(doc.uri, 0);
+
+        const diagnostics = vscode.languages.getDiagnostics(doc.uri);
+        assert.strictEqual(diagnostics.length, 0, 'File-level ignore should suppress all diagnostics');
     });
 
     test('Recursion: TRD should flag outdated GPKG and propagate to TCF', async () => {
@@ -48,9 +52,14 @@ suite('TUFLOW Ignore Diagnostics', function () {
 async function waitForDiagnostics(uri: vscode.Uri, minCount = 1): Promise<void> {
     const start = Date.now();
     const timeoutMs = 8000;
+    const minDelayMs = 200;
     while (Date.now() - start < timeoutMs) {
         const diagnostics = vscode.languages.getDiagnostics(uri);
         if (diagnostics.length >= minCount) {
+            if (minCount === 0 && Date.now() - start < minDelayMs) {
+                await delay(50);
+                continue;
+            }
             return;
         }
         await delay(50);
