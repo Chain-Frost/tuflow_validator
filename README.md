@@ -40,6 +40,8 @@ Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
+Activation note: the extension activates only when a workspace contains at least one `.tcf` file.
+
 ### Ignoring Issues
 You can suppress validation errors using comments:
 - **Ignore a specific line**: Add `! tpf-ignore` at the end of the line.
@@ -58,6 +60,7 @@ Clicking on an error suggests Quick Fixes to automatically add these ignore comm
 ## Settings
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
 - `tuflowValidator.enableLatestVersionChecks`: Enable latest-version checks for versioned filenames (default: `true`).
+- `tuflowValidator.analyzeAllControlFiles`: Analyze all supported control files in the workspace (default: `false`).
 
 ## Latest TCF behavior
 Latest-version checks are scoped to the "latest" TCFs in each folder. A TCF is considered "latest" using these rules:

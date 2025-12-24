@@ -1,7 +1,7 @@
 node_modules/
 out/
 .vscode-test/
-# *.vsix
+*.vsix
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
