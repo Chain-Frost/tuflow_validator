@@ -3,7 +3,7 @@
   "publisher": "Chain-Frost",
   "displayName": "TUFLOW Path Validator",
   "description": "Validate file paths referenced in TUFLOW control files.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "icon": "resources/icon.png",
   "galleryBanner": {
     "color": "#0b5ea8",
@@ -39,7 +39,7 @@
   ],
   "activationEvents": [
     "onLanguage:tuflow",
-    "workspaceContains:**/*.tcf"
+    "workspaceContains:**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf,tesf,tscf,trfc,toc}"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -63,6 +63,16 @@
           "default": true,
           "description": "Check versioned filenames to ensure the latest referenced files are used."
         },
+        "tuflowValidator.enableIfStatementChecks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate that If/Define Event/Start Domain blocks are properly closed with matching End statements."
+        },
+        "tuflowValidator.enableIfStatementFormatting": {
+          "type": "boolean",
+          "default": false,
+          "description": "Format If/Else/End If, Define Event, and Start Domain blocks with tab-indented nesting."
+        },
         "tuflowValidator.analyzeAllControlFiles": {
           "type": "boolean",
           "default": false,
@@ -78,7 +88,17 @@
           "tuflow"
         ],
         "extensions": [
-          ".tcf"
+          ".tcf",
+          ".tgc",
+          ".tbc",
+          ".trd",
+          ".tef",
+          ".ecf",
+          ".qcf",
+          ".tesf",
+          ".tscf",
+          ".trfc",
+          ".toc"
         ]
       }
     ]

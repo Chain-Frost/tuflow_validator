@@ -1,7 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
-import { getConfiguredAnalyzeAllControlFilesEnabled, getConfiguredDiagnosticLevel } from './config';
+import {
+    getConfiguredAnalyzeAllControlFilesEnabled,
+    getConfiguredDiagnosticLevel,
+    getConfiguredIfStatementChecksEnabled
+} from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
 import { safeReadFile } from './io';
 import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
@@ -17,6 +21,23 @@ import {
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
 let mergedFiles = new Set<string>();
 let isRefreshing = false;
+const IF_STATEMENT_REGEX = /^\s*if\b\s+(event|scenario)\s*==/i;
+const ELSE_IF_REGEX = /^\s*else\b\s+if\b\s+(event|scenario)\s*==/i;
+const END_IF_REGEX = /^\s*end\b\s*if\b/i;
+const DEFINE_EVENT_REGEX = /^\s*define\b\s+event\b/i;
+const END_DEFINE_REGEX = /^\s*end\b\s+define\b/i;
+const START_1D_DOMAIN_REGEX = /^\s*start\b\s+1d\b\s+domain\b/i;
+const END_1D_DOMAIN_REGEX = /^\s*end\b\s+1d\b\s+domain\b/i;
+const START_2D_DOMAIN_REGEX = /^\s*start\b\s+2d\b\s+domain\b/i;
+const END_2D_DOMAIN_REGEX = /^\s*end\b\s+2d\b\s+domain\b/i;
+
+type BlockKind = 'if' | 'define-event' | 'start-1d-domain' | 'start-2d-domain';
+
+interface BlockEntry {
+    kind: BlockKind;
+    range: vscode.Range;
+    message: string;
+}
 
 export function updateDiagnostics(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
     if (!shouldProcessDocument(document)) {
@@ -206,6 +227,8 @@ function analyzeFile(
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
     const isTcf = path.extname(normalizedPath).toLowerCase() === '.tcf';
+    const shouldCheckIfStatements = getConfiguredIfStatementChecksEnabled();
+    const blockStack: BlockEntry[] = [];
     const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
         normalizedPath,
         diagnostics,
@@ -230,6 +253,10 @@ function analyzeFile(
 
         if (text.trim().length === 0) {
             continue;
+        }
+
+        if (shouldCheckIfStatements) {
+            updateBlockStack(text, i, blockStack);
         }
 
         const separatorIndex = text.indexOf('==');
@@ -304,7 +331,101 @@ function analyzeFile(
         }
     }
 
+    if (shouldCheckIfStatements && blockStack.length > 0) {
+        for (const entry of blockStack) {
+            diagnostics.push(new vscode.Diagnostic(
+                entry.range,
+                entry.message,
+                vscode.DiagnosticSeverity.Error
+            ));
+        }
+    }
+
     return diagnostics;
+}
+
+function updateBlockStack(
+    line: string,
+    lineIndex: number,
+    stack: BlockEntry[]
+): void {
+    const commentIndex = line.indexOf('!');
+    const lineContent = commentIndex >= 0 ? line.slice(0, commentIndex) : line;
+    if (!lineContent.trim()) {
+        return;
+    }
+
+    const leadingWhitespaceMatch = /^\s*/.exec(lineContent);
+    const startChar = leadingWhitespaceMatch ? leadingWhitespaceMatch[0].length : 0;
+
+    if (END_IF_REGEX.test(lineContent)) {
+        popBlock(stack, 'if');
+        return;
+    }
+
+    if (END_DEFINE_REGEX.test(lineContent)) {
+        popBlock(stack, 'define-event');
+        return;
+    }
+
+    if (END_1D_DOMAIN_REGEX.test(lineContent)) {
+        popBlock(stack, 'start-1d-domain');
+        return;
+    }
+
+    if (END_2D_DOMAIN_REGEX.test(lineContent)) {
+        popBlock(stack, 'start-2d-domain');
+        return;
+    }
+
+    if (ELSE_IF_REGEX.test(lineContent)) {
+        return;
+    }
+
+    if (IF_STATEMENT_REGEX.test(lineContent)) {
+        stack.push({
+            kind: 'if',
+            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 2),
+            message: 'If statement is missing a closing End If.'
+        });
+        return;
+    }
+
+    if (DEFINE_EVENT_REGEX.test(lineContent)) {
+        stack.push({
+            kind: 'define-event',
+            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 6),
+            message: 'Define Event statement is missing a closing End Define.'
+        });
+        return;
+    }
+
+    if (START_1D_DOMAIN_REGEX.test(lineContent)) {
+        stack.push({
+            kind: 'start-1d-domain',
+            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 5),
+            message: 'Start 1D Domain statement is missing a closing End 1D Domain.'
+        });
+        return;
+    }
+
+    if (START_2D_DOMAIN_REGEX.test(lineContent)) {
+        stack.push({
+            kind: 'start-2d-domain',
+            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 5),
+            message: 'Start 2D Domain statement is missing a closing End 2D Domain.'
+        });
+    }
+}
+
+function popBlock(stack: BlockEntry[], kind: BlockKind): void {
+    if (stack.length === 0) {
+        return;
+    }
+
+    if (stack[stack.length - 1].kind === kind) {
+        stack.pop();
+    }
 }
 
 function filterDiagnosticsByLevel(

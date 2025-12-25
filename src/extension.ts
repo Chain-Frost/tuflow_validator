@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { IgnoreCodeActionProvider } from './codeActions';
 import { refreshDiagnostics, removeDiagnosticsForDocument, updateDiagnostics } from './diagnostics';
+import { IfStatementFormattingProvider } from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
     const collection = vscode.languages.createDiagnosticCollection('tuflow');
@@ -16,6 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (
                 event.affectsConfiguration('tuflowValidator.diagnosticLevel') ||
                 event.affectsConfiguration('tuflowValidator.enableLatestVersionChecks') ||
+                event.affectsConfiguration('tuflowValidator.enableIfStatementChecks') ||
                 event.affectsConfiguration('tuflowValidator.analyzeAllControlFiles')
             ) {
                 void refreshDiagnostics(collection);
@@ -25,13 +27,20 @@ export function activate(context: vscode.ExtensionContext) {
 
     const selector: vscode.DocumentSelector = [
         { language: 'tuflow' },
-        { pattern: '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf}' }
+        { pattern: '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf,tesf,tscf,trfc,toc}' }
     ];
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(
             selector,
             new IgnoreCodeActionProvider(),
             { providedCodeActionKinds: IgnoreCodeActionProvider.providedCodeActionKinds }
+        )
+    );
+
+    context.subscriptions.push(
+        vscode.languages.registerDocumentFormattingEditProvider(
+            selector,
+            new IfStatementFormattingProvider()
         )
     );
 }

@@ -10,6 +10,7 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - Warns when scenario/event tokens `<<~s1~>>`-`<<~s9~>>` or `<<~e1~>>`-`<<~e9~>>` appear in a value but are missing from the filename.
 - When a versioned TCF/TGC/TBC/ECF is the latest in its folder, referenced files with numeric versions (e.g., `v07`, `011`, `Model12`) are checked for newer alternatives or ambiguous updates.
 - Validates `Set Variable Version` tokens against the current filename and surfaces whether the token matches (info) or is missing (warning).
+- Validates `If Event ==` / `If Scenario ==`, `Define Event`, and `Start 1D/2D Domain` blocks with matching `End` statements (case-insensitive).
 - Configurable minimum diagnostic severity (default: `hint`) and focus on path validation rather than a full TUFLOW grammar.
 - **Quick Fixes** help add ignore comments for a specific line or the entire file when issues should be suppressed, and offer to update versioned references when a `Set Variable Version` header is present in a `.tcf`.
 
@@ -21,6 +22,10 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - `.tef`
 - `.ecf`
 - `.qcf`
+- `.tesf`
+- `.tscf`
+- `.trfc`
+- `.toc`
 
 ## Installation
 
@@ -41,7 +46,7 @@ Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
-Activation note: the extension activates only when a workspace contains at least one `.tcf` file.
+Activation note: the extension activates only when a workspace contains at least one supported control file.
 
 ## Ignoring issues
 Use comments to suppress diagnostics when needed.
@@ -62,7 +67,15 @@ Click a diagnostic to see Quick Fixes that automatically insert `! tpf-ignore` o
 ## Settings
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
 - `tuflowValidator.enableLatestVersionChecks`: Enable latest-version checks for versioned filenames (default: `true`).
+- `tuflowValidator.enableIfStatementChecks`: Validate `If Event ==` / `If Scenario ==`, `Define Event`, and `Start 1D/2D Domain` blocks with matching `End` statements (default: `true`).
+- `tuflowValidator.enableIfStatementFormatting`: Format `If`/`Else`/`End If` indentation with tab-based nesting (default: `false`).
 - `tuflowValidator.analyzeAllControlFiles`: Analyze all supported control files in the workspace (default: `false`).
+
+## If statement formatting
+When enabled, `Format Document` aligns `If Event ==` / `If Scenario ==`, `Define Event`, and `Start 1D/2D Domain` blocks so that:
+- Lines inside a block are indented by one tab per nesting level.
+- `Else`, `Else If`, and `End If` align with the matching `If`.
+Recognized forms are `If Event ==`, `If Scenario ==`, `Else If Event ==`, `Else If Scenario ==`, `End If`, `Define Event`, `End Define`, `Start 1D Domain`, `End 1D Domain`, `Start 2D Domain`, and `End 2D Domain`.
 
 ## Latest TCF behavior
 Latest-version checks run only for the "latest" TCFs in each folder. A TCF is considered latest when it is either:
