@@ -17,7 +17,6 @@ const LATEST_TCF = path.join(LATEST_ROOT, 'runs', 'LatestRun_~s1~_v02.tcf');
 const LATEST_TGC = path.join(LATEST_ROOT, 'model', 'geom_v02.tgc');
 const MULTI_ROOT_A = path.join(FIXTURE_ROOT, 'multi-root', 'root_a.tcf');
 const MULTI_ROOT_B = path.join(FIXTURE_ROOT, 'multi-root', 'root_b.tcf');
-const ANALYZE_ALL_ORPHAN = path.join(FIXTURE_ROOT, 'all', 'orphan.tgc');
 const EXAMPLE_TCF = path.join(
     __dirname,
     '../../../example/runs/BigBoyCk_01_~s1~_~s2~_~e1~_~e2~_~e3~_~e4~_~s4~.tcf'
@@ -90,7 +89,6 @@ suite('TUFLOW diagnostics', function () {
         const diagnostics = vscode.languages.getDiagnostics(doc.uri);
         const notLatest = diagnostics.filter(d => d.message.includes('not the latest version'));
         assert.strictEqual(notLatest.length, 1);
-        assert.ok(diagnostics.some(d => d.message.includes('Unable to determine latest version')));
     });
 
     test('latest TGC enforces latest referenced versions', async () => {
@@ -115,16 +113,14 @@ suite('TUFLOW diagnostics', function () {
         assert.ok(!tgcDiagnostics.some(d => d.message.includes('not the latest version')));
     });
 
-    test('versioned latest references flag outdated and ambiguous files', async () => {
+    test('versioned latest references flag outdated files', async () => {
         const doc = await vscode.workspace.openTextDocument(VERSION_NEG_TCF);
         await vscode.window.showTextDocument(doc);
         await waitForDiagnostics(doc.uri);
 
         const diagnostics = vscode.languages.getDiagnostics(doc.uri);
         const notLatest = diagnostics.filter(d => d.message.includes('not the latest version'));
-        const ambiguous = diagnostics.filter(d => d.message.includes('Unable to determine latest version'));
         assert.strictEqual(notLatest.length, 9);
-        assert.strictEqual(ambiguous.length, 1);
     });
 
     test('latest TCF flags newer control files even if only referenced by non-latest TCFs', async () => {
@@ -186,24 +182,6 @@ suite('TUFLOW diagnostics', function () {
         assert.ok(diagnosticsB.some(d => d.message.includes('File not found:')));
     });
 
-    test('analyzeAllControlFiles reports diagnostics for unopened control files when enabled', async () => {
-        const config = vscode.workspace.getConfiguration('tuflowValidator');
-        await config.update('analyzeAllControlFiles', true, vscode.ConfigurationTarget.Global);
-
-        try {
-            const doc = await vscode.workspace.openTextDocument(ROOT_TCF);
-            await vscode.window.showTextDocument(doc);
-            await waitForDiagnostics(doc.uri);
-
-            const orphanUri = vscode.Uri.file(ANALYZE_ALL_ORPHAN);
-            await waitForDiagnostics(orphanUri);
-
-            const orphanDiagnostics = vscode.languages.getDiagnostics(orphanUri);
-            assert.ok(orphanDiagnostics.some(d => d.message.includes('File not found:')));
-        } finally {
-            await config.update('analyzeAllControlFiles', false, vscode.ConfigurationTarget.Global);
-        }
-    });
 });
 
 async function waitForDiagnostics(uri: vscode.Uri, minCount = 1): Promise<void> {

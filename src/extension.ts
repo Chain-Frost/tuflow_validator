@@ -17,8 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (
                 event.affectsConfiguration('tuflowValidator.diagnosticLevel') ||
                 event.affectsConfiguration('tuflowValidator.enableLatestVersionChecks') ||
-                event.affectsConfiguration('tuflowValidator.enableIfStatementChecks') ||
-                event.affectsConfiguration('tuflowValidator.analyzeAllControlFiles')
+                event.affectsConfiguration('tuflowValidator.enableIfStatementChecks')
             ) {
                 void refreshDiagnostics(collection);
             }

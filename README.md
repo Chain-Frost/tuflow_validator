@@ -69,7 +69,6 @@ Click a diagnostic to see Quick Fixes that automatically insert `! tpf-ignore` o
 - `tuflowValidator.enableLatestVersionChecks`: Enable latest-version checks for versioned filenames (default: `true`).
 - `tuflowValidator.enableIfStatementChecks`: Validate `If Event ==` / `If Scenario ==`, `Define Event`, and `Start 1D/2D Domain` blocks with matching `End` statements (default: `true`).
 - `tuflowValidator.enableIfStatementFormatting`: Format `If`/`Else`/`End If` indentation with tab-based nesting (default: `false`).
-- `tuflowValidator.analyzeAllControlFiles`: Analyze all supported control files in the workspace (default: `false`).
 
 ## If statement formatting
 When enabled, `Format Document` aligns `If Event ==` / `If Scenario ==`, `Define Event`, and `Start 1D/2D Domain` blocks so that:
@@ -78,7 +77,7 @@ When enabled, `Format Document` aligns `If Event ==` / `If Scenario ==`, `Define
 Recognized forms are `If Event ==`, `If Scenario ==`, `Else If Event ==`, `Else If Scenario ==`, `End If`, `Define Event`, `End Define`, `Start 1D Domain`, `End 1D Domain`, `Start 2D Domain`, and `End 2D Domain`.
 
 ## Latest TCF behavior
-Latest-version checks run only for the "latest" TCFs in each folder. A TCF is considered latest when it is either:
+Latest-version checks run only for the "latest" TCFs in the folder of the currently open TCF. The extension does not scan the full workspace for TCFs. A TCF is considered latest when it is either:
 
 1. The highest-numbered file in a versioned series (files containing a number contribute to a versioned series).
 2. An unversioned file (no number) that stands on its own.

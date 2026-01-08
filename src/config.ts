@@ -10,11 +10,6 @@ export function getConfiguredLatestVersionChecksEnabled(): boolean {
     return config.get<boolean>('enableLatestVersionChecks', true);
 }
 
-export function getConfiguredAnalyzeAllControlFilesEnabled(): boolean {
-    const config = vscode.workspace.getConfiguration('tuflowValidator');
-    return config.get<boolean>('analyzeAllControlFiles', false);
-}
-
 export function getConfiguredIfStatementChecksEnabled(): boolean {
     const config = vscode.workspace.getConfiguration('tuflowValidator');
     return config.get<boolean>('enableIfStatementChecks', true);

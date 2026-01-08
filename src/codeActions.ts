@@ -97,7 +97,7 @@ function buildLatestVersionReplacement(
     }
 
     const currentText = document.getText(range);
-    const match = findSingleNumericToken(currentText);
+    const match = findRightmostNumericToken(currentText);
     if (!match) {
         return null;
     }
@@ -115,8 +115,8 @@ function parseLatestVersionFromMessage(message: string): number | null {
     return Number.parseInt(latestMatch[1], 10);
 }
 
-function findSingleNumericToken(value: string): { raw: string; start: number; end: number } | null {
-    const matches: Array<{ raw: string; start: number; end: number }> = [];
+function findRightmostNumericToken(value: string): { raw: string; start: number; end: number } | null {
+    let rightmost: { raw: string; start: number; end: number } | null = null;
     const regex = /\d+/g;
     let match: RegExpExecArray | null;
 
@@ -127,9 +127,9 @@ function findSingleNumericToken(value: string): { raw: string; start: number; en
         const nextIsLetter = /[a-z]/i.test(nextChar);
 
         if (!nextIsLetter) {
-            matches.push({ raw: match[0], start, end });
+            rightmost = { raw: match[0], start, end };
         }
     }
 
-    return matches.length === 1 ? matches[0] : null;
+    return rightmost;
 }

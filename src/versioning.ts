@@ -7,7 +7,7 @@ import { extractPathCandidates, isLikelyFile, resolvePath, containsUnresolvedTok
 import { safeReadFile } from './io';
 
 /**
- * Context required for performing latest version checks across the workspace.
+ * Context required for performing latest version checks for the active TCF.
  */
 export interface LatestCheckContext {
     /** Map of folder paths to lists of .tcf files within them. */
@@ -16,7 +16,7 @@ export interface LatestCheckContext {
     latestTcfReferencedControls: Set<string>;
 }
 
-type LatestVersionStatus = 'no-version' | 'ambiguous' | 'latest' | 'not-latest';
+type LatestVersionStatus = 'no-version' | 'latest' | 'not-latest';
 
 interface VersionMatch {
     raw: string;
@@ -33,10 +33,10 @@ interface LatestVersionResult {
 
 /**
  * Builds the context needed to verify if files are the latest version.
- * This involves scanning the workspace (or current folder) for TCF files to determine
+ * This scans only the folder of the currently open TCF (non-recursive) to determine
  * which TCF is the "latest" and what it references.
  *
- * @param document - The current document to anchor the search (if no workspace folders).
+ * @param document - The current document used to determine which folder to scan.
  * @returns The populated LatestCheckContext.
  */
 export function buildLatestCheckContext(document: vscode.TextDocument): LatestCheckContext {
@@ -44,16 +44,12 @@ export function buildLatestCheckContext(document: vscode.TextDocument): LatestCh
         return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
     }
 
-    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (path.extname(document.fileName).toLowerCase() !== '.tcf') {
+        return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
+    }
 
     const tcfFilesByFolder = new Map<string, string[]>();
-    if (workspaceFolders && workspaceFolders.length > 0) {
-        for (const folder of workspaceFolders) {
-            collectTcfFilesRecursively(folder.uri.fsPath, tcfFilesByFolder);
-        }
-    } else {
-        collectTcfFilesRecursively(path.dirname(document.fileName), tcfFilesByFolder);
-    }
+    collectTcfFilesInFolder(path.dirname(document.fileName), tcfFilesByFolder);
 
     const latestTcfs = collectLatestTcfFiles(tcfFilesByFolder);
     const latestTcfReferencedControls = collectReferencedControlFilesFromTcfs(latestTcfs);
@@ -62,12 +58,12 @@ export function buildLatestCheckContext(document: vscode.TextDocument): LatestCh
 }
 
 /**
- * Recursively finds all .tcf files in a directory data structure.
+ * Finds .tcf files in a single folder (non-recursive).
  *
  * @param rootDir - The directory to start searching from.
  * @param tcfFilesByFolder - Accumulator map of folder paths to TCF files.
  */
-function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<string, string[]>): void {
+function collectTcfFilesInFolder(rootDir: string, tcfFilesByFolder: Map<string, string[]>): void {
     let entries: fs.Dirent[] = [];
     try {
         entries = fs.readdirSync(rootDir, { withFileTypes: true });
@@ -76,15 +72,6 @@ function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<strin
     }
 
     for (const entry of entries) {
-        const entryPath = path.join(rootDir, entry.name);
-        if (entry.isDirectory()) {
-            if (shouldSkipFolderScan(entry.name)) {
-                continue;
-            }
-            collectTcfFilesRecursively(entryPath, tcfFilesByFolder);
-            continue;
-        }
-
         if (!entry.isFile()) {
             continue;
         }
@@ -93,29 +80,11 @@ function collectTcfFilesRecursively(rootDir: string, tcfFilesByFolder: Map<strin
             continue;
         }
 
-        const folder = path.dirname(entryPath);
-        const files = tcfFilesByFolder.get(folder) ?? [];
+        const entryPath = path.join(rootDir, entry.name);
+        const files = tcfFilesByFolder.get(rootDir) ?? [];
         files.push(entryPath);
-        tcfFilesByFolder.set(folder, files);
+        tcfFilesByFolder.set(rootDir, files);
     }
-}
-
-/**
- * Checks if a directory should be skipped during recursive scanning (e.g. node_modules).
- *
- * @param folderName - The name of the folder.
- * @returns True if the folder should be skipped.
- */
-function shouldSkipFolderScan(folderName: string): boolean {
-    const normalized = folderName.toLowerCase();
-    return (
-        normalized === '.git' ||
-        normalized === 'node_modules' ||
-        normalized === '.vscode' ||
-        normalized === '.vscode-test' ||
-        normalized === 'out' ||
-        normalized === 'dist'
-    );
 }
 
 /**
@@ -124,7 +93,8 @@ function shouldSkipFolderScan(folderName: string): boolean {
  * Behavior:
  * - If a TCF filename contains a numeric token (e.g. file_01.tcf, file02.tcf),
  *   it participates in a versioned series and only the highest version in that
- *   series is "latest".
+ *   series is "latest". When multiple numeric tokens exist, the rightmost token
+ *   is used as the version identifier.
  * - If a TCF filename contains no numeric token, it is treated as "latest" on
  *   its own. This means multiple "latest" TCFs can exist in a folder when there
  *   are multiple unversioned files or multiple versioned series.
@@ -253,15 +223,6 @@ export function shouldCheckLatestReferencedVersions(
 
     const candidateFiles = getCandidateFilesForLatestStatus(filePath, latestCheckContext);
     const status = getLatestVersionStatus(filePath, candidateFiles);
-    if (status.status === 'ambiguous') {
-        diagnostics.push(new vscode.Diagnostic(
-            new vscode.Range(0, 0, 0, 0),
-            `Unable to determine latest version for "${path.basename(filePath)}" because multiple numeric tokens were found.`,
-            vscode.DiagnosticSeverity.Warning
-        ));
-        return false;
-    }
-
     return status.status === 'latest' || (ext === '.tcf' && status.status === 'no-version');
 }
 
@@ -275,15 +236,6 @@ export function checkReferencedFileLatestVersion(
     }
 
     const status = getLatestVersionStatus(filePath);
-    if (status.status === 'ambiguous') {
-        diagnostics.push(new vscode.Diagnostic(
-            range,
-            `Unable to determine latest version for "${path.basename(filePath)}" because multiple numeric tokens were found.`,
-            vscode.DiagnosticSeverity.Warning
-        ));
-        return;
-    }
-
     if (status.status === 'not-latest') {
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
@@ -341,17 +293,11 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
     const ext = path.extname(filePath).toLowerCase();
     const baseName = path.basename(filePath, ext);
     const cleanedBaseName = stripScenarioEventTokens(baseName).toLowerCase();
-    const matches = getVersionMatches(cleanedBaseName);
-
-    if (matches.length === 0) {
+    const currentMatch = getRightmostVersionMatch(cleanedBaseName);
+    if (!currentMatch) {
         return { status: 'no-version' };
     }
 
-    if (matches.length > 1) {
-        return { status: 'ambiguous' };
-    }
-
-    const currentMatch = matches[0];
     const currentVersion = currentMatch.value;
     const currentPattern = buildVersionPattern(cleanedBaseName, currentMatch);
     let latestVersion = currentVersion;
@@ -377,17 +323,17 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
 
         const entryBaseName = path.basename(entryPath, ext);
         const entryCleaned = stripScenarioEventTokens(entryBaseName).toLowerCase();
-        const entryMatches = getVersionMatches(entryCleaned);
-        if (entryMatches.length !== 1) {
+        const entryMatch = getRightmostVersionMatch(entryCleaned);
+        if (!entryMatch) {
             continue;
         }
 
-        const entryPattern = buildVersionPattern(entryCleaned, entryMatches[0]);
+        const entryPattern = buildVersionPattern(entryCleaned, entryMatch);
         if (entryPattern !== currentPattern) {
             continue;
         }
 
-        const entryVersion = entryMatches[0].value;
+        const entryVersion = entryMatch.value;
         if (entryVersion > latestVersion) {
             latestVersion = entryVersion;
         }
@@ -424,6 +370,11 @@ function getVersionMatches(baseName: string): VersionMatch[] {
     }
 
     return matches;
+}
+
+function getRightmostVersionMatch(baseName: string): VersionMatch | null {
+    const matches = getVersionMatches(baseName);
+    return matches.length > 0 ? matches[matches.length - 1] : null;
 }
 
 function buildVersionPattern(baseName: string, match: VersionMatch): string {

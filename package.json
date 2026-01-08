@@ -3,7 +3,7 @@
   "publisher": "Chain-Frost",
   "displayName": "TUFLOW Path Validator",
   "description": "Validate file paths referenced in TUFLOW control files.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "icon": "resources/icon.png",
   "galleryBanner": {
     "color": "#0b5ea8",
@@ -72,11 +72,6 @@
           "type": "boolean",
           "default": false,
           "description": "Format If/Else/End If, Define Event, and Start Domain blocks with tab-indented nesting."
-        },
-        "tuflowValidator.analyzeAllControlFiles": {
-          "type": "boolean",
-          "default": false,
-          "description": "Analyze all supported control files in the workspace, even when they are not referenced by a latest TCF."
         }
       }
     },
