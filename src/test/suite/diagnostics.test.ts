@@ -182,6 +182,21 @@ suite('TUFLOW diagnostics', function () {
         assert.ok(diagnosticsB.some(d => d.message.includes('File not found:')));
     });
 
+    test('does not duplicate nested file diagnostics across roots', async () => {
+        const rootDoc = await vscode.workspace.openTextDocument(ROOT_TCF);
+        await vscode.window.showTextDocument(rootDoc);
+        await waitForDiagnostics(rootDoc.uri);
+
+        const nestedUri = vscode.Uri.file(NESTED_TGC);
+        const nestedDoc = await vscode.workspace.openTextDocument(nestedUri);
+        await vscode.window.showTextDocument(nestedDoc);
+        await waitForDiagnostics(nestedUri);
+
+        const diagnostics = vscode.languages.getDiagnostics(nestedUri);
+        const missingNested = diagnostics.filter(d => d.message.includes('missing/nested.shp'));
+        assert.strictEqual(missingNested.length, 1);
+    });
+
 });
 
 async function waitForDiagnostics(uri: vscode.Uri, minCount = 1): Promise<void> {

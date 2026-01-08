@@ -91,14 +91,28 @@ function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<strin
 
 function rebuildMergedDiagnostics(collection: vscode.DiagnosticCollection): void {
     const merged = new Map<string, vscode.Diagnostic[]>();
+    const seenByFile = new Map<string, Set<string>>();
 
     for (const diagnosticsByFile of rootDiagnosticsByRoot.values()) {
         for (const [filePath, diagnostics] of diagnosticsByFile.entries()) {
-            const existing = merged.get(filePath);
-            if (existing) {
-                existing.push(...diagnostics);
-            } else {
-                merged.set(filePath, [...diagnostics]);
+            let existing = merged.get(filePath);
+            let seen = seenByFile.get(filePath);
+            if (!existing) {
+                existing = [];
+                merged.set(filePath, existing);
+            }
+            if (!seen) {
+                seen = new Set<string>();
+                seenByFile.set(filePath, seen);
+            }
+
+            for (const diagnostic of diagnostics) {
+                const key = diagnosticFingerprint(diagnostic);
+                if (seen.has(key)) {
+                    continue;
+                }
+                seen.add(key);
+                existing.push(diagnostic);
             }
         }
     }
@@ -114,6 +128,31 @@ function rebuildMergedDiagnostics(collection: vscode.DiagnosticCollection): void
     }
 
     mergedFiles = new Set(merged.keys());
+}
+
+function diagnosticFingerprint(diagnostic: vscode.Diagnostic): string {
+    const range = diagnostic.range;
+    const severity = diagnostic.severity;
+    const message = diagnostic.message;
+    const source = diagnostic.source ?? '';
+    const code = diagnostic.code;
+    let codeValue = '';
+    if (typeof code === 'string' || typeof code === 'number') {
+        codeValue = String(code);
+    } else if (code && typeof code === 'object' && 'value' in code) {
+        codeValue = String((code as { value: string | number }).value);
+    }
+
+    return [
+        range.start.line,
+        range.start.character,
+        range.end.line,
+        range.end.character,
+        severity,
+        source,
+        codeValue,
+        message
+    ].join('|');
 }
 
 async function collectDocumentsForRefresh(): Promise<vscode.TextDocument[]> {
