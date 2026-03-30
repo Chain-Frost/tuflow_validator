@@ -31,13 +31,13 @@ suite('TUFLOW quick fixes', function () {
         assert.ok(ignoreLine?.edit, 'Ignore line fix should include an edit');
         const ignoreLineEdits = ignoreLine?.edit?.get(doc.uri) ?? [];
         assert.strictEqual(ignoreLineEdits.length, 1);
-        assert.ok(ignoreLineEdits[0].newText.includes('tpf-ignore'));
+        assert.ok(ignoreLineEdits[0].newText.includes('tpv-ignore'));
 
         const ignoreFile = actions.find(action => action.title === 'Ignore entire file (TUFLOW)');
         assert.ok(ignoreFile?.edit, 'Ignore file fix should include an edit');
         const ignoreFileEdits = ignoreFile?.edit?.get(doc.uri) ?? [];
         assert.strictEqual(ignoreFileEdits.length, 1);
-        assert.ok(ignoreFileEdits[0].newText.includes('tpf-ignore-file'));
+        assert.ok(ignoreFileEdits[0].newText.includes('tpv-ignore-file'));
     });
 
     test('offers update-to-latest quick fix outside TCF files', async () => {

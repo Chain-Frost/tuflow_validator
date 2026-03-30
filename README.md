@@ -50,18 +50,18 @@ Activation note: the extension activates only when a workspace contains at least
 
 ## Ignoring issues
 Use comments to suppress diagnostics when needed.
-- **Ignore a specific line**: append `! tpf-ignore`.
+- **Ignore a specific line**: append `! tpv-ignore`.
   ```tuflow
-  Read GIS Z Shape == missing_file.shp ! tpf-ignore
+  Read GIS Z Shape == missing_file.shp ! tpv-ignore
   ```
-- **Ignore an entire file**: add `! tpf-ignore-file` anywhere in the file (commonly at the top).
+- **Ignore an entire file**: add `! tpv-ignore-file` anywhere in the file (commonly at the top).
   ```tuflow
-  ! tpf-ignore-file
+  ! tpv-ignore-file
   Read GIS Z Shape == missing_file.shp
   ```
 
 ## Quick Fixes
-Click a diagnostic to see Quick Fixes that automatically insert `! tpf-ignore` or `! tpf-ignore-file` comments so you do not need to edit the file manually.
+Click a diagnostic to see Quick Fixes that automatically insert `! tpv-ignore` or `! tpv-ignore-file` comments so you do not need to edit the file manually.
 - **Update to latest version (TUFLOW)**: When the diagnostic says the referenced file is not the latest version, the Quick Fix replaces the numeric token with the latest version.
 
 ## Settings

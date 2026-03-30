@@ -236,11 +236,11 @@ function analyzeFile(
     for (let i = 0; i < lines.length; i++) {
         const text = lines[i];
 
-        // Check for file-level ignore comment: "! tpf-ignore-file"
+        // Check for file-level ignore comment: "! tpv-ignore-file"
         // This MUST be the first thing checked to effectively skip the whole file.
         if (text.trim().startsWith('!')) {
             const commentContent = text.trim().slice(1).trim();
-            if (commentContent.startsWith('tpf-ignore-file')) {
+            if (commentContent.startsWith('tpv-ignore-file')) {
                 // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
                 diagnostics.length = 0;
                 visited.set(normalizedPath, []);
@@ -266,10 +266,10 @@ function analyzeFile(
         const valueWithComment = text.slice(valueStartIndex);
         const commentIndex = valueWithComment.indexOf('!');
 
-        // Check for line-level ignore comment: "Command == Path ! tpf-ignore"
+        // Check for line-level ignore comment: "Command == Path ! tpv-ignore"
         if (commentIndex >= 0) {
             const commentContent = valueWithComment.slice(commentIndex + 1).trim();
-            if (commentContent.startsWith('tpf-ignore')) {
+            if (commentContent.startsWith('tpv-ignore')) {
                 continue;
             }
         }

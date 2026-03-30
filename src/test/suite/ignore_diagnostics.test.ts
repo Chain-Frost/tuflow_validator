@@ -9,13 +9,13 @@ const IGNORE_FILE_TCF = path.join(FIXTURE_ROOT, 'ignore_file.tcf');
 suite('TUFLOW Ignore Diagnostics', function () {
     this.timeout(15000);
 
-    test('ignores line errors with ! tpf-ignore', async () => {
+    test('ignores line errors with ! tpv-ignore', async () => {
         const doc = await vscode.workspace.openTextDocument(IGNORE_LINE_TCF);
         await vscode.window.showTextDocument(doc);
         await waitForDiagnostics(doc.uri);
 
         const diagnostics = vscode.languages.getDiagnostics(doc.uri);
-        // Line 1 has ! tpf-ignore, so no error. Line 2 has no ignore, so error.
+        // Line 1 has ! tpv-ignore, so no error. Line 2 has no ignore, so error.
         
         const line1Error = diagnostics.find(d => d.range.start.line === 2); // 0-indexed, so line 3 is index 2
         const line0Error = diagnostics.find(d => d.range.start.line === 0);
@@ -25,7 +25,7 @@ suite('TUFLOW Ignore Diagnostics', function () {
         assert.ok(line1Error.message.includes('File not found'), 'Line 2 should error on missing file');
     });
 
-    test('ignores file errors with ! tpf-ignore-file at top', async () => {
+    test('ignores file errors with ! tpv-ignore-file at top', async () => {
         const doc = await vscode.workspace.openTextDocument(IGNORE_FILE_TCF);
         await vscode.window.showTextDocument(doc);
         await waitForDiagnostics(doc.uri, 0);

@@ -42,7 +42,7 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
 
         const actions: vscode.CodeAction[] = [];
 
-        // 1. Ignore this line: Append "! tpf-ignore" to the end of the line (or inject into existing comment)
+        // 1. Ignore this line: Append "! tpv-ignore" to the end of the line (or inject into existing comment)
         const lineFix = new vscode.CodeAction('Ignore this line (TUFLOW)', vscode.CodeActionKind.QuickFix);
         lineFix.edit = new vscode.WorkspaceEdit();
         const line = document.lineAt(range.start.line);
@@ -50,19 +50,19 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         const commentIndex = text.indexOf('!');
 
         if (commentIndex >= 0) {
-            // Insert ' tpf-ignore' after the exclamation mark to ensure it's the first token in the comment
-            lineFix.edit.insert(document.uri, new vscode.Position(range.start.line, commentIndex + 1), ' tpf-ignore');
+            // Insert ' tpv-ignore' after the exclamation mark to ensure it's the first token in the comment
+            lineFix.edit.insert(document.uri, new vscode.Position(range.start.line, commentIndex + 1), ' tpv-ignore');
         } else {
             // No existing comment, append one at the end of the line
-            lineFix.edit.insert(document.uri, line.range.end, ' ! tpf-ignore');
+            lineFix.edit.insert(document.uri, line.range.end, ' ! tpv-ignore');
         }
         lineFix.diagnostics = diagnostics;
         actions.push(lineFix);
 
-        // 2. Ignore entire file: Insert "! tpf-ignore-file" at the very beginning of the document
+        // 2. Ignore entire file: Insert "! tpv-ignore-file" at the very beginning of the document
         const fileFix = new vscode.CodeAction('Ignore entire file (TUFLOW)', vscode.CodeActionKind.QuickFix);
         fileFix.edit = new vscode.WorkspaceEdit();
-        fileFix.edit.insert(document.uri, new vscode.Position(0, 0), '! tpf-ignore-file\n');
+        fileFix.edit.insert(document.uri, new vscode.Position(0, 0), '! tpv-ignore-file\n');
         fileFix.diagnostics = diagnostics;
         actions.push(fileFix);
 
