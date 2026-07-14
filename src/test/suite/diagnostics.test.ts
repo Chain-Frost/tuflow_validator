@@ -1,5 +1,7 @@
-import * as path from 'path';
 import * as assert from 'assert';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
 import * as vscode from 'vscode';
 
 const FIXTURE_ROOT = path.join(__dirname, '../../../src/test/fixtures');
@@ -197,6 +199,54 @@ suite('TUFLOW diagnostics', function () {
         assert.strictEqual(missingNested.length, 1);
     });
 
+    test('clears parent nested diagnostics when an open child file is fixed', async () => {
+        const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tuflow-validator-'));
+        const rootPath = path.join(tempDir, 'root.tcf');
+        const nestedPath = path.join(tempDir, 'nested.tgc');
+
+        fs.writeFileSync(rootPath, 'Read GIS Location == nested.tgc\n');
+        fs.writeFileSync(nestedPath, 'Read GIS BC == missing.shp\n');
+
+        let nestedDoc: vscode.TextDocument | undefined;
+        try {
+            const rootDoc = await vscode.workspace.openTextDocument(rootPath);
+            await vscode.window.showTextDocument(rootDoc);
+            await waitForDiagnostics(rootDoc.uri);
+
+            assert.ok(
+                vscode.languages.getDiagnostics(rootDoc.uri).some(d => d.message.includes('Referenced file has')),
+                'Expected root to summarize the nested TGC issue'
+            );
+
+            nestedDoc = await vscode.workspace.openTextDocument(nestedPath);
+            await vscode.window.showTextDocument(nestedDoc);
+            await waitForDiagnostics(nestedDoc.uri);
+
+            const edit = new vscode.WorkspaceEdit();
+            edit.replace(
+                nestedDoc.uri,
+                new vscode.Range(nestedDoc.positionAt(0), nestedDoc.positionAt(nestedDoc.getText().length)),
+                '! fixed in the open editor\n'
+            );
+            assert.strictEqual(await vscode.workspace.applyEdit(edit), true);
+
+            await waitForDiagnosticsMatching(
+                rootDoc.uri,
+                diagnostics => !diagnostics.some(d => d.message.includes('Referenced file has'))
+            );
+            await waitForDiagnosticsMatching(
+                nestedDoc.uri,
+                diagnostics => !diagnostics.some(d => d.message.includes('missing.shp'))
+            );
+        } finally {
+            if (nestedDoc?.isDirty) {
+                await nestedDoc.save();
+            }
+            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            fs.rmSync(tempDir, { recursive: true, force: true });
+        }
+    });
+
 });
 
 async function waitForDiagnostics(uri: vscode.Uri, minCount = 1): Promise<void> {
@@ -219,4 +269,22 @@ async function waitForDiagnostics(uri: vscode.Uri, minCount = 1): Promise<void> 
 
 function delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function waitForDiagnosticsMatching(
+    uri: vscode.Uri,
+    predicate: (diagnostics: vscode.Diagnostic[]) => boolean
+): Promise<void> {
+    const start = Date.now();
+    const timeoutMs = 8000;
+
+    while (Date.now() - start < timeoutMs) {
+        const diagnostics = vscode.languages.getDiagnostics(uri);
+        if (predicate(diagnostics)) {
+            return;
+        }
+        await delay(50);
+    }
+
+    assert.fail(`Timed out waiting for diagnostics predicate for ${uri.toString()}`);
 }

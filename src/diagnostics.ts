@@ -20,6 +20,8 @@ import {
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
 let mergedFiles = new Set<string>();
 let isRefreshing = false;
+const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>();
+const DIAGNOSTIC_UPDATE_DEBOUNCE_MS = 300;
 const IF_STATEMENT_REGEX = /^\s*if\b\s+(event|scenario)\s*==/i;
 const ELSE_IF_REGEX = /^\s*else\b\s+if\b\s+(event|scenario)\s*==/i;
 const END_IF_REGEX = /^\s*end\b\s*if\b/i;
@@ -43,23 +45,68 @@ export function updateDiagnostics(document: vscode.TextDocument, collection: vsc
         return;
     }
 
+    clearPendingDiagnosticUpdate(document);
     const rootKey = document.uri.toString();
-    rootDiagnosticsByRoot.set(rootKey, computeDiagnosticsForDocument(document));
+    const affectedRootKeys = findRootKeysAffectedByDocument(document);
+    affectedRootKeys.add(rootKey);
+
+    for (const affectedRootKey of affectedRootKeys) {
+        const rootDocument = findOpenDocumentByUri(affectedRootKey);
+        if (!rootDocument || !shouldProcessDocument(rootDocument)) {
+            rootDiagnosticsByRoot.delete(affectedRootKey);
+            continue;
+        }
+
+        rootDiagnosticsByRoot.set(affectedRootKey, computeDiagnosticsForDocument(rootDocument));
+    }
+
     rebuildMergedDiagnostics(collection);
 }
 
-export function removeDiagnosticsForDocument(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
-    const rootKey = document.uri.toString();
-    if (!rootDiagnosticsByRoot.has(rootKey)) {
+export function scheduleDiagnosticsUpdate(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
+    if (!shouldProcessDocument(document)) {
         return;
     }
-    rootDiagnosticsByRoot.delete(rootKey);
+
+    clearPendingDiagnosticUpdate(document);
+    const documentKey = document.uri.toString();
+    const timeout = setTimeout(() => {
+        pendingDiagnosticUpdates.delete(documentKey);
+        updateDiagnostics(document, collection);
+    }, DIAGNOSTIC_UPDATE_DEBOUNCE_MS);
+    pendingDiagnosticUpdates.set(documentKey, timeout);
+}
+
+export function removeDiagnosticsForDocument(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
+    clearPendingDiagnosticUpdate(document);
+    const rootKey = document.uri.toString();
+    const affectedRootKeys = findRootKeysAffectedByDocument(document);
+
+    if (rootDiagnosticsByRoot.has(rootKey)) {
+        rootDiagnosticsByRoot.delete(rootKey);
+    }
+
+    for (const affectedRootKey of affectedRootKeys) {
+        if (affectedRootKey === rootKey) {
+            continue;
+        }
+
+        const rootDocument = findOpenDocumentByUri(affectedRootKey);
+        if (!rootDocument || !shouldProcessDocument(rootDocument)) {
+            rootDiagnosticsByRoot.delete(affectedRootKey);
+            continue;
+        }
+
+        rootDiagnosticsByRoot.set(affectedRootKey, computeDiagnosticsForDocument(rootDocument));
+    }
+
     rebuildMergedDiagnostics(collection);
 }
 
 export async function refreshDiagnostics(collection: vscode.DiagnosticCollection): Promise<void> {
     isRefreshing = true;
     try {
+        clearPendingDiagnosticUpdates();
         const documents = await collectDocumentsForRefresh();
         const nextRootDiagnostics = new Map<string, Map<string, vscode.Diagnostic[]>>();
 
@@ -155,6 +202,41 @@ function diagnosticFingerprint(diagnostic: vscode.Diagnostic): string {
     ].join('|');
 }
 
+function findRootKeysAffectedByDocument(document: vscode.TextDocument): Set<string> {
+    const affectedRootKeys = new Set<string>();
+    const filePath = path.normalize(document.fileName);
+
+    for (const [rootKey, diagnosticsByFile] of rootDiagnosticsByRoot.entries()) {
+        if (diagnosticsByFile.has(filePath)) {
+            affectedRootKeys.add(rootKey);
+        }
+    }
+
+    return affectedRootKeys;
+}
+
+function findOpenDocumentByUri(uriString: string): vscode.TextDocument | undefined {
+    return vscode.workspace.textDocuments.find(document => document.uri.toString() === uriString);
+}
+
+function clearPendingDiagnosticUpdate(document: vscode.TextDocument): void {
+    const documentKey = document.uri.toString();
+    const timeout = pendingDiagnosticUpdates.get(documentKey);
+    if (!timeout) {
+        return;
+    }
+
+    clearTimeout(timeout);
+    pendingDiagnosticUpdates.delete(documentKey);
+}
+
+function clearPendingDiagnosticUpdates(): void {
+    for (const timeout of pendingDiagnosticUpdates.values()) {
+        clearTimeout(timeout);
+    }
+    pendingDiagnosticUpdates.clear();
+}
+
 async function collectDocumentsForRefresh(): Promise<vscode.TextDocument[]> {
     const documents = new Map<string, vscode.TextDocument>();
 
@@ -180,6 +262,20 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
     }
 
     return CONTROL_FILE_EXTENSIONS.has(path.extname(document.fileName).toLowerCase());
+}
+
+function getOpenDocumentForPath(filePath: string): vscode.TextDocument | undefined {
+    const normalizedPath = path.normalize(filePath);
+    return vscode.workspace.textDocuments.find(document => path.normalize(document.fileName) === normalizedPath);
+}
+
+function getControlFileContents(filePath: string): string | null {
+    const openDocument = getOpenDocumentForPath(filePath);
+    if (openDocument && shouldProcessDocument(openDocument)) {
+        return openDocument.getText();
+    }
+
+    return safeReadFile(filePath);
 }
 
 /**
@@ -312,7 +408,7 @@ function analyzeFile(
 
             // Recursive check for referenced control files
             if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
-                const childContents = safeReadFile(resolvedPath);
+                const childContents = getControlFileContents(resolvedPath);
                 if (childContents === null) {
                     continue;
                 }

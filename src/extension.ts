@@ -1,6 +1,11 @@
 import * as vscode from 'vscode';
 import { IgnoreCodeActionProvider } from './codeActions';
-import { refreshDiagnostics, removeDiagnosticsForDocument, updateDiagnostics } from './diagnostics';
+import {
+    refreshDiagnostics,
+    removeDiagnosticsForDocument,
+    scheduleDiagnosticsUpdate,
+    updateDiagnostics
+} from './diagnostics';
 import { IfStatementFormattingProvider } from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -11,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.workspace.onDidOpenTextDocument(doc => updateDiagnostics(doc, collection)),
-        vscode.workspace.onDidChangeTextDocument(event => updateDiagnostics(event.document, collection)),
+        vscode.workspace.onDidChangeTextDocument(event => scheduleDiagnosticsUpdate(event.document, collection)),
         vscode.workspace.onDidCloseTextDocument(doc => removeDiagnosticsForDocument(doc, collection)),
         vscode.workspace.onDidChangeConfiguration(event => {
             if (
