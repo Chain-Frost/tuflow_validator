@@ -307,7 +307,8 @@ function analyzeFile(
     filePath: string,
     contents: string,
     visited: Map<string, vscode.Diagnostic[]>,
-    latestCheckContext: LatestCheckContext
+    latestCheckContext: LatestCheckContext,
+    sourceTcfDirectory?: string
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
     const cached = visited.get(normalizedPath);
@@ -320,7 +321,12 @@ function analyzeFile(
 
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
-    const isTcf = path.extname(normalizedPath).toLowerCase() === '.tcf';
+    const extension = path.extname(normalizedPath).toLowerCase();
+    const isTcf = extension === '.tcf';
+    const activeTcfDirectory = isTcf ? docDir : sourceTcfDirectory;
+    const pathBaseDirectory = extension === '.trd' && activeTcfDirectory
+        ? activeTcfDirectory
+        : docDir;
     const shouldCheckIfStatements = getConfiguredIfStatementChecksEnabled();
     const blockStack: BlockEntry[] = [];
     const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
@@ -388,7 +394,7 @@ function analyzeFile(
                 continue;
             }
 
-            const resolvedPath = resolvePath(docDir, candidate.text);
+            const resolvedPath = resolvePath(pathBaseDirectory, candidate.text);
             if (!fs.existsSync(resolvedPath)) {
                 diagnostics.push(new vscode.Diagnostic(
                     candidate.range,
@@ -413,7 +419,13 @@ function analyzeFile(
                     continue;
                 }
 
-                const childDiagnostics = analyzeFile(resolvedPath, childContents, visited, latestCheckContext);
+                const childDiagnostics = analyzeFile(
+                    resolvedPath,
+                    childContents,
+                    visited,
+                    latestCheckContext,
+                    activeTcfDirectory
+                );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(new vscode.Diagnostic(
                         candidate.range,

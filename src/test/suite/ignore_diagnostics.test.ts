@@ -34,7 +34,7 @@ suite('TUFLOW Ignore Diagnostics', function () {
         assert.strictEqual(diagnostics.length, 0, 'File-level ignore should suppress all diagnostics');
     });
 
-    test('Recursion: TRD should flag outdated GPKG and propagate to TCF', async () => {
+    test('resolves paths within a nested TRD relative to the source TCF', async () => {
         const tcfUri = vscode.Uri.file(path.join(FIXTURE_ROOT, 'versioning', 'runs', 'recursion_test.tcf'));
         const doc = await vscode.workspace.openTextDocument(tcfUri);
         await vscode.window.showTextDocument(doc);
@@ -44,6 +44,10 @@ suite('TUFLOW Ignore Diagnostics', function () {
         const trdUri = vscode.Uri.file(path.join(FIXTURE_ROOT, 'versioning', 'model', 'props_v01.trd'));
         const trdDiagnostics = vscode.languages.getDiagnostics(trdUri);
 
+        assert.ok(
+            !trdDiagnostics.some(d => d.message.includes('File not found')),
+            'TRD path should resolve from the source TCF directory'
+        );
         assert.ok(trdDiagnostics.some(d => d.message.includes('not the latest version')), 'TRD should flag outdated GPKG');
         assert.ok(tcfDiagnostics.some(d => d.message.includes('Referenced file has 1 issue')), 'TCF should report child issue');
     });

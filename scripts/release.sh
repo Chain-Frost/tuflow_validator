@@ -13,7 +13,9 @@ Runs the release workflow: compile, test, package VSIX, publish.
 Optional: create a git tag (vX.Y.Z) and a GitHub release with the VSIX attached.
 
 Environment:
-  VSCE_PAT     VS Code Marketplace token (required for publish).
+  Azure authentication is required for publish. In Azure Pipelines, run this
+  script from an AzureCLI@2 task backed by the Marketplace publishing identity.
+  For an interactive release, authenticate first with `az login`.
   DOCKER_EXEC  Prefix for running npm/npx in a container, e.g. "docker exec -i <ctr>".
   GH_TOKEN     GitHub token with repo scope (used by gh if needed).
 EOF
@@ -74,13 +76,9 @@ echo "==> Package VSIX"
 run_npx vsce package
 
 if [[ "$skip_publish" -eq 0 ]]; then
-  if [[ -z "${VSCE_PAT:-}" ]]; then
-    echo "VSCE_PAT is not set. Export VSCE_PAT=your_token to publish." >&2
-    exit 1
-  fi
-  echo "==> Publish VSIX"
-  # Publishes to the Marketplace using the PAT set above.
-  run_npx vsce publish -p "$VSCE_PAT"
+  echo "==> Publish VSIX using Microsoft Entra ID"
+  # vsce obtains a short-lived access token from Azure CLI or managed identity.
+  run_npx vsce publish --azure-credential
 else
   echo "==> Skipping publish"
 fi

@@ -4,7 +4,7 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 
 ## Features
 - Validates file paths on `Command == Value` lines and reports missing files in the Problems view.
-- Resolves relative paths from the current file, honors `|`-separated lists, and ignores GeoPackage selectors after `>>`.
+- Resolves relative paths from the current file, except paths in nested TRD files which resolve from their source TCF directory; honors `|`-separated lists and ignores GeoPackage selectors after `>>`.
 - Skips tokens and macros that remain unresolved (any `<<...>>` sequence) while still analyzing other paths.
 - Recursively checks referenced control files and summarizes issues discovered in nested dependencies.
 - Warns when scenario/event tokens `<<~s1~>>`-`<<~s9~>>` or `<<~e1~>>`-`<<~e9~>>` appear in a value but are missing from the filename.
