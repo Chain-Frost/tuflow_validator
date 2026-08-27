@@ -1,27 +1,12 @@
 # Release Process
 
-GitHub Actions publishes this extension to the VS Code Marketplace with
-OpenID Connect (OIDC). No Personal Access Token or repository secret is needed.
-Publishing a GitHub Release starts `.github/workflows/publish-vscode.yml`.
+Marketplace releases currently use Microsoft Entra ID. GitHub OIDC publishing is
+prepared but is not operational yet.
 
-## One-time Marketplace setup
+## Authentication status
 
-In the Visual Studio Marketplace publisher portal, configure a trusted
-publishing policy for the `Chain-Frost` publisher with these exact values:
-
-- GitHub owner: `Chain-Frost`
-- Repository: `tuflow_validator`
-- Workflow: `.github/workflows/publish-vscode.yml`
-- Environment: leave unset
-
-The workflow has only read access to repository contents plus `id-token: write`.
-At publish time, GitHub issues a token for the Marketplace audience and `vsce`
-exchanges it for a short-lived publishing credential.
-
-Official guidance:
-
-- https://github.com/microsoft/vscode-vsce#trusted-publishing
-- https://code.visualstudio.com/api/working-with-extensions/publishing-extension
+See [Marketplace publishing status](./marketplace-publishing.md) for the dated
+rollout status, current Entra procedure, and future OIDC migration checklist.
 
 ## Automated release
 
@@ -30,31 +15,29 @@ Official guidance:
 3. Commit the release changes and push them to `main`.
 4. Create and push a matching tag, such as `v0.2.7`.
 5. Publish a GitHub Release for that tag and attach the VSIX.
-6. GitHub Actions checks out the immutable release tag, confirms that its tag
-   matches the package version, runs all tests, and publishes with OIDC.
+6. Publish to the Marketplace using Microsoft Entra ID.
 
-The workflow can also be rerun manually. Choose **Run workflow** in GitHub
-Actions and enter the existing release tag.
+The future OIDC workflow is manual-only and must not be run until Marketplace
+trusted publishing is available.
 
 ## Local release helper
 
-The normal command packages, tags, and creates the GitHub Release. The
-Marketplace publish then happens in GitHub Actions:
+The normal command publishes with Entra ID, packages, tags, and creates the
+GitHub Release:
 
 ```bash
-scripts/release.sh --tag --gh-release
+scripts/release.sh --publish-entra --tag --gh-release
 ```
 
 Other useful commands:
 
-- `npm run publish:vsix` publishes with GitHub Actions OIDC and only works in
-  the trusted workflow.
-- `npm run publish:vsix:entra` publishes interactively using the identity from
-  `az login`.
-- `scripts/release.sh --publish-entra` runs a direct interactive Marketplace
-  publish rather than waiting for the GitHub workflow.
+- `npm run publish:vsix` publishes with Microsoft Entra ID.
+- `npm run publish:vsix:entra` is the explicit alias for Entra publishing.
+- `npm run publish:vsix:oidc` is reserved for the future trusted workflow.
+- `scripts/release.sh --publish-entra` enables Marketplace publishing in the
+  local release helper.
 - Set `DOCKER_EXEC="docker exec -i <container>"` to run npm/npx inside a
   container.
 
-Do not combine a direct Entra publish with the GitHub Release workflow for the
-same version; Marketplace versions are immutable.
+Marketplace versions are immutable; never publish the same version through two
+authentication routes.

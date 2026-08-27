@@ -1,8 +1,8 @@
-name: Publish to VS Code Marketplace
+name: Publish to VS Code Marketplace (future OIDC)
 
+# OIDC is manual-only until Marketplace trusted publishing is available.
+# See https://github.com/microsoft/vscode-vsce/issues/1275.
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       tag:
@@ -14,18 +14,18 @@ permissions:
   contents: read
 
 concurrency:
-  group: vscode-marketplace-${{ github.event.release.tag_name || inputs.tag }}
+  group: vscode-marketplace-${{ inputs.tag }}
 
 jobs:
   publish:
-    name: Test and publish
+    name: Test and publish with OIDC
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: read
       id-token: write
     env:
-      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      RELEASE_TAG: ${{ inputs.tag }}
 
     steps:
       - name: Check out release tag
@@ -55,4 +55,4 @@ jobs:
         run: xvfb-run -a npm test
 
       - name: Publish to VS Code Marketplace
-        run: npm run publish:vsix
+        run: npm run publish:vsix:oidc

@@ -107,11 +107,12 @@
     "test": "node ./out/test/runTest.js",
     "test:container": "bash scripts/test-container.sh",
     "package:vsix": "bash scripts/package-vsix.sh",
-    "publish:vsix": "npx vsce publish --oidc",
+    "publish:vsix": "npx vsce publish --azure-credential",
     "publish:vsix:pre": "npm run package:vsix",
     "publish:ovsx": "npx ovsx publish -p \"$OVSX_PAT\"",
     "publish:all": "npm run publish:vsix && npm run publish:ovsx",
-    "publish:vsix:entra": "npx vsce publish --azure-credential"
+    "publish:vsix:entra": "npx vsce publish --azure-credential",
+    "publish:vsix:oidc": "npx vsce publish --oidc"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
