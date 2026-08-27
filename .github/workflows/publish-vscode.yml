@@ -1,0 +1,58 @@
+name: Publish to VS Code Marketplace
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to publish (for example, v0.2.7)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vscode-marketplace-${{ github.event.release.tag_name || inputs.tag }}
+
+jobs:
+  publish:
+    name: Test and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ env.RELEASE_TAG }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify release version
+        shell: bash
+        run: |
+          package_tag="v$(node -p "require('./package.json').version")"
+          if [[ "$package_tag" != "$RELEASE_TAG" ]]; then
+            echo "Release tag $RELEASE_TAG does not match package version $package_tag." >&2
+            exit 1
+          fi
+
+      - name: Run tests
+        run: xvfb-run -a npm test
+
+      - name: Publish to VS Code Marketplace
+        run: npm run publish:vsix

@@ -1,61 +1,60 @@
 # Release Process
 
-This extension is published to the VS Code Marketplace with `vsce` and
-Microsoft Entra ID. Publishing does not use a Personal Access Token (PAT).
+GitHub Actions publishes this extension to the VS Code Marketplace with
+OpenID Connect (OIDC). No Personal Access Token or repository secret is needed.
+Publishing a GitHub Release starts `.github/workflows/publish-vscode.yml`.
 
-## Prereqs
-- `@vscode/vsce` 2.26.1 or newer (installed by this project).
-- A user-assigned Azure managed identity.
-- An Azure DevOps Azure Resource Manager service connection configured with
-  workload identity federation for that managed identity.
-- The managed identity's Azure DevOps profile ID added to the `Chain-Frost`
-  Marketplace publisher with the Contributor role.
-- The publishing pipeline granted access to the service connection.
-- Logged in to GitHub and permission to create releases.
+## One-time Marketplace setup
 
-Follow the official setup sequence at
-https://code.visualstudio.com/api/working-with-extensions/publishing-extension#secure-automated-publishing-to-visual-studio-marketplace.
+In the Visual Studio Marketplace publisher portal, configure a trusted
+publishing policy for the `Chain-Frost` publisher with these exact values:
 
-## Azure Pipeline publishing
-Run the release command inside an `AzureCLI@2` task whose `azureSubscription`
-is the workload-identity service connection:
+- GitHub owner: `Chain-Frost`
+- Repository: `tuflow_validator`
+- Workflow: `.github/workflows/publish-vscode.yml`
+- Environment: leave unset
 
-```yaml
-- task: AzureCLI@2
-  displayName: Publish VS Code extension
-  inputs:
-    azureSubscription: <ServiceConnectionName>
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-      npm ci
-      npm run compile
-      npm run lint
-      npm run publish:vsix
+The workflow has only read access to repository contents plus `id-token: write`.
+At publish time, GitHub issues a token for the Marketplace audience and `vsce`
+exchanges it for a short-lived publishing credential.
+
+Official guidance:
+
+- https://github.com/microsoft/vscode-vsce#trusted-publishing
+- https://code.visualstudio.com/api/working-with-extensions/publishing-extension
+
+## Automated release
+
+1. Update the version in `package.json` and `package-lock.json`.
+2. Run `npm test` and `npm run package:vsix` locally.
+3. Commit the release changes and push them to `main`.
+4. Create and push a matching tag, such as `v0.2.7`.
+5. Publish a GitHub Release for that tag and attach the VSIX.
+6. GitHub Actions checks out the immutable release tag, confirms that its tag
+   matches the package version, runs all tests, and publishes with OIDC.
+
+The workflow can also be rerun manually. Choose **Run workflow** in GitHub
+Actions and enter the existing release tag.
+
+## Local release helper
+
+The normal command packages, tags, and creates the GitHub Release. The
+Marketplace publish then happens in GitHub Actions:
+
+```bash
+scripts/release.sh --tag --gh-release
 ```
 
-The Azure CLI task signs in using the federated managed identity. `vsce
-publish --azure-credential` obtains a short-lived Microsoft Entra access token
-from that login.
+Other useful commands:
 
-For an interactive check, `az login` followed by `npm run publish:vsix` uses
-the signed-in Azure CLI identity. That identity must also be a Contributor to
-the Marketplace publisher.
+- `npm run publish:vsix` publishes with GitHub Actions OIDC and only works in
+  the trusted workflow.
+- `npm run publish:vsix:entra` publishes interactively using the identity from
+  `az login`.
+- `scripts/release.sh --publish-entra` runs a direct interactive Marketplace
+  publish rather than waiting for the GitHub workflow.
+- Set `DOCKER_EXEC="docker exec -i <container>"` to run npm/npx inside a
+  container.
 
-## Steps
-1. Update `package.json` version and keep `package-lock.json` in sync.
-2. Run `npm run compile` and `npm test` locally.
-3. Create the VSIX with `npm run package:vsix` (this creates a versioned `.vsix` file).
-4. Publish:
-   - Marketplace: run `npm run publish:vsix` inside the configured
-     `AzureCLI@2` task.
-5. Tag and release on GitHub:
-   - Create a tag like `v0.1.8`.
-   - Create a GitHub Release and attach the `.vsix`.
-
-## Scripted workflow
-- `scripts/release.sh` runs compile/test/package/publish and can optionally tag and create a GitHub release.
-- Container usage: set `DOCKER_EXEC="docker exec -i <container>"` to run npm/npx inside your container.
-- Examples:
-  - `scripts/release.sh` (compile/test/package/publish)
-  - `scripts/release.sh --tag --gh-release` (also tag and create a GitHub release)
+Do not combine a direct Entra publish with the GitHub Release workflow for the
+same version; Marketplace versions are immutable.

@@ -23,6 +23,6 @@ run_npx() {
 }
 
 # Install dependencies/build the project before packaging the VSIX.
-run_npm install
+run_npm ci
 run_npm run compile
 run_npx vsce package

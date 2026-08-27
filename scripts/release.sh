@@ -7,15 +7,16 @@ cd "$repo_root"
 
 usage() {
   cat <<'EOF'
-Usage: scripts/release.sh [--skip-tests] [--skip-publish] [--tag] [--gh-release]
+Usage: scripts/release.sh [--skip-tests] [--publish-entra] [--tag] [--gh-release]
 
-Runs the release workflow: compile, test, package VSIX, publish.
-Optional: create a git tag (vX.Y.Z) and a GitHub release with the VSIX attached.
+Runs the local release workflow: install, compile, test, and package a VSIX.
+Optionally publishes interactively with Entra ID, creates a tag, and creates a
+GitHub release. Publishing a GitHub release triggers Marketplace publishing via
+GitHub Actions and OIDC.
 
 Environment:
-  Azure authentication is required for publish. In Azure Pipelines, run this
-  script from an AzureCLI@2 task backed by the Marketplace publishing identity.
-  For an interactive release, authenticate first with `az login`.
+  Azure authentication is required only with --publish-entra. Authenticate
+  first with `az login`; the signed-in identity must be a publisher Contributor.
   DOCKER_EXEC  Prefix for running npm/npx in a container, e.g. "docker exec -i <ctr>".
   GH_TOKEN     GitHub token with repo scope (used by gh if needed).
 EOF
@@ -24,14 +25,14 @@ EOF
 # Track CLI flags so we can skip specific steps or enable tagging/releasing.
 
 skip_tests=0
-skip_publish=0
+publish_entra=0
 do_tag=0
 do_gh_release=0
 
 for arg in "$@"; do
   case "$arg" in
     --skip-tests) skip_tests=1 ;;
-    --skip-publish) skip_publish=1 ;;
+    --publish-entra) publish_entra=1 ;;
     --tag) do_tag=1 ;;
     --gh-release) do_gh_release=1 ;;
     -h|--help) usage; exit 0 ;;
@@ -59,7 +60,7 @@ run_npx() {
 
 echo "==> Install dependencies"
 # Ensures lockfile matches before building/publishing.
-run_npm install
+run_npm ci
 
 echo "==> Compile"
 run_npm run compile
@@ -75,12 +76,12 @@ fi
 echo "==> Package VSIX"
 run_npx vsce package
 
-if [[ "$skip_publish" -eq 0 ]]; then
+if [[ "$publish_entra" -eq 1 ]]; then
   echo "==> Publish VSIX using Microsoft Entra ID"
   # vsce obtains a short-lived access token from Azure CLI or managed identity.
   run_npx vsce publish --azure-credential
 else
-  echo "==> Skipping publish"
+  echo "==> Marketplace publish deferred to the GitHub release workflow"
 fi
 
 # Derive the git tag name directly from the `package.json` version.

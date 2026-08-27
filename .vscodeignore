@@ -1,4 +1,5 @@
 **/.git/**
+**/.github/**
 **/.vscode/**
 **/.devcontainer/**
 **/node_modules/**
