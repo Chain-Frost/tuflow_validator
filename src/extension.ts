@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
                 continue;
             }
             const watcher = vscode.workspace.createFileSystemWatcher(
-                new vscode.RelativePattern(vscode.Uri.file(directory), '*')
+                new vscode.RelativePattern(directory, '*')
             );
             const onFileEvent = (uri: vscode.Uri) => {
                 if (!getTrackedDependencyPaths().has(path.normalize(uri.fsPath))) {
