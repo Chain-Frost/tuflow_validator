@@ -154,9 +154,12 @@ function collectReferencedControlFiles(
     referenced: Set<string>,
     visited: Set<string>,
     sourceTcfDirectory: string,
-    variables: Map<string, string>
+    variables: Map<string, string>,
+    inheritedConditional = false
 ): void {
     const canonical = path.normalize(filePath);
+    // Only guard active recursion. The same file may be included again with
+    // different Set Variable values and require a new dependency expansion.
     if (visited.has(canonical)) {
         return;
     }
@@ -184,7 +187,7 @@ function collectReferencedControlFiles(
         }
         const key = command.slice(0, separator).trim();
         const value = command.slice(separator + 2);
-        applyStaticVariableDefinition(key, value, conditionalDepth > 0, variables);
+        applyStaticVariableDefinition(key, value, inheritedConditional || conditionalDepth > 0, variables);
         if (shouldSkipKeyForFileLookup(key)) {
             continue;
         }
@@ -202,14 +205,19 @@ function collectReferencedControlFiles(
             if (CONTROL_FILE_EXTENSIONS.has(childExt)) {
                 const nested = safeReadFile(resolved);
                 if (nested !== null) {
+                    const childConditional = inheritedConditional || conditionalDepth > 0;
+                    const childVariables = childConditional ? new Map(variables) : variables;
+                    const childTcfDirectory = childExt === '.tcf'
+                        ? path.dirname(resolved) : sourceTcfDirectory;
                     collectReferencedControlFiles(
                         resolved, nested, referenced, visited,
-                        sourceTcfDirectory, variables
+                        childTcfDirectory, childVariables, childConditional
                     );
                 }
             }
         }
     }
+    visited.delete(canonical);
 }
 
 /**
