@@ -304,7 +304,7 @@ function filterReferencedControlCandidates(
 function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): LatestVersionResult {
     const ext = path.extname(filePath).toLowerCase();
     const baseName = path.basename(filePath, ext);
-    const cleanedBaseName = stripScenarioEventTokens(baseName).toLowerCase();
+    const cleanedBaseName = baseName.toLowerCase();
     const currentMatch = getRightmostVersionMatch(cleanedBaseName);
     if (!currentMatch) {
         return { status: 'no-version' };
@@ -335,7 +335,7 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
         }
 
         const entryBaseName = path.basename(entryPath, ext);
-        const entryCleaned = stripScenarioEventTokens(entryBaseName).toLowerCase();
+        const entryCleaned = entryBaseName.toLowerCase();
         const entryMatch = getRightmostVersionMatch(entryCleaned);
         if (!entryMatch) {
             continue;
@@ -358,12 +358,15 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
         : { status: 'not-latest', currentVersion, latestVersion, latestFilePath };
 }
 
-function stripScenarioEventTokens(value: string): string {
-    return value.replace(SCENARIO_EVENT_TOKEN_REGEX, '');
-}
-
 function getVersionMatches(baseName: string): VersionMatch[] {
     const matches: VersionMatch[] = [];
+    // Numeric run-slot indices belong to scenario/event placeholders; they
+    // must not participate in version detection, but their literal tokens
+    // must remain in the filename's series identity (s1 differs from s2).
+    const runtimeTokenSpans = [...baseName.matchAll(SCENARIO_EVENT_TOKEN_REGEX)].map(match => ({
+        start: match.index ?? 0,
+        end: (match.index ?? 0) + match[0].length
+    }));
     const regex = /\d+/g;
     let match: RegExpExecArray | null;
 
@@ -372,8 +375,11 @@ function getVersionMatches(baseName: string): VersionMatch[] {
         const end = start + match[0].length;
         const nextChar = end < baseName.length ? baseName[end] : '';
         const nextIsLetter = /[a-z]/i.test(nextChar);
+        const insideRuntimeToken = runtimeTokenSpans.some(span =>
+            start >= span.start && end <= span.end
+        );
 
-        if (!nextIsLetter) {
+        if (!nextIsLetter && !insideRuntimeToken) {
             matches.push({
                 raw: match[0],
                 value: Number.parseInt(match[0], 10),
