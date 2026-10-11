@@ -5,6 +5,7 @@ import { getConfiguredLatestVersionChecksEnabled } from './config';
 import { LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
 import { extractPathCandidates, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey } from './pathParsing';
 import { safeReadFile } from './io';
+import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 
 /**
  * Context required for performing latest version checks for the active TCF.
@@ -240,10 +241,11 @@ export function checkReferencedFileLatestVersion(
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
         const severity = vscode.DiagnosticSeverity.Warning;
-        diagnostics.push(new vscode.Diagnostic(
+        diagnostics.push(createTpvDiagnostic(
             range,
             `Referenced file is not the latest version in its folder: ${path.basename(filePath)} (found ${currentVersion}, latest ${latestVersion}).`,
-            severity
+            severity,
+            TPV_CODES.outdatedVersion
         ));
     }
 }
@@ -409,10 +411,11 @@ export function checkVersionTokenInFilename(
     const valueIndex = valueText.indexOf(versionValue);
     const startChar = valueStartIndex + (valueIndex >= 0 ? valueIndex : 0);
     const endChar = startChar + versionValue.length;
-    diagnostics.push(new vscode.Diagnostic(
+    diagnostics.push(createTpvDiagnostic(
         new vscode.Range(lineIndex, startChar, lineIndex, endChar),
         message,
-        severity
+        severity,
+        TPV_CODES.versionToken
     ));
 }
 
@@ -448,10 +451,11 @@ export function checkScenarioEventTokensInValue(
         if (!baseName.includes(normalizedToken)) {
             const startChar = valueStartIndex + match.index;
             const endChar = startChar + match[0].length;
-            diagnostics.push(new vscode.Diagnostic(
+            diagnostics.push(createTpvDiagnostic(
                 new vscode.Range(lineIndex, startChar, lineIndex, endChar),
                 `Filename is missing token "${token}" listed in this control file.`,
-                vscode.DiagnosticSeverity.Warning
+                vscode.DiagnosticSeverity.Warning,
+                TPV_CODES.missingFilenameToken
             ));
         }
     }
