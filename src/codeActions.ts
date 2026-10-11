@@ -115,7 +115,11 @@ function buildLatestVersionReplacement(
     const index = Math.max(original.lastIndexOf('/'), original.lastIndexOf('\\'));
     const oldName = original.slice(index + 1);
     const newName = code.target.path.split('/').pop();
+    const runtimeTokens = (name: string): string =>
+        (name.match(/~[se][1-9]~/gi) ?? []).map(token => token.toLowerCase()).join('|');
+
     if (!oldName || !newName || newName === oldName ||
+        runtimeTokens(oldName) !== runtimeTokens(newName) ||
         path.extname(oldName).toLowerCase() !== path.extname(newName).toLowerCase() ||
         !fs.existsSync(code.target.fsPath)) {
         return null;
