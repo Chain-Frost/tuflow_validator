@@ -1,0 +1,4 @@
+If Scenario == DEV
+Read File == child.trd
+End If
+Read GIS Z Shape == <<ConditionalDir>>\not_existing.shp
