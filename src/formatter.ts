@@ -31,6 +31,7 @@ export class IfStatementFormattingProvider implements vscode.DocumentFormattingE
 
         const edits: vscode.TextEdit[] = [];
         const indentStack: BlockIndent[] = [];
+        const indentUnit = options.insertSpaces ? ' '.repeat(options.tabSize) : '\t';
 
         for (let i = 0; i < document.lineCount; i++) {
             const line = document.lineAt(i);
@@ -108,7 +109,7 @@ export class IfStatementFormattingProvider implements vscode.DocumentFormattingE
 
             if (isIfStart || isDefineEventStart || isStart1dDomain || isStart2dDomain) {
                 if (indentStack.length > 0) {
-                    expectedIndent = `${indentStack[indentStack.length - 1].indent}\t`;
+                    expectedIndent = `${indentStack[indentStack.length - 1].indent}${indentUnit}`;
                 }
                 applyIndentEdit(edits, line, currentIndent, expectedIndent);
                 if (isIfStart) {
@@ -124,7 +125,7 @@ export class IfStatementFormattingProvider implements vscode.DocumentFormattingE
             }
 
             if (indentStack.length > 0) {
-                expectedIndent = `${indentStack[indentStack.length - 1].indent}\t`;
+                expectedIndent = `${indentStack[indentStack.length - 1].indent}${indentUnit}`;
                 applyIndentEdit(edits, line, currentIndent, expectedIndent);
             }
         }
