@@ -46,6 +46,13 @@ export type CommandValueKind = 'input-file' | 'output' | 'non-file' | 'unknown';
 const INPUT_FILE_COMMANDS = new Set([
     'GEOMETRY CONTROL FILE',
     'BC CONTROL FILE',
+    'QUADTREE CONTROL FILE',
+    'EVENT FILE',
+    'RAINFALL CONTROL FILE',
+    'EXTERNAL STRESS FILE',
+    'OPERATIONAL CONTROL FILE',
+    'SWMM CONTROL FILE',
+    'ADVECTION DISPERSION CONTROL FILE',
     'BC EVENT FILE',
     'ESTRY CONTROL FILE',
     'ESTRY EVENT FILE',
