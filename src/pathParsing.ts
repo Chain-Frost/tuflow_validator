@@ -140,10 +140,8 @@ export function extractPathCandidates(
 
     while ((match = segmentRegex.exec(valueText)) !== null) {
         const segmentText = match[0];
-        if (segmentText.includes('<<') && segmentText.includes('>>')) {
-            continue;
-        }
-
+        // Keep unresolved placeholders as candidates so the caller can
+        // expand known static variables or conservatively skip the reference.
         const layerIndex = segmentText.indexOf('>>');
         const pathPortion = layerIndex >= 0 ? segmentText.slice(0, layerIndex) : segmentText;
         const trimmed = pathPortion.trim();
