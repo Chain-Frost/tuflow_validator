@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES, TPV_SOURCE } from './diagnosticCodes';
 
@@ -113,7 +115,9 @@ function buildLatestVersionReplacement(
     const index = Math.max(original.lastIndexOf('/'), original.lastIndexOf('\\'));
     const oldName = original.slice(index + 1);
     const newName = code.target.path.split('/').pop();
-    if (!oldName || !newName || newName === oldName) {
+    if (!oldName || !newName || newName === oldName ||
+        path.extname(oldName).toLowerCase() !== path.extname(newName).toLowerCase() ||
+        !fs.existsSync(code.target.fsPath)) {
         return null;
     }
     // The source diagnostic was calculated using file-system discovery; do not
