@@ -62,7 +62,7 @@ Use comments to suppress diagnostics when needed.
 
 ## Quick Fixes
 Click a diagnostic to see Quick Fixes that automatically insert `! tpv-ignore` or `! tpv-ignore-file` comments so you do not need to edit the file manually.
-- **Update to latest version (TUFLOW)**: When the diagnostic says the referenced file is not the latest version, the Quick Fix replaces the numeric token with the latest version.
+- **Update to latest version (TUFLOW)**: When a newer file in the same recognised series exists, the Quick Fix replaces the referenced filename with the verified target, preserving the directory. No update is offered if the target cannot be verified.
 
 ## Settings
 - `tuflowValidator.diagnosticLevel`: `error`, `warning`, `info`, `hint` (default), or `none`.
