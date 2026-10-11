@@ -361,16 +361,18 @@ function analyzeFile(
     latestCheckContext: LatestCheckContext,
     sourceTcfDirectory?: string,
     staticVariables: Map<string, string> = new Map(),
-    dependencies: Set<string> = new Set()
+    dependencies: Set<string> = new Set(),
+    recursionStack: Set<string> = new Set(),
+    inheritedConditional = false
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
-    const cached = visited.get(normalizedPath);
-    if (cached) {
-        return cached;
+    // Repeated includes may use different variable values. Only stop cycles
+    // along the active recursion path; don't memoise solely by filename.
+    if (recursionStack.has(normalizedPath)) {
+        return [];
     }
-
+    recursionStack.add(normalizedPath);
     const diagnostics: vscode.Diagnostic[] = [];
-    visited.set(normalizedPath, diagnostics);
 
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
@@ -400,6 +402,7 @@ function analyzeFile(
                 // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
                 diagnostics.length = 0;
                 visited.set(normalizedPath, []);
+                recursionStack.delete(normalizedPath);
                 return [];
             }
             continue;
@@ -439,7 +442,7 @@ function analyzeFile(
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
 
-        applyStaticVariableDefinition(keyText, valueText, conditionalDepth > 0, staticVariables);
+        applyStaticVariableDefinition(keyText, valueText, inheritedConditional || conditionalDepth > 0, staticVariables);
 
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
@@ -486,14 +489,20 @@ function analyzeFile(
                     continue;
                 }
 
+                const childConditional = inheritedConditional || conditionalDepth > 0;
+                const childVariables = childConditional
+                    ? new Map(staticVariables)
+                    : staticVariables;
                 const childDiagnostics = analyzeFile(
                     resolvedPath,
                     childContents,
                     visited,
                     latestCheckContext,
                     activeTcfDirectory,
-                    staticVariables,
-                    dependencies
+                    childVariables,
+                    dependencies,
+                    recursionStack,
+                    childConditional
                 );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
@@ -518,6 +527,17 @@ function analyzeFile(
         }
     }
 
+    const combined = visited.get(normalizedPath) ?? [];
+    const seen = new Set(combined.map(diagnosticFingerprint));
+    for (const diagnostic of diagnostics) {
+        const key = diagnosticFingerprint(diagnostic);
+        if (!seen.has(key)) {
+            combined.push(diagnostic);
+            seen.add(key);
+        }
+    }
+    visited.set(normalizedPath, combined);
+    recursionStack.delete(normalizedPath);
     return diagnostics;
 }
 
