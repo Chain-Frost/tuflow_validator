@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import * as path from 'path';
+import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
 import { applyStaticVariableDefinition, expandStaticVariables } from '../../staticVariables';
@@ -25,6 +26,39 @@ suite('TUFLOW static variables', function () {
     test('rejects variable cycles without a filesystem error', () => {
         const vars = new Map([['A', '<<B>>'], ['B', '<<A>>']]);
         assert.strictEqual(expandStaticVariables('<<A>>/input.gpkg', vars), null);
+    });
+
+    test('revalidates a tracked missing dependency on creation and deletion', async () => {
+        const root = path.join(BASE, 'watch-regression.tcf');
+        const target = path.join(BASE, 'watch-created.gpkg');
+        fs.rmSync(target, { force: true });
+        fs.writeFileSync(root, 'Read GIS Z Shape == watch-created.gpkg\n');
+        try {
+            const document = await vscode.workspace.openTextDocument(root);
+            await vscode.window.showTextDocument(document);
+            const until = async (expected: boolean) => {
+                const end = Date.now() + 8000;
+                while (Date.now() < end) {
+                    const diagnostics = vscode.languages.getDiagnostics(document.uri);
+                    if (diagnostics.some(d => d.code === TPV_CODES.missingFile) === expected) {
+                        return;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                assert.fail(`Expected missing-file diagnostic: ${expected}`);
+            };
+            await until(true);
+            // Give dependency watchers time to reconcile before creating target.
+            await new Promise(resolve => setTimeout(resolve, 900));
+            fs.writeFileSync(target, '');
+            await until(false);
+            fs.rmSync(target);
+            await until(true);
+        } finally {
+            fs.rmSync(root, { force: true });
+            fs.rmSync(target, { force: true });
+            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+        }
     });
 
     test('validates resolved paths without guessing runtime or unknown variables', async () => {
