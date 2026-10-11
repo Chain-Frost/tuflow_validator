@@ -3,7 +3,7 @@
 Lightweight VS Code extension that validates file paths referenced in TUFLOW control files and surfaces missing references as diagnostics in the Problems panel.
 
 ## Features
-- Validates file paths on `Command == Value` lines and reports missing files in the Problems view.
+- Validates input-file paths in recognised TUFLOW commands and reports missing files in the Problems view. Output locations, runtime conditions, variable declarations and unknown commands are not treated as input-file references.
 - Resolves relative paths from the current file, except paths in nested TRD files which resolve from their source TCF directory; honors `|`-separated lists and ignores GeoPackage selectors after `>>`.
 - Skips tokens and macros that remain unresolved (any `<<...>>` sequence) while still analyzing other paths.
 - Recursively checks referenced control files and summarizes issues discovered in nested dependencies.
@@ -96,6 +96,7 @@ king08.tcf     # latest (highest in its series)
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored if they cannot be resolved.
 - This extension does not implement a full TUFLOW grammar; it focuses on file-path validation.
+- Unrecognised commands are not assumed to consume files. Input-path validation is intentionally conservative to avoid false errors.
 - It does not validate dataset contents, layer names, or runtime options.
 
 ## Development
