@@ -30,6 +30,7 @@ interface LatestVersionResult {
     status: LatestVersionStatus;
     currentVersion?: number;
     latestVersion?: number;
+    latestFilePath?: string;
 }
 
 /**
@@ -241,12 +242,21 @@ export function checkReferencedFileLatestVersion(
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
         const severity = vscode.DiagnosticSeverity.Warning;
-        diagnostics.push(createTpvDiagnostic(
+        const diagnostic = createTpvDiagnostic(
             range,
             `Referenced file is not the latest version in its folder: ${path.basename(filePath)} (found ${currentVersion}, latest ${latestVersion}).`,
             severity,
             TPV_CODES.outdatedVersion
-        ));
+        );
+        // Provide the concrete, already discovered replacement as structured
+        // data; do not make Quick Fixes parse English messages or guess digits.
+        if (status.latestFilePath) {
+            diagnostic.code = {
+                value: TPV_CODES.outdatedVersion,
+                target: vscode.Uri.file(status.latestFilePath)
+            };
+        }
+        diagnostics.push(diagnostic);
     }
 }
 
@@ -303,6 +313,7 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
     const currentVersion = currentMatch.value;
     const currentPattern = buildVersionPattern(cleanedBaseName, currentMatch);
     let latestVersion = currentVersion;
+    let latestFilePath: string | undefined;
     let entries: string[] = [];
 
     if (candidateFiles) {
@@ -338,12 +349,13 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
         const entryVersion = entryMatch.value;
         if (entryVersion > latestVersion) {
             latestVersion = entryVersion;
+            latestFilePath = entryPath;
         }
     }
 
     return currentVersion === latestVersion
         ? { status: 'latest', currentVersion, latestVersion }
-        : { status: 'not-latest', currentVersion, latestVersion };
+        : { status: 'not-latest', currentVersion, latestVersion, latestFilePath };
 }
 
 function stripScenarioEventTokens(value: string): string {
