@@ -53,7 +53,11 @@ const INPUT_FILE_COMMANDS = new Set([
     'READ MATERIALS FILE',
     'READ SOILS FILE',
     'BC DATABASE',
+    'MATERIALS FILE',
+    'SPATIAL DATABASE',
+    'CALIBRATION POINTS GIS FILE',
     'GPKG PROJECTION',
+    'MI PROJECTION',
     'SHP PROJECTION',
     'TIF PROJECTION',
     'ASC PROJECTION'
@@ -68,7 +72,7 @@ export function classifyCommandValue(keyText: string): CommandValueKind {
 
     if (
         INPUT_FILE_COMMANDS.has(key) ||
-        /^READ\s+(?:GIS|GRID|TIN|MIF|SHP|GPKG)\s+\S/.test(key) ||
+        /^READ\s+(?:GIS|GRID|TIN|MIF|SHP|GPKG|ROWCOL|MID)\s+\S/.test(key) ||
         /^READ\s+.+\s+FILE$/.test(key)
     ) {
         return 'input-file';
