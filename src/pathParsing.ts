@@ -142,7 +142,10 @@ export function extractPathCandidates(
         const segmentText = match[0];
         // Keep unresolved placeholders as candidates so the caller can
         // expand known static variables or conservatively skip the reference.
-        const layerIndex = segmentText.indexOf('>>');
+        // A macro closes with ">>" too; only a ">>" outside macros is
+        // a GIS layer selector.
+        const selectorText = segmentText.replace(/<<[^<>]*>>/g, token => ' '.repeat(token.length));
+        const layerIndex = selectorText.indexOf('>>');
         const pathPortion = layerIndex >= 0 ? segmentText.slice(0, layerIndex) : segmentText;
         const trimmed = pathPortion.trim();
         if (!trimmed) {
