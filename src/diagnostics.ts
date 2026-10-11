@@ -364,7 +364,10 @@ function analyzeFile(
         if (shouldCheckIfStatements) {
             updateBlockStack(text, i, blockStack, diagnostics);
         }
-        if (/^\s*end\s*if\b/i.test(text.trim())) {
+        const commandText = text.split('!')[0];
+        if (/^\s*if\b/i.test(commandText)) {
+            conditionalDepth++;
+        } else if (/^\s*end\s*if\b/i.test(commandText)) {
             conditionalDepth = Math.max(0, conditionalDepth - 1);
         }
 
@@ -387,11 +390,6 @@ function analyzeFile(
 
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
-        // Track runtime If blocks even when block diagnostics are disabled.
-        // Variables assigned in any conditional branch cannot be known statically.
-        if (/^\s*if\b/i.test(keyText)) {
-            conditionalDepth++;
-        }
 
         applyStaticVariableDefinition(keyText, valueText, conditionalDepth > 0, staticVariables);
 
