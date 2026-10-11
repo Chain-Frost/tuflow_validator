@@ -334,6 +334,7 @@ function analyzeFile(
         : docDir;
     const shouldCheckIfStatements = getConfiguredIfStatementChecksEnabled();
     const blockStack: BlockEntry[] = [];
+    let conditionalDepth = 0;
     const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
         normalizedPath,
         diagnostics,
@@ -363,6 +364,9 @@ function analyzeFile(
         if (shouldCheckIfStatements) {
             updateBlockStack(text, i, blockStack, diagnostics);
         }
+        if (/^\s*end\s*if\b/i.test(text.trim())) {
+            conditionalDepth = Math.max(0, conditionalDepth - 1);
+        }
 
         const separatorIndex = text.indexOf('==');
         if (separatorIndex === -1) {
@@ -383,13 +387,13 @@ function analyzeFile(
 
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
+        // Track runtime If blocks even when block diagnostics are disabled.
+        // Variables assigned in any conditional branch cannot be known statically.
+        if (/^\s*if\b/i.test(keyText)) {
+            conditionalDepth++;
+        }
 
-        applyStaticVariableDefinition(
-            keyText,
-            valueText,
-            blockStack.some(entry => entry.kind === 'if'),
-            staticVariables
-        );
+        applyStaticVariableDefinition(keyText, valueText, conditionalDepth > 0, staticVariables);
 
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
