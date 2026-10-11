@@ -1,6 +1,6 @@
 Set Variable SourceDir == data
 Set Variable FullDir == <<SourceDir>>\terrain
-Read GIS Z Shape == <<FullDir>>\existing.shp
+Read GIS Z Shape == <<FullDir>>\existing.shp >> terrain
 Read GIS Z Shape == <<FullDir>>\missing.shp
 Read GIS BC == <<MissingVariable>>\not_a_missing_file.shp
 Read GIS PO == <<~s1~>>\runtime.shp
