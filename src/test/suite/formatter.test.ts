@@ -70,6 +70,44 @@ suite('TUFLOW If statement formatting', function () {
         }
     });
 
+    test('formats with configured spaces and is idempotent', async () => {
+        const config = vscode.workspace.getConfiguration('tuflowValidator');
+        await config.update('enableIfStatementFormatting', true, vscode.ConfigurationTarget.Global);
+
+        try {
+            const content = [
+                'If Scenario == DEV',
+                'If Event == EVT',
+                'Read File == example.trd',
+                'End If',
+                'End If',
+                ''
+            ].join('\n');
+            const expected = [
+                'If Scenario == DEV',
+                '  If Event == EVT',
+                '    Read File == example.trd',
+                '  End If',
+                'End If',
+                ''
+            ].join('\n');
+            const doc = await vscode.workspace.openTextDocument({ language: 'tuflow', content });
+            await vscode.window.showTextDocument(doc);
+            const opts = { tabSize: 2, insertSpaces: true };
+            const edits = await vscode.commands.executeCommand<vscode.TextEdit[]>(
+                'vscode.executeFormatDocumentProvider', doc.uri, opts
+            ) ?? [];
+            await applyEdits(doc, edits);
+            assert.strictEqual(doc.getText(), expected);
+            const secondPass = await vscode.commands.executeCommand<vscode.TextEdit[]>(
+                'vscode.executeFormatDocumentProvider', doc.uri, opts
+            ) ?? [];
+            assert.deepStrictEqual(secondPass, []);
+        } finally {
+            await config.update('enableIfStatementFormatting', false, vscode.ConfigurationTarget.Global);
+        }
+    });
+
     test('formats Define Event and Start Domain blocks with tab indentation', async () => {
         const config = vscode.workspace.getConfiguration('tuflowValidator');
         await config.update('enableIfStatementFormatting', true, vscode.ConfigurationTarget.Global);
