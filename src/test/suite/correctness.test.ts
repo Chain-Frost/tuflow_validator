@@ -21,6 +21,17 @@ suite('TUFLOW command-aware validation and block diagnostics', function () {
         assert.strictEqual(classifyCommandValue('Read GRID Zpts'), 'input-file');
         assert.strictEqual(classifyCommandValue('Read File'), 'input-file');
         assert.strictEqual(classifyCommandValue('BC Database'), 'input-file');
+        for (const command of [
+            'Quadtree Control File',
+            'Event File',
+            'Rainfall Control File',
+            'External Stress File',
+            'Operational Control File',
+            'SWMM Control File',
+            'Advection Dispersion Control File'
+        ]) {
+            assert.strictEqual(classifyCommandValue(command), 'input-file', command);
+        }
         assert.strictEqual(classifyCommandValue('Materials File'), 'input-file');
         assert.strictEqual(classifyCommandValue('Spatial Database'), 'input-file');
         assert.strictEqual(classifyCommandValue('MI Projection'), 'input-file');
