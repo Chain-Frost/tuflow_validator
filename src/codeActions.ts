@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { TPV_CODES, TPV_SOURCE } from './diagnosticCodes';
 
 /**
  * Provides Quick Fix code actions for TUFLOW diagnostics.
@@ -27,14 +28,19 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         context: vscode.CodeActionContext,
         token: vscode.CancellationToken
     ): vscode.ProviderResult<(vscode.Command | vscode.CodeAction)[]> {
-        // Filter diagnostics to only those relevant to this extension
-        const diagnostics = context.diagnostics.filter(diagnostic => {
-            return diagnostic.message.includes('File not found') ||
-                   diagnostic.message.includes('Referenced file has') ||
-                   diagnostic.message.includes('Filename is missing token') ||
-                   diagnostic.message.includes('not the latest version') ||
-                   diagnostic.message.includes('Unable to determine');
-        });
+        // Codes, rather than human-readable messages, identify our diagnostics.
+        // Other extensions' diagnostics must never offer TUFLOW-specific fixes.
+        const ignorableCodes: ReadonlySet<string> = new Set([
+            TPV_CODES.missingFile,
+            TPV_CODES.childIssues,
+            TPV_CODES.missingFilenameToken,
+            TPV_CODES.outdatedVersion
+        ]);
+        const diagnostics = context.diagnostics.filter(diagnostic =>
+            diagnostic.source === TPV_SOURCE &&
+            typeof diagnostic.code === 'string' &&
+            ignorableCodes.has(diagnostic.code)
+        );
 
         if (diagnostics.length === 0) {
             return;
@@ -67,7 +73,7 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         actions.push(fileFix);
 
         for (const diagnostic of diagnostics) {
-            if (!diagnostic.message.includes('not the latest version')) {
+            if (diagnostic.code !== TPV_CODES.outdatedVersion) {
                 continue;
             }
             const updatedText = buildLatestVersionReplacement(document, diagnostic.range, diagnostic.message);
