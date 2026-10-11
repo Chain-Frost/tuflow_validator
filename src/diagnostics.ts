@@ -20,6 +20,7 @@ import {
 } from './versioning';
 
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
+const rootDependenciesByRoot = new Map<string, Set<string>>();
 let mergedFiles = new Set<string>();
 let isRefreshing = false;
 const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>();
@@ -89,6 +90,7 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
     if (rootDiagnosticsByRoot.has(rootKey)) {
         rootDiagnosticsByRoot.delete(rootKey);
     }
+    rootDependenciesByRoot.delete(rootKey);
 
     for (const affectedRootKey of affectedRootKeys) {
         if (affectedRootKey === rootKey) {
@@ -122,10 +124,53 @@ export async function refreshDiagnostics(collection: vscode.DiagnosticCollection
         }
 
         rootDiagnosticsByRoot = nextRootDiagnostics;
+        const activeRoots = new Set(nextRootDiagnostics.keys());
+        for (const root of rootDependenciesByRoot.keys()) {
+            if (!activeRoots.has(root)) {
+                rootDependenciesByRoot.delete(root);
+            }
+        }
         rebuildMergedDiagnostics(collection);
     } finally {
         isRefreshing = false;
     }
+}
+
+/**
+ * Paths from active roots, including references to files which do not yet exist.
+ * A disk watcher uses this graph rather than watching every GIS file in a model.
+ */
+export function getTrackedDependencyPaths(): Set<string> {
+    const paths = new Set<string>();
+    for (const deps of rootDependenciesByRoot.values()) {
+        for (const dependency of deps) {
+            paths.add(dependency);
+        }
+    }
+    return paths;
+}
+
+/** Revalidate only open roots that depend on a changed file-system path. */
+export function updateDiagnosticsForChangedPath(
+    filePath: string,
+    collection: vscode.DiagnosticCollection
+): boolean {
+    const key = path.normalize(filePath);
+    let updated = false;
+    for (const [root, dependencies] of rootDependenciesByRoot.entries()) {
+        if (!dependencies.has(key)) {
+            continue;
+        }
+        const document = findOpenDocumentByUri(root);
+        if (document && shouldProcessDocument(document)) {
+            rootDiagnosticsByRoot.set(root, computeDiagnosticsForDocument(document));
+            updated = true;
+        }
+    }
+    if (updated) {
+        rebuildMergedDiagnostics(collection);
+    }
+    return updated;
 }
 
 function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
@@ -293,7 +338,9 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
     const latestCheckContext = buildLatestCheckContext(document);
-    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>());
+    const dependencies = new Set<string>();
+    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>(), dependencies);
+    rootDependenciesByRoot.set(document.uri.toString(), dependencies);
     return visited;
 }
 
@@ -313,7 +360,8 @@ function analyzeFile(
     visited: Map<string, vscode.Diagnostic[]>,
     latestCheckContext: LatestCheckContext,
     sourceTcfDirectory?: string,
-    staticVariables: Map<string, string> = new Map()
+    staticVariables: Map<string, string> = new Map(),
+    dependencies: Set<string> = new Set()
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
     const cached = visited.get(normalizedPath);
@@ -412,6 +460,7 @@ function analyzeFile(
             }
 
             const resolvedPath = resolvePath(pathBaseDirectory, expanded);
+            dependencies.add(path.normalize(resolvedPath));
             if (!fs.existsSync(resolvedPath)) {
                 diagnostics.push(createTpvDiagnostic(
                     candidate.range,
@@ -443,7 +492,8 @@ function analyzeFile(
                     visited,
                     latestCheckContext,
                     activeTcfDirectory,
-                    staticVariables
+                    staticVariables,
+                    dependencies
                 );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
