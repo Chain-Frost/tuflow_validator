@@ -7,6 +7,7 @@ import {
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
 import { safeReadFile } from './io';
+import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
 import {
@@ -292,7 +293,7 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
     const latestCheckContext = buildLatestCheckContext(document);
-    analyzeFile(rootPath, document.getText(), visited, latestCheckContext);
+    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>());
     return visited;
 }
 
@@ -311,7 +312,8 @@ function analyzeFile(
     contents: string,
     visited: Map<string, vscode.Diagnostic[]>,
     latestCheckContext: LatestCheckContext,
-    sourceTcfDirectory?: string
+    sourceTcfDirectory?: string,
+    staticVariables: Map<string, string> = new Map()
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
     const cached = visited.get(normalizedPath);
@@ -382,6 +384,13 @@ function analyzeFile(
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
 
+        applyStaticVariableDefinition(
+            keyText,
+            valueText,
+            blockStack.some(entry => entry.kind === 'if'),
+            staticVariables
+        );
+
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
             checkScenarioEventTokensInValue(valueText, valueStartIndex, i, normalizedPath, diagnostics);
@@ -393,11 +402,14 @@ function analyzeFile(
 
         const candidates = extractPathCandidates(valueText, valueStartIndex, i);
         for (const candidate of candidates) {
-            if (!isLikelyFile(candidate.text) || containsUnresolvedToken(candidate.text)) {
+            // Static variables may form part of a path. Runtime -s/-e tokens
+            // and unknown definitions are never guessed or treated as absent files.
+            const expanded = expandStaticVariables(candidate.text, staticVariables);
+            if (expanded === null || !isLikelyFile(expanded) || containsUnresolvedToken(expanded)) {
                 continue;
             }
 
-            const resolvedPath = resolvePath(pathBaseDirectory, candidate.text);
+            const resolvedPath = resolvePath(pathBaseDirectory, expanded);
             if (!fs.existsSync(resolvedPath)) {
                 diagnostics.push(createTpvDiagnostic(
                     candidate.range,
@@ -428,7 +440,8 @@ function analyzeFile(
                     childContents,
                     visited,
                     latestCheckContext,
-                    activeTcfDirectory
+                    activeTcfDirectory,
+                    staticVariables
                 );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
