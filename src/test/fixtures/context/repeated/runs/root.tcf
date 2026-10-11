@@ -1,0 +1,4 @@
+Set Variable DIR == ..\a
+Read File == child.trd
+Set Variable DIR == ..\b
+Read File == child.trd
