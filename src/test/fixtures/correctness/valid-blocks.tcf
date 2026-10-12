@@ -1,0 +1,10 @@
+Define Event EVT1
+    If Scenario == DEV
+    Else If Scenario == EXG
+    Else
+    End If
+End Define
+Start 1D Domain
+End 1D Domain
+Start 2D Domain
+End 2D Domain

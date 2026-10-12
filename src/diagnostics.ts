@@ -7,6 +7,7 @@ import {
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
 import { safeReadFile } from './io';
+import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
 import {
     buildLatestCheckContext,
@@ -24,6 +25,7 @@ const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>(
 const DIAGNOSTIC_UPDATE_DEBOUNCE_MS = 300;
 const IF_STATEMENT_REGEX = /^\s*if\b\s+(event|scenario)\s*==/i;
 const ELSE_IF_REGEX = /^\s*else\b\s+if\b\s+(event|scenario)\s*==/i;
+const ELSE_REGEX = /^\s*else\b(?!\s*if\b)/i;
 const END_IF_REGEX = /^\s*end\b\s*if\b/i;
 const DEFINE_EVENT_REGEX = /^\s*define\b\s+event\b/i;
 const END_DEFINE_REGEX = /^\s*end\b\s+define\b/i;
@@ -38,6 +40,7 @@ interface BlockEntry {
     kind: BlockKind;
     range: vscode.Range;
     message: string;
+    hasElse?: boolean;
 }
 
 export function updateDiagnostics(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
@@ -356,7 +359,7 @@ function analyzeFile(
         }
 
         if (shouldCheckIfStatements) {
-            updateBlockStack(text, i, blockStack);
+            updateBlockStack(text, i, blockStack, diagnostics);
         }
 
         const separatorIndex = text.indexOf('==');
@@ -396,10 +399,11 @@ function analyzeFile(
 
             const resolvedPath = resolvePath(pathBaseDirectory, candidate.text);
             if (!fs.existsSync(resolvedPath)) {
-                diagnostics.push(new vscode.Diagnostic(
+                diagnostics.push(createTpvDiagnostic(
                     candidate.range,
                     `File not found: ${candidate.text}`,
-                    vscode.DiagnosticSeverity.Error
+                    vscode.DiagnosticSeverity.Error,
+                    TPV_CODES.missingFile
                 ));
                 continue;
             }
@@ -427,10 +431,11 @@ function analyzeFile(
                     activeTcfDirectory
                 );
                 if (childDiagnostics.length > 0) {
-                    diagnostics.push(new vscode.Diagnostic(
+                    diagnostics.push(createTpvDiagnostic(
                         candidate.range,
                         `Referenced file has ${childDiagnostics.length} issue(s): ${path.basename(resolvedPath)}`,
-                        ISSUE_SUMMARY_SEVERITY
+                        ISSUE_SUMMARY_SEVERITY,
+                        TPV_CODES.childIssues
                     ));
                 }
             }
@@ -439,10 +444,11 @@ function analyzeFile(
 
     if (shouldCheckIfStatements && blockStack.length > 0) {
         for (const entry of blockStack) {
-            diagnostics.push(new vscode.Diagnostic(
+            diagnostics.push(createTpvDiagnostic(
                 entry.range,
                 entry.message,
-                vscode.DiagnosticSeverity.Error
+                vscode.DiagnosticSeverity.Error,
+                TPV_CODES.missingEnd
             ));
         }
     }
@@ -453,7 +459,8 @@ function analyzeFile(
 function updateBlockStack(
     line: string,
     lineIndex: number,
-    stack: BlockEntry[]
+    stack: BlockEntry[],
+    diagnostics: vscode.Diagnostic[]
 ): void {
     const commentIndex = line.indexOf('!');
     const lineContent = commentIndex >= 0 ? line.slice(0, commentIndex) : line;
@@ -461,76 +468,82 @@ function updateBlockStack(
         return;
     }
 
-    const leadingWhitespaceMatch = /^\s*/.exec(lineContent);
-    const startChar = leadingWhitespaceMatch ? leadingWhitespaceMatch[0].length : 0;
+    const startChar = /^\s*/.exec(lineContent)?.[0].length ?? 0;
+    const rangeFor = (length: number) => new vscode.Range(lineIndex, startChar, lineIndex, startChar + length);
+    const top = stack[stack.length - 1];
 
-    if (END_IF_REGEX.test(lineContent)) {
-        popBlock(stack, 'if');
+    const endings: Array<{ regex: RegExp; kind: BlockKind; label: string }> = [
+        { regex: END_IF_REGEX, kind: 'if', label: 'End If' },
+        { regex: END_DEFINE_REGEX, kind: 'define-event', label: 'End Define' },
+        { regex: END_1D_DOMAIN_REGEX, kind: 'start-1d-domain', label: 'End 1D Domain' },
+        { regex: END_2D_DOMAIN_REGEX, kind: 'start-2d-domain', label: 'End 2D Domain' }
+    ];
+    for (const ending of endings) {
+        if (!ending.regex.test(lineContent)) {
+            continue;
+        }
+        if (top?.kind === ending.kind) {
+            stack.pop();
+        } else {
+            diagnostics.push(createTpvDiagnostic(
+                rangeFor(ending.label.length),
+                `Unexpected ${ending.label}: no matching opening block at this nesting level.`,
+                vscode.DiagnosticSeverity.Error,
+                TPV_CODES.unexpectedEnd
+            ));
+        }
         return;
     }
 
-    if (END_DEFINE_REGEX.test(lineContent)) {
-        popBlock(stack, 'define-event');
-        return;
-    }
+    if (ELSE_IF_REGEX.test(lineContent) || ELSE_REGEX.test(lineContent)) {
+        const isElseIf = ELSE_IF_REGEX.test(lineContent);
+        const label = isElseIf ? 'Else If' : 'Else';
+        let message: string | null = null;
 
-    if (END_1D_DOMAIN_REGEX.test(lineContent)) {
-        popBlock(stack, 'start-1d-domain');
-        return;
-    }
+        if (top?.kind !== 'if') {
+            message = `${label} does not have a matching open If block.`;
+        } else if (top.hasElse) {
+            message = isElseIf ? 'Else If cannot follow Else in the same If block.' : 'Duplicate Else in the same If block.';
+        } else if (!isElseIf) {
+            top.hasElse = true;
+        }
 
-    if (END_2D_DOMAIN_REGEX.test(lineContent)) {
-        popBlock(stack, 'start-2d-domain');
-        return;
-    }
-
-    if (ELSE_IF_REGEX.test(lineContent)) {
+        if (message) {
+            diagnostics.push(createTpvDiagnostic(
+                rangeFor(label.length),
+                message,
+                vscode.DiagnosticSeverity.Error,
+                TPV_CODES.invalidElse
+            ));
+        }
         return;
     }
 
     if (IF_STATEMENT_REGEX.test(lineContent)) {
         stack.push({
             kind: 'if',
-            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 2),
-            message: 'If statement is missing a closing End If.'
+            range: rangeFor(2),
+            message: 'If statement is missing a closing End If.',
+            hasElse: false
         });
-        return;
-    }
-
-    if (DEFINE_EVENT_REGEX.test(lineContent)) {
+    } else if (DEFINE_EVENT_REGEX.test(lineContent)) {
         stack.push({
             kind: 'define-event',
-            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 6),
+            range: rangeFor(6),
             message: 'Define Event statement is missing a closing End Define.'
         });
-        return;
-    }
-
-    if (START_1D_DOMAIN_REGEX.test(lineContent)) {
+    } else if (START_1D_DOMAIN_REGEX.test(lineContent)) {
         stack.push({
             kind: 'start-1d-domain',
-            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 5),
+            range: rangeFor(5),
             message: 'Start 1D Domain statement is missing a closing End 1D Domain.'
         });
-        return;
-    }
-
-    if (START_2D_DOMAIN_REGEX.test(lineContent)) {
+    } else if (START_2D_DOMAIN_REGEX.test(lineContent)) {
         stack.push({
             kind: 'start-2d-domain',
-            range: new vscode.Range(lineIndex, startChar, lineIndex, startChar + 5),
+            range: rangeFor(5),
             message: 'Start 2D Domain statement is missing a closing End 2D Domain.'
         });
-    }
-}
-
-function popBlock(stack: BlockEntry[], kind: BlockKind): void {
-    if (stack.length === 0) {
-        return;
-    }
-
-    if (stack[stack.length - 1].kind === kind) {
-        stack.pop();
     }
 }
 

@@ -34,27 +34,80 @@ export function isLikelyFile(value: string): boolean {
 }
 
 /**
- * Determines if a specific key should be skipped during file lookup.
- * Certain TUFLOW commands (like PAUSE or events) do not reference files in the standard way.
+ * Classifies the meaning of the value supplied to a TUFLOW command.
  *
- * @param keyText - The command key (left side of '==').
- * @returns True if the key should be ignored, false otherwise.
+ * File-system validation must be command-aware: values such as "0.05",
+ * "DEV.2026", and output folders are not input-file references, even when
+ * they resemble paths. Unknown commands are intentionally not validated:
+ * incorrectly reporting missing files is worse than declining to validate.
  */
-export function shouldSkipKeyForFileLookup(keyText: string): boolean {
-    const normalized = normalizeKey(keyText);
-    if (normalized === 'PAUSE') {
-        return true;
+export type CommandValueKind = 'input-file' | 'output' | 'non-file' | 'unknown';
+
+const INPUT_FILE_COMMANDS = new Set([
+    'GEOMETRY CONTROL FILE',
+    'BC CONTROL FILE',
+    'QUADTREE CONTROL FILE',
+    'EVENT FILE',
+    'RAINFALL CONTROL FILE',
+    'EXTERNAL STRESS FILE',
+    'OPERATIONAL CONTROL FILE',
+    'SWMM CONTROL FILE',
+    'ADVECTION DISPERSION CONTROL FILE',
+    'BC EVENT FILE',
+    'ESTRY CONTROL FILE',
+    'ESTRY EVENT FILE',
+    'READ FILE',
+    'READ MATERIALS FILE',
+    'READ SOILS FILE',
+    'BC DATABASE',
+    'MATERIALS FILE',
+    'SPATIAL DATABASE',
+    'CALIBRATION POINTS GIS FILE',
+    'GPKG PROJECTION',
+    'MI PROJECTION',
+    'SHP PROJECTION',
+    'TIF PROJECTION',
+    'ASC PROJECTION'
+]);
+
+/**
+ * Only classify known input-file commands as requiring an existing path.
+ * Leave event/scenario predicates to TUFLOW; their values come from runtime.
+ */
+export function classifyCommandValue(keyText: string): CommandValueKind {
+    const key = normalizeKey(keyText);
+
+    if (
+        INPUT_FILE_COMMANDS.has(key) ||
+        /^READ\s+(?:GIS|GRID|TIN|MIF|SHP|GPKG|ROWCOL|MID)\s+\S/.test(key) ||
+        /^READ\s+.+\s+FILE$/.test(key)
+    ) {
+        return 'input-file';
     }
 
-    const skipPrefixes = [
-        'DEFINE EVENT',
-        'IF EVENT',
-        'ELSE IF EVENT',
-        'ELSEIF EVENT',
-        'BC EVENT SOURCE'
-    ];
+    if (
+        /^(?:OUTPUT|LOG|CHECK|WRITE)\s+(?:FOLDER|FILE|FILES)(?:\s|$)/.test(key) ||
+        /^(?:WRITE|OUTPUT|LOG)\s+/.test(key)
+    ) {
+        return 'output';
+    }
 
-    return skipPrefixes.some(prefix => normalized.startsWith(prefix));
+    if (
+        /^(?:IF|ELSE\s+IF|ELSEIF)\s+(?:EVENT|SCENARIO)(?:\s|$)/.test(key) ||
+        /^(?:SET\s+VARIABLE|DEFINE\s+EVENT|BC\s+EVENT\s+SOURCE)(?:\s|$)/.test(key) ||
+        key === 'PAUSE'
+    ) {
+        return 'non-file';
+    }
+
+    return 'unknown';
+}
+
+/**
+ * Retained for existing callers; only known input-file commands are checked.
+ */
+export function shouldSkipKeyForFileLookup(keyText: string): boolean {
+    return classifyCommandValue(keyText) !== 'input-file';
 }
 
 /**

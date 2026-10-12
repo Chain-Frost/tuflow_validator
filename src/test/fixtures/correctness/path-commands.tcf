@@ -1,0 +1,13 @@
+! Only known input commands must be validated as existing files.
+Read GIS BC == missing/input.shp | existing.shp
+Output Folder == ..\missing\results\
+Log Folder == ..\missing\logs\
+Write Check Files == ..\missing\check\
+Start Time == 0.05
+Time Step == 0.1
+If Scenario == DEV.2026
+End If
+If Event == 01.0p | 02.0p
+End If
+Set Variable OutputRoot == ..\missing\results\
+Some Custom Command == ..\missing\custom.shp
