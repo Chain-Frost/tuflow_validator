@@ -140,11 +140,12 @@ export function extractPathCandidates(
 
     while ((match = segmentRegex.exec(valueText)) !== null) {
         const segmentText = match[0];
-        if (segmentText.includes('<<') && segmentText.includes('>>')) {
-            continue;
-        }
-
-        const layerIndex = segmentText.indexOf('>>');
+        // Keep unresolved placeholders as candidates so the caller can
+        // expand known static variables or conservatively skip the reference.
+        // A macro closes with ">>" too; only a ">>" outside macros is
+        // a GIS layer selector.
+        const selectorText = segmentText.replace(/<<[^<>]*>>/g, token => ' '.repeat(token.length));
+        const layerIndex = selectorText.indexOf('>>');
         const pathPortion = layerIndex >= 0 ? segmentText.slice(0, layerIndex) : segmentText;
         const trimmed = pathPortion.trim();
         if (!trimmed) {

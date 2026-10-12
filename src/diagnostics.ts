@@ -7,6 +7,7 @@ import {
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
 import { safeReadFile } from './io';
+import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
 import {
@@ -19,6 +20,7 @@ import {
 } from './versioning';
 
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
+const rootDependenciesByRoot = new Map<string, Set<string>>();
 let mergedFiles = new Set<string>();
 let isRefreshing = false;
 const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>();
@@ -88,6 +90,7 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
     if (rootDiagnosticsByRoot.has(rootKey)) {
         rootDiagnosticsByRoot.delete(rootKey);
     }
+    rootDependenciesByRoot.delete(rootKey);
 
     for (const affectedRootKey of affectedRootKeys) {
         if (affectedRootKey === rootKey) {
@@ -121,10 +124,53 @@ export async function refreshDiagnostics(collection: vscode.DiagnosticCollection
         }
 
         rootDiagnosticsByRoot = nextRootDiagnostics;
+        const activeRoots = new Set(nextRootDiagnostics.keys());
+        for (const root of rootDependenciesByRoot.keys()) {
+            if (!activeRoots.has(root)) {
+                rootDependenciesByRoot.delete(root);
+            }
+        }
         rebuildMergedDiagnostics(collection);
     } finally {
         isRefreshing = false;
     }
+}
+
+/**
+ * Paths from active roots, including references to files which do not yet exist.
+ * A disk watcher uses this graph rather than watching every GIS file in a model.
+ */
+export function getTrackedDependencyPaths(): Set<string> {
+    const paths = new Set<string>();
+    for (const deps of rootDependenciesByRoot.values()) {
+        for (const dependency of deps) {
+            paths.add(dependency);
+        }
+    }
+    return paths;
+}
+
+/** Revalidate only open roots that depend on a changed file-system path. */
+export function updateDiagnosticsForChangedPath(
+    filePath: string,
+    collection: vscode.DiagnosticCollection
+): boolean {
+    const key = path.normalize(filePath);
+    let updated = false;
+    for (const [root, dependencies] of rootDependenciesByRoot.entries()) {
+        if (!dependencies.has(key)) {
+            continue;
+        }
+        const document = findOpenDocumentByUri(root);
+        if (document && shouldProcessDocument(document)) {
+            rootDiagnosticsByRoot.set(root, computeDiagnosticsForDocument(document));
+            updated = true;
+        }
+    }
+    if (updated) {
+        rebuildMergedDiagnostics(collection);
+    }
+    return updated;
 }
 
 function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
@@ -292,7 +338,9 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
     const latestCheckContext = buildLatestCheckContext(document);
-    analyzeFile(rootPath, document.getText(), visited, latestCheckContext);
+    const dependencies = new Set<string>();
+    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>(), dependencies);
+    rootDependenciesByRoot.set(document.uri.toString(), dependencies);
     return visited;
 }
 
@@ -311,16 +359,20 @@ function analyzeFile(
     contents: string,
     visited: Map<string, vscode.Diagnostic[]>,
     latestCheckContext: LatestCheckContext,
-    sourceTcfDirectory?: string
+    sourceTcfDirectory?: string,
+    staticVariables: Map<string, string> = new Map(),
+    dependencies: Set<string> = new Set(),
+    recursionStack: Set<string> = new Set(),
+    inheritedConditional = false
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
-    const cached = visited.get(normalizedPath);
-    if (cached) {
-        return cached;
+    // Repeated includes may use different variable values. Only stop cycles
+    // along the active recursion path; don't memoise solely by filename.
+    if (recursionStack.has(normalizedPath)) {
+        return [];
     }
-
+    recursionStack.add(normalizedPath);
     const diagnostics: vscode.Diagnostic[] = [];
-    visited.set(normalizedPath, diagnostics);
 
     const lines = contents.split(/\r?\n/);
     const docDir = path.dirname(normalizedPath);
@@ -332,6 +384,7 @@ function analyzeFile(
         : docDir;
     const shouldCheckIfStatements = getConfiguredIfStatementChecksEnabled();
     const blockStack: BlockEntry[] = [];
+    let conditionalDepth = 0;
     const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
         normalizedPath,
         diagnostics,
@@ -349,6 +402,7 @@ function analyzeFile(
                 // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
                 diagnostics.length = 0;
                 visited.set(normalizedPath, []);
+                recursionStack.delete(normalizedPath);
                 return [];
             }
             continue;
@@ -360,6 +414,12 @@ function analyzeFile(
 
         if (shouldCheckIfStatements) {
             updateBlockStack(text, i, blockStack, diagnostics);
+        }
+        const commandText = text.split('!')[0];
+        if (/^\s*if\b/i.test(commandText)) {
+            conditionalDepth++;
+        } else if (/^\s*end\s*if\b/i.test(commandText)) {
+            conditionalDepth = Math.max(0, conditionalDepth - 1);
         }
 
         const separatorIndex = text.indexOf('==');
@@ -382,6 +442,8 @@ function analyzeFile(
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
 
+        applyStaticVariableDefinition(keyText, valueText, inheritedConditional || conditionalDepth > 0, staticVariables);
+
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
             checkScenarioEventTokensInValue(valueText, valueStartIndex, i, normalizedPath, diagnostics);
@@ -393,11 +455,15 @@ function analyzeFile(
 
         const candidates = extractPathCandidates(valueText, valueStartIndex, i);
         for (const candidate of candidates) {
-            if (!isLikelyFile(candidate.text) || containsUnresolvedToken(candidate.text)) {
+            // Static variables may form part of a path. Runtime -s/-e tokens
+            // and unknown definitions are never guessed or treated as absent files.
+            const expanded = expandStaticVariables(candidate.text, staticVariables);
+            if (expanded === null || !isLikelyFile(expanded) || containsUnresolvedToken(expanded)) {
                 continue;
             }
 
-            const resolvedPath = resolvePath(pathBaseDirectory, candidate.text);
+            const resolvedPath = resolvePath(pathBaseDirectory, expanded);
+            dependencies.add(path.normalize(resolvedPath));
             if (!fs.existsSync(resolvedPath)) {
                 diagnostics.push(createTpvDiagnostic(
                     candidate.range,
@@ -423,12 +489,20 @@ function analyzeFile(
                     continue;
                 }
 
+                const childConditional = inheritedConditional || conditionalDepth > 0;
+                const childVariables = childConditional
+                    ? new Map(staticVariables)
+                    : staticVariables;
                 const childDiagnostics = analyzeFile(
                     resolvedPath,
                     childContents,
                     visited,
                     latestCheckContext,
-                    activeTcfDirectory
+                    activeTcfDirectory,
+                    childVariables,
+                    dependencies,
+                    recursionStack,
+                    childConditional
                 );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
@@ -453,6 +527,17 @@ function analyzeFile(
         }
     }
 
+    const combined = visited.get(normalizedPath) ?? [];
+    const seen = new Set(combined.map(diagnosticFingerprint));
+    for (const diagnostic of diagnostics) {
+        const key = diagnosticFingerprint(diagnostic);
+        if (!seen.has(key)) {
+            combined.push(diagnostic);
+            seen.add(key);
+        }
+    }
+    visited.set(normalizedPath, combined);
+    recursionStack.delete(normalizedPath);
     return diagnostics;
 }
 

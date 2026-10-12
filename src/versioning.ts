@@ -2,9 +2,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { getConfiguredLatestVersionChecksEnabled } from './config';
-import { LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
-import { extractPathCandidates, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey } from './pathParsing';
+import { CONTROL_FILE_EXTENSIONS, LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
+import { extractPathCandidates, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey, shouldSkipKeyForFileLookup } from './pathParsing';
 import { safeReadFile } from './io';
+import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 
 /**
@@ -134,59 +135,90 @@ function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> 
         if (contents === null) {
             continue;
         }
-
-        collectReferencedControlFiles(tcfFile, contents, referenced);
+        collectReferencedControlFiles(
+            tcfFile, contents, referenced, new Set<string>(),
+            path.dirname(tcfFile), new Map<string, string>()
+        );
     }
 
     return referenced;
 }
 
 /**
- * Parses a TCF file content and extracts referenced control file paths.
- *
- * @param tcfPath - Path to the TCF file.
- * @param contents - Content of the TCF file.
- * @param referenced - Accumulator set for referenced files.
+ * Walk the full known control-file graph rather than only the TCF's direct
+ * references. Respect the source TCF's relative-path base for nested TRDs.
+ * Runtime event/scenario values must remain unresolved.
  */
-function collectReferencedControlFiles(tcfPath: string, contents: string, referenced: Set<string>): void {
+function collectReferencedControlFiles(
+    filePath: string,
+    contents: string,
+    referenced: Set<string>,
+    visited: Set<string>,
+    sourceTcfDirectory: string,
+    variables: Map<string, string>,
+    inheritedConditional = false
+): void {
+    const canonical = path.normalize(filePath);
+    // Only guard active recursion. The same file may be included again with
+    // different Set Variable values and require a new dependency expansion.
+    if (visited.has(canonical)) {
+        return;
+    }
+    visited.add(canonical);
+    const extension = path.extname(canonical).toLowerCase();
+    const base = extension === '.trd' ? sourceTcfDirectory : path.dirname(canonical);
     const lines = contents.split(/\r?\n/);
-    const docDir = path.dirname(tcfPath);
+    let conditionalDepth = 0;
 
     for (let i = 0; i < lines.length; i++) {
-        const text = lines[i];
-        if (text.trim().startsWith('!') || text.trim().length === 0) {
+        const line = lines[i];
+        const command = line.split('!')[0];
+        if (!command.trim()) {
             continue;
         }
-
-        const separatorIndex = text.indexOf('==');
-        if (separatorIndex === -1) {
-            continue;
+        if (/^\s*if\b/i.test(command)) {
+            conditionalDepth++;
+        } else if (/^\s*end\s*if\b/i.test(command)) {
+            conditionalDepth = Math.max(0, conditionalDepth - 1);
         }
 
-        const valueStartIndex = separatorIndex + 2;
-        const valueWithComment = text.slice(valueStartIndex);
-        const commentIndex = valueWithComment.indexOf('!');
-        const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
-
-        const candidates = extractPathCandidates(valueText, valueStartIndex, i);
-        for (const candidate of candidates) {
-            if (!isLikelyFile(candidate.text) || containsUnresolvedToken(candidate.text)) {
+        const separator = command.indexOf('==');
+        if (separator < 0) {
+            continue;
+        }
+        const key = command.slice(0, separator).trim();
+        const value = command.slice(separator + 2);
+        applyStaticVariableDefinition(key, value, inheritedConditional || conditionalDepth > 0, variables);
+        if (shouldSkipKeyForFileLookup(key)) {
+            continue;
+        }
+        for (const candidate of extractPathCandidates(value, separator + 2, i)) {
+            const expanded = expandStaticVariables(candidate.text, variables);
+            if (expanded === null || containsUnresolvedToken(expanded) || !isLikelyFile(expanded)) {
                 continue;
             }
-
-            const resolvedPath = resolvePath(docDir, candidate.text);
-            const ext = path.extname(resolvedPath).toLowerCase();
-            if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext) || ext === '.tcf') {
+            const resolved = path.normalize(resolvePath(base, expanded));
+            const childExt = path.extname(resolved).toLowerCase();
+            if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(childExt) || !fs.existsSync(resolved)) {
                 continue;
             }
-
-            if (!fs.existsSync(resolvedPath)) {
-                continue;
+            referenced.add(resolved);
+            if (CONTROL_FILE_EXTENSIONS.has(childExt)) {
+                const nested = safeReadFile(resolved);
+                if (nested !== null) {
+                    const childConditional = inheritedConditional || conditionalDepth > 0;
+                    const childVariables = childConditional ? new Map(variables) : variables;
+                    const childTcfDirectory = childExt === '.tcf'
+                        ? path.dirname(resolved) : sourceTcfDirectory;
+                    collectReferencedControlFiles(
+                        resolved, nested, referenced, visited,
+                        childTcfDirectory, childVariables, childConditional
+                    );
+                }
             }
-
-            referenced.add(path.normalize(resolvedPath));
         }
     }
+    visited.delete(canonical);
 }
 
 /**
