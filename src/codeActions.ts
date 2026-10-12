@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES, TPV_SOURCE } from './diagnosticCodes';
 
@@ -38,8 +40,7 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         ]);
         const diagnostics = context.diagnostics.filter(diagnostic =>
             diagnostic.source === TPV_SOURCE &&
-            typeof diagnostic.code === 'string' &&
-            ignorableCodes.has(diagnostic.code)
+            ignorableCodes.has(getDiagnosticCode(diagnostic))
         );
 
         if (diagnostics.length === 0) {
@@ -73,10 +74,10 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
         actions.push(fileFix);
 
         for (const diagnostic of diagnostics) {
-            if (diagnostic.code !== TPV_CODES.outdatedVersion) {
+            if (getDiagnosticCode(diagnostic) !== TPV_CODES.outdatedVersion) {
                 continue;
             }
-            const updatedText = buildLatestVersionReplacement(document, diagnostic.range, diagnostic.message);
+            const updatedText = buildLatestVersionReplacement(document, diagnostic);
             if (!updatedText) {
                 continue;
             }
@@ -92,50 +93,38 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
     }
 }
 
+function getDiagnosticCode(diagnostic: vscode.Diagnostic): string {
+    const code = diagnostic.code;
+    if (typeof code === 'string' || typeof code === 'number') {
+        return String(code);
+    }
+    return code && 'value' in code ? String(code.value) : '';
+}
+
+/** Use only an existing replacement file from the version rule's metadata. */
 function buildLatestVersionReplacement(
     document: vscode.TextDocument,
-    range: vscode.Range,
-    message: string
+    diagnostic: vscode.Diagnostic
 ): string | null {
-    const latestVersion = parseLatestVersionFromMessage(message);
-    if (latestVersion === null) {
+    const code = diagnostic.code;
+    if (!code || typeof code !== 'object' || !('target' in code)) {
         return null;
     }
 
-    const currentText = document.getText(range);
-    const match = findRightmostNumericToken(currentText);
-    if (!match) {
+    const original = document.getText(diagnostic.range);
+    const index = Math.max(original.lastIndexOf('/'), original.lastIndexOf('\\'));
+    const oldName = original.slice(index + 1);
+    const newName = code.target.path.split('/').pop();
+    const runtimeTokens = (name: string): string =>
+        (name.match(/~[se][1-9]~/gi) ?? []).map(token => token.toLowerCase()).join('|');
+
+    if (!oldName || !newName || newName === oldName ||
+        runtimeTokens(oldName) !== runtimeTokens(newName) ||
+        path.extname(oldName).toLowerCase() !== path.extname(newName).toLowerCase() ||
+        !fs.existsSync(code.target.fsPath)) {
         return null;
     }
-
-    const replacement = latestVersion.toString().padStart(match.raw.length, '0');
-    return `${currentText.slice(0, match.start)}${replacement}${currentText.slice(match.end)}`;
-}
-
-function parseLatestVersionFromMessage(message: string): number | null {
-    const latestMatch = /latest\s+(\d+)\)/i.exec(message);
-    if (!latestMatch) {
-        return null;
-    }
-
-    return Number.parseInt(latestMatch[1], 10);
-}
-
-function findRightmostNumericToken(value: string): { raw: string; start: number; end: number } | null {
-    let rightmost: { raw: string; start: number; end: number } | null = null;
-    const regex = /\d+/g;
-    let match: RegExpExecArray | null;
-
-    while ((match = regex.exec(value)) !== null) {
-        const start = match.index;
-        const end = start + match[0].length;
-        const nextChar = end < value.length ? value[end] : '';
-        const nextIsLetter = /[a-z]/i.test(nextChar);
-
-        if (!nextIsLetter) {
-            rightmost = { raw: match[0], start, end };
-        }
-    }
-
-    return rightmost;
+    // The source diagnostic was calculated using file-system discovery; do not
+    // silently change other path segments or re-infer which number is a version.
+    return original.slice(0, index + 1) + newName;
 }

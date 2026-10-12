@@ -31,6 +31,7 @@ interface LatestVersionResult {
     status: LatestVersionStatus;
     currentVersion?: number;
     latestVersion?: number;
+    latestFilePath?: string;
 }
 
 /**
@@ -273,12 +274,21 @@ export function checkReferencedFileLatestVersion(
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
         const severity = vscode.DiagnosticSeverity.Warning;
-        diagnostics.push(createTpvDiagnostic(
+        const diagnostic = createTpvDiagnostic(
             range,
             `Referenced file is not the latest version in its folder: ${path.basename(filePath)} (found ${currentVersion}, latest ${latestVersion}).`,
             severity,
             TPV_CODES.outdatedVersion
-        ));
+        );
+        // Provide the concrete, already discovered replacement as structured
+        // data; do not make Quick Fixes parse English messages or guess digits.
+        if (status.latestFilePath) {
+            diagnostic.code = {
+                value: TPV_CODES.outdatedVersion,
+                target: vscode.Uri.file(status.latestFilePath)
+            };
+        }
+        diagnostics.push(diagnostic);
     }
 }
 
@@ -326,7 +336,7 @@ function filterReferencedControlCandidates(
 function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): LatestVersionResult {
     const ext = path.extname(filePath).toLowerCase();
     const baseName = path.basename(filePath, ext);
-    const cleanedBaseName = stripScenarioEventTokens(baseName).toLowerCase();
+    const cleanedBaseName = baseName.toLowerCase();
     const currentMatch = getRightmostVersionMatch(cleanedBaseName);
     if (!currentMatch) {
         return { status: 'no-version' };
@@ -335,6 +345,7 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
     const currentVersion = currentMatch.value;
     const currentPattern = buildVersionPattern(cleanedBaseName, currentMatch);
     let latestVersion = currentVersion;
+    let latestFilePath: string | undefined;
     let entries: string[] = [];
 
     if (candidateFiles) {
@@ -356,7 +367,7 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
         }
 
         const entryBaseName = path.basename(entryPath, ext);
-        const entryCleaned = stripScenarioEventTokens(entryBaseName).toLowerCase();
+        const entryCleaned = entryBaseName.toLowerCase();
         const entryMatch = getRightmostVersionMatch(entryCleaned);
         if (!entryMatch) {
             continue;
@@ -370,20 +381,24 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
         const entryVersion = entryMatch.value;
         if (entryVersion > latestVersion) {
             latestVersion = entryVersion;
+            latestFilePath = entryPath;
         }
     }
 
     return currentVersion === latestVersion
         ? { status: 'latest', currentVersion, latestVersion }
-        : { status: 'not-latest', currentVersion, latestVersion };
-}
-
-function stripScenarioEventTokens(value: string): string {
-    return value.replace(SCENARIO_EVENT_TOKEN_REGEX, '');
+        : { status: 'not-latest', currentVersion, latestVersion, latestFilePath };
 }
 
 function getVersionMatches(baseName: string): VersionMatch[] {
     const matches: VersionMatch[] = [];
+    // Numeric run-slot indices belong to scenario/event placeholders; they
+    // must not participate in version detection, but their literal tokens
+    // must remain in the filename's series identity (s1 differs from s2).
+    const runtimeTokenSpans = [...baseName.matchAll(SCENARIO_EVENT_TOKEN_REGEX)].map(match => ({
+        start: match.index ?? 0,
+        end: (match.index ?? 0) + match[0].length
+    }));
     const regex = /\d+/g;
     let match: RegExpExecArray | null;
 
@@ -392,8 +407,11 @@ function getVersionMatches(baseName: string): VersionMatch[] {
         const end = start + match[0].length;
         const nextChar = end < baseName.length ? baseName[end] : '';
         const nextIsLetter = /[a-z]/i.test(nextChar);
+        const insideRuntimeToken = runtimeTokenSpans.some(span =>
+            start >= span.start && end <= span.end
+        );
 
-        if (!nextIsLetter) {
+        if (!nextIsLetter && !insideRuntimeToken) {
             matches.push({
                 raw: match[0],
                 value: Number.parseInt(match[0], 10),
