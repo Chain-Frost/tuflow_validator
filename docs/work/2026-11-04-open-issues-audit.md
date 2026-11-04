@@ -6,7 +6,7 @@ Audit baseline: [`4a0282e93b979345374076fb0adc60c7faf6af99`](https://github.com/
 
 Current implementation branch: `feat/gpkg-layer-validation-8`.
 
-Current implementation PR: ISSUE8_PR_URL.
+Current implementation PR: https://github.com/Chain-Frost/tuflow_validator/pull/9.
 
 This audit records the baseline findings. The implementation PR may address some of them; assess its final diff and test evidence before treating a finding below as still outstanding. The accompanying [Windows validation handoff](2026-11-04-windows-validation-handoff.md) describes the environmental checks that require a local Windows PC and project network access.
 

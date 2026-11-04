@@ -4,7 +4,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
-import { getTrackedDependencyPaths, updateDiagnostics, updateDiagnosticsForChangedPath } from '../../diagnostics';
+import { getTrackedDependencyPaths, normalizeDependencyPath, updateDiagnostics, updateDiagnosticsForChangedPath } from '../../diagnostics';
 import { getGeoPackageInventoryStats, invalidateGeoPackage, resetGeoPackageInventoryStats } from '../../geopackageInventory';
 import { createGeoPackage, executeGeoPackageSql } from '../helpers/gpkgFixtures';
 
@@ -237,7 +237,7 @@ suite('Opt-in GeoPackage diagnostics', function () {
         assert.strictEqual(layerErrors(result.diagnostics).length, 2);
         const dependencies = getTrackedDependencyPaths();
         for (const suffix of ['', '-wal', '-shm', '-journal']) {
-            assert.ok(dependencies.has(path.normalize(database + suffix)));
+            assert.ok(dependencies.has(normalizeDependencyPath(database + suffix)));
         }
         executeGeoPackageSql(database, 'ALTER TABLE valid RENAME TO added; UPDATE gpkg_contents SET table_name=\'added\' WHERE table_name=\'valid\'; UPDATE gpkg_geometry_columns SET table_name=\'added\' WHERE table_name=\'valid\';');
         assert.ok(updateDiagnosticsForChangedPath(database, collection));
@@ -245,6 +245,19 @@ suite('Opt-in GeoPackage diagnostics', function () {
         fs.unlinkSync(database);
         assert.ok(updateDiagnosticsForChangedPath(database, collection));
         await until(() => (collection.get(result.document.uri) ?? []).some(item => item.code === TPV_CODES.missingFile));
+    });
+
+    test('Windows database events match differently cased references', async function () {
+        if (process.platform !== 'win32') {
+            this.skip();
+        }
+        const database = path.join(directory, 'Model.gpkg');
+        createGeoPackage(database, ['valid']);
+        const result = await analyze('Read GIS Mat == MODEL.gpkg >> added');
+        assert.strictEqual(layerErrors(result.diagnostics).length, 1);
+        executeGeoPackageSql(database, 'ALTER TABLE valid RENAME TO added; UPDATE gpkg_contents SET table_name=\'added\' WHERE table_name=\'valid\'; UPDATE gpkg_geometry_columns SET table_name=\'added\' WHERE table_name=\'valid\';');
+        assert.ok(updateDiagnosticsForChangedPath(database.toLowerCase(), collection));
+        await until(() => layerErrors([...(collection.get(result.document.uri) ?? [])]).length === 0);
     });
 });
 

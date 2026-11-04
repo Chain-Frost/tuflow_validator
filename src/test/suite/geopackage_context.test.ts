@@ -6,6 +6,7 @@ import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
 import {
     getTrackedDependencyPaths,
+    normalizeDependencyPath,
     removeDiagnosticsForDocument,
     scheduleDiagnosticsUpdate,
     updateDiagnostics
@@ -231,7 +232,7 @@ suite('GeoPackage context and asynchronous revalidation', function () {
             await until(() => diagnostics(parent).some(item => item.code === TPV_CODES.childIssues));
             assert.ok(missingLayers(child).some(item => item.message.includes('current_missing')));
             assert.ok(!missingLayers(child).some(item => item.message.includes('stale_missing')));
-            assert.ok(getTrackedDependencyPaths().has(path.normalize(child.fileName)),
+            assert.ok(getTrackedDependencyPaths().has(normalizeDependencyPath(child.fileName)),
                 'The replacement parent scan must publish its child dependency');
         } finally {
             pause.release();

@@ -6,7 +6,7 @@ Use the following as the task prompt for an agent on the user's Windows PC. It c
 
 Repository: <https://github.com/Chain-Frost/tuflow_validator>
 
-Continue the existing PR: ISSUE8_PR_URL.
+Continue the existing PR: https://github.com/Chain-Frost/tuflow_validator/pull/9.
 
 Branch: `feat/gpkg-layer-validation-8`.
 
