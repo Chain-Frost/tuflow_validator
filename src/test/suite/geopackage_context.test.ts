@@ -55,7 +55,8 @@ suite('GeoPackage context and asynchronous revalidation', function () {
         }
         collection.dispose();
         inventory.invalidateGeoPackage();
-        fs.rmSync(directory, { recursive: true, force: true });
+        // Windows directory watchers may release their handles asynchronously.
+        await fs.promises.rm(directory, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
     });
 
     suiteTeardown(async () => {

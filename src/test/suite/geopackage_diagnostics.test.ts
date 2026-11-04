@@ -28,7 +28,7 @@ suite('Opt-in GeoPackage diagnostics', function () {
     teardown(async () => {
         await vscode.commands.executeCommand('workbench.action.closeAllEditors');
         collection.dispose();
-        fs.rmSync(directory, { recursive: true, force: true });
+        await fs.promises.rm(directory, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
     });
     suiteTeardown(async () => {
         await config().update('enableGeoPackageLayerChecks', false, vscode.ConfigurationTarget.Global);

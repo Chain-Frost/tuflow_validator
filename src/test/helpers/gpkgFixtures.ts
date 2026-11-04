@@ -19,13 +19,13 @@ export function fixturePython(): string {
 }
 
 export function createGeoPackage(filePath: string, layers: Array<string | FixtureLayer>, options: FixtureOptions = {}): void {
-    execFileSync(fixturePython(), ['-c', CREATE_GPKG], {
+    execFileSync(fixturePython(), ['-X', 'utf8', '-c', CREATE_GPKG], {
         input: JSON.stringify({ filePath, layers, options }), encoding: 'utf8', timeout: 15000
     });
 }
 
 export function executeGeoPackageSql(filePath: string, sql: string): void {
-    execFileSync(fixturePython(), ['-c', MODIFY_GPKG], {
+    execFileSync(fixturePython(), ['-X', 'utf8', '-c', MODIFY_GPKG], {
         input: JSON.stringify({ filePath, sql }), encoding: 'utf8', timeout: 15000
     });
 }
