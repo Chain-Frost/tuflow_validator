@@ -291,7 +291,7 @@ function pauseInventory(database: string): {
     mutableExports.createGeoPackageInventoryPass = () => {
         const inspect = original();
         return async filePath => {
-            if (path.normalize(filePath) === path.normalize(database)) {
+            if (normalizeDependencyPath(filePath) === normalizeDependencyPath(database)) {
                 markEntered();
                 await gate;
             }
