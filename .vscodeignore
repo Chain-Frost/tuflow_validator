@@ -18,6 +18,7 @@
 **/.eslintrc.json
 **/tsconfig.json
 **/scripts/**
+**/docs/**
 **/run-tests.sh
 **/package-vsix.sh
 **/temp_commands.txt
