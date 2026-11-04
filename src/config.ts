@@ -19,3 +19,8 @@ export function getConfiguredIfStatementFormattingEnabled(): boolean {
     const config = vscode.workspace.getConfiguration('tuflowValidator');
     return config.get<boolean>('enableIfStatementFormatting', false);
 }
+
+export function getConfiguredGeoPackageLayerChecksEnabled(): boolean {
+    return vscode.workspace.getConfiguration('tuflowValidator')
+        .get<boolean>('enableGeoPackageLayerChecks', false);
+}

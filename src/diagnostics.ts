@@ -3,13 +3,18 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import {
     getConfiguredDiagnosticLevel,
-    getConfiguredIfStatementChecksEnabled
+    getConfiguredIfStatementChecksEnabled,
+    getConfiguredGeoPackageLayerChecksEnabled
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
 import { safeReadFile } from './io';
 import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
-import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
+import { containsUnresolvedToken, extractPathCandidates, extractGisReferences, isGeoPackageInputCommand,
+    isLikelyFile, normalizeKey, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
+import { SpatialDatabaseScope } from './spatialDatabase';
+import { addUncheckedDatabaseDiagnostic, checkGeoPackageLayers, implicitLayer } from './geopackageDiagnostics';
+import { createGeoPackageInventoryPass, invalidateGeoPackage } from './geopackageInventory';
 import {
     buildLatestCheckContext,
     checkReferencedFileLatestVersion,
@@ -22,8 +27,12 @@ import {
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
 const rootDependenciesByRoot = new Map<string, Set<string>>();
 let mergedFiles = new Set<string>();
-let isRefreshing = false;
+const rootGenerations = new Map<string, number>();
+const pendingAnalyses = new Map<string, { generation: number; dependencies: Set<string> }>();
+const dependenciesChanged = new vscode.EventEmitter<void>();
+export const onDidChangeDependencies = dependenciesChanged.event;
 const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>();
+const pendingAffectedRoots = new Map<string, Set<string>>();
 const DIAGNOSTIC_UPDATE_DEBOUNCE_MS = 300;
 const IF_STATEMENT_REGEX = /^\s*if\b\s+(event|scenario)\s*==/i;
 const ELSE_IF_REGEX = /^\s*else\b\s+if\b\s+(event|scenario)\s*==/i;
@@ -45,7 +54,9 @@ interface BlockEntry {
     hasElse?: boolean;
 }
 
-export function updateDiagnostics(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
+export async function updateDiagnostics(
+    document: vscode.TextDocument, collection: vscode.DiagnosticCollection, additionalRoots: Set<string> = new Set()
+): Promise<void> {
     if (!shouldProcessDocument(document)) {
         return;
     }
@@ -53,7 +64,11 @@ export function updateDiagnostics(document: vscode.TextDocument, collection: vsc
     clearPendingDiagnosticUpdate(document);
     const rootKey = document.uri.toString();
     const affectedRootKeys = findRootKeysAffectedByDocument(document);
+    for (const key of additionalRoots) {
+        affectedRootKeys.add(key);
+    }
     affectedRootKeys.add(rootKey);
+    invalidateRoots(affectedRootKeys);
 
     for (const affectedRootKey of affectedRootKeys) {
         const rootDocument = findOpenDocumentByUri(affectedRootKey);
@@ -62,7 +77,7 @@ export function updateDiagnostics(document: vscode.TextDocument, collection: vsc
             continue;
         }
 
-        rootDiagnosticsByRoot.set(affectedRootKey, computeDiagnosticsForDocument(rootDocument));
+        await updateRootDiagnostics(rootDocument);
     }
 
     rebuildMergedDiagnostics(collection);
@@ -73,19 +88,29 @@ export function scheduleDiagnosticsUpdate(document: vscode.TextDocument, collect
         return;
     }
 
-    clearPendingDiagnosticUpdate(document);
     const documentKey = document.uri.toString();
+    const affected = findRootKeysAffectedByDocument(document);
+    for (const key of pendingAffectedRoots.get(documentKey) ?? []) {
+        affected.add(key);
+    }
+    clearPendingDiagnosticUpdate(document);
+    affected.add(documentKey);
+    pendingAffectedRoots.set(documentKey, affected);
+    invalidateRoots(affected);
     const timeout = setTimeout(() => {
         pendingDiagnosticUpdates.delete(documentKey);
-        updateDiagnostics(document, collection);
+        pendingAffectedRoots.delete(documentKey);
+        void updateDiagnostics(document, collection, affected);
     }, DIAGNOSTIC_UPDATE_DEBOUNCE_MS);
     pendingDiagnosticUpdates.set(documentKey, timeout);
 }
 
-export function removeDiagnosticsForDocument(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
+export async function removeDiagnosticsForDocument(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): Promise<void> {
     clearPendingDiagnosticUpdate(document);
     const rootKey = document.uri.toString();
     const affectedRootKeys = findRootKeysAffectedByDocument(document);
+    affectedRootKeys.add(rootKey);
+    invalidateRoots(affectedRootKeys);
 
     if (rootDiagnosticsByRoot.has(rootKey)) {
         rootDiagnosticsByRoot.delete(rootKey);
@@ -103,36 +128,51 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
             continue;
         }
 
-        rootDiagnosticsByRoot.set(affectedRootKey, computeDiagnosticsForDocument(rootDocument));
+        await updateRootDiagnostics(rootDocument);
     }
 
     rebuildMergedDiagnostics(collection);
 }
 
 export async function refreshDiagnostics(collection: vscode.DiagnosticCollection): Promise<void> {
-    isRefreshing = true;
-    try {
-        clearPendingDiagnosticUpdates();
-        const documents = await collectDocumentsForRefresh();
-        const nextRootDiagnostics = new Map<string, Map<string, vscode.Diagnostic[]>>();
-
-        for (const document of documents) {
-            if (!shouldProcessDocument(document)) {
-                continue;
-            }
-            nextRootDiagnostics.set(document.uri.toString(), computeDiagnosticsForDocument(document));
+    clearPendingDiagnosticUpdates();
+    invalidateGeoPackage();
+    invalidateRoots(new Set(rootGenerations.keys()));
+    const documents = await collectDocumentsForRefresh();
+    const activeRoots = new Set(documents.map(document => document.uri.toString()));
+    for (const root of rootDiagnosticsByRoot.keys()) {
+        if (!activeRoots.has(root)) {
+            rootDiagnosticsByRoot.delete(root);
+            rootDependenciesByRoot.delete(root);
         }
+    }
+    await Promise.all(documents.map(updateRootDiagnostics));
+    rebuildMergedDiagnostics(collection);
+}
 
-        rootDiagnosticsByRoot = nextRootDiagnostics;
-        const activeRoots = new Set(nextRootDiagnostics.keys());
-        for (const root of rootDependenciesByRoot.keys()) {
-            if (!activeRoots.has(root)) {
-                rootDependenciesByRoot.delete(root);
-            }
-        }
-        rebuildMergedDiagnostics(collection);
-    } finally {
-        isRefreshing = false;
+async function updateRootDiagnostics(document: vscode.TextDocument): Promise<void> {
+    const key = document.uri.toString();
+    const generation = (rootGenerations.get(key) ?? 0) + 1;
+    rootGenerations.set(key, generation);
+    const version = document.version;
+    const dependencies = new Set<string>();
+    pendingAnalyses.set(key, { generation, dependencies });
+    const isCurrent = () => rootGenerations.get(key) === generation && !document.isClosed && document.version === version;
+    const result = await computeDiagnosticsForDocument(document, dependencies, isCurrent);
+    // Slow network/catalog reads must never overwrite a newer edit, close or setting toggle.
+    if (rootGenerations.get(key) === generation && !document.isClosed && document.version === version) {
+        rootDiagnosticsByRoot.set(key, result.files);
+        rootDependenciesByRoot.set(key, result.dependencies);
+        dependenciesChanged.fire();
+    }
+    if (pendingAnalyses.get(key)?.generation === generation) {
+        pendingAnalyses.delete(key);
+    }
+}
+
+function invalidateRoots(roots: Set<string>): void {
+    for (const key of roots) {
+        rootGenerations.set(key, (rootGenerations.get(key) ?? 0) + 1);
     }
 }
 
@@ -150,12 +190,18 @@ export function getTrackedDependencyPaths(): Set<string> {
     return paths;
 }
 
+export function normalizeDependencyPath(filePath: string): string {
+    const normalized = path.normalize(filePath);
+    return process.platform === 'win32' ? normalized.toLowerCase() : normalized;
+}
+
 /** Revalidate only open roots that depend on a changed file-system path. */
 export function updateDiagnosticsForChangedPath(
     filePath: string,
     collection: vscode.DiagnosticCollection
 ): boolean {
-    const key = path.normalize(filePath);
+    const key = normalizeDependencyPath(filePath);
+    invalidateGeoPackage(key.replace(/-(?:wal|shm|journal)$/i, ''));
     let updated = false;
     for (const [root, dependencies] of rootDependenciesByRoot.entries()) {
         if (!dependencies.has(key)) {
@@ -163,7 +209,7 @@ export function updateDiagnosticsForChangedPath(
         }
         const document = findOpenDocumentByUri(root);
         if (document && shouldProcessDocument(document)) {
-            rootDiagnosticsByRoot.set(root, computeDiagnosticsForDocument(document));
+            void updateRootDiagnostics(document).then(() => rebuildMergedDiagnostics(collection));
             updated = true;
         }
     }
@@ -173,16 +219,20 @@ export function updateDiagnosticsForChangedPath(
     return updated;
 }
 
-function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
+async function computeDiagnosticsForDocument(
+    document: vscode.TextDocument, dependencies: Set<string>, isCurrent: () => boolean
+): Promise<{
+    files: Map<string, vscode.Diagnostic[]>; dependencies: Set<string>
+}> {
     const severityLevel = getConfiguredDiagnosticLevel();
-    const diagnosticsByFile = analyzeRootDocument(document);
+    const diagnosticsByFile = await analyzeRootDocument(document, dependencies, isCurrent);
     const filteredByFile = new Map<string, vscode.Diagnostic[]>();
 
     for (const [filePath, diagnostics] of diagnosticsByFile.entries()) {
         filteredByFile.set(filePath, filterDiagnosticsByLevel(diagnostics, severityLevel));
     }
 
-    return filteredByFile;
+    return { files: filteredByFile, dependencies };
 }
 
 function rebuildMergedDiagnostics(collection: vscode.DiagnosticCollection): void {
@@ -253,10 +303,15 @@ function diagnosticFingerprint(diagnostic: vscode.Diagnostic): string {
 
 function findRootKeysAffectedByDocument(document: vscode.TextDocument): Set<string> {
     const affectedRootKeys = new Set<string>();
-    const filePath = path.normalize(document.fileName);
+    const filePath = normalizeDependencyPath(document.fileName);
 
     for (const [rootKey, diagnosticsByFile] of rootDiagnosticsByRoot.entries()) {
-        if (diagnosticsByFile.has(filePath)) {
+        if (diagnosticsByFile.has(path.normalize(document.fileName)) || rootDependenciesByRoot.get(rootKey)?.has(filePath)) {
+            affectedRootKeys.add(rootKey);
+        }
+    }
+    for (const [rootKey, analysis] of pendingAnalyses) {
+        if (analysis.dependencies.has(filePath)) {
             affectedRootKeys.add(rootKey);
         }
     }
@@ -270,6 +325,7 @@ function findOpenDocumentByUri(uriString: string): vscode.TextDocument | undefin
 
 function clearPendingDiagnosticUpdate(document: vscode.TextDocument): void {
     const documentKey = document.uri.toString();
+    pendingAffectedRoots.delete(documentKey);
     const timeout = pendingDiagnosticUpdates.get(documentKey);
     if (!timeout) {
         return;
@@ -284,6 +340,7 @@ function clearPendingDiagnosticUpdates(): void {
         clearTimeout(timeout);
     }
     pendingDiagnosticUpdates.clear();
+    pendingAffectedRoots.clear();
 }
 
 async function collectDocumentsForRefresh(): Promise<vscode.TextDocument[]> {
@@ -314,8 +371,8 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
 }
 
 function getOpenDocumentForPath(filePath: string): vscode.TextDocument | undefined {
-    const normalizedPath = path.normalize(filePath);
-    return vscode.workspace.textDocuments.find(document => path.normalize(document.fileName) === normalizedPath);
+    const normalizedPath = normalizeDependencyPath(filePath);
+    return vscode.workspace.textDocuments.find(document => normalizeDependencyPath(document.fileName) === normalizedPath);
 }
 
 function getControlFileContents(filePath: string): string | null {
@@ -334,13 +391,22 @@ function getControlFileContents(filePath: string): string | null {
  * @param document - The root document opened by the user.
  * @returns A map of file paths to their diagnostics.
  */
-function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
+async function analyzeRootDocument(
+    document: vscode.TextDocument, dependencies: Set<string>, isCurrent: () => boolean
+): Promise<Map<string, vscode.Diagnostic[]>> {
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
     const latestCheckContext = buildLatestCheckContext(document);
-    const dependencies = new Set<string>();
-    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>(), dependencies);
-    rootDependenciesByRoot.set(document.uri.toString(), dependencies);
+    const enabled = getConfiguredGeoPackageLayerChecksEnabled();
+    const context: GeoPackageValidationContext = {
+        enabled,
+        inspect: createGeoPackageInventoryPass(),
+        existingPaths: new Map(),
+        isCurrent,
+        scope: SpatialDatabaseScope.root(path.extname(rootPath).toLowerCase() === '.tcf')
+    };
+    await analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined,
+        new Map<string, string>(), dependencies, new Set(), false, context);
     return visited;
 }
 
@@ -354,7 +420,15 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
  * @param latestCheckContext - Context for checking latest version status of referenced files.
  * @returns An array of diagnostics found in the file.
  */
-function analyzeFile(
+interface GeoPackageValidationContext {
+    enabled: boolean;
+    inspect: ReturnType<typeof createGeoPackageInventoryPass>;
+    existingPaths: Map<string, boolean>;
+    isCurrent: () => boolean;
+    scope: SpatialDatabaseScope;
+}
+
+async function analyzeFile(
     filePath: string,
     contents: string,
     visited: Map<string, vscode.Diagnostic[]>,
@@ -363,8 +437,9 @@ function analyzeFile(
     staticVariables: Map<string, string> = new Map(),
     dependencies: Set<string> = new Set(),
     recursionStack: Set<string> = new Set(),
-    inheritedConditional = false
-): vscode.Diagnostic[] {
+    inheritedConditional = false,
+    geoPackage?: GeoPackageValidationContext
+): Promise<vscode.Diagnostic[]> {
     const normalizedPath = path.normalize(filePath);
     // Repeated includes may use different variable values. Only stop cycles
     // along the active recursion path; don't memoise solely by filename.
@@ -385,6 +460,19 @@ function analyzeFile(
     const shouldCheckIfStatements = getConfiguredIfStatementChecksEnabled();
     const blockStack: BlockEntry[] = [];
     let conditionalDepth = 0;
+    let eventDepth = 0;
+    let domainDepth = 0;
+    const defineEvents: boolean[] = [];
+    const layerChecks = geoPackage?.enabled === true;
+    // Ignored content may contain database assignments or inline includes.
+    // Do not retain false certainty in the caller after declining to inspect it.
+    if (layerChecks && lines.some(line => /^\s*!\s*tpv-ignore-file/.test(line))) {
+        geoPackage.scope.uncertain('an ignored control file may change the active database', true);
+        staticVariables.clear();
+        visited.set(normalizedPath, []);
+        recursionStack.delete(normalizedPath);
+        return [];
+    }
     const shouldCheckLatestReferencedFiles = shouldCheckLatestReferencedVersions(
         normalizedPath,
         diagnostics,
@@ -392,6 +480,9 @@ function analyzeFile(
     );
 
     for (let i = 0; i < lines.length; i++) {
+        if (geoPackage && !geoPackage.isCurrent()) {
+            break;
+        }
         const text = lines[i];
 
         // Check for file-level ignore comment: "! tpv-ignore-file"
@@ -421,6 +512,22 @@ function analyzeFile(
         } else if (/^\s*end\s*if\b/i.test(commandText)) {
             conditionalDepth = Math.max(0, conditionalDepth - 1);
         }
+        if (/^\s*define\b/i.test(commandText)) {
+            const event = /^\s*define\s+event\b/i.test(commandText);
+            defineEvents.push(event);
+            if (event) {
+                eventDepth++;
+            }
+        } else if (/^\s*end\s*define\b/i.test(commandText)) {
+            if (defineEvents.pop()) {
+                eventDepth = Math.max(0, eventDepth - 1);
+            }
+        }
+        if (/^\s*start\s+[12]d\s+domain\b/i.test(commandText)) {
+            domainDepth++;
+        } else if (/^\s*end\s*[12]d\s*domain\b/i.test(commandText)) {
+            domainDepth = Math.max(0, domainDepth - 1);
+        }
 
         const separatorIndex = text.indexOf('==');
         if (separatorIndex === -1) {
@@ -429,12 +536,22 @@ function analyzeFile(
 
         const valueStartIndex = separatorIndex + 2;
         const valueWithComment = text.slice(valueStartIndex);
-        const commentIndex = valueWithComment.indexOf('!');
+        const commentIndex = layerChecks ? unquotedCommentIndex(valueWithComment) : valueWithComment.indexOf('!');
 
         // Check for line-level ignore comment: "Command == Path ! tpv-ignore"
         if (commentIndex >= 0) {
             const commentContent = valueWithComment.slice(commentIndex + 1).trim();
             if (commentContent.startsWith('tpv-ignore')) {
+                if (layerChecks) {
+                    applyStaticVariableDefinition(text.slice(0, separatorIndex).trim(), '', true, staticVariables);
+                }
+                if (layerChecks && /^(?:SPATIAL\s+DATABASE|READ\s+FILE|.*CONTROL\s+FILE|EVENT\s+FILE)$/i
+                    .test(text.slice(0, separatorIndex).trim())) {
+                    geoPackage.scope.uncertain('an ignored assignment or include may change the active database', true);
+                    if (isControlFileCommand(normalizeKey(text.slice(0, separatorIndex)))) {
+                        staticVariables.clear();
+                    }
+                }
                 continue;
             }
         }
@@ -442,36 +559,117 @@ function analyzeFile(
         const valueText = commentIndex >= 0 ? valueWithComment.slice(0, commentIndex) : valueWithComment;
         const keyText = text.slice(0, separatorIndex).trim();
 
-        applyStaticVariableDefinition(keyText, valueText, inheritedConditional || conditionalDepth > 0, staticVariables);
+        const runtimeDependent = inheritedConditional || conditionalDepth > 0 ||
+            (layerChecks && (eventDepth > 0 || domainDepth > 0));
+        applyStaticVariableDefinition(keyText, valueText, runtimeDependent, staticVariables);
 
         if (isTcf) {
             checkVersionTokenInFilename(keyText, valueText, valueStartIndex, i, normalizedPath, diagnostics);
             checkScenarioEventTokensInValue(valueText, valueStartIndex, i, normalizedPath, diagnostics);
         }
 
-        if (shouldSkipKeyForFileLookup(keyText)) {
+        if (layerChecks && /^1D\s+(?:SPATIAL\s+DATABASE|READ\s+FILE|.*CONTROL\s+FILE|EVENT\s+FILE)$/i.test(keyText)) {
+            geoPackage.scope.uncertain('a prefixed 1D command has a database context that is not interpreted', true);
+            staticVariables.clear();
             continue;
         }
 
-        const candidates = extractPathCandidates(valueText, valueStartIndex, i);
+        if (shouldSkipKeyForFileLookup(keyText) && !(layerChecks && isGeoPackageInputCommand(keyText))) {
+            continue;
+        }
+
+        const key = normalizeKey(keyText);
+        const gisInput = layerChecks && isGeoPackageInputCommand(keyText);
+        const databaseAssignment = layerChecks && key === 'SPATIAL DATABASE';
+        const references = gisInput || databaseAssignment
+            ? extractGisReferences(valueText, valueStartIndex, i) : undefined;
+        const candidates = references ? references.map(reference => reference.path)
+            : extractPathCandidates(valueText, valueStartIndex, i);
+
+        if (databaseAssignment) {
+            const expanded = candidates.length === 1
+                ? expandStaticVariables(candidates[0].text, staticVariables) : null;
+            const command = expanded?.trim().toUpperCase();
+            if (runtimeDependent) {
+                geoPackage.scope.uncertain('Spatial Database depends on a runtime branch', command === 'OFF' || expanded === null);
+            } else if (command === 'OFF') {
+                geoPackage.scope.off();
+                continue;
+            } else if (command === 'TCF') {
+                geoPackage.scope.useTcf();
+                continue;
+            } else if (expanded !== null && path.extname(expanded).toLowerCase() === '.gpkg') {
+                geoPackage.scope.assign({ kind: 'database', filePath: resolvePath(pathBaseDirectory, expanded) });
+            } else {
+                geoPackage.scope.uncertain('Spatial Database is not statically resolvable', true);
+                if (candidates[0]) {
+                    addUncheckedDatabaseDiagnostic(diagnostics, candidates[0].range,
+                        'Spatial Database is not statically resolvable');
+                }
+            }
+            if (command === 'OFF' || command === 'TCF') {
+                continue;
+            }
+        }
+
         for (const candidate of candidates) {
+            if (geoPackage && !geoPackage.isCurrent()) {
+                break;
+            }
             // Static variables may form part of a path. Runtime -s/-e tokens
             // and unknown definitions are never guessed or treated as absent files.
             const expanded = expandStaticVariables(candidate.text, staticVariables);
+            const reference = references?.find(item => item.path === candidate);
+            if (gisInput && reference && !reference.explicit &&
+                (expanded === null || !isStandaloneGisPath(expanded))) {
+                const selection = geoPackage.scope.active();
+                if (selection.kind === 'database') {
+                    trackGeoPackageDependencies(selection.filePath, dependencies);
+                    // A missing assigned database is diagnosed at its declaration.
+                    // A dynamic layer must not be reinterpreted as a standalone file.
+                    if (geoPackageExists(selection.filePath, geoPackage)) {
+                        await checkGeoPackageLayers(selection.filePath,
+                            [candidate, ...reference.layers], candidate.range, staticVariables,
+                            diagnostics, geoPackage.inspect);
+                    }
+                } else if (expanded !== null) {
+                    addUncheckedDatabaseDiagnostic(diagnostics, candidate.range,
+                        selection.kind === 'unknown' ? selection.reason : 'no unambiguous Spatial Database is active');
+                }
+                continue;
+            }
             if (expanded === null || !isLikelyFile(expanded) || containsUnresolvedToken(expanded)) {
+                if (layerChecks && isControlFileCommand(key)) {
+                    geoPackage.scope.uncertain('an unresolved control-file reference may change the database', true);
+                    staticVariables.clear();
+                }
                 continue;
             }
 
             const resolvedPath = resolvePath(pathBaseDirectory, expanded);
-            dependencies.add(path.normalize(resolvedPath));
-            if (!fs.existsSync(resolvedPath)) {
+            dependencies.add(normalizeDependencyPath(resolvedPath));
+            const exists = layerChecks && path.extname(resolvedPath).toLowerCase() === '.gpkg'
+                ? geoPackageExists(resolvedPath, geoPackage) : fs.existsSync(resolvedPath);
+            if (!exists) {
                 diagnostics.push(createTpvDiagnostic(
                     candidate.range,
                     `File not found: ${candidate.text}`,
                     vscode.DiagnosticSeverity.Error,
                     TPV_CODES.missingFile
                 ));
+                if (layerChecks && isControlFileCommand(key)) {
+                    geoPackage.scope.uncertain('a missing control file may change the database', true);
+                    staticVariables.clear();
+                }
                 continue;
+            }
+
+            if (layerChecks && reference && path.extname(resolvedPath).toLowerCase() === '.gpkg') {
+                trackGeoPackageDependencies(resolvedPath, dependencies);
+                const selectors = reference.explicit ? reference.layers
+                    : [implicitLayer(resolvedPath, candidate.range), ...reference.layers];
+                await checkGeoPackageLayers(resolvedPath, selectors, candidate.range,
+                    staticVariables, diagnostics, geoPackage.inspect, databaseAssignment);
             }
 
             if (shouldCheckLatestReferencedFiles) {
@@ -482,18 +680,27 @@ function analyzeFile(
                 );
             }
 
+            if (layerChecks && isControlFileCommand(key) && !CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
+                geoPackage.scope.uncertain('an include with an unsupported control-file extension may change the database', true);
+                staticVariables.clear();
+            }
+
             // Recursive check for referenced control files
             if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
                 const childContents = getControlFileContents(resolvedPath);
                 if (childContents === null) {
+                    if (layerChecks) {
+                        geoPackage.scope.uncertain('an unreadable control file may change the database', true);
+                        staticVariables.clear();
+                    }
                     continue;
                 }
 
-                const childConditional = inheritedConditional || conditionalDepth > 0;
+                const childConditional = runtimeDependent;
                 const childVariables = childConditional
                     ? new Map(staticVariables)
                     : staticVariables;
-                const childDiagnostics = analyzeFile(
+                const childDiagnostics = await analyzeFile(
                     resolvedPath,
                     childContents,
                     visited,
@@ -502,8 +709,18 @@ function analyzeFile(
                     childVariables,
                     dependencies,
                     recursionStack,
-                    childConditional
+                    childConditional,
+                    geoPackage ? { ...geoPackage, scope: geoPackage.scope.child(
+                        path.extname(resolvedPath).toLowerCase() === '.tcf', normalizeKey(keyText) === 'READ FILE'
+                    ) } : undefined
                 );
+                if (layerChecks && childConditional) {
+                    for (const [name, value] of staticVariables) {
+                        if (childVariables.get(name) !== value) {
+                            staticVariables.delete(name);
+                        }
+                    }
+                }
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
                         candidate.range,
@@ -539,6 +756,52 @@ function analyzeFile(
     visited.set(normalizedPath, combined);
     recursionStack.delete(normalizedPath);
     return diagnostics;
+}
+
+function isStandaloneGisPath(value: string): boolean {
+    return /[\\/]/.test(value) || /\.(?:gpkg|shp|mif|mid|tiff?|flt|asc|adf|nc|csv|txt|xml|12da|tin)$/i.test(value);
+}
+
+function isControlFileCommand(key: string): boolean {
+    return key === 'READ FILE' || /(?:CONTROL FILE|EVENT FILE|EXTERNAL STRESS FILE)$/.test(key);
+}
+
+function trackGeoPackageDependencies(filePath: string, dependencies: Set<string>): void {
+    for (const suffix of ['', '-wal', '-shm', '-journal']) {
+        dependencies.add(normalizeDependencyPath(filePath + suffix));
+    }
+}
+
+function geoPackageExists(filePath: string, context: GeoPackageValidationContext): boolean {
+    const key = normalizeDependencyPath(filePath);
+    const previous = context.existingPaths.get(key);
+    if (previous !== undefined) {
+        return previous;
+    }
+    const exists = fs.existsSync(filePath);
+    context.existingPaths.set(key, exists);
+    return exists;
+}
+
+function unquotedCommentIndex(value: string): number {
+    let quote = '';
+    for (let index = 0; index < value.length; index++) {
+        const character = value[index];
+        if (quote) {
+            if (character === quote) {
+                if (value[index + 1] === quote) {
+                    index++;
+                } else {
+                    quote = '';
+                }
+            }
+        } else if (character === '"' || character === "'") {
+            quote = character;
+        } else if (character === '!') {
+            return index;
+        }
+    }
+    return -1;
 }
 
 function updateBlockStack(

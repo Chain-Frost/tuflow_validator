@@ -36,7 +36,11 @@ export class IgnoreCodeActionProvider implements vscode.CodeActionProvider {
             TPV_CODES.missingFile,
             TPV_CODES.childIssues,
             TPV_CODES.missingFilenameToken,
-            TPV_CODES.outdatedVersion
+            TPV_CODES.outdatedVersion,
+            TPV_CODES.missingGeoPackageLayer,
+            TPV_CODES.unreadableGeoPackage,
+            TPV_CODES.emptyGeoPackage,
+            TPV_CODES.unresolvedDatabase
         ]);
         const diagnostics = context.diagnostics.filter(diagnostic =>
             diagnostic.source === TPV_SOURCE &&

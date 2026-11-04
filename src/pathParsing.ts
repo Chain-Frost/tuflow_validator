@@ -161,6 +161,174 @@ export function extractPathCandidates(
     return candidates;
 }
 
+export interface GisReferenceToken {
+    text: string;
+    range: vscode.Range;
+}
+
+export interface GisReference {
+    /** A file path, or the first layer name when using Spatial Database. */
+    path: GisReferenceToken;
+    /** All explicit selectors, or subsequent names in a layer-only && list. */
+    layers: GisReferenceToken[];
+    /** True only for a >> selector outside quotes and unresolved macros. */
+    explicit: boolean;
+}
+
+/**
+ * Recognise input command families that can refer to GeoPackage layers.
+ * Spatial Database is a database assignment, not an implicit layer reference.
+ */
+export function isGeoPackageInputCommand(keyText: string): boolean {
+    const key = normalizeKey(keyText);
+    return key === 'GPKG PROJECTION' ||
+        key === 'CALIBRATION POINTS GIS FILE' ||
+        /^READ (?:GIS|GRID|GPKG) \S/.test(key);
+}
+
+/** Remove surrounding whitespace and a matched pair of outer quotes only. */
+export function unquoteReference(text: string): string {
+    const trimmed = text.trim();
+    if (hasOuterQuotes(trimmed)) {
+        return trimmed.slice(1, -1);
+    }
+    return trimmed;
+}
+
+/**
+ * Parse GIS inputs without discarding layer selectors or their source spans.
+ * The caller removes comments and resolves static variables independently for
+ * each token. Runtime macros remain untouched. Backslashes are never escapes.
+ *
+ * An implicit file reference has an empty layers list. For a layer-only input
+ * such as "first && second", path is "first" and layers contains "second";
+ * the caller determines whether an active Spatial Database makes it a layer.
+ */
+export function extractGisReferences(
+    valueText: string,
+    valueStartIndex: number,
+    lineIndex: number
+): GisReference[] {
+    const references: GisReference[] = [];
+    const separators = findReferenceDelimiters(valueText, '|');
+    separators.push(valueText.length);
+    let segmentStart = 0;
+
+    for (const segmentEnd of separators) {
+        const segment = valueText.slice(segmentStart, segmentEnd);
+        const selectorIndex = findReferenceDelimiters(segment, '>>')[0];
+        const explicit = selectorIndex !== undefined;
+        const pathEnd = explicit
+            ? selectorIndex
+            : findReferenceDelimiters(segment, '&&')[0] ?? segment.length;
+        const pathToken = createReferenceToken(
+            segment.slice(0, pathEnd), valueStartIndex + segmentStart, lineIndex
+        );
+
+        if (pathToken) {
+            const layers: GisReferenceToken[] = [];
+            const layerStart = explicit ? selectorIndex + 2 : pathEnd + 2;
+            if (layerStart <= segment.length) {
+                const layerText = segment.slice(layerStart);
+                const layerSeparators = findReferenceDelimiters(layerText, '&&');
+                layerSeparators.push(layerText.length);
+                let tokenStart = 0;
+
+                for (const tokenEnd of layerSeparators) {
+                    const token = createReferenceToken(
+                        layerText.slice(tokenStart, tokenEnd),
+                        valueStartIndex + segmentStart + layerStart + tokenStart,
+                        lineIndex
+                    );
+                    if (token) {
+                        layers.push(token);
+                    }
+                    tokenStart = tokenEnd + 2;
+                }
+            }
+            references.push({ path: pathToken, layers, explicit });
+        }
+        segmentStart = segmentEnd + 1;
+    }
+
+    return references;
+}
+
+function hasOuterQuotes(text: string): boolean {
+    return text.length >= 2 &&
+        (text[0] === '"' || text[0] === "'") &&
+        text[text.length - 1] === text[0];
+}
+
+function createReferenceToken(
+    rawText: string,
+    offset: number,
+    lineIndex: number
+): GisReferenceToken | undefined {
+    const trimmed = rawText.trim();
+    const text = unquoteReference(rawText);
+    if (!text) {
+        return undefined;
+    }
+    const leadingWhitespace = rawText.length - rawText.trimStart().length;
+    const start = offset + leadingWhitespace + (hasOuterQuotes(trimmed) ? 1 : 0);
+    return { text, range: new vscode.Range(lineIndex, start, lineIndex, start + text.length) };
+}
+
+/**
+ * Find separators only outside macros and quoted atoms. A quote starts an atom
+ * only at its beginning, so an apostrophe in an ordinary filename is literal.
+ * Unclosed macros/quotes conservatively consume the rest of the input.
+ */
+function findReferenceDelimiters(text: string, delimiter: '|' | '>>' | '&&'): number[] {
+    const positions: number[] = [];
+    let quote: string | undefined;
+    let macroDepth = 0;
+    let atAtomStart = true;
+
+    for (let i = 0; i < text.length; i++) {
+        const character = text[i];
+        if (quote !== undefined) {
+            if (character === quote) {
+                quote = undefined;
+            }
+            continue;
+        }
+
+        const pair = text.slice(i, i + 2);
+        if (pair === '<<') {
+            macroDepth++;
+            atAtomStart = false;
+            i++;
+            continue;
+        }
+        if (macroDepth > 0) {
+            if (pair === '>>') {
+                macroDepth--;
+                i++;
+            }
+            continue;
+        }
+        if (atAtomStart && (character === '"' || character === "'")) {
+            quote = character;
+            atAtomStart = false;
+            continue;
+        }
+
+        const separator = character === '|' ? '|' : pair === '>>' || pair === '&&' ? pair : undefined;
+        if (separator !== undefined) {
+            if (separator === delimiter) {
+                positions.push(i);
+            }
+            i += separator.length - 1;
+            atAtomStart = true;
+        } else if (!/\s/.test(character)) {
+            atAtomStart = false;
+        }
+    }
+    return positions;
+}
+
 /**
  * Resolves a potentially relative path to an absolute path.
  *

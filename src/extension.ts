@@ -7,8 +7,11 @@ import {
     updateDiagnosticsForChangedPath,
     removeDiagnosticsForDocument,
     scheduleDiagnosticsUpdate,
-    updateDiagnostics
+    updateDiagnostics,
+    onDidChangeDependencies,
+    normalizeDependencyPath
 } from './diagnostics';
+import { disposeGeoPackageInventory } from './geopackageInventory';
 import { IfStatementFormattingProvider } from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -36,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
                 new vscode.RelativePattern(directory, '*')
             );
             const onFileEvent = (uri: vscode.Uri) => {
-                if (!getTrackedDependencyPaths().has(path.normalize(uri.fsPath))) {
+                if (!getTrackedDependencyPaths().has(normalizeDependencyPath(uri.fsPath))) {
                     return;
                 }
                 updateDiagnosticsForChangedPath(uri.fsPath, collection);
@@ -60,6 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push({
         dispose: () => {
+            disposeGeoPackageInventory();
             if (reconcileTimer) {
                 clearTimeout(reconcileTimer);
             }
@@ -69,12 +73,13 @@ export function activate(context: vscode.ExtensionContext) {
             watchers.clear();
         }
     });
+    context.subscriptions.push(onDidChangeDependencies(scheduleWatcherReconcile));
 
     void refreshDiagnostics(collection).then(scheduleWatcherReconcile);
 
     context.subscriptions.push(
         vscode.workspace.onDidOpenTextDocument(doc => {
-            updateDiagnostics(doc, collection);
+            void updateDiagnostics(doc, collection);
             scheduleWatcherReconcile();
         }),
         vscode.workspace.onDidChangeTextDocument(event => {
@@ -82,14 +87,15 @@ export function activate(context: vscode.ExtensionContext) {
             scheduleWatcherReconcile();
         }),
         vscode.workspace.onDidCloseTextDocument(doc => {
-            removeDiagnosticsForDocument(doc, collection);
+            void removeDiagnosticsForDocument(doc, collection);
             scheduleWatcherReconcile();
         }),
         vscode.workspace.onDidChangeConfiguration(event => {
             if (
                 event.affectsConfiguration('tuflowValidator.diagnosticLevel') ||
                 event.affectsConfiguration('tuflowValidator.enableLatestVersionChecks') ||
-                event.affectsConfiguration('tuflowValidator.enableIfStatementChecks')
+                event.affectsConfiguration('tuflowValidator.enableIfStatementChecks') ||
+                event.affectsConfiguration('tuflowValidator.enableGeoPackageLayerChecks')
             ) {
                 void refreshDiagnostics(collection).then(scheduleWatcherReconcile);
             }

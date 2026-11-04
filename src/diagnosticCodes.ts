@@ -10,7 +10,11 @@ export const TPV_CODES = {
     invalidElse: 'TPV012',
     missingFilenameToken: 'TPV020',
     versionToken: 'TPV021',
-    outdatedVersion: 'TPV022'
+    outdatedVersion: 'TPV022',
+    missingGeoPackageLayer: 'TPV030',
+    unreadableGeoPackage: 'TPV031',
+    emptyGeoPackage: 'TPV032',
+    unresolvedDatabase: 'TPV033'
 } as const;
 
 export type TpvCode = typeof TPV_CODES[keyof typeof TPV_CODES];

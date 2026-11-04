@@ -63,6 +63,11 @@
           "default": true,
           "description": "Check versioned filenames to ensure the latest referenced files are used."
         },
+        "tuflowValidator.enableGeoPackageLayerChecks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check GeoPackage layer names using read-only catalog metadata. Opt-in pending Windows network benchmarks; active WAL/journal files and unresolved runtime layers are not checked."
+        },
         "tuflowValidator.enableIfStatementChecks": {
           "type": "boolean",
           "default": true,
@@ -106,6 +111,7 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "test:container": "bash scripts/test-container.sh",
+    "benchmark:gpkg": "npm run compile && node ./out/test/benchmarkGeoPackage.js",
     "package:vsix": "bash scripts/package-vsix.sh",
     "publish:vsix": "npx vsce publish --azure-credential",
     "publish:vsix:pre": "npm run package:vsix",
