@@ -272,6 +272,10 @@ module.exports.run = async function run() {
             .getTrackedDependencyPaths();
         report.observations.beforeDisposal = {
             dependencyPaths: deps.size,
+            // Direct require() in a VS Code test host may load another module
+            // instance from the extension runtime on some platforms. Zero
+            // here does NOT prove the active Validator has no dependencies.
+            dependencyProbeUnverified: deps.size === 0 && diagView(rootUri).length > 0,
             logicalWatcherDirectories: new Set([...deps].map(p => path.dirname(p))).size,
             activeHandlesProxy: handleCount(),
             linuxFdCount: fdCount()
@@ -293,7 +297,12 @@ module.exports.run = async function run() {
             .getTrackedDependencyPaths();
         report.observations.afterDisposal = {
             dependencyPaths: after.size,
+            dependencyProbeUnverified: deps.size === 0 && diagView(rootUri).length > 0,
             logicalWatcherDirectories: new Set([...after].map(p => path.dirname(p))).size,
+            rootStillInDocumentRegistry: vscode.workspace.textDocuments
+                .some(d => d.uri.toString() === rootDoc.uri.toString()),
+            childStillInDocumentRegistry: vscode.workspace.textDocuments
+                .some(d => d.uri.toString() === childDoc.uri.toString()),
             activeHandlesProxy: handleCount(),
             linuxFdCount: fdCount(),
             closeEvents,
