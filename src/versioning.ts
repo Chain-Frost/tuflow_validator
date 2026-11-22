@@ -177,7 +177,7 @@ function collectReferencedControlFiles(
     discoveryPaths: Set<string>,
     inheritedConditional = false
 ): void {
-    const canonical = path.normalize(filePath);
+    const canonical = pathIdentity(filePath);
     // Only guard active recursion. The same file may be included again with
     // different Set Variable values and require a new dependency expansion.
     if (visited.has(canonical)) {
@@ -185,7 +185,7 @@ function collectReferencedControlFiles(
     }
     visited.add(canonical);
     const extension = path.extname(canonical).toLowerCase();
-    const base = extension === '.trd' ? sourceTcfDirectory : path.dirname(canonical);
+    const base = extension === '.trd' ? sourceTcfDirectory : path.dirname(filePath);
     const lines = contents.split(/\r?\n/);
     let conditionalDepth = 0;
 
@@ -266,13 +266,13 @@ export function shouldCheckLatestReferencedVersions(
     // A custom Read File suffix is eligible only when reached from a latest
     // TCF include graph; no version parsing policy changes are introduced.
     if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext)) {
-        return latestCheckContext.latestTcfReferencedControls.has(normalizedPath);
+        return referencedControlsContain(latestCheckContext.latestTcfReferencedControls, normalizedPath);
     }
 
     if (
         ext !== '.tcf' &&
         latestCheckContext.latestTcfReferencedControls.size > 0 &&
-        !latestCheckContext.latestTcfReferencedControls.has(normalizedPath)
+        !referencedControlsContain(latestCheckContext.latestTcfReferencedControls, normalizedPath)
     ) {
         return false;
     }
@@ -320,7 +320,13 @@ function getCandidateFilesForLatestStatus(
 ): string[] | undefined {
     const ext = path.extname(filePath).toLowerCase();
     if (ext === '.tcf') {
-        return latestCheckContext.tcfFilesByFolder.get(path.dirname(filePath));
+        const folder = pathIdentity(path.dirname(filePath));
+        for (const [directory, files] of latestCheckContext.tcfFilesByFolder) {
+            if (pathIdentity(directory) === folder) {
+                return files;
+            }
+        }
+        return undefined;
     }
 
     if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext) || ext === '.tcf') {
@@ -332,6 +338,17 @@ function getCandidateFilesForLatestStatus(
     }
 
     return filterReferencedControlCandidates(filePath, latestCheckContext.latestTcfReferencedControls);
+}
+
+/** File identity comparison for eligibility; retains original candidate spellings for Quick Fixes. */
+function referencedControlsContain(referenced: Set<string>, candidate: string): boolean {
+    const key = pathIdentity(candidate);
+    for (const value of referenced) {
+        if (pathIdentity(value) === key) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function filterReferencedControlCandidates(
@@ -346,7 +363,7 @@ function filterReferencedControlCandidates(
         if (path.extname(referencedPath).toLowerCase() !== ext) {
             continue;
         }
-        if (path.dirname(referencedPath) !== dir) {
+        if (pathIdentity(path.dirname(referencedPath)) !== pathIdentity(dir)) {
             continue;
         }
         candidates.push(referencedPath);
@@ -369,7 +386,7 @@ export function isVersionSeriesCandidate(referencePath: string, changedPath: str
         return false;
     }
     const referenceName = path.basename(referencePath, ext).toLowerCase();
-    const changedName = path.basename(changedPath, path.extname(changedPath)).toLowerCase();
+    const changedName = path.basename(changedPath, ext).toLowerCase();
     const referenceMatch = getRightmostVersionMatch(referenceName);
     const changedMatch = getRightmostVersionMatch(changedName);
     return referenceMatch !== null && changedMatch !== null &&
