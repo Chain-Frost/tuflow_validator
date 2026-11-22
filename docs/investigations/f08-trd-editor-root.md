@@ -48,12 +48,12 @@ Empty `.shp` files are physical-file existence sentinels; this investigation del
 | 03 | Dirty TRD buffer changes present to edited_present (still exists under both TCFs) |
 | 04 | Save TRD: compare diagnoses and document content used |
 | 05–06 | Open and close nested TRD; check parent diagnostics stay correct |
-| 07 | Close TRD while A remains: extra orphan-root errors should vanish, true missing should stay |
+| 07 | Close TRD tab while A remains; check whether VS Code disposes its TextDocument, then whether false errors disappear while real missing inputs remain |
 | 08 | Open TCF B with different static variable/directory; B's variable target truly is missing |
 | 09 | Open same TRD with both TCFs; preserve both contexts |
-| 10 | Close B: B-only variable missing must disappear; A and real missing results stay |
-| 11 | Close A while TRD remains: no known parent, so do not infer a source TCF |
-| 12 | Close all and reopen TRD alone: distinguish missing context from a known missing file |
+| 10 | Close B tab: distinguish tab closure from actual document disposal and record whether B-only diagnostics retire while A's remain |
+| 11 | Close A tab while TRD remains: record which source documents remain loaded; do not assume editor tab closure removes the source TCF |
+| 12–13 | Close all tabs, then open a **fresh separate fixture**'s TRD without a known parent; distinguish missing context from a known missing file |
 
 Each snapshot reports VS Code diagnostic URI, source, code, message, severity and line, open documents, and absolute candidate resolutions/existence for A, B and orphan TRD. The source/VSIX hash and OS must be recorded from the exact run; do not extrapolate synthetic or Linux tests to Windows filesystem results.
 
@@ -119,13 +119,31 @@ These are actual Windows filesystem checks, not emulated `path.win32` transforma
 - Define diagnostic ownership/lifetime explicitly. A closed editor **tab** and a disposed VS Code **TextDocument** differed in both test hosts; the current extension listens only for document close. Determine whether tab closure should retire an inspected root without breaking revalidation of live parent roots. This should be tested, not assumed.
 - Preserve filename versioning, filename/scenario/event-token checks, real `TPV001` errors (including conditional branches), and unresolved runtime placeholders. Do not depend on PR #9.
 
-### Separate implementation scope — **deferred until Agent B final revision**
+## Post-Agent-B replay — completed
 
-1. Obtain Agent B's **actual final head SHA** after dependency/root changes, identify whether it has landed on main or is a stacked branch, and rerun this fixture/test matrix on that exact code. Current main already contains older merged PR #6; no later Agent B final revision was available for this report.
-2. If F08 remains, implement only explicit TRD-relative path context and root-owned diagnostic publication/retirement. Do not add workspace root scanning, scenario/event guesswork, UI, full TUFLOW execution, or GeoPackage reading.
-3. Convert the observational probe into stable positive/negative acceptance tests. Cover the exact 13 stages, Windows filesystem behavior, true missing paths in conditional blocks, multi-root variable differences, nested TRDs, dirty buffers, absolute-path references and loaded-document versus visible-tab lifecycle.
-4. Run unit, Linux and Windows VS Code integration tests and regression checks for existing filename-version and token rules. Compare actual installed-VSIX behavior if a VSIX is separately built/identified; record its hash rather than using the shared `0.2.6` version string.
-5. Open a **separate implementation PR after B** only if reproduction persists. Do not merge this investigation draft as a behavioral regression test of incorrect output.
-## Status and remaining gate
+As of the latest checked B head, the required cross-platform comparison has been performed **without modifying B's production source**.
 
-**F08 is confirmed in real VS Code source-development hosts on Linux and Windows.** The only remaining gate before implementation is a fresh comparison against Agent B's final dependency/root changes, plus installed-VSIX reproduction if installed behavior is in question. No production code was modified.
+- B PR: [#21](https://github.com/Chain-Frost/tuflow_validator/pull/21), stacked on A1 [#14](https://github.com/Chain-Frost/tuflow_validator/pull/14) and A2 [#17](https://github.com/Chain-Frost/tuflow_validator/pull/17).
+- Tested B production code SHA: `1e169d72468070a20111864483d78a021551dc32`.
+- Subsequently reported B PR head: `889d5e2e1951fe7de6edc187ea4508e6037d2179`; the only change from the tested code SHA is `docs/work/2026-11-22-issue-3-freshness.md`. If B later changes production source, its final head must be retested.
+- Test-only F08 probe SHA: `388b22414922b149d0262622198bcd952c71a8f4`. The dedicated workflow checks out B at an exact SHA, copies just the observational test into its suite, and records both SHAs. Nothing from the investigation's production tree replaces B code.
+- [Final successful source-host comparison run 45040903091](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45040903091):
+  - Main production baseline: **48/48 tests passing on Linux; 48/48 on Windows**.
+  - Agent B pinned production: **62/62 passing on Linux; 62/62 on Windows**.
+  - VS Code `1.147.0` on actual Linux x64 and Windows x64 extension hosts; host Node `v24.22.1`; extension manifest `0.2.6`. The package version does not establish VSIX identity. Neither source-host test installed a VSIX.
+  - Observational snapshots on B are **unchanged**: parent-only correct, included TRD open creates false `TPV001` for genuinely existing TCF-relative inputs and the nested include, dirty/save maintains the false reports, two parents retain their different variable-context results, closing tabs does not dispose `TextDocument`, orphan TRD lacks parent context, true missing inputs (including conditional) remain missing, and runtime tokens remain unresolved.
+- An earlier B Windows run [45040645733](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45040645733) captured all 13 diagnostic stages and F08 unchanged, but failed after the observations when Windows watchers delayed temporary-directory deletion (`ENOTEMPTY`). The probe now uses bounded, best-effort asynchronous cleanup. The final run above passed without a cleanup warning; no B production code was changed.
+
+### Separate implementation scope — after B, **not authorised in this investigation**
+
+1. Pin Agent B's exact final production SHA and recheck that it is identical to the tested `1e169d7` source (or rerun the F08 matrix if it has subsequently changed). Do not treat a moving draft branch as immutable.
+2. Since F08 persists, create a **separate, explicitly authorised implementation assignment**, limited to TCF-relative TRD context and root-owned diagnostic publication/retirement. Do not add workspace guessing/scanning, scenario/event substitutions, model-wide inputs, or new UI.
+3. Replace this **observational** probe with positive and negative regression assertions: correct parent-root resolution; TRD open/edit/save/close; orphan TRD; multiple parent TCFs; static variable differences; nested includes; actual missing inputs including conditionals; runtime tokens; independent root removal despite retained editor documents; existing version and filename/token rules.
+4. Run Linux and Windows real VS Code integration and verify any independently built installed VSIX against its own exact hash if the installed-artifact behavior becomes part of the implementation acceptance. Do not infer Windows UNC/mapped-share behavior from these temporary **local-disk** fixtures.
+5. Do not merge this investigation PR as a permanent non-prescriptive test that allows incorrect diagnostics.
+
+## Status and remaining gates
+
+**The investigation's source-host reproduction and post-B comparison are complete on both Linux and Windows.** F08 is a **confirmed, uncorrected defect**; no production code was changed. The F08 report/fixture PR is review-only and is marked **do not merge**. Independent Codex review has been requested; do not claim it is complete until review results are present and examined.
+
+**No local-agent test is necessary for this F08 investigation**: the requested editor-state matrix ran on actual Linux and Windows VS Code hosts. Representative mapped-drive/UNC watcher acceptance is a separate remaining gate of Agent B PR #21 and does not establish or invalidate F08. No implementation PR, merge, release, version bump, publishing, GeoPackage validation, or installed-VSIX test was performed.
