@@ -26,18 +26,20 @@ The test creates a temporary, disposable fixture on each platform:
 ```text
 f08/
   a/runs/A.tcf             Set Variable LOCAL_SHAPE == assets\only_a.shp
-                           Read File == ..\..\shared\terrain.trd
+                           Read File == ..\..\standalone\context\shared\terrain.trd
   b/runs/B.tcf             Set Variable LOCAL_SHAPE == assets\missing_b.shp
-                           Read File == ..\..\shared\terrain.trd
+                           Read File == ..\..\standalone\context\shared\terrain.trd
   a/runs/assets/           present.shp, edited_present.shp, only_a.shp
   b/runs/assets/           present.shp, edited_present.shp
-  shared/terrain.trd
+  standalone/context/shared/terrain.trd
   shared/nested.trd
 ```
 
-`shared/terrain.trd` reads `assets\present.shp` (exists relative to either source TCF, absent relative to TRD), the statically expanded `<<LOCAL_SHAPE>>` (exists under A; truly missing under B), `assets\missing.shp` (truly missing under both), and nested `shared/nested.trd`. It also includes a genuinely missing `assets\conditional_missing.shp` inside `If Scenario == F08`, and a deliberately unresolved `assets\<<~s1~>>.shp`. `shared/nested.trd` references `assets\present.shp`.
+`standalone/context/shared/terrain.trd` reads `assets\present.shp` (exists relative to either source TCF, absent relative to TRD), the statically expanded `<<LOCAL_SHAPE>>` (exists under A; truly missing under B), `assets\missing.shp` (truly missing under both), and nested `shared/nested.trd`. It also includes a genuinely missing `assets\conditional_missing.shp` inside `If Scenario == F08`, and a deliberately unresolved `assets\<<~s1~>>.shp`. `shared/nested.trd` references `assets\present.shp`.
 
 Empty `.shp` files are physical-file existence sentinels; this investigation deliberately does not read GIS contents.
+
+**Post-review fixture hardening:** The TRD is deliberately nested deep enough that a wrong-root `..\\..\\shared\\nested.trd` lookup resolves to `f08/standalone/shared/nested.trd` (absent), while the correct TCF-relative path resolves to `f08/shared/nested.trd` (present). Both candidates remain inside the same unique temporary fixture. The probe asserts this invariant and records both actual candidate paths/existence. Its Windows cleanup retries use a bounded maximum cumulative linear backoff of 5.5 seconds per fixture; cleanup warnings cannot invalidate observations that already finished.
 
 ## Test matrix / stages
 
@@ -89,7 +91,7 @@ The **second**, corrected observational run passed all 48 VS Code integration te
 | 10–12 | Closing B's tab, then A's tab, then all tabs retains their loaded documents and their diagnostics in this test host. `onDidCloseTextDocument` remained unfired. A's correct results remain, but B's additional missing-variable result also persists despite its tab being closed. This is a **lifecycle/ownership observation**, not proof that VS Code dispatched a document-close event that the extension ignored. |
 | 13 | Fresh TRD opened in a separately generated model with no inspected parent reports the relative assets and include as missing from its own directory. With no known parent it has no source TCF directory or inherited variables; these errors are speculative rather than proof that inputs are genuinely absent from a TUFLOW model. |
 
-### Exact resolved paths, observed in the dirty-buffer state
+### Exact resolved paths from the earlier pre-review fixture, observed in the dirty-buffer state
 
 Linux fixture:
 
@@ -109,7 +111,7 @@ WRONG TRD: C:\Users\RUNNER~1\AppData\Local\Temp\tpv-f08-6r8pVh\shared\assets\edi
 TPV001 on shared/terrain.trd, line 1: File not found: assets\edited_present.shp
 ```
 
-These are actual Windows filesystem checks, not emulated `path.win32` transformations. Runtime `<<~s1~>>` remained unresolved without a missing-file error; the true missing input inside an `If Scenario` block remained a missing-file error.
+These earlier observations used the original shallow `shared/terrain.trd` fixture. The final review-hardened fixture uses a deeper TRD path to keep *both* nested-include candidates inside the disposable root. These are actual Windows filesystem checks, not emulated `path.win32` transformations. Runtime `<<~s1~>>` remained unresolved without a missing-file error; the true missing input inside an `If Scenario` block remained a missing-file error.
 
 ### Minimal proposed context and diagnostic-ownership rule — **not implemented**
 
@@ -141,6 +143,10 @@ As of the latest checked B head, the required cross-platform comparison has been
 3. Replace this **observational** probe with positive and negative regression assertions: correct parent-root resolution; TRD open/edit/save/close; orphan TRD; multiple parent TCFs; static variable differences; nested includes; actual missing inputs including conditionals; runtime tokens; independent root removal despite retained editor documents; existing version and filename/token rules.
 4. Run Linux and Windows real VS Code integration and verify any independently built installed VSIX against its own exact hash if the installed-artifact behavior becomes part of the implementation acceptance. Do not infer Windows UNC/mapped-share behavior from these temporary **local-disk** fixtures.
 5. Do not merge this investigation PR as a permanent non-prescriptive test that allows incorrect diagnostics.
+
+### Independent review follow-up
+
+Codex independently reviewed [PR #18](https://github.com/Chain-Frost/tuflow_validator/pull/18) at probe SHA `388b22414922b149d0262622198bcd952c71a8f4` and reported two P2 test-harness findings: (1) the wrong-root nested-TRD candidate could escape the disposable fixture, and (2) unconstrained cleanup retries could exceed the Mocha 65 s test timeout. Both findings were accepted. The probe now uses a deeper fixture with explicit wrong/correct path assertions, and a bounded 5.5 s maximum cleanup backoff per directory. A fresh real Linux/Windows source-host run on the revised fixture is required before resolving those review threads. Neither change affects production code.
 
 ## Status and remaining gates
 
