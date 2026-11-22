@@ -80,9 +80,19 @@ function addFixtureLines(acceptancePath) {
         "    const probeDoc = docs['model.tcf'];",
         '    const allProbeDiagnostics = vscode.languages.getDiagnostics(probeDoc.uri);',
         "    const missingProbe = allProbeDiagnostics.find(d => d.message.includes('issue10_missing.tgc'));",
-        '    const fixes = missingProbe ? await vscode.commands.executeCommand(',
-        "      'vscode.executeCodeActionProvider', probeDoc.uri, missingProbe.range,",
-        '      vscode.CodeActionKind.QuickFix.value) : [];',
+        '    let fixes = [];',
+        '    let issue10QuickFixAttempts = 0;',
+        '    const issue10QuickFixSnapshots = [];',
+        '    for (let attempt = 0; attempt < 10; attempt++) {',
+        '      issue10QuickFixAttempts++;',
+        '      fixes = missingProbe ? (await vscode.commands.executeCommand(',
+        "        'vscode.executeCodeActionProvider', probeDoc.uri, missingProbe.range,",
+        '        vscode.CodeActionKind.QuickFix.value) || []) : [];',
+        '      const titles = fixes.map(action => action.title);',
+        '      issue10QuickFixSnapshots.push(titles);',
+        "      if (titles.includes('Ignore this line (TUFLOW)') && titles.includes('Ignore entire file (TUFLOW)')) break;",
+        '      await pause(150);',
+        '    }',
         '    const formatOptions = { tabSize: 4, insertSpaces: true };',
         '    const formatBefore = await vscode.commands.executeCommand(',
         "      'vscode.executeFormatDocumentProvider', probeDoc.uri, formatOptions);",
@@ -98,6 +108,8 @@ function addFixtureLines(acceptancePath) {
         '    }',
         '    report.issue10Options = {',
         '      quickFixTitles:(fixes||[]).map(action=>action.title),',
+        '      quickFixAttempts:issue10QuickFixAttempts,',
+        '      quickFixSnapshots:issue10QuickFixSnapshots,',
         '      formattedInitially:formattingInitiallyEnabled,',
         '      defaultFormatEditCount:Array.isArray(formatBefore)?formatBefore.length:null,',
         '      enabledFormatEditCount:formatEnabledCount',
@@ -244,7 +256,9 @@ async function main() {
             }
             const run = cp.spawnSync(cli,[...cliPrefix,'--user-data-dir',user,
                 '--extensions-dir',extensions,'--install-extension',item,'--force'],{
-                encoding:'utf8',timeout:180000,env:{...process.env,ELECTRON_RUN_AS_NODE:''}
+                encoding:'utf8',timeout:180000,env:{...process.env,ELECTRON_RUN_AS_NODE:''},
+                // resolveCliArgsFromVSCodeExecutablePath gives code.cmd on Windows.
+                shell:process.platform==='win32'
             });
             console.log('[install '+entry.name+'] '+item+' exit='+run.status+'\n'+
                 ((run.stdout||'')+'\n'+(run.stderr||'')).slice(-1200));
