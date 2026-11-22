@@ -1,0 +1,52 @@
+'use strict';
+// Issue #10: inspect compiled contents and SHA-256 of the exact VSIX files.
+const fs = require('node:fs');
+const path = require('node:path');
+const cp = require('node:child_process');
+const crypto = require('node:crypto');
+const root = path.resolve(__dirname, '..');
+const dir = path.join(root, 'issue10-evidence');
+const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const fileHash = file => hash(fs.readFileSync(file));
+function inside(vsix, name) {
+    return cp.execFileSync('unzip', ['-p', vsix, 'extension/' + name]);
+}
+function inspect(filename, label) {
+    if (!fs.existsSync(filename)) return {label, status:'blocked', reason:'VSIX unavailable'};
+    const pkg = JSON.parse(inside(filename,'package.json').toString());
+    const parser = inside(filename,'out/pathParsing.js').toString();
+    const diagnostics = inside(filename,'out/diagnostics.js').toString();
+    return {
+        label, status:'inspected', filename:path.basename(filename),
+        bytes:fs.statSync(filename).size, sha256:fileHash(filename),
+        id:pkg.publisher + '.' + pkg.name, version:pkg.version,
+        vscode:pkg.engines.vscode,
+        parserSha256:hash(parser), diagnosticsSha256:hash(diagnostics),
+        commandAware:parser.includes('INPUT_FILE_COMMANDS') && parser.includes('classifyCommandValue'),
+        skipsUnknownCommands:parser.includes("!== 'input-file'"),
+        diagnosticsUsesSkipGate:diagnostics.includes('shouldSkipKeyForFileLookup'),
+        stableCodes:diagnostics.includes('TPV_CODES')
+    };
+}
+const [current,old] = process.argv.slice(2);
+if (!current || !old) throw new Error('Usage: node scripts/issue10-vsix-audit.cjs current.vsix published.vsix');
+const main = inspect(current,'source-built');
+const release = inspect(old,'GitHub-release-v0.2.6');
+const compiled = path.join(root,'out','pathParsing.js');
+const result = {
+    recordedAt:new Date().toISOString(),
+    buildCommit:process.env.GITHUB_SHA || null,
+    validatorBase:process.env.VALIDATOR_BASE_SHA || null,
+    helper12:process.env.HELPER12_SHA || null,
+    helper16:process.env.HELPER16_SHA || null,
+    current:main, published:release,
+    compiledSourceParserSha256:fs.existsSync(compiled)?fileHash(compiled):null
+};
+result.currentMatchesCompiled = main.parserSha256 === result.compiledSourceParserSha256;
+result.currentCorrected = main.commandAware && main.diagnosticsUsesSkipGate && main.stableCodes;
+result.releaseLegacy = release.status==='inspected' && !release.commandAware && release.diagnosticsUsesSkipGate;
+result.sameVersionDifferentParser = main.version===release.version && main.parserSha256!==release.parserSha256;
+fs.mkdirSync(dir,{recursive:true});
+fs.writeFileSync(path.join(dir,'vsix-audit.json'),JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));
+if (!result.currentMatchesCompiled || !result.currentCorrected) process.exitCode=1;
