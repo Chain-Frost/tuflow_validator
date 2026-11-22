@@ -40,3 +40,50 @@ jobs:
       - name: Run VS Code integration tests on Windows
         if: runner.os == 'Windows'
         run: npm test
+
+  post_agent_b:
+    name: F08 vs Agent B pinned / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out pinned Agent B implementation
+        uses: actions/checkout@v4
+        with:
+          ref: 1e169d72468070a20111864483d78a021551dc32
+          path: agent-b
+      - name: Check out this investigation probe
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: f08-probe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: agent-b/package-lock.json
+      - name: Attach observational probe without changing Agent B production
+        shell: bash
+        run: |
+          cp f08-probe/src/test/suite/zz_f08_investigation.test.ts agent-b/src/test/suite/
+          echo "F08_TESTED_B_SOURCE_SHA=$(git -C agent-b rev-parse HEAD)"
+          echo "F08_PROBE_SOURCE_SHA=$(git -C f08-probe rev-parse HEAD)"
+          git -C agent-b status --short
+      - run: npm ci
+        working-directory: agent-b
+      - name: Compile and lint Agent B plus probe
+        working-directory: agent-b
+        run: |
+          npm run compile
+          npm run lint
+      - name: Real VS Code test on Linux (Agent B pinned)
+        if: runner.os == 'Linux'
+        working-directory: agent-b
+        run: xvfb-run -a npm test
+      - name: Real VS Code test on Windows (Agent B pinned)
+        if: runner.os == 'Windows'
+        working-directory: agent-b
+        run: npm test
