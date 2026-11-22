@@ -541,7 +541,8 @@ function analyzeFile(
                 checkReferencedFileLatestVersion(
                     resolvedPath,
                     candidate.range,
-                    diagnostics
+                    diagnostics,
+                    latestCheckContext
                 );
             }
 
