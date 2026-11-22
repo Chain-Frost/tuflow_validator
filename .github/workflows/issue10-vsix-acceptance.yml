@@ -18,8 +18,8 @@ jobs:
     timeout-minutes: 55
     env:
       VALIDATOR_BASE_SHA: 4a0282e93b979345374076fb0adc60c7faf6af99
-      HELPER12_SHA: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
-      HELPER16_SHA: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+      HELPER12_SHA: ec6ac6b774f119320d2f623b012f91c2d0215057
+      HELPER16_SHA: 3c41101c177afff639624a61bb004402a613edcd
     steps:
       - name: Checkout Validator from this PR
         uses: actions/checkout@v4
@@ -30,14 +30,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow-vscode
-          ref: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+          ref: ec6ac6b774f119320d2f623b012f91c2d0215057
           path: _helper12
 
       - name: Checkout Helper PR 16 acceptance assets (unmerged)
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow-vscode
-          ref: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+          ref: 3c41101c177afff639624a61bb004402a613edcd
           path: _helper16
 
       - name: Relocate external PR checkouts outside the Validator TypeScript project
@@ -103,20 +103,106 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-  windows-static:
-    name: Windows compile only (not Windows Extension Host)
+  windows-host:
+    name: Windows installed VSIX and Extension Host profiles
     runs-on: windows-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
+    env:
+      VALIDATOR_BASE_SHA: 4a0282e93b979345374076fb0adc60c7faf6af99
+      HELPER12_SHA: ec6ac6b774f119320d2f623b012f91c2d0215057
+      HELPER16_SHA: 3c41101c177afff639624a61bb004402a613edcd
+      ISSUE10_EVIDENCE_DIR: issue10-windows-evidence
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Validator from PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout latest verified Helper PR 12
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: ec6ac6b774f119320d2f623b012f91c2d0215057
+          path: _helper12
+
+      - name: Checkout Helper PR 16 acceptance runner
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 3c41101c177afff639624a61bb004402a613edcd
+          path: _helper16
+
+      - name: Keep Helper TypeScript outside Validator compilation
+        shell: pwsh
+        run: |
+          Move-Item -LiteralPath _helper12 -Destination (Join-Path $env:RUNNER_TEMP issue10-helper12)
+          Move-Item -LiteralPath _helper16 -Destination (Join-Path $env:RUNNER_TEMP issue10-helper16)
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - run: npm run compile
-      - run: node --check scripts/issue10-vsix-audit.cjs
-      - run: node --check scripts/issue10-host.cjs
+
+      - name: Install and compile source on Windows
+        shell: pwsh
+        run: |
+          npm ci
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm run compile
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node --check scripts/issue10-host.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node --check scripts/issue10-vsix-audit.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node (Join-Path $env:RUNNER_TEMP "issue10-helper16/test/acceptance/check-fixtures.mjs")
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force -Path issue10-dist, issue10-windows-evidence | Out-Null
+          & ".\node_modules\.bin\vsce.cmd" package --no-dependencies --out "$env:GITHUB_WORKSPACE\issue10-dist\validator-built.vsix"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Compile and package Helper PR 12 on Windows
+        shell: pwsh
+        run: |
+          $helper = Join-Path $env:RUNNER_TEMP "issue10-helper12"
+          npm ci --prefix $helper
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm run compile --prefix $helper
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Push-Location $helper
+          & "$env:GITHUB_WORKSPACE\node_modules\.bin\vsce.cmd" package --no-dependencies --out "$env:GITHUB_WORKSPACE\issue10-dist\helper12.vsix"
+          $exitCode = $LASTEXITCODE
+          Pop-Location
+          if ($exitCode -ne 0) { exit $exitCode }
+
+      - name: Download public historical release VSIX (not Marketplace)
+        shell: pwsh
+        run: |
+          $url = "https://github.com/Chain-Frost/tuflow_validator/releases/download/v0.2.6/tuflow-path-validator-0.2.6.vsix"
+          $target = "issue10-dist\release-v0.2.6.vsix"
+          try { Invoke-WebRequest -Uri $url -OutFile $target -ErrorAction Stop }
+          catch { Write-Host "Historical VSIX download blocked: $_"; Remove-Item $target -ErrorAction SilentlyContinue }
+
+      - name: Inspect Windows-packaged source and historical release
+        shell: pwsh
+        run: |
+          node scripts/issue10-vsix-audit.cjs issue10-dist/validator-built.vsix issue10-dist/release-v0.2.6.vsix
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Run native Windows VS Code Extension Host with isolated installed extensions
+        shell: pwsh
+        run: |
+          $runner = Join-Path $env:RUNNER_TEMP "issue10-helper16"
+          node scripts/issue10-host.cjs issue10-dist/validator-built.vsix issue10-dist/release-v0.2.6.vsix issue10-dist/helper12.vsix $runner
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload Windows real-host evidence (no VSIX binaries)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue10-vsix-host-evidence-windows
+          path: issue10-windows-evidence/*.json
+          if-no-files-found: warn
+          retention-days: 30
 
   integrated-a-b:
     name: A1/A2/B stacked source versus packaged VSIX (snapshot)
@@ -124,8 +210,8 @@ jobs:
     timeout-minutes: 55
     env:
       VALIDATOR_BASE_SHA: 4a0282e93b979345374076fb0adc60c7faf6af99
-      HELPER12_SHA: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
-      HELPER16_SHA: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+      HELPER12_SHA: ec6ac6b774f119320d2f623b012f91c2d0215057
+      HELPER16_SHA: 3c41101c177afff639624a61bb004402a613edcd
       ISSUE10_EVIDENCE_DIR: issue10-integrated-evidence
     steps:
       - name: Checkout issue 10 independent test scripts
@@ -137,21 +223,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow_validator
-          ref: refs/pull/21/head
+          ref: c75d65188d631d864fb8439d3b99f3b907a3e182
           path: _integrated_ab
 
       - name: Checkout Helper PR 12
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow-vscode
-          ref: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+          ref: ec6ac6b774f119320d2f623b012f91c2d0215057
           path: _helper12
 
       - name: Checkout Helper PR 16 acceptance runner
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow-vscode
-          ref: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+          ref: 3c41101c177afff639624a61bb004402a613edcd
           path: _helper16
 
       - name: Preserve exact stacked commit and isolate TypeScript compilation roots
