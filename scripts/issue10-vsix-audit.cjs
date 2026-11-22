@@ -16,15 +16,22 @@ function inspect(filename, label) {
     const pkg = JSON.parse(inside(filename,'package.json').toString());
     const parser = inside(filename,'out/pathParsing.js').toString();
     const diagnostics = inside(filename,'out/diagnostics.js').toString();
+    const inputAllowlist = parser.includes('INPUT_FILE_COMMANDS') &&
+        parser.includes('classifyCommandValue') && diagnostics.includes('shouldSkipKeyForFileLookup');
+    const inputRoles = parser.includes('CONTROL_FILE_COMMANDS') &&
+        parser.includes('DATA_FILE_COMMANDS') && parser.includes('getInputFileRole') &&
+        diagnostics.includes('getInputFileRole') && diagnostics.includes('inputRole === null');
     return {
         label, status:'inspected', filename:path.basename(filename),
         bytes:fs.statSync(filename).size, sha256:fileHash(filename),
         id:pkg.publisher + '.' + pkg.name, version:pkg.version,
         vscode:pkg.engines.vscode,
         parserSha256:hash(parser), diagnosticsSha256:hash(diagnostics),
-        commandAware:parser.includes('INPUT_FILE_COMMANDS') && parser.includes('classifyCommandValue'),
-        skipsUnknownCommands:parser.includes("!== 'input-file'"),
-        diagnosticsUsesSkipGate:diagnostics.includes('shouldSkipKeyForFileLookup'),
+        commandAware:inputAllowlist || inputRoles,
+        parserClassifier:inputAllowlist?'input-command-allowlist':inputRoles?'input-file-role':'legacy-heuristic',
+        skipsUnknownCommands:inputAllowlist && parser.includes("!== 'input-file'") || inputRoles,
+        diagnosticsUsesSkipGate:diagnostics.includes('shouldSkipKeyForFileLookup') ||
+            diagnostics.includes('inputRole === null'),
         stableCodes:diagnostics.includes('TPV_CODES')
     };
 }
@@ -43,7 +50,8 @@ const result = {
     compiledSourceParserSha256:fs.existsSync(compiled)?fileHash(compiled):null
 };
 result.currentMatchesCompiled = main.parserSha256 === result.compiledSourceParserSha256;
-result.currentCorrected = main.commandAware && main.diagnosticsUsesSkipGate && main.stableCodes;
+result.currentCorrected = main.commandAware && main.skipsUnknownCommands &&
+    main.diagnosticsUsesSkipGate && main.stableCodes;
 result.releaseLegacy = release.status==='inspected' && !release.commandAware && release.diagnosticsUsesSkipGate;
 result.sameVersionDifferentParser = main.version===release.version && main.parserSha256!==release.parserSha256;
 fs.mkdirSync(dir,{recursive:true});
