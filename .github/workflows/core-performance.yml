@@ -96,3 +96,64 @@ jobs:
             benchmark-core-windows.json
             benchmark-host-windows.json
           retention-days: 30
+
+  candidate-b-snapshot:
+    name: Compare D1 main with pinned A1/A2/B branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out D1 benchmarked main source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check out Agent B exact unmerged source
+        uses: actions/checkout@v4
+        with:
+          ref: 889d5e2e1951fe7de6edc187ea4508e6037d2179
+          path: candidate-b
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build the original main-based baseline
+        run: |
+          npm ci
+          npm run compile
+          npx vsce package --out benchmark-main-compare.vsix
+      - name: Measure main-based source on this same runner
+        env:
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-main-compare.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-main-compare-linux.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_STORAGE_LABEL: 'GitHub local temp; paired same runner with Agent B'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Bring only the D1 benchmark driver into unmodified Agent B checkout
+        run: |
+          mkdir -p candidate-b/scripts/benchmarks
+          cp scripts/benchmarks/core-baseline.cjs candidate-b/scripts/benchmarks/core-baseline.cjs
+      - name: Build Agent B source without publishing
+        working-directory: candidate-b
+        run: |
+          npm ci
+          npm run compile
+          npx vsce package --out benchmark-b-compare.vsix
+      - name: Measure exact Agent B snapshot on this same runner
+        working-directory: candidate-b
+        env:
+          TPV_SOURCE_SHA: 889d5e2e1951fe7de6edc187ea4508e6037d2179
+          TPV_VSIX_PATH: ${{ github.workspace }}/candidate-b/benchmark-b-compare.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-b-compare-linux.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_STORAGE_LABEL: 'GitHub local temp; paired same runner with main-based D1'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Upload paired raw trial data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpv-main-versus-b-889d5e2
+          path: |
+            benchmark-main-compare-linux.json
+            benchmark-b-compare-linux.json
+          if-no-files-found: warn
+          retention-days: 30
