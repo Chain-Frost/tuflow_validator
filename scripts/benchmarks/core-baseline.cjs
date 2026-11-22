@@ -36,6 +36,7 @@ const settings = {
     enableIfStatementFormatting: false
 };
 const uriFor = fileName => ({
+    scheme: 'file',
     fsPath: path.normalize(fileName),
     toString() { return 'file://' + path.normalize(fileName).replace(/\\/g, '/'); }
 });
