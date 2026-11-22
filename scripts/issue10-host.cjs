@@ -134,7 +134,7 @@ function addFixtureLines(acceptancePath) {
         '      defaultFormatEditCount:Array.isArray(formatBefore)?formatBefore.length:null,',
         '      enabledFormatEditCount:formatEnabledCount,',
         '      enabledIndentOnProbe:formatEnabledIndentOnProbe,',
-        '      disabledAgainEditCount:formatAfterDisableCount'
+        '      disabledAgainEditCount:formatAfterDisableCount',
         '    };'
     ]);
     inject("check('theme-and-ui-checks', 'unverified', { manualChecks: report.manualChecks });", [
@@ -148,7 +148,7 @@ function addFixtureLines(acceptancePath) {
         '    const detail = d => ({ source:d.source||null, code:d.code&&typeof d.code===\'object\'?d.code.value:(d.code||null),',
         '      message:d.message, line:d.range.start.line+1, start:d.range.start.character, end:d.range.end.character });',
         '    report.issue10Reopen = { languageId:reopened.languageId, before:beforeClose.length, after:afterOpen.length,',
-        '      beforeItems:beforeClose.map(detail), afterItems:afterOpen.map(detail) };'
+        '      beforeItems:beforeClose.map(detail), afterItems:afterOpen.map(detail) };',
     ]);
     fs.writeFileSync(runner,source);
     save('fixture-provenance.json',{
