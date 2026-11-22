@@ -13,9 +13,9 @@ const closeEvents: string[] = [];
 function makeFixture(): Fixture {
     const base = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-f08-'));
     const files: Array<[string, string]> = [
-        ['a/runs/A.tcf', 'Set Variable LOCAL_SHAPE == assets\\only_a.shp\nRead File == ..\\..\\shared\\terrain.trd\n'],
+        ['a/runs/A.tcf', 'Set Variable LOCAL_SHAPE == assets\\only_a.shp\nRead File == ..\\..\\standalone\\context\\shared\\terrain.trd\n'],
         ['b/runs/B.tcf', 'Set Variable LOCAL_SHAPE == assets\\missing_b.shp\nRead File == ..\\..\\shared\\terrain.trd\n'],
-        ['shared/terrain.trd', [
+        ['standalone/context/shared/terrain.trd', [
             'Read GIS Z Shape == assets\\present.shp',
             'Read GIS Z Shape == <<LOCAL_SHAPE>>',
             'Read GIS Z Shape == assets\\missing.shp',
@@ -42,7 +42,7 @@ function makeFixture(): Fixture {
         base,
         a: path.join(base, 'a/runs/A.tcf'),
         b: path.join(base, 'b/runs/B.tcf'),
-        trd: path.join(base, 'shared/terrain.trd'),
+        trd: path.join(base, 'standalone/context/shared/terrain.trd'),
         nested: path.join(base, 'shared/nested.trd')
     };
 }
@@ -72,6 +72,16 @@ function snapshot(stage: string, f: Fixture): void {
             a: path.resolve(path.dirname(f.a), 'assets/edited_present.shp'),
             b: path.resolve(path.dirname(f.b), 'assets/edited_present.shp'),
             standalone: path.resolve(path.dirname(f.trd), 'assets/edited_present.shp')
+        },
+        nestedIncludeResolution: {
+            a: path.resolve(path.dirname(f.a), '../../shared/nested.trd'),
+            b: path.resolve(path.dirname(f.b), '../../shared/nested.trd'),
+            standalone: path.resolve(path.dirname(f.trd), '../../shared/nested.trd')
+        },
+        nestedIncludeExists: {
+            a: fs.existsSync(path.resolve(path.dirname(f.a), '../../shared/nested.trd')),
+            b: fs.existsSync(path.resolve(path.dirname(f.b), '../../shared/nested.trd')),
+            standalone: fs.existsSync(path.resolve(path.dirname(f.trd), '../../shared/nested.trd'))
         },
         present: {
             a: fs.existsSync(path.resolve(path.dirname(f.a), 'assets/edited_present.shp')),
@@ -105,12 +115,13 @@ async function close(document: vscode.TextDocument): Promise<void> {
 }
 
 async function cleanupFixture(base: string): Promise<void> {
-    // Windows extension-host watchers may still be shutting down while test
-    // temp directories are removed. Retry; cleanup failure must not obscure
-    // the 13 completed diagnostic observations from a disposable CI fixture.
+    // Bounded linear retry backoff: at most 5.5 s per directory (11 s
+    // for two fixtures), within the suite's 65 s timeout. Windows watcher
+    // shutdown may race cleanup; a disposable fixture cleanup error must not
+    // obscure the 13 completed diagnostic observations.
     try {
         await fs.promises.rm(base, {
-            recursive: true, force: true, maxRetries: 15, retryDelay: 350
+            recursive: true, force: true, maxRetries: 10, retryDelay: 100
         });
     } catch (error) {
         console.warn('F08_CLEANUP_WARNING ' + String(error) + ' ' + base);
@@ -121,6 +132,13 @@ suite('F08 investigation — included TRD opened as independent root', function 
     this.timeout(65000);
     test('observation across editor operations and two TCF contexts', async () => {
         const f = makeFixture();
+        const correctlyResolvedNested = path.resolve(path.dirname(f.a), '../../shared/nested.trd');
+        const wronglyResolvedNested = path.resolve(path.dirname(f.trd), '../../shared/nested.trd');
+        assert.strictEqual(correctlyResolvedNested, f.nested);
+        assert.ok(wronglyResolvedNested.startsWith(f.base + path.sep),
+            'Incorrect TRD-root candidate must remain inside the disposable fixture');
+        assert.strictEqual(fs.existsSync(correctlyResolvedNested), true);
+        assert.strictEqual(fs.existsSync(wronglyResolvedNested), false);
         const configuration = vscode.workspace.getConfiguration('tuflowValidator');
         const prior = configuration.get<string>('diagnosticLevel');
         let isolated: Fixture | undefined;
