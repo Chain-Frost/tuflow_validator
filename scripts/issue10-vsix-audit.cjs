@@ -9,7 +9,13 @@ const dir = path.resolve(process.env.ISSUE10_EVIDENCE_DIR || path.join(root, 'is
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const fileHash = file => hash(fs.readFileSync(file));
 function inside(vsix, name) {
-    return cp.execFileSync('unzip', ['-p', vsix, 'extension/' + name]);
+    const zipEntry = 'extension/' + name;
+    if (process.platform === 'win32') {
+        // Windows Actions has Python, but not necessarily unzip on PATH.
+        const py = 'import sys, zipfile; sys.stdout.buffer.write(zipfile.ZipFile(sys.argv[1]).read(sys.argv[2]))';
+        return cp.execFileSync('python', ['-c', py, vsix, zipEntry], { maxBuffer: 16 * 1024 * 1024 });
+    }
+    return cp.execFileSync('unzip', ['-p', vsix, zipEntry], { maxBuffer: 16 * 1024 * 1024 });
 }
 function inspect(filename, label) {
     if (!fs.existsSync(filename)) return {label, status:'blocked', reason:'VSIX unavailable'};
