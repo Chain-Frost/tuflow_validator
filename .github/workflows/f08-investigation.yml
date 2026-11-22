@@ -1,0 +1,42 @@
+name: F08 investigation (source host; no publishing)
+on:
+  pull_request:
+    paths:
+      - 'src/test/suite/zz_f08_investigation.test.ts'
+      - 'docs/investigations/f08-trd-editor-root.md'
+      - '.github/workflows/f08-investigation.yml'
+permissions:
+  contents: read
+jobs:
+  integration:
+    name: F08 / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Identify exact source and environment
+        shell: bash
+        run: |
+          echo 'F08_PR_HEAD=${{ github.event.pull_request.head.sha }}'
+          echo 'F08_WORKFLOW_SHA=${{ github.sha }}'
+          node --version
+          npm --version
+      - run: npm ci
+      - name: Compile and lint
+        run: |
+          npm run compile
+          npm run lint
+      - name: Run VS Code integration tests on Linux
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm test
+      - name: Run VS Code integration tests on Windows
+        if: runner.os == 'Windows'
+        run: npm test
