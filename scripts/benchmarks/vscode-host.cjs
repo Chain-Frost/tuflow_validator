@@ -314,8 +314,18 @@ module.exports.run = async function run() {
         closeSubscription.dispose();
         try { await vscode.commands.executeCommand('workbench.action.closeAllEditors'); }
         catch { /* cleanup best effort */ }
-        fs.rmSync(root, { recursive: true, force: true });
+        // Windows may transiently retain file-indexer/watcher handles after
+        // closing an editor. Node's built-in bounded ENOTEMPTY/EPERM/EBUSY
+        // retry applies only with recursive=true; do not conceal a leak.
+        try {
+            fs.rmSync(root, { recursive: true, force: true, maxRetries: 12, retryDelay: 250 });
+        } catch (cleanupError) {
+            report.cleanupError = String(cleanupError);
+        }
         report.environment.fixturesRemoved = !fs.existsSync(root);
+        if (!report.environment.fixturesRemoved && !exception) {
+            exception = new Error('Disposable benchmark fixture directory could not be removed: ' + root);
+        }
         fs.mkdirSync(path.dirname(output), { recursive: true });
         fs.writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
         console.log('[tpv-host] source=' + source + ' vscode=' + report.environment.vscode +
