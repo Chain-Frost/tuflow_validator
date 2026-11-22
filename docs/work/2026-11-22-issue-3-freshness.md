@@ -28,7 +28,7 @@ Draft PR: https://github.com/Chain-Frost/tuflow_validator/pull/21
 
 ## Regression suite
 
-`src/test/suite/freshness.test.ts` uses temporary test directories and covers: sibling create/rename/delete, dirty TCF before/after save, dirty plaintext include, child clean-to-error, missing file deletion/recreation, multiple roots and close/reopen, irrelevant directory events, and Windows-oriented path identity checks. Existing variable-context, recursive/TRD, static-variable, Quick Fix and naming tests remain in the normal suite. Test runs and exact final head belong in PR #21.
+`src/test/suite/freshness.test.ts` uses temporary test directories and covers: sibling create/rename/delete, dirty TCF before/after save, dirty plaintext include, child clean-to-error, missing file deletion/recreation, multiple-root diagnostic ownership with an isolated `removeDiagnosticsForDocument()` lifecycle test, irrelevant directory events, and Windows-oriented path identity checks. VS Code retained open `TextDocument` instances after closing the editor tabs in the hosted runner; the test does not assert that editor-tab closure necessarily emits a document-close event. Existing variable-context, recursive/TRD, static-variable, Quick Fix and naming tests remain in the normal suite. Test runs and exact final head belong in PR #21.
 
 ## Deliberate exclusions and remaining verification
 
@@ -36,5 +36,6 @@ Draft PR: https://github.com/Chain-Frost/tuflow_validator/pull/21
 - No F08 standalone TRD root-policy change, model-wide inputs, async rewrite, GeoPackage reader, extension version bump, release, merge or publishing.
 - Agent D's performance benchmarking is separate: https://github.com/Chain-Frost/tuflow_validator/pull/16.
 - Deferred GeoPackage PR #9 is not imported.
-- **Windows runtime remains to be verified** with actual VS Code Extension Host on a Windows workstation, local disk, mapped drives, UNC paths, file create/delete/rename notifications and watcher/handle disposal. Current parent CI provides Windows compile/lint, not Windows integration execution. Do not infer network-share behavior or performance from Linux CI.
+- **Real Windows Extension Host CI passed:** [run 45040521593](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45040521593) completed all 61 tests on **both Linux and Windows** at source head `1e169d72468070a20111864483d78a021551dc32`. This includes actual Windows local temporary-directory create/delete/rename watcher behavior, but not mapped-drive or UNC project shares.
+- **Windows local network validation remains outstanding:** verify mapped-drive and UNC project path identities, file notifications, actual open/close lifecycle, watcher/handle disposal and representative project responsiveness. Do not infer network-share behavior or network performance from hosted CI.
 - Independent review must be completed before merge.
