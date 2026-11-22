@@ -12,7 +12,7 @@ const {
 } = require('@vscode/test-electron');
 
 const root = path.resolve(__dirname, '..');
-const evidence = path.join(root, 'issue10-evidence');
+const evidence = path.resolve(process.env.ISSUE10_EVIDENCE_DIR || path.join(root, 'issue10-evidence'));
 const probes = {
     'model.tcf': [
         'Viscosity Formulation == SMAGORINSKY',
@@ -205,7 +205,7 @@ async function main() {
     const summary = {date:new Date().toISOString(),platform:process.platform,node:process.version,
         vscodeExecutable:executable,
         sha:{current:hashFile(current),published:fs.existsSync(old)?hashFile(old):null,helper:hashFile(helper)},
-        sourceSha:process.env.GITHUB_SHA||null,baseSha:process.env.VALIDATOR_BASE_SHA||null,
+        sourceSha:process.env.INTEGRATED_AB_SHA||process.env.GITHUB_SHA||null,baseSha:process.env.VALIDATOR_BASE_SHA||null,
         helper12Sha:process.env.HELPER12_SHA||null,helper16Sha:process.env.HELPER16_SHA||null,
         results:[]};
     for (const entry of entries) {
