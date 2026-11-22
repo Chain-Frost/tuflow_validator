@@ -40,6 +40,11 @@ jobs:
           ref: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
           path: _helper16
 
+      - name: Relocate external PR checkouts outside the Validator TypeScript project
+        run: |
+          mv _helper12 "$RUNNER_TEMP/issue10-helper12"
+          mv _helper16 "$RUNNER_TEMP/issue10-helper16"
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -49,7 +54,7 @@ jobs:
         run: |
           node --check scripts/issue10-vsix-audit.cjs
           node --check scripts/issue10-host.cjs
-          node _helper16/test/acceptance/check-fixtures.mjs
+          node "$RUNNER_TEMP/issue10-helper16/test/acceptance/check-fixtures.mjs"
 
       - name: Build exactly checked-out Validator source
         run: |
@@ -60,10 +65,10 @@ jobs:
 
       - name: Package unmerged Helper PR 12, without changing its branch
         run: |
-          npm ci --prefix _helper12
-          npm run compile --prefix _helper12
-          cd _helper12
-          ../node_modules/.bin/vsce package --no-dependencies --out "$GITHUB_WORKSPACE/issue10-dist/helper12.vsix"
+          npm ci --prefix "$RUNNER_TEMP/issue10-helper12"
+          npm run compile --prefix "$RUNNER_TEMP/issue10-helper12"
+          cd "$RUNNER_TEMP/issue10-helper12"
+          "$GITHUB_WORKSPACE/node_modules/.bin/vsce" package --no-dependencies --out "$GITHUB_WORKSPACE/issue10-dist/helper12.vsix"
 
       - name: Download published GitHub release VSIX v0.2.6
         run: |
@@ -86,7 +91,7 @@ jobs:
             issue10-dist/validator-built.vsix \
             issue10-dist/release-v0.2.6.vsix \
             issue10-dist/helper12.vsix \
-            _helper16
+            "$RUNNER_TEMP/issue10-helper16"
 
       - name: Upload test reports and artifact provenance only (no VSIX binaries)
         if: always()
