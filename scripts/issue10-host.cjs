@@ -22,7 +22,7 @@ const probes = {
         'Unknown Experimental Command == value.2026',
         'Geometry Control File == issue10_missing.tgc',
         'If Scenario == issue10_format_probe',
-        'Unknown Formatting Probe == value',
+        'Read File == issue10_conditional_missing.trd',
         'End If ! issue10 format probe'
     ],
     'geometry.tgc': [
@@ -30,8 +30,15 @@ const probes = {
     ]
 };
 const negativeLines = probes['model.tcf'].slice(0, 5);
-const inputLines = [probes['model.tcf'][5], probes['geometry.tgc'][0]];
-const expectedMissing = ['issue10_missing.tgc', 'gis/issue10_missing_a.shp', 'gis/issue10_missing_b.shp'];
+const inputLines = [
+    {file:'model.tcf',line:probes['model.tcf'][5]},
+    {file:'model.tcf',line:probes['model.tcf'][7]},
+    {file:'geometry.tgc',line:probes['geometry.tgc'][0]}
+];
+const expectedMissing = [
+    'issue10_missing.tgc', 'issue10_conditional_missing.trd',
+    'gis/issue10_missing_a.shp', 'gis/issue10_missing_b.shp'
+];
 const hashFile = p => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 function save(name, data) {
     fs.mkdirSync(evidence, {recursive:true});
@@ -124,14 +131,14 @@ function check(report,entry,locations) {
     const unexpected = Object.fromEntries(negativeLines.map(line => [line,missing('model.tcf',line)]));
     const noFalseMissing = Object.values(unexpected).every(items=>items.length===0);
     const positives = Object.fromEntries(expectedMissing.map(name=>{
-        const match = inputLines.flatMap(line=>missing(line===probes['model.tcf'][5]?'model.tcf':'geometry.tgc',line))
+        const match = inputLines.flatMap(({file,line})=>missing(file,line))
             .filter(d=>d.message==='File not found: '+name);
-        const sourceLine = inputLines.find(line=>line.includes(name));
-        const sourceFile = sourceLine===probes['model.tcf'][5]?'model.tcf':'geometry.tgc';
-        const first = sourceLine.indexOf(name);
+        const source = inputLines.find(({line})=>line.includes(name));
+        if (!source) throw new Error('No issue 10 source line for missing path: '+name);
+        const first = source.line.indexOf(name);
         return [name,{
             count:match.length, rangeCorrect:match.length===1 &&
-                match[0].line===locations[sourceFile+'|'+sourceLine] &&
+                match[0].line===locations[source.file+'|'+source.line] &&
                 match[0].start===first && match[0].end===first+name.length,
             code:match.map(d=>d.code), source:match.map(d=>d.source)
         }];
