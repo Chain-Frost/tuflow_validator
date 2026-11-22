@@ -14,7 +14,7 @@ function makeFixture(): Fixture {
     const base = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-f08-'));
     const files: Array<[string, string]> = [
         ['a/runs/A.tcf', 'Set Variable LOCAL_SHAPE == assets\\only_a.shp\nRead File == ..\\..\\standalone\\context\\shared\\terrain.trd\n'],
-        ['b/runs/B.tcf', 'Set Variable LOCAL_SHAPE == assets\\missing_b.shp\nRead File == ..\\..\\shared\\terrain.trd\n'],
+        ['b/runs/B.tcf', 'Set Variable LOCAL_SHAPE == assets\\missing_b.shp\nRead File == ..\\..\\standalone\\context\\shared\\terrain.trd\n'],
         ['standalone/context/shared/terrain.trd', [
             'Read GIS Z Shape == assets\\present.shp',
             'Read GIS Z Shape == <<LOCAL_SHAPE>>',
