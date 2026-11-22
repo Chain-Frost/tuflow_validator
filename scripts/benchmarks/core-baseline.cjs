@@ -22,7 +22,12 @@ if (!Number.isSafeInteger(iterations) || iterations < 5 || iterations > 500 ||
     throw new Error('Invalid sample, warmup or injected latency setting');
 }
 
-const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-core-benchmark-'));
+const fixtureParent = path.resolve(process.env.TPV_BENCHMARK_FIXTURE_PARENT || os.tmpdir());
+if (!fs.existsSync(fixtureParent) || !fs.statSync(fixtureParent).isDirectory()) {
+    throw new Error('TPV_BENCHMARK_FIXTURE_PARENT must be an existing disposable-fixture parent directory');
+}
+// Only create/remove our uniquely named child. Never inspect or mutate pre-existing model files.
+const directory = fs.mkdtempSync(path.join(fixtureParent, 'tpv-core-benchmark-'));
 const documents = [];
 const settings = {
     diagnosticLevel: 'hint',
@@ -303,12 +308,16 @@ const report = {
         vscode: 'not applicable (Node core harness; host covered separately)',
         cpuModel: os.cpus()[0]?.model,
         cpuCount: os.cpus().length, memoryBytes: os.totalmem(),
-        storage: process.env.TPV_STORAGE_LABEL || 'local temp directory (media not independently verified)',
+        storage: process.env.TPV_STORAGE_LABEL || 'temp directory (medium not independently verified)',
+        fixtureParent,
+        suppliedNetworkOrDriveLabel: process.env.TPV_BENCHMARK_NETWORK_EVIDENCE || null,
         fixtureLocation: directory,
         fixtureBytes: fixtureManifest.reduce((acc, f) => acc + f.bytes, 0),
         fixtureFiles: fixtureManifest.length,
         fixtureManifestSha256: digest(JSON.stringify(fixtureManifest)),
-        realMappedOrUncEvidence: 'not measured in this runner',
+        realMappedOrUncEvidence: process.env.TPV_BENCHMARK_FIXTURE_PARENT
+            ? 'custom filesystem parent supplied; network identity/metadata latency requires independent verification'
+            : 'not measured: operating-system temporary directory',
         syntheticIoLatencyMsPerFixtureOperation: syntheticMs,
         pageCacheFlushed: false, coldDiskMeasured: false,
         settings, warmups, timedSamples: iterations,
