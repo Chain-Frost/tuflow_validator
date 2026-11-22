@@ -191,7 +191,21 @@ suite('Issue #3 freshness regressions', function () {
             // Closing an editor tab does not guarantee onDidCloseTextDocument:
             // VS Code may keep the document open. Close both document roots
             // before checking the actual onDidClose ownership cleanup.
+            const closedUris = new Set<string>();
+            const closeListener = vscode.workspace.onDidCloseTextDocument(d => closedUris.add(d.uri.toString()));
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            await delay(400);
+            console.log('FRESHNESS_CLOSE_OBSERVATION', JSON.stringify({
+                aClosed: closedUris.has(a.uri.toString()),
+                bClosed: closedUris.has(b.uri.toString()),
+                aLoaded: vscode.workspace.textDocuments.some(d => d.uri.toString() === a.uri.toString()),
+                bLoaded: vscode.workspace.textDocuments.some(d => d.uri.toString() === b.uri.toString()),
+                aVisible: vscode.window.visibleTextEditors.some(e => e.document.uri.toString() === a.uri.toString()),
+                bVisible: vscode.window.visibleTextEditors.some(e => e.document.uri.toString() === b.uri.toString()),
+                aDiagnostics: outdated(a.uri).length,
+                bDiagnostics: outdated(b.uri).length
+            }));
+            closeListener.dispose();
             await waitFor(() => outdated(a.uri).length === 0 && outdated(b.uri).length === 0,
                 'closed document roots left stale diagnostics');
             const reopened = await vscode.workspace.openTextDocument(rootBPath);
