@@ -5,7 +5,7 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
-const dir = path.join(root, 'issue10-evidence');
+const dir = path.resolve(process.env.ISSUE10_EVIDENCE_DIR || path.join(root, 'issue10-evidence'));
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const fileHash = file => hash(fs.readFileSync(file));
 function inside(vsix, name) {
@@ -32,10 +32,10 @@ const [current,old] = process.argv.slice(2);
 if (!current || !old) throw new Error('Usage: node scripts/issue10-vsix-audit.cjs current.vsix published.vsix');
 const main = inspect(current,'source-built');
 const release = inspect(old,'GitHub-release-v0.2.6');
-const compiled = path.join(root,'out','pathParsing.js');
+const compiled = process.env.ISSUE10_COMPILED_PARSER || path.join(root,'out','pathParsing.js');
 const result = {
     recordedAt:new Date().toISOString(),
-    buildCommit:process.env.GITHUB_SHA || null,
+    buildCommit:process.env.INTEGRATED_AB_SHA || process.env.GITHUB_SHA || null,
     validatorBase:process.env.VALIDATOR_BASE_SHA || null,
     helper12:process.env.HELPER12_SHA || null,
     helper16:process.env.HELPER16_SHA || null,
