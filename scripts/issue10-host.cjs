@@ -152,6 +152,8 @@ function check(report,entry,locations) {
         actionTitles.includes('Ignore entire file (TUFLOW)');
     const formattingPass = report.issue10Options &&
         report.issue10Options.formattedInitially === false &&
+        (report.issue10Options.defaultFormatEditCount === 0 ||
+         report.issue10Options.defaultFormatEditCount === null) &&
         report.issue10Options.enabledFormatEditCount > 0;
     const hasValidator = entry.role!=='helper-only';
     const languagePass = report.metrics?.documentOpen?.['model.tcf']?.languageId==='tuflow';
