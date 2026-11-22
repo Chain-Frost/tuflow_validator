@@ -8,12 +8,61 @@
 
 - **D1 benchmark harness:** implemented in scripts/benchmarks/core-baseline.cjs. Each CI run packages the *same checked-out source* into a VSIX, records its SHA-256, and saves full raw trials as an Actions artifact. Record actual job URL, source SHA, VSIX hash and numeric results **only once the jobs have completed**; no unrun check is called a pass.
 - **Core microbenchmarks:** benchmark the real compiled src/diagnostics.ts, src/versioning.ts, and src/io.ts with a minimal VS Code API adapter. The adapter exists only so the core engine can be measured independently of editor startup/provider overhead. It does not replace VS Code integration tests.
-- **Real VS Code editor/coexistence:** Helper [PR #16](https://github.com/Chain-Frost/tuflow-vscode/pull/16) supplies compatible extension-host, language-ID, coexistence and full editor-profile acceptance measurements. Reuse its **actual run output when available**; its current draft runbook is *not* a measured result. Core-only results below do not establish activation, full editor responsiveness or native watcher/handle counts.
+- **Real VS Code host:** A separate Validator-only Extension Host probe now runs in the Linux CI job. It measures first diagnostic arrival, ten root edits, ten included-child edits, heartbeat jitter, a version-sibling event and document-close observations. Helper [PR #16](https://github.com/Chain-Frost/tuflow-vscode/pull/16) still owns the broader four-profile coexistence measurements. Neither result is a native watcher-count audit.
 - **Storage:** CI uses a disposable local runner temp directory. The backing physical medium is not verified. No network share is available in this environment. The optional injection of 0.75 ms **per synchronous fixture filesystem call** is synthetic blocking, **not** a mapped-drive/UNC measurement.
 - **Cold:** "first analysis" means first engine invocation after generated fixture creation; it is **not a cold OS disk/page cache**, nor is it cold VS Code activation. No OS cache clearing is attempted. Warm trials run in the same process after three discarded warmups.
 - **GeoPackage:** only a zero-byte disposable .gpkg file is created for physical *file existence* checks. The harness never reads SQLite/GPKG records or layers. Deferred PR #9's reader/workers are not imported.
 
-**D1 is not finished until representative network and VS Code extension-host evidence is attached.** This PR can remain draft with those environmental gates open. Never close issue #3 solely from CI/local timings.
+**D1 remains incomplete for real Windows mapped-drive/UNC evidence and full editor/coexistence acceptance.** A Linux Validator-only Extension Host run now exists; this is not representative Windows/network qualification. Keep the PR draft, and do not close issue #3 on local-only results.
+
+## Recorded measurements — 22 November 2026
+
+**Pinned, completed CI run:** [GitHub Actions #45038937417](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45038937417), tested source **5b8f05915d9f93ca9a698a1460150cefe53fb90e**. Both Linux and Windows benchmark jobs passed. The associated raw, per-trial JSON and per-fixture hashes are stored in that run's artifacts **tpv-core-linux** and **tpv-core-windows** (30-day retention). Rebuild/re-run the script from the pinned source SHA after artifact expiry. The same fixture manifest SHA-256 on both platforms is **55a7a7a506948fc5317c00ce8dac5f24e86e739d15d04c07657de398c45f163d**: 183 generated files totalling 117,425 bytes. Full default settings and CPU/OS/version metadata are in the JSON.
+
+| Core synchronous validation scenario | Linux median / p95 (ms) | Windows median / p95 (ms) |
+|---|---:|---:|
+| First core analysis (single trial) | 3.10 / N/A | 8.19 / N/A |
+| Warm analysis | 0.29 / 0.50 | 0.69 / 2.16 |
+| Single-character dirty root edit | 0.25 / 0.32 | 0.55 / 1.04 |
+| Included-child changed-path revalidation | 0.62 / 29.95 | 0.73 / 1.06 |
+| Version-sibling **explicit** revalidation | 0.35 / 0.50 | 0.50 / 0.73 |
+| Two roots, shared included-child change | 0.85 / 24.43 | 1.13 / 2.11 |
+| 24 alternating variable contexts | 1.82 / 2.75 | 3.61 / 5.18 |
+| Depth-48 include chain | 4.07 / 5.63 | 6.54 / 9.17 |
+| 120 wide + 32 shared includes | **32.53 / 62.49** | **66.36 / 112.14** |
+| 4,000-line file, 400 missing inputs | 3.54 / 3.81 | 7.77 / 8.61 |
+
+N=19 timed trials after three discarded warmups, except first analysis N=1. These are two CI machines, **not a controlled matched-hardware comparison**. At least two Linux p95s include large runner outliers; compare distributions and replicate, not just single p95s. The wide graph uses **305 reads, 576 existence checks, 121 directory enumerations** per analysis on either OS. This confirms repeated metadata work and **synchronous extension-host blocking potential**. The measured wide-graph p95 exceeds the proposed 50 ms investigation flag on both machines, which justifies considering focused operation reduction **after** Agent A/B integration. It does not by itself justify a specific D2 patch.
+
+Linux synthetic 0.75 ms per fixture FS operation (N=9) raised wide-graph median/p95 to **784.07/786.15 ms**; a 4,000-line file to ~305.53 ms median. This deliberately injects CPU-blocking latency and is **not a UNC trace or an estimate of actual share speed**. No metadata caches or disk page caches were explicitly cleared.
+
+**Artifact hashes and toolchain:** Linux VSIX SHA-256 **28f04651e21c062791e04a0ba6371f15d11fdf44908aa6a51bc6969624835938**; Windows VSIX SHA-256 **70b91cb5169c8936b0014bbce8b8b5ce05687e03ff01fe9156d6378634af46f8**. These were separately packaged on each runner and differ; don't substitute one for the other. Both core runs used Node **22.23.5**. Linux kernel release **7.0.0-1020-azure**; Windows OS release **10.0.26100**. The VSIX package and exact settings are recorded in each JSON file.
+
+**Actual Linux VS Code Extension Host:** source 5b8f059, VS Code **1.147.0**, extension-host Node **24.22.1**, Validator **0.2.6** initially inactive. First opened-document diagnostic arrived in **311.03 ms** (N=1, activation/readiness proxy). Ten real single-character editor edits had **351.75 / 372.82 ms** median/p95 from VS Code applyEdit to diagnostic event; ten included-child edits had **351.01 / 352.34 ms**. Those numbers include the existing **300 ms debounce** and host event delivery; core-only numbers exclude both. During the probes the 10 ms extension-host heartbeat median/p95 scheduling delay was **0.10 / 1.17 ms**, maximum 2.04 ms. These edit-probe results are for a small local fixture, not the large wide graph in an Extension Host.
+
+**Version sibling event:** After generating a new geom_v03.tgc beside an already referenced geom_v01.tgc, the core changed-path entry point returned **false** on both platforms and the actual Linux host observed **no diagnostic refresh event** during its observation window. An explicit revalidation does reevaluate versions. This is a specific dependency-invalidation gap for Agent B; **preserve the existing version identification algorithm**. It is distinct from code correctness of finding the latest version when analysis runs.
+
+**Document/root disposal limitation:** The fake core adapter removed all fake root documents and returned to zero logical dependency paths. In the actual VS Code host, the command to close all visible editors left both benchmark documents in vscode.workspace.textDocuments with isClosed=false, no document-close events, and three tracked dependencies. Thus **the actual root-close/dispose path was not exercised** and this is not evidence of a resource leak. No native watcher count was obtained; file descriptors were 44 before/after visible-editor closure. Proper document/root disposal, settings invalidation, outstanding work and cancellation still require targeted tests.
+
+### Real mapped-drive/UNC handoff (not run)
+
+On a Windows machine with a known, writable, **disposable benchmarking folder** on a genuine SMB share or mapped drive, use the same repository revision and packages, and specify the fixture parent explicitly. The harness creates **only a new unique tpv-core-benchmark-* subdirectory** under this parent and deletes that subdirectory afterward. **Do not point it at a live model folder**; do not modify an existing model or GPKG.
+
+~~~powershell
+npm ci
+npm run compile
+npx vsce package --out benchmark-source.vsix
+$env:TPV_SOURCE_SHA = (git rev-parse HEAD)
+$env:TPV_VSIX_PATH = (Resolve-Path .\benchmark-source.vsix).Path
+$env:TPV_BENCHMARK_FIXTURE_PARENT = '\\server\share\disposable-perf-tests'
+$env:TPV_BENCHMARK_NETWORK_EVIDENCE = 'Real SMB UNC path; verify in environment record'
+$env:TPV_STORAGE_LABEL = 'Windows real SMB, document server/client/mapped vs UNC, network type, latency, cache'
+$env:TPV_BENCHMARK_OUTPUT = (Join-Path $PWD 'benchmark-real-unc.json')
+$env:TPV_BENCHMARK_SAMPLES = '19'
+node scripts/benchmarks/core-baseline.cjs
+~~~
+
+The real environment record must also identify the source machine, share server, link/VPN details, representative model size, current cache state, warm vs freshly opened results, and baseline local results on the **same machine**. A label supplied by an operator does not verify that the storage was genuinely remote. Only record cache-cleared results if the operator actually used and documented a safe clearance procedure. Avoid destructive eviction of production caches.
 
 ## Cases exercised
 
@@ -60,7 +109,7 @@ TPV_SYNTHETIC_IO_MS=0.75 \
 node scripts/benchmarks/core-baseline.cjs
 ~~~
 
-The job "Core performance evidence (issue 3)" runs local core baselines on Linux and Windows, and a separately labelled synthetic-latency run on Linux. Download the tpv-core-baseline-* artifacts for **individual** trial data and fixture manifest. Use the CI output for aggregates. The runner deletes its disposable temp fixture directory in a finally block and writes the JSON even on an assertion failure.
+The job "Validator core performance baseline" runs local core baselines on Linux and Windows, a separately labelled synthetic-latency run on Linux, and the Validator-only Linux Extension Host probe via TPV_BENCHMARK_HOST=1. Download the tpv-core-baseline-* artifacts for **individual** trial data and fixture manifest. Use the CI output for aggregates. The core runner deletes its disposable temp fixture directory in a finally block and writes the JSON even on an assertion failure. Host runner performs separate fixture teardown; true document-close coverage remains open.
 
 For before/after comparisons, use equal source-based fixtures, identical sample counts, toolchain, runner architecture and storage. Pin the tested source SHA and VSIX hash. Repeat runs on the **same machine** when practical and publish raw data, not just percentages.
 
@@ -68,19 +117,19 @@ For before/after comparisons, use equal source-based fixtures, identical sample 
 
 | Evidence | State / required follow-up |
 |---|---|
-| Exact source revision, package hash and VSIX SHA-256 | Generated by each CI job; link completed run |
-| Local Linux/Windows core time and metadata-operation counts | CI report, pending completion |
-| Synthetic filesystem latency sensitivity | CI report, pending completion; **not network evidence** |
-| Cold VS Code activation and first diagnostic arrival | Capture via real extension host; do not substitute Node core first analysis |
-| Real editor event latency and extension-host heartbeat | Use compatible Helper PR #16 measurements; add Validator-specific probe only for missing dimensions |
+| Exact source revision, package hash and VSIX SHA-256 | Recorded above for completed Linux/Windows CI snapshot; raw artifact includes full hashes |
+| Local Linux/Windows core time and metadata-operation counts | Recorded above with CI raw trials; not real network qualification |
+| Synthetic filesystem latency sensitivity | Recorded above; **not network evidence** |
+| Cold VS Code activation and first diagnostic arrival | Single Linux host first-diagnostic proxy recorded; direct activation telemetry and Windows host still unmeasured |
+| Real editor event latency and extension-host heartbeat | Validator-only Linux host measured above; reuse Helper PR #16 for broader coexistence/editor profiles |
 | OS/native watcher count, actual open handles and outstanding work | Not established by logical dependencies or the Node handle proxy |
 | True cold-disk/cache-cleared results | Not measured; requires controlled machine, documented cache methodology |
 | Mapped-drive/UNC, representative shared model | **Unavailable; open**. Record actual share latency, environment and cache state when available |
-| Cleanup following editor/root closure, settings change and cancellation | Native Extension Host verification required before D2 acceptance |
+| Cleanup following editor/root closure, settings change and cancellation | Visible-editor close did not close VS Code documents; actual document-close/disposal, settings and cancellation remain unverified |
 
-### Candidate optimisations (not pre-approved)
+### Candidate optimisations (evidence-backed candidates, not approved)
 
-Observed source inspection suggests synchronous readFileSync, existsSync, and repeated readdirSync calls in recursive traversal and latest-version checking. The D1 report is **not evidence that a refactor is justified** until the benchmarks are recorded. If operation counts and latencies warrant it, consider *within-analysis* raw-content/directory caching and bounded asynchronous IO first, preserving distinct variable contexts; separately assess targeted invalidation and generation-based cancellation. No persistent path-only cache of context-dependent results.
+Observed source inspection suggests synchronous readFileSync, existsSync, and repeated readdirSync calls in recursive traversal and latest-version checking. Recorded operation counts and latency sensitivity justify exploring operation reduction, but are not sufficient evidence for any particular code change without after/against-A+B comparisons. If operation counts and latencies warrant it, consider *within-analysis* raw-content/directory caching and bounded asynchronous IO first, preserving distinct variable contexts; separately assess targeted invalidation and generation-based cancellation. No persistent path-only cache of context-dependent results.
 
 D2 must be its **own PR**, based on the exact integrated Agent A traversal + Agent B dependency fixes and using Agent E's CI. State that parent SHA and the D1 benchmark dependency. Show before/after raw trials with unchanged diagnostics, properly invalidated edits/settings/closed roots and no lost missing-file results. Timed-out promises alone do not demonstrate cancellation of a blocked OS operation. Unvisited graph state must be reported as incomplete, never valid. Do not introduce arbitrary small graph limits.
 
