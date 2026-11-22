@@ -223,7 +223,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Chain-Frost/tuflow_validator
-          ref: c75d65188d631d864fb8439d3b99f3b907a3e182
+          ref: 889d5e2e1951fe7de6edc187ea4508e6037d2179
           path: _integrated_ab
 
       - name: Checkout Helper PR 12
