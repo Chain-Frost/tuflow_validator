@@ -68,7 +68,7 @@ jobs:
       - name: Checkout pinned and reviewed D1 driver
         uses: actions/checkout@v4
         with:
-          ref: 754d91df193fc79ea431a87390a2d6dd768d7609
+          ref: 71b3cb56258ed03929665dbf2596af839c09bde6
           path: d1-driver
       - name: Compile original Agent B source separately
         working-directory: before-b
