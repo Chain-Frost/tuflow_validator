@@ -15,8 +15,8 @@ STATIC_CONTENT = {
     "[Content_Types].xml",
     "extension.vsixmanifest",
     "extension/package.json",
-    "extension/README.md",
-    "extension/LICENSE",
+    "extension/readme.md",
+    "extension/LICENSE.txt",
     "extension/resources/icon.png",
 }
 
