@@ -104,6 +104,19 @@ async function close(document: vscode.TextDocument): Promise<void> {
     await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
 }
 
+async function cleanupFixture(base: string): Promise<void> {
+    // Windows extension-host watchers may still be shutting down while test
+    // temp directories are removed. Retry; cleanup failure must not obscure
+    // the 13 completed diagnostic observations from a disposable CI fixture.
+    try {
+        await fs.promises.rm(base, {
+            recursive: true, force: true, maxRetries: 15, retryDelay: 350
+        });
+    } catch (error) {
+        console.warn('F08_CLEANUP_WARNING ' + String(error) + ' ' + base);
+    }
+}
+
 suite('F08 investigation — included TRD opened as independent root', function () {
     this.timeout(65000);
     test('observation across editor operations and two TCF contexts', async () => {
@@ -205,9 +218,9 @@ suite('F08 investigation — included TRD opened as independent root', function 
                 await configuration.update('diagnosticLevel', prior, vscode.ConfigurationTarget.Global);
             }
             await delay(700);
-            fs.rmSync(f.base, { recursive: true, force: true, maxRetries: 3, retryDelay: 200 });
+            await cleanupFixture(f.base);
             if (isolated) {
-                fs.rmSync(isolated.base, { recursive: true, force: true, maxRetries: 3, retryDelay: 200 });
+                await cleanupFixture(isolated.base);
             }
         }
     });
