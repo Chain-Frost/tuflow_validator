@@ -20,7 +20,10 @@ const probes = {
         'Start Time == 0.05',
         'Time Step == 0.1',
         'Unknown Experimental Command == value.2026',
-        'Geometry Control File == issue10_missing.tgc'
+        'Geometry Control File == issue10_missing.tgc',
+        'If Scenario == issue10_format_probe',
+        'Unknown Formatting Probe == value',
+        'End If'
     ],
     'geometry.tgc': [
         'Read GIS Z Shape == gis/issue10_missing_a.shp | gis/issue10_missing_b.shp'
@@ -140,6 +143,9 @@ function check(report,entry,locations) {
     const actionTitles = report.issue10Options?.quickFixTitles || [];
     const actionPass = actionTitles.includes('Ignore this line (TUFLOW)') &&
         actionTitles.includes('Ignore entire file (TUFLOW)');
+    const formattingPass = report.issue10Options &&
+        report.issue10Options.formattedInitially === false &&
+        report.issue10Options.enabledFormatEditCount > 0;
     const hasValidator = entry.role!=='helper-only';
     const languagePass = report.metrics?.documentOpen?.['model.tcf']?.languageId==='tuflow';
     const after = report.issue10Reopen;
@@ -149,7 +155,7 @@ function check(report,entry,locations) {
     if (!hasValidator) status = !report.diagnostics.length && languagePass ? 'passed':'failed';
     else if (isOld) status = historicalFalsePositive && missingPass && languagePass ? 'passed-negative-control':'failed-negative-control';
     else status = noFalseMissing && unknownPass && missingPass && actionPass &&
-        languagePass && reopenPass ? 'passed':'failed';
+        languagePass && reopenPass && formattingPass ? 'passed':'failed';
     return {
         name:entry.name,role:entry.role,origin:entry.origin,status,
         hostEvidence:true, vscode:report.environment?.vscodeVersion,
@@ -158,6 +164,7 @@ function check(report,entry,locations) {
         settings:entry.settings, language:report.metrics?.documentOpen?.['model.tcf']?.languageId,
         noFalseMissing, unexpectedMissing:unexpected, unknownPass,
         missingPass,missingEvidence:positives,quickFixPass:actionPass,
+        formattingPass:hasValidator?Boolean(formattingPass):null,
         quickFixTitles:actionTitles, format:report.issue10Options,
         reopen:after, historicalFalsePositive:isOld?historicalFalsePositive:null,
         companionRunnerFailChecks:report.checks?.filter(x=>x.status==='fail').map(x=>x.id),
