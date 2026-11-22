@@ -226,6 +226,8 @@ async function main() {
         results:[]};
     for (const entry of entries) {
         const base = path.join(evidence,'profiles',entry.name);
+        // Never reuse installed extensions or user settings from an earlier invocation.
+        fs.rmSync(base,{recursive:true,force:true});
         const user = path.join(base,'user');
         const extensions = path.join(base,'extensions');
         fs.mkdirSync(path.join(user,'User'),{recursive:true});
@@ -299,6 +301,8 @@ async function main() {
             continue;
         }
         const output = path.join(evidence,'host-'+entry.name+'.json');
+        fs.rmSync(output,{force:true});
+        const invocationId = crypto.randomUUID();
         let runnerError = null;
         try {
             await runTests({
@@ -313,7 +317,8 @@ async function main() {
                 extensionTestsEnv:{
                     TUFLOW_ACCEPT_PROFILE:entry.role,
                     TUFLOW_ACCEPT_PHASE:'issue10-packaged',
-                    TUFLOW_ACCEPT_REVISION:process.env.GITHUB_SHA||'unrecorded',
+                    TUFLOW_ACCEPT_REVISION:process.env.INTEGRATED_AB_SHA||process.env.GITHUB_SHA||'unrecorded',
+                    TUFLOW_ACCEPT_INVOCATION:invocationId,
                     TUFLOW_ACCEPT_OUTPUT:output,
                     TUFLOW_ACCEPT_REPEATS:'3',
                     TUFLOW_ACCEPT_LINES:'1000',
@@ -325,7 +330,10 @@ async function main() {
             console.log('[host '+entry.name+'] '+runnerError);
         }
         const report = fs.existsSync(output)?JSON.parse(fs.readFileSync(output,'utf8')):null;
-        const result = check(report,entry,helperRunner.locations);
+        const freshReport = !!report && report.issue10Invocation === invocationId &&
+            report.profile === entry.role && report.phase === 'issue10-packaged';
+        const result = check(freshReport ? report : null,entry,helperRunner.locations);
+        result.reportWasFresh = freshReport;
         if (entry.marketplaceValidator && entry.artifactKind === 'unclassified') {
             result.status = 'unverified-unclassified';
         }
@@ -335,15 +343,26 @@ async function main() {
         summary.results.push(result);
         save('result-'+entry.name+'.json',result);
     }
+    const expected = {
+        'validator-only-main':['passed'],
+        'validator-only-published':['passed-negative-control'],
+        'validator-only-marketplace':['passed','passed-negative-control'],
+        'helper-only':['passed'],
+        'both':['passed'],
+        'both-associations':['passed'],
+        'both-plus-seito-errorlens':['passed']
+    };
+    summary.acceptanceGaps = summary.results.filter(r =>
+        !expected[r.name] || !expected[r.name].includes(r.status)
+    ).map(r=>({name:r.name,status:r.status,reason:r.reason||r.runnerError||null}));
+    summary.acceptanceStatus = summary.acceptanceGaps.length===0 ? 'passed' :
+        summary.acceptanceGaps.every(r=>r.status==='blocked') ? 'incomplete' : 'failed';
     save('host-summary.json',summary);
     console.log(JSON.stringify(summary.results.map(r=>({
         name:r.name,status:r.status,vscode:r.vscode,
         falseMissingAbsent:r.noFalseMissing,genuineMissing:r.missingPass,
         quickFix:r.quickFixPass,helperChecksFailing:r.companionRunnerFailChecks
     })),null,2));
-    const mainResult=summary.results.find(r=>r.name==='validator-only-main');
-    const failedScopeProfiles = summary.results.filter(r =>
-        r.status === 'failed' && r.name !== 'validator-only-marketplace');
-    if (!mainResult || mainResult.status!=='passed' || failedScopeProfiles.length > 0) process.exitCode=1;
+    if (summary.acceptanceStatus!=='passed') process.exitCode=1;
 }
 main().catch(error=>{console.error(error.stack||String(error));process.exitCode=1;});
