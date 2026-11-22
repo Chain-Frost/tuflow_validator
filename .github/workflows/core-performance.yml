@@ -80,10 +80,19 @@ jobs:
           TPV_BENCHMARK_SAMPLES: '19'
           TPV_STORAGE_LABEL: 'GitHub Windows temporary local runner; cache and medium unverified'
         run: node scripts/benchmarks/core-baseline.cjs
+      - name: Windows Validator Extension Host benchmark
+        env:
+          TPV_BENCHMARK_HOST: '1'
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-source.vsix
+          TPV_HOST_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-host-windows.json
+        run: npm test
       - name: Upload Windows raw trial records
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: tpv-core-windows
-          path: benchmark-core-windows.json
+          path: |
+            benchmark-core-windows.json
+            benchmark-host-windows.json
           retention-days: 30
