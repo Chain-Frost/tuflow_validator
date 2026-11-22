@@ -6,7 +6,7 @@
 
 - Unmerged parent B [PR #21](https://github.com/Chain-Frost/tuflow_validator/pull/21): base commit **889d5e2e1951fe7de6edc187ea4508e6037d2179**, itself stacked on A2 #17 → A1 #14 → main.
 - Initial D2 measured source SHA **57b9404656238a6c1f46286168bf5c0fef896a85**, the first branch head with directory inventory optimization and the paired benchmark workflow.
-- Same benchmark source for both: pinned D1 driver SHA **754d91df193fc79ea431a87390a2d6dd768d7609**, following independent Codex correction of fixture writes and sibling-event snapshots.
+- Same benchmark source for both: pinned D1 driver SHA **71b3cb56258ed03929665dbf2596af839c09bde6**, including independent Codex corrections of fixture writes, sibling-event snapshots and the immutable fixture-manifest metadata.
 - CI/packaging: uses Agent E [PR #15](https://github.com/Chain-Frost/tuflow_validator/pull/15) Windows/Linux host test pattern and exact standard-library VSIX verifier. E1 remains unmerged; resolve overlapping verifier/CI files at integration, do not silently bypass checks.
 - No production code from deferred GeoPackage PR #9 or local SQLite workers. Ordinary .gpkg file-existence checks remain permitted.
 
