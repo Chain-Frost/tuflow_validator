@@ -265,7 +265,8 @@ function buildGraph(label, depth, width, copies) {
 }
 
 const small = create('small/runs/Root_v01.tcf',
-    'Geometry Control File == geom_v01.tgc\nRead GIS Mat == data/absent.shp\n!edit:A\n');
+    'Geometry Control File == geom_v01.tgc\nRead GIS Mat == data/absent.shp\n' +
+    'If Scenario == Storm\nRead GIS Mat == data/conditional_absent.shp\nEnd If\n!edit:A\n');
 const child = create('small/runs/geom_v01.tgc',
     'Read GIS Mat == data/present.gpkg\n! child:A\n');
 create('small/runs/geom_v02.tgc', '! newer version\n');
@@ -279,7 +280,7 @@ for (let i = 0; i < 24; i++) {
     contextLines.push('Read File == shared.trd');
 }
 const contextRoot = create('contexts/runs/Context_v01.tcf', contextLines.join('\n') + '\n');
-create('contexts/runs/shared.trd', 'Read GIS Mat == <<Target>>\n');
+create('contexts/runs/shared.trd', 'Read GIS Mat == <<Target>>\nRead GIS Mat == data/<<~s1~>>.gpkg\n');
 create('contexts/runs/data/present.shp', '');
 const deepRoot = path.join(directory, buildGraph('deep', 48, 0, 2));
 const wideRoot = path.join(directory, buildGraph('wide', 0, 120, 32));
@@ -341,6 +342,8 @@ try {
     roots.push(baseDoc);
     report.results.firstAnalysis = { ...one(() => sampleAnalysis(baseDoc)), type: 'single non-repeated trial' };
     requireMissing('firstAnalysis');
+    assert.ok(snapshot().rows.some(row => row.includes('File not found: data/conditional_absent.shp')),
+        'Concretely missing conditional input must remain a missing-file diagnostic');
     report.results.warmAnalysis = measure(() => sampleAnalysis(baseDoc));
     let edit = false;
     report.results.singleCharacterEdit = measure(() => {
@@ -391,6 +394,10 @@ try {
         const measurements = measure(() => sampleAnalysis(doc));
         report.results[name] = measurements;
         requireMissing(name);
+        if (name === 'repeatedIncludeDifferentVariables') {
+            assert.ok(!snapshot().rows.some(row => row.includes('File not found: data/<<~s1~>>.gpkg')),
+                'Runtime scenario tokens must not be guessed as missing files');
+        }
         assert.equal(new Set(measurements.trials.map(t => t.diagnosticSignature)).size, 1,
             name + ' must produce deterministic diagnostics across repeated runs');
         closeDocument(doc);
