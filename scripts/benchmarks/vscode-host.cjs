@@ -133,6 +133,12 @@ module.exports.run = async function run() {
             'No GeoPackage catalog or SQLite contents are opened.'
         ]
     };
+    const closeEvents = [];
+    const closeSubscription = vscode.workspace.onDidCloseTextDocument(doc => {
+        if (path.normalize(doc.fileName).startsWith(path.normalize(root + path.sep))) {
+            closeEvents.push(path.relative(root, doc.fileName));
+        }
+    });
     const file = (relative, contents) => {
         const p = path.join(root, relative);
         fs.mkdirSync(path.dirname(p), { recursive: true });
@@ -222,21 +228,36 @@ module.exports.run = async function run() {
         report.results.totalCpuSystemMs = round(cpu.system / 1000);
         report.results.rssBeforeBytes = beforeRss;
         report.results.rssAfterBytes = process.memoryUsage().rss;
+        // Dirty fixture editors can prompt instead of closing in a headless host.
+        // Save ONLY the disposable fixture documents before measuring disposal.
+        if (!(await rootDoc.save()) || !(await childDoc.save())) {
+            throw new Error('Could not save disposable benchmark documents before closure');
+        }
+        await pause(350);
         await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-        await pause(1100);
+        await pause(1300);
         const after = require(path.join(ext.extensionPath, 'out', 'diagnostics.js'))
             .getTrackedDependencyPaths();
         report.observations.afterDisposal = {
             dependencyPaths: after.size,
             logicalWatcherDirectories: new Set([...after].map(p => path.dirname(p))).size,
             activeHandlesProxy: handleCount(),
-            linuxFdCount: fdCount()
+            linuxFdCount: fdCount(),
+            closeEvents,
+            rootDocumentIsClosed: rootDoc.isClosed,
+            openFixtureDocuments: vscode.workspace.textDocuments
+                .filter(d => path.normalize(d.fileName).startsWith(path.normalize(root + path.sep)))
+                .map(d => ({ file: path.relative(root, d.fileName), isDirty: d.isDirty, isClosed: d.isClosed })),
+            visibleFixtureEditors: vscode.window.visibleTextEditors
+                .filter(e => path.normalize(e.document.fileName).startsWith(path.normalize(root + path.sep)))
+                .map(e => path.relative(root, e.document.fileName))
         };
     } catch (err) {
         exception = err;
         report.failure = String(err?.stack || err);
     } finally {
         if (heartbeat) clearInterval(heartbeat);
+        closeSubscription.dispose();
         try { await vscode.commands.executeCommand('workbench.action.closeAllEditors'); }
         catch { /* cleanup best effort */ }
         fs.rmSync(root, { recursive: true, force: true });
