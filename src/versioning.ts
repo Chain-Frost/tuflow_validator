@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { getConfiguredLatestVersionChecksEnabled } from './config';
 import { LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
 import { extractPathCandidates, getInputFileRole, isControlTextInput, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey } from './pathParsing';
-import { readControlTextSnapshot } from './io';
+import { ControlTextReader, pathIdentity, readControlTextSnapshot } from './io';
 import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 
@@ -16,6 +16,10 @@ export interface LatestCheckContext {
     tcfFilesByFolder: Map<string, string[]>;
     /** Set of control files that are referenced by the "latest" .tcf file in their respective folders. */
     latestTcfReferencedControls: Set<string>;
+    /** Includes every latest-TCF graph source, including clean and missing references. */
+    discoveryPaths: Set<string>;
+    /** Directories whose .tcf listing determines which run files are latest. */
+    tcfSearchFolders: Set<string>;
 }
 
 type LatestVersionStatus = 'no-version' | 'latest' | 'not-latest';
@@ -42,22 +46,29 @@ interface LatestVersionResult {
  * @param document - The current document used to determine which folder to scan.
  * @returns The populated LatestCheckContext.
  */
-export function buildLatestCheckContext(document: vscode.TextDocument): LatestCheckContext {
-    if (!getConfiguredLatestVersionChecksEnabled()) {
-        return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
-    }
-
-    if (path.extname(document.fileName).toLowerCase() !== '.tcf') {
-        return { tcfFilesByFolder: new Map(), latestTcfReferencedControls: new Set() };
-    }
-
+export function buildLatestCheckContext(
+    document: vscode.TextDocument,
+    readText: ControlTextReader = readControlTextSnapshot
+): LatestCheckContext {
     const tcfFilesByFolder = new Map<string, string[]>();
-    collectTcfFilesInFolder(path.dirname(document.fileName), tcfFilesByFolder);
+    const latestTcfReferencedControls = new Set<string>();
+    const discoveryPaths = new Set<string>();
+    const tcfSearchFolders = new Set<string>();
+    const context = { tcfFilesByFolder, latestTcfReferencedControls, discoveryPaths, tcfSearchFolders };
 
+    if (!getConfiguredLatestVersionChecksEnabled() ||
+        path.extname(document.fileName).toLowerCase() !== '.tcf') {
+        return context;
+    }
+
+    const directory = path.dirname(document.fileName);
+    tcfSearchFolders.add(pathIdentity(directory));
+    collectTcfFilesInFolder(directory, tcfFilesByFolder);
     const latestTcfs = collectLatestTcfFiles(tcfFilesByFolder);
-    const latestTcfReferencedControls = collectReferencedControlFilesFromTcfs(latestTcfs);
-
-    return { tcfFilesByFolder, latestTcfReferencedControls };
+    context.latestTcfReferencedControls = collectReferencedControlFilesFromTcfs(
+        latestTcfs, readText, discoveryPaths
+    );
+    return context;
 }
 
 /**
@@ -127,17 +138,23 @@ function collectLatestTcfFiles(tcfFilesByFolder: Map<string, string[]>): string[
  * @param tcfFiles - List of TCF file paths.
  * @returns Set of referenced file paths.
  */
-function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> {
+function collectReferencedControlFilesFromTcfs(
+    tcfFiles: string[],
+    readText: ControlTextReader,
+    discoveryPaths: Set<string>
+): Set<string> {
     const referenced = new Set<string>();
 
     for (const tcfFile of tcfFiles) {
-        const contents = readControlTextSnapshot(tcfFile);
+        discoveryPaths.add(pathIdentity(tcfFile));
+        const contents = readText(tcfFile);
         if (contents === null) {
             continue;
         }
         collectReferencedControlFiles(
             tcfFile, contents, referenced, new Set<string>(),
-            path.dirname(tcfFile), new Map<string, string>()
+            path.dirname(tcfFile), new Map<string, string>(),
+            readText, discoveryPaths
         );
     }
 
@@ -156,6 +173,8 @@ function collectReferencedControlFiles(
     visited: Set<string>,
     sourceTcfDirectory: string,
     variables: Map<string, string>,
+    readText: ControlTextReader,
+    discoveryPaths: Set<string>,
     inheritedConditional = false
 ): void {
     const canonical = path.normalize(filePath);
@@ -199,12 +218,13 @@ function collectReferencedControlFiles(
                 continue;
             }
             const resolved = path.normalize(resolvePath(base, expanded));
+            discoveryPaths.add(pathIdentity(resolved));
             if (!fs.existsSync(resolved)) {
                 continue;
             }
             // Track nested command text by input role, regardless of suffix.
             referenced.add(resolved);
-            const nested = readControlTextSnapshot(resolved);
+            const nested = readText(resolved);
             if (nested !== null) {
                 const childConditional = inheritedConditional || conditionalDepth > 0;
                 const childVariables = childConditional ? new Map(variables) : variables;
@@ -212,7 +232,8 @@ function collectReferencedControlFiles(
                     ? path.dirname(resolved) : sourceTcfDirectory;
                 collectReferencedControlFiles(
                     resolved, nested, referenced, visited,
-                    childTcfDirectory, childVariables, childConditional
+                    childTcfDirectory, childVariables, readText, discoveryPaths,
+                    childConditional
                 );
             }
         }
@@ -332,6 +353,27 @@ function filterReferencedControlCandidates(
     }
 
     return candidates;
+}
+
+/**
+ * True only for a same-directory, same-extension sibling in the *existing*
+ * filename version series. Reuses the current rightmost-number rule unchanged.
+ * Used to distinguish relevant directory events from unrelated file churn.
+ */
+export function isVersionSeriesCandidate(referencePath: string, changedPath: string): boolean {
+    if (pathIdentity(path.dirname(referencePath)) !== pathIdentity(path.dirname(changedPath))) {
+        return false;
+    }
+    const ext = path.extname(referencePath).toLowerCase();
+    if (path.extname(changedPath).toLowerCase() !== ext) {
+        return false;
+    }
+    const referenceName = path.basename(referencePath, ext).toLowerCase();
+    const changedName = path.basename(changedPath, path.extname(changedPath)).toLowerCase();
+    const referenceMatch = getRightmostVersionMatch(referenceName);
+    const changedMatch = getRightmostVersionMatch(changedName);
+    return referenceMatch !== null && changedMatch !== null &&
+        buildVersionPattern(referenceName, referenceMatch) === buildVersionPattern(changedName, changedMatch);
 }
 
 function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): LatestVersionResult {
