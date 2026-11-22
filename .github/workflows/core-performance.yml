@@ -106,11 +106,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - name: Check out Agent B exact unmerged source
-        uses: actions/checkout@v4
-        with:
-          ref: 889d5e2e1951fe7de6edc187ea4508e6037d2179
-          path: candidate-b
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -128,6 +123,11 @@ jobs:
           TPV_BENCHMARK_SAMPLES: '19'
           TPV_STORAGE_LABEL: 'GitHub local temp; paired same runner with Agent B'
         run: node scripts/benchmarks/core-baseline.cjs
+      - name: Check out Agent B exact unmerged source
+        uses: actions/checkout@v4
+        with:
+          ref: 889d5e2e1951fe7de6edc187ea4508e6037d2179
+          path: candidate-b
       - name: Bring only the D1 benchmark driver into unmodified Agent B checkout
         run: |
           mkdir -p candidate-b/scripts/benchmarks
