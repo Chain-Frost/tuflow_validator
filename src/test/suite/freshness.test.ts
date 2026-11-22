@@ -5,6 +5,8 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
 import { getTrackedDependencyPaths, updateDiagnosticsForChangedPath } from '../../diagnostics';
+import { pathIdentity } from '../../io';
+import { isVersionSeriesCandidate } from '../../versioning';
 
 const outdated = (uri: vscode.Uri): vscode.Diagnostic[] =>
     vscode.languages.getDiagnostics(uri).filter(d =>
@@ -32,7 +34,7 @@ suite('Issue #3 freshness regressions', function () {
             const doc = await vscode.workspace.openTextDocument(root);
             await vscode.window.showTextDocument(doc);
             await delay(1100); // extension's directory watcher has been reconciled
-            assert.ok(getTrackedDependencyPaths().has(path.normalize(original)));
+            assert.ok(getTrackedDependencyPaths().has(pathIdentity(original)));
             assert.strictEqual(outdated(doc.uri).length, 0);
 
             fs.writeFileSync(newer, '! new sibling without a model reference\n');
@@ -94,6 +96,124 @@ suite('Issue #3 freshness regressions', function () {
             }
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
             fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    test('dirty plaintext Read File contents update parents, save and disk events', async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-fresh-inline-'));
+        const rootPath = path.join(dir, 'Run_v01.tcf');
+        const childPath = path.join(dir, 'include.data');
+        const existingPath = path.join(dir, 'existing.shp');
+        fs.writeFileSync(rootPath, 'Read File == include.data\n');
+        fs.writeFileSync(childPath, 'Read GIS BC == missing.shp\n');
+        fs.writeFileSync(existingPath, '');
+
+        let child: vscode.TextDocument | undefined;
+        try {
+            const root = await vscode.workspace.openTextDocument(rootPath);
+            await vscode.window.showTextDocument(root);
+            await waitFor(() => vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'missing original inline error summary');
+
+            child = await vscode.workspace.openTextDocument(childPath);
+            await vscode.window.showTextDocument(child);
+            assert.ok(getTrackedDependencyPaths().has(pathIdentity(childPath)),
+                'plaintext include is a root dependency despite its non-control suffix');
+            const edit = new vscode.WorkspaceEdit();
+            edit.replace(child.uri,
+                new vscode.Range(child.positionAt(0), child.positionAt(child.getText().length)),
+                'Read GIS BC == existing.shp\n');
+            assert.strictEqual(await vscode.workspace.applyEdit(edit), true);
+            await waitFor(() => !vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'dirty plaintext include did not clear parent');
+            assert.strictEqual(await child.save(), true);
+
+            // The previously clean path is still tracked without a diagnostic.
+            await delay(750);
+            assert.ok(getTrackedDependencyPaths().has(pathIdentity(existingPath)));
+            fs.unlinkSync(existingPath);
+            await waitFor(() => vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'deleting a clean input did not update parent');
+            fs.writeFileSync(existingPath, '');
+            await waitFor(() => !vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'recreating the input did not clear parent');
+        } finally {
+            if (child?.isDirty) {
+                await child.save();
+            }
+            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    test('clean included child edited on disk invalidates its parent', async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-fresh-clean-'));
+        const rootPath = path.join(dir, 'Run_v01.tcf');
+        const childPath = path.join(dir, 'geom_v01.tgc');
+        fs.writeFileSync(rootPath, 'Geometry Control File == geom_v01.tgc\n');
+        fs.writeFileSync(childPath, '! no errors\n');
+        try {
+            const root = await vscode.workspace.openTextDocument(rootPath);
+            await vscode.window.showTextDocument(root);
+            await delay(1000);
+            assert.ok(getTrackedDependencyPaths().has(pathIdentity(childPath)));
+            fs.writeFileSync(childPath, 'Read GIS BC == missing.shp\n');
+            await waitFor(() => vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'clean included child change was not tracked');
+            fs.writeFileSync(childPath, '! restored\n');
+            await waitFor(() => !vscode.languages.getDiagnostics(root.uri).some(d =>
+                d.message.includes('Referenced file has')), 'restored child still has parent summary');
+        } finally {
+            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    test('shared children keep their diagnostics when one root closes', async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-fresh-shared-'));
+        const rootAPath = path.join(dir, 'RunA_v01.tcf');
+        const rootBPath = path.join(dir, 'RunB_v01.tcf');
+        const commonPath = path.join(dir, 'geom_v01.tgc');
+        const newerPath = path.join(dir, 'geom_v02.tgc');
+        fs.writeFileSync(rootAPath, 'Geometry Control File == geom_v01.tgc\n');
+        fs.writeFileSync(rootBPath, 'Geometry Control File == geom_v01.tgc\n');
+        fs.writeFileSync(commonPath, '! shared\n');
+        try {
+            const a = await vscode.workspace.openTextDocument(rootAPath);
+            const b = await vscode.workspace.openTextDocument(rootBPath);
+            await vscode.window.showTextDocument(a);
+            await vscode.window.showTextDocument(b);
+            await delay(1100);
+            fs.writeFileSync(newerPath, '! newer\n');
+            await waitFor(() => outdated(a.uri).length > 0 && outdated(b.uri).length > 0,
+                'shared version-sibling event did not update both roots');
+
+            await vscode.window.showTextDocument(a);
+            await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+            await waitFor(() => outdated(a.uri).length === 0, 'closed root left stale diagnostics');
+            assert.ok(outdated(b.uri).length > 0, 'closing one root cleared the other owner');
+            fs.unlinkSync(newerPath);
+            await waitFor(() => outdated(b.uri).length === 0, 'remaining root lost watcher ownership');
+        } finally {
+            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    test('version-event matching retains existing series rules and separate Windows path identities', () => {
+        const p = (name: string): string => path.join('model', name);
+        assert.ok(isVersionSeriesCandidate(p('geom_v01.tgc'), p('geom_v02.tgc')));
+        assert.ok(!isVersionSeriesCandidate(p('geom_v01.tgc'), p('other_v02.tgc')));
+        assert.ok(!isVersionSeriesCandidate(p('geom_v01.tgc'), path.join('other', 'geom_v02.tgc')));
+        assert.ok(!isVersionSeriesCandidate(p('geom_v01.tgc'), p('geom_v02.shp')));
+        assert.ok(!isVersionSeriesCandidate(p('geom.tgc'), p('geom_v02.tgc')));
+
+        const mapped = pathIdentity('Z:\\models\\geom_v01.tgc');
+        const unc = pathIdentity('\\\\server\\share\\models\\geom_v01.tgc');
+        assert.notStrictEqual(mapped, unc, 'a drive mapping cannot be assumed to equal a UNC path');
+        if (process.platform === 'win32') {
+            assert.strictEqual(pathIdentity('C:\\MODELS\\GEOM_V01.TGC'),
+                pathIdentity('c:\\models\\geom_v01.tgc'));
         }
     });
 });
