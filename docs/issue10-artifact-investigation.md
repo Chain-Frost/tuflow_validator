@@ -38,3 +38,30 @@ A Linux real Extension Host is not a Windows local-machine test. Manual TextMate
 For an affected installation reporting 0.2.6, collect the VS Code version, extension IDs/versions, actual installed folder or VSIX SHA-256 and inspect its compiled out/pathParsing.js for the command-aware classifier. After verification, a locally built VSIX can be installed for testing via Extensions: Install from VSIX (followed by reload). An ordinary Marketplace update to version 0.2.6 is not proof of receiving the October fix. No publication or version bump is requested.
 
 Retain filename-version and scenario/event-token checks; missing concrete input paths are still errors even inside conditionals; unresolved runtime tokens remain unevaluated. Do not introduce GeoPackage PR #9 machinery, model-wide parameters, release selection, model runs or QGIS integration. Source classifier test ownership stays with Agent A; packaged end-to-end checks belong here. Repeat evidence on integrated A/B heads when available. Keep issue #10 open unless the full source/artifact question is resolved. This work is draft-only: no merge, publish, release or auth change.
+
+## Verified real Extension Host evidence — 2026-11-22
+
+Passed reference workflow: https://github.com/Chain-Frost/tuflow_validator/actions/runs/45039219599 (artifact: issue10-vsix-host-evidence-linux). It used actual VS Code **1.147.0** on Ubuntu Linux, not a mocked extension host.
+
+| Artifact or component | Exact identity | Verification |
+| --- | --- | --- |
+| Source-built Validator VSIX, this specific run | Chain-Frost.tuflow-path-validator 0.2.6, SHA-256 71cb1419754112a372c0b8ac381f3f08fb1c41053192904128ef6585e540e36e | Passed numeric, missing-input, code/range, Quick Fix, opt-in formatter and lifecycle probes |
+| Source-built compiled parser | SHA-256 72a2ae643678a1249a0c43b52ecf6d537004a872c5ceeb0f7603b2a77986e69a | Byte-identical to compiled source |
+| Public GitHub v0.2.6 VSIX | SHA-256 1b5f9803d2bdf306fc8f2a2b2d7da02dd06b8840a8ccb87e2988d19214555162 | Failed numeric: false File not found on 0.2, 0.1, as expected for negative control |
+| Public GitHub v0.2.6 compiled parser | SHA-256 120edb1b34012b3dda099b3781ac3f6efddece5cdbaea650db538b8ccddf2933 | Legacy heuristic; no command-aware allowlist |
+| Helper draft PR #12 | lmillard79.tuflow-helper 0.8.2, 8a3411f528e33e7f227d72ca8b5ad41172fefdb4 | Language registration and basic command completion passed; four broader Helper acceptance failures remain |
+| Other companions | Fr43nk.seito-openfile 2.3.3; usernamehw.errorlens 3.30.0 | Installed/activated in real host; UI file-open and decoration behaviour not manually tested |
+
+Actual ZIP hashes may change across separate builds with identical compiled JS because packaging includes metadata; record both the individual archive SHA and compiled parser SHA per run. Both old and corrected artifacts declare the same 0.2.6 version.
+
+**Scoped issue #10 statuses:** Validator-only current PASS; published release-only EXPECTED FAILURE (negative control); Helper-only PASS for absence of Validator diagnostics; both PASS; both with explicit associations PASS; both plus seito/Error Lens PASS for scoped checks. In all profiles, supported .tcf/.tgc/.tbc/.ecf/.tef/.trd/.qcf files had effective languageId tuflow, including an already-open TCF on host startup. Close/reopen retained one missing-input diagnostic without duplication. Missing TCF, missing GIS candidates and a missing Read File target under If Scenario all had one current TPV001 from TUFLOW Path Validator with correct operand range. Quick Fix titles included Ignore this line and Ignore entire file. Scalar, comma-separated viscosity and unknown-command false positives were absent in the current artifact.
+
+**Formatting:** With enableIfStatementFormatting=false, formatting provided no edits; after enabling, one edit was observed on deliberately misindented control text. Other tested settings: diagnosticLevel=hint, enableLatestVersionChecks=true, enableIfStatementChecks=true. Explicit-associations profile assigned the seven control extensions to tuflow.
+
+**Independent Helper acceptance FAILURES:** multiword-command-hover (empty), no-cross-file-command-leakage (TGC command in TEF completion), no-generic-completions-in-comment and no-universal-gis-values. These four failed in Helper-only and combined profiles, and were reported to Helper PRs #12 and #16. They prevent a claim that all Helper services pass, despite the scoped Validator co-installation checks passing.
+
+**Untested or blocked:** manual seito-openfile cursor navigation, Error Lens visual rendering, TextMate theme/scopes, user's actual installed/Marketplace compiled bytes, Windows Extension Host and SMB/UNC. Windows source compilation and JS syntax checks passed, but are not Windows Extension Host proof.
+
+## A/B integration snapshot recheck
+
+The workflow also checks out B draft PR #21 on A2 PR #17 on A1 PR #14 as a separate read-only job, builds its exact source and compares packaged JS with its own compiled output, then reruns the same installed-artifact profiles. The audit accepts either the original command-aware allowlist or Agent A's getInputFileRole metadata. Each run records the actual stacked commit. An in-progress B draft snapshot is not final integration sign-off. No branch is merged or changed by this check.
