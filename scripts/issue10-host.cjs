@@ -23,7 +23,7 @@ const probes = {
         'Geometry Control File == issue10_missing.tgc',
         'If Scenario == issue10_format_probe',
         'Unknown Formatting Probe == value',
-        'End If'
+        'End If ! issue10 format probe'
     ],
     'geometry.tgc': [
         'Read GIS Z Shape == gis/issue10_missing_a.shp | gis/issue10_missing_b.shp'
