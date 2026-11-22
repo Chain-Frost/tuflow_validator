@@ -1,0 +1,114 @@
+name: Issue 10 - packaged VSIX and companion acceptance evidence
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/issue10-vsix-acceptance.yml'
+      - 'scripts/issue10-*.cjs'
+      - 'docs/issue10-artifact-investigation.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux-host:
+    name: Linux source/VSIX and real Extension Host comparison
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      VALIDATOR_BASE_SHA: 4a0282e93b979345374076fb0adc60c7faf6af99
+      HELPER12_SHA: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+      HELPER16_SHA: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+    steps:
+      - name: Checkout Validator from this PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout Helper PR 12 exact head (unmerged)
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+          path: _helper12
+
+      - name: Checkout Helper PR 16 acceptance assets (unmerged)
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+          path: _helper16
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Validate acceptance scripts and Helper fixtures
+        run: |
+          node --check scripts/issue10-vsix-audit.cjs
+          node --check scripts/issue10-host.cjs
+          node _helper16/test/acceptance/check-fixtures.mjs
+
+      - name: Build exactly checked-out Validator source
+        run: |
+          npm ci
+          npm run compile
+          mkdir -p issue10-dist issue10-evidence
+          ./node_modules/.bin/vsce package --no-dependencies --out "$PWD/issue10-dist/validator-built.vsix"
+
+      - name: Package unmerged Helper PR 12, without changing its branch
+        run: |
+          npm ci --prefix _helper12
+          npm run compile --prefix _helper12
+          cd _helper12
+          ../node_modules/.bin/vsce package --no-dependencies --out "$GITHUB_WORKSPACE/issue10-dist/helper12.vsix"
+
+      - name: Download published GitHub release VSIX v0.2.6
+        run: |
+          if ! curl --fail --location --show-error --silent --retry 3 \
+              "https://github.com/Chain-Frost/tuflow_validator/releases/download/v0.2.6/tuflow-path-validator-0.2.6.vsix" \
+              --output issue10-dist/release-v0.2.6.vsix; then
+            rm -f issue10-dist/release-v0.2.6.vsix
+            echo "Published VSIX unavailable: mark historical artifact inspection/host run blocked."
+          fi
+
+      - name: Audit packaged compiled output, versions and SHA-256 hashes
+        run: |
+          node scripts/issue10-vsix-audit.cjs \
+            issue10-dist/validator-built.vsix \
+            issue10-dist/release-v0.2.6.vsix
+
+      - name: Run real isolated VS Code Extension Host profiles using Helper PR 16
+        run: |
+          xvfb-run -a node scripts/issue10-host.cjs \
+            issue10-dist/validator-built.vsix \
+            issue10-dist/release-v0.2.6.vsix \
+            issue10-dist/helper12.vsix \
+            _helper16
+
+      - name: Upload test reports and artifact provenance only (no VSIX binaries)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue10-vsix-host-evidence-linux
+          path: |
+            issue10-evidence/*.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  windows-static:
+    name: Windows compile only (not Windows Extension Host)
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: node --check scripts/issue10-vsix-audit.cjs
+      - run: node --check scripts/issue10-host.cjs
