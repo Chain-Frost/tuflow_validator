@@ -169,7 +169,7 @@ suite('Issue #3 freshness regressions', function () {
         }
     });
 
-    test('shared children survive close/reopen without stale owners', async () => {
+    test('shared roots retain independent contributions and dispose unused directories', async () => {
         const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-fresh-shared-'));
         const rootAPath = path.join(dir, 'RunA_v01.tcf');
         const rootBPath = path.join(dir, 'RunB_v01.tcf');
@@ -188,34 +188,50 @@ suite('Issue #3 freshness regressions', function () {
             await waitFor(() => outdated(a.uri).length > 0 && outdated(b.uri).length > 0,
                 'shared version-sibling event did not update both roots');
 
-            // Closing an editor tab does not guarantee onDidCloseTextDocument:
-            // VS Code may keep the document open. Close both document roots
-            // before checking the actual onDidClose ownership cleanup.
-            const closedUris = new Set<string>();
-            const closeListener = vscode.workspace.onDidCloseTextDocument(d => closedUris.add(d.uri.toString()));
-            await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-            await delay(400);
-            console.log('FRESHNESS_CLOSE_OBSERVATION', JSON.stringify({
-                aClosed: closedUris.has(a.uri.toString()),
-                bClosed: closedUris.has(b.uri.toString()),
-                aLoaded: vscode.workspace.textDocuments.some(d => d.uri.toString() === a.uri.toString()),
-                bLoaded: vscode.workspace.textDocuments.some(d => d.uri.toString() === b.uri.toString()),
-                aVisible: vscode.window.visibleTextEditors.some(e => e.document.uri.toString() === a.uri.toString()),
-                bVisible: vscode.window.visibleTextEditors.some(e => e.document.uri.toString() === b.uri.toString()),
-                aDiagnostics: outdated(a.uri).length,
-                bDiagnostics: outdated(b.uri).length
-            }));
-            closeListener.dispose();
-            await waitFor(() => outdated(a.uri).length === 0 && outdated(b.uri).length === 0,
-                'closed document roots left stale diagnostics');
-            const reopened = await vscode.workspace.openTextDocument(rootBPath);
-            await vscode.window.showTextDocument(reopened);
-            await waitFor(() => outdated(reopened.uri).length > 0,
-                'reopening a shared-root document lost its latest-version warning');
-            await delay(750); // watcher re-created for the surviving root
-            fs.unlinkSync(newerPath);
-            await waitFor(() => outdated(reopened.uri).length === 0,
-                'reopened root lost the shared directory watcher');
+            // VS Code can keep text documents loaded after all editor tabs
+            // close (verified in the integration host). Exercise the actual
+            // root-removal handler in an isolated diagnostics module so the
+            // extension's live diagnostic collection remains untouched.
+            const moduleId = require.resolve('../../diagnostics');
+            const originalModule = require.cache[moduleId];
+            delete require.cache[moduleId];
+            const isolated = (() => {
+                try {
+                    return require('../../diagnostics') as typeof import('../../diagnostics');
+                } finally {
+                    if (originalModule) {
+                        require.cache[moduleId] = originalModule;
+                    }
+                }
+            })();
+            const collection = vscode.languages.createDiagnosticCollection('tpv-ownership-regression');
+            const hasOutdatedInCollection = (uri: vscode.Uri): boolean =>
+                (collection.get(uri) ?? []).some(d => d.message.includes('not the latest version'));
+
+            try {
+                isolated.updateDiagnostics(a, collection);
+                isolated.updateDiagnostics(b, collection);
+                assert.ok(hasOutdatedInCollection(a.uri) && hasOutdatedInCollection(b.uri));
+                isolated.removeDiagnosticsForDocument(a, collection);
+                assert.strictEqual(collection.get(a.uri), undefined,
+                    'removing one root must remove only its own diagnostic contribution');
+                assert.ok(hasOutdatedInCollection(b.uri), 'shared root B must retain its warning');
+                assert.ok(isolated.getTrackedWatchDirectories().has(pathIdentity(dir)),
+                    'root B still owns the directory after root A is removed');
+
+                fs.unlinkSync(newerPath);
+                assert.strictEqual(isolated.updateDiagnosticsForChangedPath(newerPath, collection), true);
+                assert.ok(!hasOutdatedInCollection(b.uri), 'surviving root did not update on deletion');
+                assert.strictEqual(collection.get(a.uri), undefined, 'removed root was resurrected');
+                await waitFor(() => outdated(a.uri).length === 0 && outdated(b.uri).length === 0,
+                    'real shared watcher did not clear both open roots');
+
+                isolated.removeDiagnosticsForDocument(b, collection);
+                assert.ok(!isolated.getTrackedWatchDirectories().has(pathIdentity(dir)),
+                    'last root removal left an obsolete directory subscription');
+            } finally {
+                collection.dispose();
+            }
         } finally {
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
             fs.rmSync(dir, { recursive: true, force: true });
