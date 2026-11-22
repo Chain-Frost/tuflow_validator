@@ -422,15 +422,16 @@ function analyzeFile(
     readText: ControlTextReader = readControlTextSnapshot
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
+    const fileKey = pathIdentity(normalizedPath);
     if (getConfiguredLatestVersionChecksEnabled()) {
         versionSearchPaths.add(normalizedPath);
     }
     // Repeated includes may use different variable values. Only stop cycles
     // along the active recursion path; don't memoise solely by filename.
-    if (recursionStack.has(normalizedPath)) {
+    if (recursionStack.has(fileKey)) {
         return [];
     }
-    recursionStack.add(normalizedPath);
+    recursionStack.add(fileKey);
     const diagnostics: vscode.Diagnostic[] = [];
 
     const lines = contents.split(/\r?\n/);
@@ -460,8 +461,8 @@ function analyzeFile(
             if (commentContent.startsWith('tpv-ignore-file')) {
                 // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
                 diagnostics.length = 0;
-                visited.set(normalizedPath, []);
-                recursionStack.delete(normalizedPath);
+                visited.set(fileKey, []);
+                recursionStack.delete(fileKey);
                 return [];
             }
             continue;
@@ -591,7 +592,7 @@ function analyzeFile(
         }
     }
 
-    const combined = visited.get(normalizedPath) ?? [];
+    const combined = visited.get(fileKey) ?? [];
     const seen = new Set(combined.map(diagnosticFingerprint));
     for (const diagnostic of diagnostics) {
         const key = diagnosticFingerprint(diagnostic);
@@ -600,8 +601,8 @@ function analyzeFile(
             seen.add(key);
         }
     }
-    visited.set(normalizedPath, combined);
-    recursionStack.delete(normalizedPath);
+    visited.set(fileKey, combined);
+    recursionStack.delete(fileKey);
     return diagnostics;
 }
 
