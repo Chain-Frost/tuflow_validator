@@ -8,6 +8,7 @@ import { TPV_CODES } from '../../diagnosticCodes';
 // Investigation-only observational probe. No production behavior change.
 // Do not turn today's spurious diagnostics into a permanent passing assertion.
 type Fixture = { base: string; a: string; b: string; trd: string; nested: string };
+const closeEvents: string[] = [];
 
 function makeFixture(): Fixture {
     const base = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-f08-'));
@@ -64,7 +65,9 @@ function snapshot(stage: string, f: Fixture): void {
     console.log('F08_SNAPSHOT ' + JSON.stringify({
         stage,
         openDocuments: vscode.workspace.textDocuments.map(d => d.fileName)
-            .filter(file => file.startsWith(f.base)),
+            .filter(file => file.toLowerCase().includes('tpv-f08-')),
+        openTabs: vscode.window.tabGroups.all.flatMap(group => group.tabs.map(tab => tab.label)),
+        documentCloseEvents: [...closeEvents],
         resolution: {
             a: path.resolve(path.dirname(f.a), 'assets/edited_present.shp'),
             b: path.resolve(path.dirname(f.b), 'assets/edited_present.shp'),
@@ -94,9 +97,9 @@ async function open(file: string): Promise<vscode.TextDocument> {
     await vscode.window.showTextDocument(document, { preview: false });
     return document;
 }
-async function close(file: string): Promise<void> {
-    const document = vscode.workspace.textDocuments.find(d => d.fileName === file);
-    assert.ok(document, 'Open document not found: ' + file);
+async function close(document: vscode.TextDocument): Promise<void> {
+    // Use the exact document instance, not a string match: on Windows the
+    // document URI can canonicalize a temporary 8.3 path to a long path.
     await vscode.window.showTextDocument(document, { preview: false });
     await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
 }
@@ -107,6 +110,12 @@ suite('F08 investigation — included TRD opened as independent root', function 
         const f = makeFixture();
         const configuration = vscode.workspace.getConfiguration('tuflowValidator');
         const prior = configuration.get<string>('diagnosticLevel');
+        let isolated: Fixture | undefined;
+        const closeEventListener = vscode.workspace.onDidCloseTextDocument(document => {
+            if (document.fileName.toLowerCase().includes('tpv-f08-')) {
+                closeEvents.push(document.fileName);
+            }
+        });
         console.log('F08_ENV ' + JSON.stringify({
             vscode: vscode.version, node: process.version, platform: process.platform,
             arch: process.arch, ciSha: process.env.GITHUB_SHA ?? null,
@@ -146,17 +155,19 @@ suite('F08 investigation — included TRD opened as independent root', function 
             await delay(450);
             snapshot('04_TRD_SAVED', f);
 
-            await open(f.nested);
+            const nested = await open(f.nested);
             await delay(450);
             snapshot('05_NESTED_OPEN', f);
-            await close(f.nested);
+            await close(nested);
             await delay(450);
             snapshot('06_NESTED_CLOSED', f);
 
-            await close(f.trd);
-            await waitFor(() => !missing(f.trd, newPath), 'standalone TRD diagnostic removed');
+            await close(child);
+            await delay(650);
             assert.ok(missing(f.trd, 'assets\\missing.shp'));
-            snapshot('07_TRD_CLOSED_A_REMAINS', f);
+            // VS Code can retain a text document after its editor tab closes.
+            // Record tab state, document state and any TPV001 separately.
+            snapshot('07_TRD_TAB_CLOSED_A_REMAINS', f);
 
             const b = await open(f.b);
             await waitFor(() => missing(f.trd, '<<LOCAL_SHAPE>>'), 'root B distinct missing static variable');
@@ -166,31 +177,38 @@ suite('F08 investigation — included TRD opened as independent root', function 
             await delay(500);
             snapshot('09_A_B_TRD_OPEN', f);
 
-            await close(b.fileName);
-            await waitFor(() => !missing(f.trd, '<<LOCAL_SHAPE>>'),
-                'root B context removed without losing root A');
+            await close(b);
+            await delay(650);
             assert.ok(missing(f.trd, 'assets\\missing.shp'));
-            snapshot('10_B_CLOSED_A_REMAINS', f);
+            snapshot('10_B_TAB_CLOSED_A_REMAINS', f);
 
-            await close(a.fileName);
-            await delay(450);
-            snapshot('11_BOTH_PARENTS_CLOSED_TRD_OPEN', f);
+            await close(a);
+            await delay(650);
+            snapshot('11_BOTH_PARENT_TABS_CLOSED_TRD_OPEN', f);
 
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
-            await waitFor(() => problems(f.trd).length === 0, 'all roots removed');
-            await open(f.trd);
-            await delay(500);
-            snapshot('12_FRESH_ORPHAN_TRD', f);
+            await delay(700);
+            snapshot('12_ALL_TABS_CLOSED', f);
+            // Use a distinct model directory to guarantee no parent from
+            // previous stages could have contributed to this orphan result.
+            isolated = makeFixture();
+            await open(isolated.trd);
+            await delay(550);
+            snapshot('13_FRESH_ORPHAN_TRD', isolated);
             console.log('F08_RESULT ' + JSON.stringify({
                 interpretation: 'Consult F08_SNAPSHOT logs. Observational only; no assertion of a defect or proposed fix.'
             }));
         } finally {
+            closeEventListener.dispose();
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
             if (prior !== undefined) {
                 await configuration.update('diagnosticLevel', prior, vscode.ConfigurationTarget.Global);
             }
             await delay(700);
             fs.rmSync(f.base, { recursive: true, force: true, maxRetries: 3, retryDelay: 200 });
+            if (isolated) {
+                fs.rmSync(isolated.base, { recursive: true, force: true, maxRetries: 3, retryDelay: 200 });
+            }
         }
     });
 });
