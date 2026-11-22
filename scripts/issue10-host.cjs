@@ -143,7 +143,7 @@ function check(report,entry,locations) {
             code:match.map(d=>d.code), source:match.map(d=>d.source)
         }];
     }));
-    const isOld = entry.origin==='published';
+    const isOld = entry.origin==='published' || entry.artifactKind === 'legacy';
     const missingPass = Object.values(positives).every(p=>p.count===1 && p.rangeCorrect &&
         (isOld || (p.code[0]==='TPV001' && p.source[0]==='TUFLOW Path Validator')));
     const unknownPass = missing('model.tcf',negativeLines[4]).length===0;
@@ -165,6 +165,7 @@ function check(report,entry,locations) {
         languagePass && reopenPass && formattingPass ? 'passed':'failed';
     return {
         name:entry.name,role:entry.role,origin:entry.origin,status,
+        artifactKind:entry.artifactKind || null, marketplaceArtifact:entry.marketplaceInfo || null,
         hostEvidence:true, vscode:report.environment?.vscodeVersion,
         extensionHostPid:report.environment?.extensionHostPid,
         installed:report.extensions, startup:report.issue10Startup,
@@ -197,6 +198,7 @@ async function main() {
     const entries = [
         {name:'validator-only-main',role:'validator-only',vsix:current,origin:'main'},
         {name:'validator-only-published',role:'validator-only',vsix:old,origin:'published'},
+        {name:'validator-only-marketplace',role:'validator-only',marketplaceValidator:true,origin:'marketplace'},
         {name:'helper-only',role:'helper-only',helper:true,origin:'main'},
         {name:'both',role:'combined',helper:true,vsix:current,origin:'main'},
         {name:'both-associations',role:'combined',helper:true,vsix:current,origin:'main',associations:true},
@@ -228,6 +230,7 @@ async function main() {
         fs.writeFileSync(path.join(user,'User','settings.json'),JSON.stringify(settings,null,2));
         const install = [
             ...(entry.vsix?[entry.vsix]:[]),
+            ...(entry.marketplaceValidator?['Chain-Frost.tuflow-path-validator']:[]),
             ...(entry.helper?[helper]:[]),
             ...(entry.thirdParty?['Fr43nk.seito-openfile','usernamehw.errorlens']:[])
         ];
@@ -246,6 +249,32 @@ async function main() {
             if (run.status!==0) {
                 blocker = 'Install failed: '+item+'; '+(run.stderr||run.error||run.stdout);
                 break;
+            }
+        }
+        if (entry.marketplaceValidator && !blocker) {
+            const found = fs.readdirSync(extensions,{withFileTypes:true}).find(x=>
+                x.isDirectory() && x.name.toLowerCase().startsWith('chain-frost.tuflow-path-validator-'));
+            if (!found) {
+                blocker = 'Marketplace installed extension folder is missing';
+            } else {
+                const installedRoot = path.join(extensions,found.name);
+                const parserFile = path.join(installedRoot,'out','pathParsing.js');
+                const manifest = JSON.parse(fs.readFileSync(path.join(installedRoot,'package.json'),'utf8'));
+                const installedParser = fs.existsSync(parserFile)?hashFile(parserFile):null;
+                const auditFile = path.join(evidence,'vsix-audit.json');
+                const audit = fs.existsSync(auditFile) ? JSON.parse(fs.readFileSync(auditFile,'utf8')) : null;
+                entry.artifactKind = installedParser === audit?.published.parserSha256 ? 'legacy' :
+                    installedParser === audit?.current.parserSha256 ? 'corrected' : 'unclassified';
+                entry.marketplaceInfo = {
+                    installedExtensionFolder:found.name,
+                    id:manifest.publisher+'.'+manifest.name,
+                    version:manifest.version,
+                    parserSha256:installedParser,
+                    comparedAgainstCurrentParserSha256:audit?.current.parserSha256 || null,
+                    comparedAgainstGitHubReleaseParserSha256:audit?.published.parserSha256 || null,
+                    classification:entry.artifactKind
+                };
+                save('marketplace-installed.json',entry.marketplaceInfo);
             }
         }
         if (blocker) {
@@ -281,6 +310,9 @@ async function main() {
         }
         const report = fs.existsSync(output)?JSON.parse(fs.readFileSync(output,'utf8')):null;
         const result = check(report,entry,helperRunner.locations);
+        if (entry.marketplaceValidator && entry.artifactKind === 'unclassified') {
+            result.status = 'unverified-unclassified';
+        }
         result.artifactSha256 = entry.vsix?hashFile(entry.vsix):null;
         result.helperVsixSha256 = entry.helper?hashFile(helper):null;
         result.runnerError = runnerError;
@@ -294,6 +326,8 @@ async function main() {
         quickFix:r.quickFixPass,helperChecksFailing:r.companionRunnerFailChecks
     })),null,2));
     const mainResult=summary.results.find(r=>r.name==='validator-only-main');
-    if (!mainResult || mainResult.status!=='passed') process.exitCode=1;
+    const failedScopeProfiles = summary.results.filter(r =>
+        r.status === 'failed' && r.name !== 'validator-only-marketplace');
+    if (!mainResult || mainResult.status!=='passed' || failedScopeProfiles.length > 0) process.exitCode=1;
 }
 main().catch(error=>{console.error(error.stack||String(error));process.exitCode=1;});
