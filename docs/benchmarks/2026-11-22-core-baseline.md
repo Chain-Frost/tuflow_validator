@@ -44,6 +44,28 @@ Linux synthetic 0.75 ms per fixture FS operation (N=9) raised wide-graph median/
 
 **Document/root disposal limitation:** The fake core adapter removed all fake root documents and returned to zero logical dependency paths. In the actual VS Code host, the command to close all visible editors left both benchmark documents in vscode.workspace.textDocuments with isClosed=false, no document-close events, and three tracked dependencies. Thus **the actual root-close/dispose path was not exercised** and this is not evidence of a resource leak. No native watcher count was obtained; file descriptors were 44 before/after visible-editor closure. Proper document/root disposal, settings invalidation, outstanding work and cancellation still require targeted tests.
 
+### Expanded Windows and Linux Extension Host evidence
+
+**Cross-platform host run:** [Actions run #45040894524](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45040894524), exact measured source **9fcf6278c6d2911b4212f67aee46fb5154cd6177**, local core and real Extension Host jobs passed on **both Windows and Linux**. Windows fixture teardown initially failed with a transient ENOTEMPTY error, then passed after bounded retry logic with documented **fixturesRemoved=true** in both host JSON reports. Full raw distributions, hashes and diagnostic snapshots are in the artifacts linked from that run. The subsequent module-observability clarification does not change production Validator behavior or its timing algorithm.
+
+| Host observation | Linux | Windows |
+|---|---:|---:|
+| VS Code | 1.147.0 | 1.147.0 |
+| Extension-host Node | 24.22.1 | 24.22.1 |
+| Initial diagnostic arrival (N=1) | 276.02 ms | 846.03 ms |
+| Root edit-to-diagnostic median / p95 (N=10) | 353.76 / 397.30 ms | 359.92 / 374.61 ms |
+| Included-child edit-to-diagnostic median / p95 (N=10) | 352.43 / 353.28 ms | 362.02 / 376.60 ms |
+| 120-child + 32-repeated-include host validation (N=1) | **161.03 ms** | **187.03 ms** |
+| 10 ms heartbeat scheduling delay during wide validation, maximum | **95.13 ms** | **122.10 ms** |
+
+The wide graph correctly produced **120 child-issue summary diagnostics** on each host. A single host-wide sample has no meaningful p95. Heartbeat jitter is a timer-delay proxy, not total editor frame blocking; its small N during the wide validation is explicitly recorded. Even so, these two actual Extension Host runs show significant uninterrupted work on the local wide fixture; this justifies investigating repeated synchronous directory work in the future D2 branch, subject to testing against B's latest source.
+
+Core wide-graph run at the same exact source: **Linux median/p95 46.89/58.50 ms; Windows 70.97/75.57 ms** (N=19 each), 305 synchronous reads, 576 exists checks and 121 directory enumerations. The Linux synthetic +0.75 ms/call wide median was **807.15 ms**. This remains a synthetic local fixture, not a representative UNC share.
+
+**Probe qualification:** Linux reported 244 dependency paths through a direct Node require() of the extension's diagnostics module, while Windows reported **zero despite confirmed live diagnostics**. An imported module may not share the active extension's module instance across host processes. The Windows zero therefore **cannot** establish that the active Validator has zero tracked dependencies/watchers. The additional probe records that uncertainty. The OS/native watcher count and actual document-disposal behavior are still unverified, and neither process-handle proxy can be equated to watcher count. Closing visible tabs did not cause a document-close event in either measured run. No actual memory or handle leak is established.
+
+**VSIX SHA-256:** Linux **c4a119388d662bc8acd3132cb72b6404f0695f7279f32e6b59198716ff85e449**; Windows **49ce658029cbe918667d628f02391f7c25dbf4c5996870617aaefe0ef7fae50d**. Both reported the same disposable core fixture manifest SHA-256 55a7a7a506948fc5317c00ce8dac5f24e86e739d15d04c07657de398c45f163d. The different VSIX archive hashes are actual separately packaged bytes on the two OSes and must not be silently treated as identical.
+
 ### Real mapped-drive/UNC handoff (not run)
 
 On a Windows machine with a known, writable, **disposable benchmarking folder** on a genuine SMB share or mapped drive, use the same repository revision and packages, and specify the fixture parent explicitly. The harness creates **only a new unique tpv-core-benchmark-* subdirectory** under this parent and deletes that subdirectory afterward. **Do not point it at a live model folder**; do not modify an existing model or GPKG.
@@ -120,9 +142,9 @@ For before/after comparisons, use equal source-based fixtures, identical sample 
 | Exact source revision, package hash and VSIX SHA-256 | Recorded above for completed Linux/Windows CI snapshot; raw artifact includes full hashes |
 | Local Linux/Windows core time and metadata-operation counts | Recorded above with CI raw trials; not real network qualification |
 | Synthetic filesystem latency sensitivity | Recorded above; **not network evidence** |
-| Cold VS Code activation and first diagnostic arrival | Single Linux host first-diagnostic proxy recorded; direct activation telemetry and Windows host still unmeasured |
-| Real editor event latency and extension-host heartbeat | Validator-only Linux host measured above; reuse Helper PR #16 for broader coexistence/editor profiles |
-| OS/native watcher count, actual open handles and outstanding work | Not established by logical dependencies or the Node handle proxy |
+| Cold VS Code activation and first diagnostic arrival | Single Linux and Windows first-diagnostic proxy recorded; direct activation telemetry and true cold disk still unmeasured |
+| Real editor event latency and extension-host heartbeat | Validator-only **Linux and Windows** host measured above; reuse Helper PR #16 for broader coexistence/editor profiles |
+| OS/native watcher count, actual open handles and outstanding work | Not established by logical dependencies or the Node handle proxy; Windows direct module-import probe is specifically unverified |
 | True cold-disk/cache-cleared results | Not measured; requires controlled machine, documented cache methodology |
 | Mapped-drive/UNC, representative shared model | **Unavailable; open**. Record actual share latency, environment and cache state when available |
 | Cleanup following editor/root closure, settings change and cancellation | Visible-editor close did not close VS Code documents; actual document-close/disposal, settings and cancellation remain unverified |
