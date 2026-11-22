@@ -43,7 +43,20 @@ export function isLikelyFile(value: string): boolean {
  */
 export type CommandValueKind = 'input-file' | 'output' | 'non-file' | 'unknown';
 
-const INPUT_FILE_COMMANDS = new Set([
+/**
+ * File-consuming TUFLOW commands are classified by their operand's purpose,
+ * not by the target filename extension. In particular, Read File introduces
+ * inline control text with *any* suffix, while GIS, database and SWMM files
+ * are data even when their suffix resembles a control file.
+ *
+ * Source for the added commands:
+ * https://docs.tuflow.com/classic-hpc/manual/2026.3/80-AppendicesA-TCFCommands.html
+ * https://docs.tuflow.com/classic-hpc/manual/2026.3/89-AppendicesJ-ADCFCommands.html
+ * https://docs.tuflow.com/classic-hpc/manual/2026.3/88-AppendicesI-TSCFCommands.html
+ */
+export type InputFileRole = 'data-file' | 'control-file' | 'inline-read-file';
+
+const CONTROL_FILE_COMMANDS = new Set([
     'GEOMETRY CONTROL FILE',
     'BC CONTROL FILE',
     'QUADTREE CONTROL FILE',
@@ -53,13 +66,19 @@ const INPUT_FILE_COMMANDS = new Set([
     'OPERATIONAL CONTROL FILE',
     'SWMM CONTROL FILE',
     'ADVECTION DISPERSION CONTROL FILE',
+    'AD CONTROL FILE',
     'BC EVENT FILE',
     'ESTRY CONTROL FILE',
-    'ESTRY EVENT FILE',
-    'READ FILE',
+    'ESTRY EVENT FILE'
+]);
+
+const DATA_FILE_COMMANDS = new Set([
     'READ MATERIALS FILE',
     'READ SOILS FILE',
     'BC DATABASE',
+    'AD BC DATABASE',
+    'AD GLOBAL DATABASE',
+    'READ SWMM',
     'MATERIALS FILE',
     'SPATIAL DATABASE',
     'CALIBRATION POINTS GIS FILE',
@@ -70,6 +89,30 @@ const INPUT_FILE_COMMANDS = new Set([
     'ASC PROJECTION'
 ]);
 
+/** Only recognised file operands are eligible for existence checking. */
+export function getInputFileRole(keyText: string): InputFileRole | null {
+    const key = normalizeKey(keyText);
+    if (key === 'READ FILE') {
+        return 'inline-read-file';
+    }
+    if (CONTROL_FILE_COMMANDS.has(key)) {
+        return 'control-file';
+    }
+    if (
+        DATA_FILE_COMMANDS.has(key) ||
+        /^READ\s+(?:GIS|GRID|TIN|MIF|SHP|GPKG|ROWCOL|MID)\s+\S/.test(key) ||
+        /^READ\s+.+\s+FILE$/.test(key)
+    ) {
+        return 'data-file';
+    }
+    return null;
+}
+
+/** A control-file reference or Read File is TUFLOW command text. */
+export function isControlTextInput(role: InputFileRole): boolean {
+    return role === 'control-file' || role === 'inline-read-file';
+}
+
 /**
  * Only classify known input-file commands as requiring an existing path.
  * Leave event/scenario predicates to TUFLOW; their values come from runtime.
@@ -77,11 +120,7 @@ const INPUT_FILE_COMMANDS = new Set([
 export function classifyCommandValue(keyText: string): CommandValueKind {
     const key = normalizeKey(keyText);
 
-    if (
-        INPUT_FILE_COMMANDS.has(key) ||
-        /^READ\s+(?:GIS|GRID|TIN|MIF|SHP|GPKG|ROWCOL|MID)\s+\S/.test(key) ||
-        /^READ\s+.+\s+FILE$/.test(key)
-    ) {
+    if (getInputFileRole(key) !== null) {
         return 'input-file';
     }
 
