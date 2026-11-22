@@ -84,6 +84,7 @@ async function replaceMarker(doc, markerLabel, char, affectedUri) {
     const applied = await vscode.workspace.applyEdit(change);
     if (!applied) throw new Error('VS Code rejected fixture edit');
     const updated = await observed;
+    if (!updated) throw new Error('No diagnostic update event after editor change to ' + doc.fileName);
     return { elapsedMs: round(performance.now() - start), updated, rootDiagnosticCount: diagView(affectedUri).length };
 }
 function stats(samples) {
@@ -154,6 +155,7 @@ module.exports.run = async function run() {
     const rootUri = vscode.Uri.file(rootFile);
     let exception;
     let heartbeat;
+    let wideHeartbeat;
     try {
         const beforeCpu = process.cpuUsage();
         const beforeRss = process.memoryUsage().rss;
@@ -215,6 +217,57 @@ module.exports.run = async function run() {
             diagnosticEventArrived: observed,
             before, after: diagView(rootUri)
         };
+        // Single real Extension Host wide-graph probe, complementing the
+        // repeated core-only wide-graph samples. First diagnostic arrival is
+        // NOT a substitute for warm or true cold-disk measurements.
+        const wideLines = [];
+        for (let i = 0; i < 120; ++i) {
+            const suffix = String(i).padStart(3, '0');
+            file('wide/inc/wide_' + suffix + '.trd',
+                'Read GIS Mat == missing_' + suffix + '.shp\n');
+            wideLines.push('Read File == inc/wide_' + suffix + '.trd');
+        }
+        file('wide/inc/shared.trd', '! shared control text\n');
+        for (let i = 0; i < 32; ++i) wideLines.push('Read File == inc/shared.trd');
+        const wideUri = vscode.Uri.file(file('wide/Wide_v01.tcf', wideLines.join('\n') + '\n'));
+        const wideChanges = waitForDiagnosticEvent(wideUri, 18000, () =>
+            diagView(wideUri).filter(d => d.message.startsWith('Referenced file has')).length >= 120
+        );
+        const wideHostJitter = [];
+        let wideLastTick = performance.now();
+        wideHeartbeat = setInterval(() => {
+            const now = performance.now();
+            wideHostJitter.push(Math.max(0, now - wideLastTick - 10));
+            wideLastTick = now;
+        }, 10);
+        const wideStart = performance.now();
+        const wideCpu = process.cpuUsage();
+        const wideRss = process.memoryUsage().rss;
+        const wideDoc = await vscode.workspace.openTextDocument(wideUri);
+        await vscode.window.showTextDocument(wideDoc, { preview: false });
+        const wideStatus = await wideChanges;
+        const wideElapsed = performance.now() - wideStart;
+        const wideCpuDelta = process.cpuUsage(wideCpu);
+        clearInterval(wideHeartbeat);
+        wideHeartbeat = null;
+        report.results.wideGraphValidation = {
+            elapsedMs: round(wideElapsed),
+            sampleCount: 1,
+            diagnosticArrived: wideStatus.observed,
+            reason: wideStatus.reason,
+            sourceLines: wideLines.length,
+            missingChildSummaries: diagView(wideUri).filter(d => d.message.startsWith('Referenced file has')).length,
+            cpuUserMs: round(wideCpuDelta.user / 1000),
+            cpuSystemMs: round(wideCpuDelta.system / 1000),
+            rssBeforeBytes: wideRss,
+            rssAfterBytes: process.memoryUsage().rss,
+            heartbeatDelayP95Ms: q(wideHostJitter, 0.95),
+            heartbeatDelayMaxMs: q(wideHostJitter, 1),
+            heartbeatSamples: wideHostJitter.length
+        };
+        if (!wideStatus.observed) {
+            throw new Error('Wide graph did not publish expected 120 referenced-child diagnostics');
+        }
         const deps = require(path.join(ext.extensionPath, 'out', 'diagnostics.js'))
             .getTrackedDependencyPaths();
         report.observations.beforeDisposal = {
@@ -257,6 +310,7 @@ module.exports.run = async function run() {
         report.failure = String(err?.stack || err);
     } finally {
         if (heartbeat) clearInterval(heartbeat);
+        if (wideHeartbeat) clearInterval(wideHeartbeat);
         closeSubscription.dispose();
         try { await vscode.commands.executeCommand('workbench.action.closeAllEditors'); }
         catch { /* cleanup best effort */ }
