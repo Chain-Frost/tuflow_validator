@@ -4,12 +4,24 @@
 // Runtime diagnostics are acceptance invariants; latency and I/O are evidence,
 // NOT automatic owner-approved performance budgets.
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const assert = require('node:assert/strict');
 if (process.argv.length !== 4) {
     throw new Error('Usage: node compare-core.cjs before.json after.json');
 }
 const before = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const after = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
+const digest = text => crypto.createHash('sha256').update(text).digest('hex');
+for (const [label, record] of [['baseline', before], ['candidate', after]]) {
+    assert.equal(record.environment.fixtureFiles, record.fixtureManifest.length,
+        label + ': fixture manifest count does not match its metadata');
+    assert.equal(record.environment.fixtureBytes,
+        record.fixtureManifest.reduce((sum, entry) => sum + entry.bytes, 0),
+        label + ': fixture byte total does not match manifest');
+    assert.equal(record.environment.fixtureManifestSha256,
+        digest(JSON.stringify(record.fixtureManifest)),
+        label + ': fixture hash does not match serialized manifest');
+}
 assert.equal(before.schemaVersion, after.schemaVersion);
 assert.equal(before.environment.fixtureManifestSha256, after.environment.fixtureManifestSha256,
     'The two benchmarks must use byte-identical fixture files');
