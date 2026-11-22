@@ -30,10 +30,10 @@ jobs:
       - name: Run compilation, lint and VS Code tests
         run: xvfb-run -a npm test
 
-  windows-static:
-    name: Windows compile and lint
+  windows-integration:
+    name: Windows compile, lint and VS Code integration tests
     runs-on: windows-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,5 @@ jobs:
 
       - run: npm ci
 
-      - name: TypeScript and ESLint
-        run: |
-          npm run compile
-          npm run lint
+      - name: Run compilation, lint and real VS Code extension-host tests
+        run: npm test
