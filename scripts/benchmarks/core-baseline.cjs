@@ -226,10 +226,18 @@ function one(action) {
         ...(observed?.eventReturned === undefined ? {} : { eventReturned: observed.eventReturned })
     };
 }
-function measure(action, count = iterations, prewarm = warmups) {
-    for (let i = 0; i < prewarm; i++) action();
+function measure(action, count = iterations, prewarm = warmups, prepare = () => {}) {
+    // Mutations model a delivered edit/event and deliberately occur BEFORE
+    // sampling. Never charge a remote fixture write to core validation time.
+    for (let i = 0; i < prewarm; i++) {
+        prepare();
+        action();
+    }
     const trials = [];
-    for (let i = 0; i < count; i++) trials.push(one(action));
+    for (let i = 0; i < count; i++) {
+        prepare();
+        trials.push(one(action));
+    }
     return { summary: summary(trials), trials };
 }
 function sampleAnalysis(doc) {
@@ -347,36 +355,52 @@ try {
         'Concretely missing conditional input must remain a missing-file diagnostic');
     report.results.warmAnalysis = measure(() => sampleAnalysis(baseDoc));
     let edit = false;
-    report.results.singleCharacterEdit = measure(() => {
-        edit = !edit;
-        baseDoc.text = baseDoc.text.replace(/!edit:[AB]/, edit ? '!edit:B' : '!edit:A');
-        return sampleAnalysis(baseDoc);
-    });
-    report.results.includedChildChange = measure(() => {
-        edit = !edit;
-        fs.writeFileSync(child, 'Read GIS Mat == data/present.gpkg\n! child:' + (edit ? 'B' : 'A') + '\n');
-        const eventReturned = diagnostics.updateDiagnosticsForChangedPath(child, collection);
-        return { ...snapshot(), eventReturned };
-    });
+    report.results.singleCharacterEdit = measure(
+        () => sampleAnalysis(baseDoc), iterations, warmups, () => {
+            edit = !edit;
+            baseDoc.text = baseDoc.text.replace(/!edit:[AB]/, edit ? '!edit:B' : '!edit:A');
+        }
+    );
+    report.results.includedChildChange = measure(
+        () => {
+            const eventReturned = diagnostics.updateDiagnosticsForChangedPath(child, collection);
+            return { ...snapshot(), eventReturned };
+        }, iterations, warmups, () => {
+            edit = !edit;
+            fs.writeFileSync(child, 'Read GIS Mat == data/present.gpkg\n! child:' + (edit ? 'B' : 'A') + '\n');
+        }
+    );
     assert.ok(report.results.includedChildChange.trials.every(trial => trial.eventReturned === true),
         'Dependency invalidation did not recognise the included child');
 
+    const beforeSibling = snapshot();
     const sibling = create('small/runs/geom_v03.tgc', '! newer version sibling\n');
-    report.observations.versionSiblingWatcherEvent = one(() => ({
-        ...snapshot(),
-        eventReturned: diagnostics.updateDiagnosticsForChangedPath(sibling, collection)
-    }));
+    report.observations.versionSiblingBefore = {
+        count: beforeSibling.count, sha256: beforeSibling.sha256
+    };
+    report.observations.versionSiblingWatcherEvent = one(() => {
+        const eventReturned = diagnostics.updateDiagnosticsForChangedPath(sibling, collection);
+        const after = snapshot();
+        if (eventReturned) {
+            assert.notStrictEqual(after.sha256, beforeSibling.sha256,
+                'Sibling event was handled but the latest-version diagnostic stayed stale');
+        }
+        return { ...after, eventReturned };
+    });
     report.results.versionSiblingExplicitRevalidation = measure(() => sampleAnalysis(baseDoc));
 
     const secondDoc = makeDocument(secondRoot);
     roots.push(secondDoc);
     sampleAnalysis(secondDoc);
-    report.results.multipleRootChildChange = measure(() => {
-        edit = !edit;
-        fs.writeFileSync(child, 'Read GIS Mat == data/present.gpkg\n! child:' + (edit ? 'B' : 'A') + '\n');
-        const eventReturned = diagnostics.updateDiagnosticsForChangedPath(child, collection);
-        return { ...snapshot(), eventReturned };
-    });
+    report.results.multipleRootChildChange = measure(
+        () => {
+            const eventReturned = diagnostics.updateDiagnosticsForChangedPath(child, collection);
+            return { ...snapshot(), eventReturned };
+        }, iterations, warmups, () => {
+            edit = !edit;
+            fs.writeFileSync(child, 'Read GIS Mat == data/present.gpkg\n! child:' + (edit ? 'B' : 'A') + '\n');
+        }
+    );
     assert.ok(report.results.multipleRootChildChange.trials.every(trial => trial.eventReturned === true),
         'Both active roots should track a shared included child');
     closeDocument(secondDoc);
