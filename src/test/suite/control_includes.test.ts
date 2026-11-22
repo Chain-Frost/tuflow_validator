@@ -114,8 +114,8 @@ suite('Documented control-text include traversal', function () {
         const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-includes-'));
         const rootPath = path.join(folder, 'root.tcf');
         const childPath = path.join(folder, 'child.customtext');
-        fs.writeFileSync(rootPath, 'Read File == child.customtext\\n');
-        fs.writeFileSync(childPath, 'Read GIS BC == old-missing.shp\\n');
+        fs.writeFileSync(rootPath, 'Read File == child.customtext\n');
+        fs.writeFileSync(childPath, 'Read GIS BC == old-missing.shp\n');
 
         let child: vscode.TextDocument | undefined;
         try {
@@ -129,7 +129,7 @@ suite('Documented control-text include traversal', function () {
             await vscode.window.showTextDocument(child);
             const edit = new vscode.WorkspaceEdit();
             edit.replace(child.uri, new vscode.Range(child.positionAt(0), child.positionAt(child.getText().length)),
-                'Read GIS BC == new-missing.shp\\n');
+                'Read GIS BC == new-missing.shp\n');
             assert.strictEqual(await vscode.workspace.applyEdit(edit), true);
             const changed = await waitFor(child.uri, items => items.some(issue =>
                 issue.code === TPV_CODES.missingFile && issue.message.includes('new-missing.shp')));
