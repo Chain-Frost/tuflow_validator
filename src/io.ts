@@ -32,8 +32,13 @@ export function pathIdentity(filePath: string): string {
 export type ControlTextReader = (filePath: string) => string | null;
 
 /** A per-analysis view: a dirty editor is preferred; each path is read once. */
-export function createControlTextSnapshotReader(): ControlTextReader {
+export function createControlTextSnapshotReader(rootDocument?: vscode.TextDocument): ControlTextReader {
     const snapshots = new Map<string, string | null>();
+    // Seed the actual root document: never fall back to saved text even if
+    // VS Code has not yet surfaced the supplied document in textDocuments.
+    if (rootDocument?.uri.scheme === 'file') {
+        snapshots.set(pathIdentity(rootDocument.fileName), rootDocument.getText());
+    }
     return (filePath: string): string | null => {
         const key = pathIdentity(filePath);
         if (!snapshots.has(key)) {
