@@ -117,3 +117,102 @@ jobs:
       - run: npm run compile
       - run: node --check scripts/issue10-vsix-audit.cjs
       - run: node --check scripts/issue10-host.cjs
+
+  integrated-a-b:
+    name: A1/A2/B stacked source versus packaged VSIX (snapshot)
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      VALIDATOR_BASE_SHA: 4a0282e93b979345374076fb0adc60c7faf6af99
+      HELPER12_SHA: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+      HELPER16_SHA: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+      ISSUE10_EVIDENCE_DIR: issue10-integrated-evidence
+    steps:
+      - name: Checkout issue 10 independent test scripts
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout actual B PR 21 head stacked on A2 / A1
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow_validator
+          ref: refs/pull/21/head
+          path: _integrated_ab
+
+      - name: Checkout Helper PR 12
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 8a3411f528e33e7f227d72ca8b5ad41172fefdb4
+          path: _helper12
+
+      - name: Checkout Helper PR 16 acceptance runner
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 3f68375b448ce26bf9d369fda9f3b3e05049ba27
+          path: _helper16
+
+      - name: Preserve exact stacked commit and isolate TypeScript compilation roots
+        run: |
+          mv _integrated_ab "$RUNNER_TEMP/issue10-integrated"
+          mv _helper12 "$RUNNER_TEMP/issue10-helper12"
+          mv _helper16 "$RUNNER_TEMP/issue10-helper16"
+          echo "INTEGRATED_AB_SHA=$(git -C "$RUNNER_TEMP/issue10-integrated" rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "ISSUE10_COMPILED_PARSER=$RUNNER_TEMP/issue10-integrated/out/pathParsing.js" >> "$GITHUB_ENV"
+          mkdir -p issue10-dist issue10-integrated-evidence
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked tooling, and compile/package stacked A1/A2/B source
+        run: |
+          npm ci
+          npm ci --prefix "$RUNNER_TEMP/issue10-integrated"
+          npm run compile --prefix "$RUNNER_TEMP/issue10-integrated"
+          cd "$RUNNER_TEMP/issue10-integrated"
+          "$GITHUB_WORKSPACE/node_modules/.bin/vsce" package --no-dependencies \
+            --out "$GITHUB_WORKSPACE/issue10-dist/integrated-ab.vsix"
+
+      - name: Compile/package Helper PR 12 for identical companion identity
+        run: |
+          npm ci --prefix "$RUNNER_TEMP/issue10-helper12"
+          npm run compile --prefix "$RUNNER_TEMP/issue10-helper12"
+          cd "$RUNNER_TEMP/issue10-helper12"
+          "$GITHUB_WORKSPACE/node_modules/.bin/vsce" package --no-dependencies \
+            --out "$GITHUB_WORKSPACE/issue10-dist/helper12.vsix"
+
+      - name: Download historical public release for the negative control
+        run: |
+          if ! curl --fail --location --show-error --silent --retry 3 \
+              "https://github.com/Chain-Frost/tuflow_validator/releases/download/v0.2.6/tuflow-path-validator-0.2.6.vsix" \
+              --output issue10-dist/release-v0.2.6.vsix; then
+            rm -f issue10-dist/release-v0.2.6.vsix
+            echo "Published VSIX unavailable: historical comparison is blocked."
+          fi
+
+      - name: Audit exact integrated compiled JS, package manifests and hashes
+        run: |
+          node scripts/issue10-vsix-audit.cjs \
+            issue10-dist/integrated-ab.vsix \
+            issue10-dist/release-v0.2.6.vsix
+
+      - name: Repeat issue 10 packaged Extension Host profiles against A/B integration
+        run: |
+          xvfb-run -a node scripts/issue10-host.cjs \
+            issue10-dist/integrated-ab.vsix \
+            issue10-dist/release-v0.2.6.vsix \
+            issue10-dist/helper12.vsix \
+            "$RUNNER_TEMP/issue10-helper16"
+
+      - name: Upload exact integrated A/B profile results (no binaries)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue10-integrated-ab-evidence-linux
+          path: issue10-integrated-evidence/*.json
+          if-no-files-found: warn
+          retention-days: 30
