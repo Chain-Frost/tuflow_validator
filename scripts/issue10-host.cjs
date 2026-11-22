@@ -124,7 +124,7 @@ function addFixtureLines(acceptancePath) {
         "      await validatorConfig.update('enableIfStatementFormatting',false,vscode.ConfigurationTarget.Global);",
         '      const formatAfterDisable = await vscode.commands.executeCommand(',
         "        'vscode.executeFormatDocumentProvider', probeDoc.uri, formatOptions);",
-        '      formatAfterDisableCount = Array.isArray(formatAfterDisable) ? formatAfterDisable.length : null;'
+        '      formatAfterDisableCount = Array.isArray(formatAfterDisable) ? formatAfterDisable.length : null;',
         '    }',
         '    report.issue10Options = {',
         '      quickFixTitles:(fixes||[]).map(action=>action.title),',
