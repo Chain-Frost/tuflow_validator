@@ -107,6 +107,7 @@
     "test": "node ./out/test/runTest.js",
     "test:container": "bash scripts/test-container.sh",
     "package:vsix": "bash scripts/package-vsix.sh",
+    "package:vsix:ci": "vsce package --no-dependencies --out validator-ci.vsix",
     "publish:vsix": "npx vsce publish --azure-credential",
     "publish:vsix:pre": "npm run package:vsix",
     "publish:ovsx": "npx ovsx publish -p \"$OVSX_PAT\"",
