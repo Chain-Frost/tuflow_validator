@@ -1,0 +1,71 @@
+name: Core performance evidence (issue 3)
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/benchmarks/**'
+      - 'docs/benchmarks/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/core-performance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-baseline:
+    name: Core baseline / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            label: linux
+          - os: windows-latest
+            label: windows
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # A PR merge commit is NOT the source SHA being benchmarked.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run lint
+      - name: Package exact source without publishing
+        run: npx vsce package --out benchmark-source.vsix
+      - name: Baseline: local disposable fixtures
+        env:
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-source.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-core-${{ matrix.label }}.json
+          TPV_STORAGE_LABEL: GitHub-hosted temporary local runner; underlying medium and cache state not verified
+          TPV_BENCHMARK_SAMPLES: '19'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Synthetic metadata latency (not a network-drive result)
+        if: matrix.label == 'linux'
+        env:
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-source.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-synthetic-linux.json
+          TPV_STORAGE_LABEL: GitHub-hosted temp directory with artificial synchronous filesystem wait
+          TPV_BENCHMARK_SAMPLES: '9'
+          TPV_SYNTHETIC_IO_MS: '0.75'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Archive unrounded per-trial measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpv-core-baseline-${{ matrix.label }}
+          path: |
+            benchmark-core-*.json
+            benchmark-synthetic-*.json
+          if-no-files-found: warn
+          retention-days: 30
