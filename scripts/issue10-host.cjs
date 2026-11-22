@@ -71,7 +71,20 @@ function addFixtureLines(acceptancePath) {
         '    openDocuments: vscode.workspace.textDocuments.map(d => ({ file: d.fileName, languageId: d.languageId })),',
         '    activeEditor: vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName,',
         "    associations: vscode.workspace.getConfiguration('files').get('associations', {})",
-        '  };'
+        '  };',
+        "  report.issue10Invocation = process.env.TUFLOW_ACCEPT_INVOCATION || null;",
+        "  const preopenedTcf = vscode.workspace.textDocuments.find(d => path.normalize(d.fileName) === path.normalize(path.join(FIXTURES,'model.tcf')));",
+        '  report.issue10Startup.tcfPreopened = Boolean(preopenedTcf);',
+        '  report.issue10Startup.preopenedLanguageId = preopenedTcf ? preopenedTcf.languageId : null;',
+        '  report.issue10Startup.initialMissingCount = null;',
+        '  if (preopenedTcf) {',
+        '    for (let i = 0; i < 12; i++) {',
+        "      const found = vscode.languages.getDiagnostics(preopenedTcf.uri).filter(d=>d.message === 'File not found: issue10_missing.tgc');",
+        '      report.issue10Startup.initialMissingCount = found.length;',
+        "      if (found.length || process.env.TUFLOW_ACCEPT_PROFILE === 'helper-only') break;",
+        '      await pause(150);',
+        '    }',
+        '  }'
     ]);
     inject('source: diag.source || null,', [
         "          code: diag.code && typeof diag.code === 'object' ? diag.code.value : (diag.code || null),"
@@ -99,12 +112,19 @@ function addFixtureLines(acceptancePath) {
         "    const validatorConfig = vscode.workspace.getConfiguration('tuflowValidator');",
         "    const formattingInitiallyEnabled = validatorConfig.get('enableIfStatementFormatting',false);",
         '    let formatEnabledCount = null;',
+        '    let formatEnabledIndentOnProbe = false;',
+        '    let formatAfterDisableCount = null;',
         '    if (report.extensions.validator) {',
         "      await validatorConfig.update('enableIfStatementFormatting',true,vscode.ConfigurationTarget.Global);",
         '      const formatEnabled = await vscode.commands.executeCommand(',
         "        'vscode.executeFormatDocumentProvider', probeDoc.uri, formatOptions);",
         '      formatEnabledCount = Array.isArray(formatEnabled) ? formatEnabled.length : null;',
+        "      const formatProbeLine = atLine(probeDoc, 'Read File == issue10_conditional_missing.trd');",
+        "      formatEnabledIndentOnProbe = Array.isArray(formatEnabled) && formatEnabled.some(edit => edit.range.start.line === formatProbeLine && edit.newText === '    ');",
         "      await validatorConfig.update('enableIfStatementFormatting',false,vscode.ConfigurationTarget.Global);",
+        '      const formatAfterDisable = await vscode.commands.executeCommand(',
+        "        'vscode.executeFormatDocumentProvider', probeDoc.uri, formatOptions);",
+        '      formatAfterDisableCount = Array.isArray(formatAfterDisable) ? formatAfterDisable.length : null;'
         '    }',
         '    report.issue10Options = {',
         '      quickFixTitles:(fixes||[]).map(action=>action.title),',
@@ -112,7 +132,9 @@ function addFixtureLines(acceptancePath) {
         '      quickFixSnapshots:issue10QuickFixSnapshots,',
         '      formattedInitially:formattingInitiallyEnabled,',
         '      defaultFormatEditCount:Array.isArray(formatBefore)?formatBefore.length:null,',
-        '      enabledFormatEditCount:formatEnabledCount',
+        '      enabledFormatEditCount:formatEnabledCount,',
+        '      enabledIndentOnProbe:formatEnabledIndentOnProbe,',
+        '      disabledAgainEditCount:formatAfterDisableCount'
         '    };'
     ]);
     inject("check('theme-and-ui-checks', 'unverified', { manualChecks: report.manualChecks });", [
@@ -123,7 +145,10 @@ function addFixtureLines(acceptancePath) {
         '    await vscode.window.showTextDocument(reopened,{preview:false});',
         '    await pause(900);',
         "    const afterOpen = vscode.languages.getDiagnostics(reopened.uri).filter(d=>d.message.includes('issue10_missing.tgc'));",
-        '    report.issue10Reopen = { languageId:reopened.languageId, before:beforeClose.length, after:afterOpen.length };'
+        '    const detail = d => ({ source:d.source||null, code:d.code&&typeof d.code===\'object\'?d.code.value:(d.code||null),',
+        '      message:d.message, line:d.range.start.line+1, start:d.range.start.character, end:d.range.end.character });',
+        '    report.issue10Reopen = { languageId:reopened.languageId, before:beforeClose.length, after:afterOpen.length,',
+        '      beforeItems:beforeClose.map(detail), afterItems:afterOpen.map(detail) };'
     ]);
     fs.writeFileSync(runner,source);
     save('fixture-provenance.json',{
@@ -166,23 +191,41 @@ function check(report,entry,locations) {
         report.issue10Options.formattedInitially === false &&
         (report.issue10Options.defaultFormatEditCount === 0 ||
          report.issue10Options.defaultFormatEditCount === null) &&
-        report.issue10Options.enabledFormatEditCount > 0;
+        report.issue10Options.enabledFormatEditCount === 1 &&
+        report.issue10Options.enabledIndentOnProbe === true &&
+        (report.issue10Options.disabledAgainEditCount === 0 ||
+         report.issue10Options.disabledAgainEditCount === null);
     const hasValidator = entry.role!=='helper-only';
     const languagePass = report.metrics?.documentOpen?.['model.tcf']?.languageId==='tuflow';
     const after = report.issue10Reopen;
-    const reopenPass = after && after.languageId==='tuflow' && after.before===after.after && after.after>0;
+    const expectedLine = probes['model.tcf'][5];
+    const expectedPath = 'issue10_missing.tgc';
+    const expectedStart = expectedLine.indexOf(expectedPath);
+    const expectedLineNumber = locations['model.tcf|'+expectedLine];
+    const reopenItemCorrect = item => item && item.message === 'File not found: '+expectedPath &&
+        item.line === expectedLineNumber && item.start === expectedStart &&
+        item.end === expectedStart+expectedPath.length &&
+        (isOld || (item.code === 'TPV001' && item.source === 'TUFLOW Path Validator'));
+    const reopenPass = after && after.languageId==='tuflow' && after.before===1 &&
+        after.after===1 && reopenItemCorrect(after.beforeItems?.[0]) &&
+        reopenItemCorrect(after.afterItems?.[0]);
+    const initial = report.issue10Startup;
+    const startupPass = !!initial && initial.tcfPreopened === true &&
+        initial.preopenedLanguageId === 'tuflow' &&
+        initial.initialMissingCount === (hasValidator ? 1 : 0);
     const historicalFalsePositive = missing('model.tcf',negativeLines[1]).length>0;
     let status;
-    if (!hasValidator) status = !report.diagnostics.length && languagePass ? 'passed':'failed';
-    else if (isOld) status = historicalFalsePositive && missingPass && languagePass ? 'passed-negative-control':'failed-negative-control';
+    if (!hasValidator) status = !report.diagnostics.length && languagePass && startupPass ? 'passed':'failed';
+    else if (isOld) status = historicalFalsePositive && missingPass && languagePass &&
+        startupPass ? 'passed-negative-control':'failed-negative-control';
     else status = noFalseMissing && unknownPass && missingPass && actionPass &&
-        languagePass && reopenPass && formattingPass ? 'passed':'failed';
+        languagePass && reopenPass && formattingPass && startupPass ? 'passed':'failed';
     return {
         name:entry.name,role:entry.role,origin:entry.origin,status,
         artifactKind:entry.artifactKind || null, marketplaceArtifact:entry.marketplaceInfo || null,
         hostEvidence:true, vscode:report.environment?.vscodeVersion,
         extensionHostPid:report.environment?.extensionHostPid,
-        installed:report.extensions, startup:report.issue10Startup,
+        installed:report.extensions, startup:report.issue10Startup, startupPass,
         settings:entry.settings, language:report.metrics?.documentOpen?.['model.tcf']?.languageId,
         noFalseMissing, unexpectedMissing:unexpected, unknownPass,
         missingPass,missingEvidence:positives,quickFixPass:actionPass,
