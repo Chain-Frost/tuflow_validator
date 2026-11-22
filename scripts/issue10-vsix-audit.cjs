@@ -46,6 +46,7 @@ if (!current || !old) throw new Error('Usage: node scripts/issue10-vsix-audit.cj
 const main = inspect(current,'source-built');
 const release = inspect(old,'GitHub-release-v0.2.6');
 const compiled = process.env.ISSUE10_COMPILED_PARSER || path.join(root,'out','pathParsing.js');
+const compiledDiagnostics = path.join(path.dirname(compiled),'diagnostics.js');
 const result = {
     recordedAt:new Date().toISOString(),
     buildCommit:process.env.INTEGRATED_AB_SHA || process.env.GITHUB_SHA || null,
@@ -53,9 +54,11 @@ const result = {
     helper12:process.env.HELPER12_SHA || null,
     helper16:process.env.HELPER16_SHA || null,
     current:main, published:release,
-    compiledSourceParserSha256:fs.existsSync(compiled)?fileHash(compiled):null
+    compiledSourceParserSha256:fs.existsSync(compiled)?fileHash(compiled):null,
+    compiledSourceDiagnosticsSha256:fs.existsSync(compiledDiagnostics)?fileHash(compiledDiagnostics):null
 };
-result.currentMatchesCompiled = main.parserSha256 === result.compiledSourceParserSha256;
+result.currentMatchesCompiled = main.parserSha256 === result.compiledSourceParserSha256 &&
+    main.diagnosticsSha256 === result.compiledSourceDiagnosticsSha256;
 result.currentCorrected = main.commandAware && main.skipsUnknownCommands &&
     main.diagnosticsUsesSkipGate && main.stableCodes;
 result.releaseLegacy = release.status==='inspected' && !release.commandAware && release.diagnosticsUsesSkipGate;
