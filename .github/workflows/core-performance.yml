@@ -41,10 +41,49 @@ jobs:
           TPV_SYNTHETIC_IO_MS: '0.75'
           TPV_STORAGE_LABEL: 'GitHub local temp with artificial blocking delay'
         run: node scripts/benchmarks/core-baseline.cjs
+      - name: Run isolated Validator Extension Host benchmark
+        env:
+          TPV_BENCHMARK_HOST: '1'
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-source.vsix
+          TPV_HOST_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-host-linux.json
+        run: xvfb-run -a npm test
       - name: Upload raw trial records
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: tpv-core-linux
           path: benchmark-*.json
+          retention-days: 30
+
+  windows-benchmark:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run lint
+      - name: Build evidence VSIX (no publishing)
+        run: npx vsce package --out benchmark-source.vsix
+      - name: Windows local core fixture samples (not a mapped drive)
+        env:
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-source.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-core-windows.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_STORAGE_LABEL: 'GitHub Windows temporary local runner; cache and medium unverified'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Upload Windows raw trial records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpv-core-windows
+          path: benchmark-core-windows.json
           retention-days: 30
