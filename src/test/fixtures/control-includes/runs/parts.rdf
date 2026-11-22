@@ -1,0 +1,3 @@
+! Read File extension documented in section 4.1.16.
+Read GIS BC == missing-rdf.shp
+Read GIS BC == ignored-rdf.shp ! tpv-ignore

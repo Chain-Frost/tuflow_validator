@@ -1,0 +1,6 @@
+! TSCF Appendix I: repeat Read SWMM for multiple INP inputs.
+Read SWMM == network_a.inp
+Read SWMM == missing-network.inp
+Read SWMM == network_b.inp
+SWMM Iterations == 1
+Output Folder == results

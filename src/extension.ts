@@ -98,7 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const selector: vscode.DocumentSelector = [
         { language: 'tuflow' },
-        { pattern: '**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf,tesf,tscf,trfc,toc}' }
+        { pattern: '**/*.{tcf,tgc,tbc,trd,erd,rdf,adcf,tef,ecf,qcf,tesf,tscf,trfc,toc}' }
     ];
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(
