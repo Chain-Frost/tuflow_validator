@@ -4,6 +4,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
+import { resolvePath } from '../../pathParsing';
 
 const FIXTURES = path.resolve(__dirname, '../../../src/test/fixtures/control-includes');
 
@@ -108,6 +109,14 @@ suite('Documented control-text include traversal', function () {
         assert.ok(!diagnostics.some(issue =>
             issue.code === TPV_CODES.childIssues &&
             [8, 9].includes(issue.range.start.line)));
+    });
+
+    test('mocked Windows drive and UNC paths remain absolute (no real network access)', () => {
+        // Path-library regression only. This is not a native UNC share test.
+        assert.strictEqual(resolvePath('/tmp/root', 'C:\\models\\controls.trd'),
+            'C:/models/controls.trd');
+        assert.strictEqual(resolvePath('/tmp/root', '\\\\server\\share\\controls.erd'),
+            '//server/share/controls.erd');
     });
 
     test('dirty plaintext Read File snapshot updates parent and child diagnostics', async () => {
