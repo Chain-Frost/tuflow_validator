@@ -340,7 +340,8 @@ const report = {
         'Watcher counts are logical dependency-directory estimates, not native VS Code FileSystemWatcher/OS handle counts.',
         'No extension activation, debounce, filesystem watcher delivery or extension-host responsiveness is measured here.',
         'Synthetic latency is injected blocking time on fixture filesystem calls, never a real network measurement.',
-        'Helper PR #16 supplies compatible editor/coexistence acceptance measurements separately.'
+        'Helper PR #16 supplies compatible editor/coexistence acceptance measurements separately.',
+        'fixtureManifest describes the immutable generated initial fixture set; later sibling creation is recorded as versionSiblingFixtureEvent.'
     ],
     results: {}, observations: {}, fixtureManifest
 };
@@ -374,7 +375,18 @@ try {
         'Dependency invalidation did not recognise the included child');
 
     const beforeSibling = snapshot();
-    const sibling = create('small/runs/geom_v03.tgc', '! newer version sibling\n');
+    // A version-sibling creation is a trial event, not part of the immutable
+    // initial fixture manifest. Keep manifest counts/bytes/hash internally
+    // consistent, and record this later mutation independently.
+    const sibling = path.join(directory, 'small/runs/geom_v03.tgc');
+    const siblingContents = '! newer version sibling\n';
+    fs.writeFileSync(sibling, siblingContents);
+    report.observations.versionSiblingFixtureEvent = {
+        operation: 'create',
+        relativePath: 'small/runs/geom_v03.tgc',
+        bytes: Buffer.byteLength(siblingContents),
+        sha256: digest(siblingContents)
+    };
     report.observations.versionSiblingBefore = {
         count: beforeSibling.count, sha256: beforeSibling.sha256
     };
