@@ -34,9 +34,10 @@ export type ControlTextReader = (filePath: string) => string | null;
 /** A per-analysis view: a dirty editor is preferred; each path is read once. */
 export function createControlTextSnapshotReader(rootDocument?: vscode.TextDocument): ControlTextReader {
     const snapshots = new Map<string, string | null>();
-    // Seed the actual root document: never fall back to saved text even if
-    // VS Code has not yet surfaced the supplied document in textDocuments.
-    if (rootDocument?.uri.scheme === 'file') {
+    // The supplied root is authoritative even for virtual schemes (such as
+    // git: historical revisions), which may share a fileName with the live file.
+    // All other paths still prefer open file: documents, then disk.
+    if (rootDocument) {
         snapshots.set(pathIdentity(rootDocument.fileName), rootDocument.getText());
     }
     return (filePath: string): string | null => {
