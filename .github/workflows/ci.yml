@@ -39,9 +39,6 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Verify release guards without publishing
-        run: npm run test:release
-
       # npm test runs pretest (TypeScript compilation + ESLint) before
       # starting the actual VS Code extension-host integration suite.
       - name: Compile, lint and run VS Code integration tests (Linux)
@@ -51,6 +48,9 @@ jobs:
       - name: Compile, lint and run VS Code integration tests (Windows)
         if: runner.os == 'Windows'
         run: npm test
+
+      - name: Verify release guards without publishing
+        run: npm run test:release
 
       # This is a CI-only, platform-neutral packaging command. Publishing
       # workflows and the existing release/package wrapper are unchanged.
