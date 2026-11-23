@@ -1,0 +1,1220 @@
+{
+  "sourceSha": "9dc8512db03b278f7cd311159aaffee3277d6df0",
+  "requestedVSCode": "stable",
+  "vsixSha256": "8322b3d6fae597ffc1dca916162f503c1924ebfcf57fa93fe502c9d633c3923e",
+  "invocationId": "2f72ec6b-8a09-4f11-aa59-92947a472abc",
+  "recordedAt": "2026-11-23T13:20:21.161Z",
+  "fixtureClass": "mapped",
+  "networkVerifiedByOperator": false,
+  "status": "passed",
+  "runnerPlatform": "win32",
+  "runnerNode": "v22.23.0",
+  "manifest": {
+    "count": 9,
+    "bytes": 661,
+    "sha256": "5cf962b7a41b1fb54675853f87513c880d2267dfa6c6e02ef028ea3de4fa45a3",
+    "files": [
+      {
+        "path": "a/runs/A.tcf",
+        "bytes": 150,
+        "sha256": "0d79567cd188d39a803ae3e299eb9c18389bd36b737816a2bf7318e219c5e876"
+      },
+      {
+        "path": "a/runs/assets/edited_present.shp",
+        "bytes": 17,
+        "sha256": "b964496752c16eb557a2f416f9f82c1ac75f78b2ecf01f78ebbfdf1f3306bc57"
+      },
+      {
+        "path": "a/runs/assets/only_a.shp",
+        "bytes": 15,
+        "sha256": "588a46c6d94b015939b5f5bc48522f81b36d8e39c8060aff18769776ff14e5fd"
+      },
+      {
+        "path": "a/runs/assets/present.shp",
+        "bytes": 18,
+        "sha256": "815e827b4ed07b4dabb272076d5ef47967e81fae55213145474b005efbd0c0f5"
+      },
+      {
+        "path": "b/runs/assets/edited_present.shp",
+        "bytes": 17,
+        "sha256": "eeb842e39917fed6f7c908277451d0405bb338bd601834c25de74b3e0e1c8ebf"
+      },
+      {
+        "path": "b/runs/assets/present.shp",
+        "bytes": 18,
+        "sha256": "665825d8c21b0d3c80b400d6ab65e56b0d0a4f8f78c6e36a85aa0d169c53cb26"
+      },
+      {
+        "path": "b/runs/B.tcf",
+        "bytes": 106,
+        "sha256": "7730ee5f7bf7a5abcdb1d0f4705c22413b1ed8ee96df59308eae148cfadfc8cd"
+      },
+      {
+        "path": "shared/nested.trd",
+        "bytes": 39,
+        "sha256": "2b6f0d901db60eb123224e4ba46791fa9417d131490d9e927c614963020b3d54"
+      },
+      {
+        "path": "standalone/context/shared/terrain.trd",
+        "bytes": 281,
+        "sha256": "e12d61519a93ca810b416c46ed1b9c27c6e684772d9fe4f666d9d5d02f2ca64a"
+      }
+    ]
+  },
+  "sentinelsUnchanged": true,
+  "fixtureRemoved": true,
+  "profileRemoved": true,
+  "extensionHostExited": true,
+  "installedRuntime": {
+    "installedModuleCount": 11,
+    "byteIdenticalToCompiled": true,
+    "entries": [
+      {
+        "path": "out/codeActions.js",
+        "sha256": "bce73169a6dc8c25b2a4c2e65b331cb5b1058591e1ff9a66eaf1222676c79a20"
+      },
+      {
+        "path": "out/config.js",
+        "sha256": "4d9d78b8d13202f3ed106adb039bfe0bfb9d955a8bbfea3efcc6f196074a1895"
+      },
+      {
+        "path": "out/constants.js",
+        "sha256": "82ca28304951ba9de1b1139f68b73ae577f9be46eec6236fbf530afe5307014f"
+      },
+      {
+        "path": "out/diagnosticCodes.js",
+        "sha256": "aa0cf7ce07c30697ee9039c7687c055028fa417ff58c5de710de80deb1b33c40"
+      },
+      {
+        "path": "out/diagnostics.js",
+        "sha256": "a89a5410182d6ee0ca167cce26ecb4555c28f8c509416fb3a2e72479e07eba3d"
+      },
+      {
+        "path": "out/extension.js",
+        "sha256": "2777727a7a3ef1bbea2c449c82f8f1619d8156109f565bb467082949e9a535cd"
+      },
+      {
+        "path": "out/formatter.js",
+        "sha256": "901c5eefad4412ebdab63c3549786efa469671b979a16aad2b31353a1f0653f1"
+      },
+      {
+        "path": "out/io.js",
+        "sha256": "8365d3f25bf7e21070c2961bede6a023e0a1b832464d97d22f646890df95d038"
+      },
+      {
+        "path": "out/pathParsing.js",
+        "sha256": "8cb5b071510089dc7894c160c56d409819dab094010c1dacf8ca3beb0048c32d"
+      },
+      {
+        "path": "out/staticVariables.js",
+        "sha256": "a04d78026bf45f31126c9dd7a1ccde39cb633164ecd3c745cd722cbb3dd88fb2"
+      },
+      {
+        "path": "out/versioning.js",
+        "sha256": "169f24c653a9c3dbca2b1c37b7ba6a38c569d61b14bc9b18b851e1a560250b81"
+      }
+    ]
+  },
+  "probe": {
+    "sourceSha": "9dc8512db03b278f7cd311159aaffee3277d6df0",
+    "requestedVSCode": "stable",
+    "vsixSha256": "8322b3d6fae597ffc1dca916162f503c1924ebfcf57fa93fe502c9d633c3923e",
+    "invocationId": "2f72ec6b-8a09-4f11-aa59-92947a472abc",
+    "recordedAt": "2026-11-23T13:20:21.161Z",
+    "fixtureClass": "mapped",
+    "networkVerifiedByOperator": false,
+    "probe": "installed-VSIX-workspace-document-lifecycle",
+    "status": "passed",
+    "extensionHost": {
+      "pid": 219112,
+      "node": "v24.22.1",
+      "electron": "43.8.9",
+      "vscode": "1.147.0",
+      "platform": "win32"
+    },
+    "phases": [
+      {
+        "label": "before-open",
+        "at": "2026-11-23T13:20:23.882Z",
+        "diagnostics": {
+          "a": [],
+          "b": [],
+          "trd": [],
+          "nested": []
+        },
+        "diagnosticFingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 152055808,
+          "heapUsedBytes": 30375760,
+          "activeHandleProxy": 3,
+          "osProcessHandles": {
+            "count": 356
+          },
+          "openFixtureDocuments": 0
+        }
+      },
+      {
+        "label": "only-A-open",
+        "at": "2026-11-23T13:20:24.396Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "003e437b6f80eabb884a85d1eda973c8947316f1656183788b6346e6b76377d2",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 165105664,
+          "heapUsedBytes": 33422276,
+          "activeHandleProxy": 6,
+          "osProcessHandles": {
+            "count": 360
+          },
+          "openFixtureDocuments": 1
+        }
+      },
+      {
+        "label": "both-roots-open",
+        "at": "2026-11-23T13:20:24.909Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 3 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "267f7bc74a6acae928b09d9e5d081d1edcd7f970496dafdc8180e749c2f56edc",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 170246144,
+          "heapUsedBytes": 39722564,
+          "activeHandleProxy": 6,
+          "osProcessHandles": {
+            "count": 361
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "child-dirty-updated",
+        "at": "2026-11-23T13:20:25.477Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 1 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "97040bbea6d994405120c2a80853ca46e9dfb8639b0646b38436eee56f0816f8",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 175091712,
+          "heapUsedBytes": 30157700,
+          "activeHandleProxy": 3,
+          "osProcessHandles": {
+            "count": 356
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "child-dirty-restored",
+        "at": "2026-11-23T13:20:26.082Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 3 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "267f7bc74a6acae928b09d9e5d081d1edcd7f970496dafdc8180e749c2f56edc",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 179380224,
+          "heapUsedBytes": 40233276,
+          "activeHandleProxy": 7,
+          "osProcessHandles": {
+            "count": 364
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "workspace-freshness-smoke",
+        "at": "2026-11-23T13:20:26.686Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 3 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "267f7bc74a6acae928b09d9e5d081d1edcd7f970496dafdc8180e749c2f56edc",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 179888128,
+          "heapUsedBytes": 41545160,
+          "activeHandleProxy": 7,
+          "osProcessHandles": {
+            "count": 364
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "cycle-1-B-retired",
+        "at": "2026-11-23T13:20:26.974Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "003e437b6f80eabb884a85d1eda973c8947316f1656183788b6346e6b76377d2",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180064256,
+          "heapUsedBytes": 42250756,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "cycle-1-last-root-retired",
+        "at": "2026-11-23T13:20:27.245Z",
+        "diagnostics": {
+          "a": [],
+          "b": [],
+          "trd": [],
+          "nested": []
+        },
+        "diagnosticFingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180224000,
+          "heapUsedBytes": 42891804,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "cycle-1-stale-callback-check",
+        "at": "2026-11-23T13:20:29.699Z",
+        "diagnostics": {
+          "a": [],
+          "b": [],
+          "trd": [],
+          "nested": []
+        },
+        "diagnosticFingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180350976,
+          "heapUsedBytes": 43547976,
+          "activeHandleProxy": 7,
+          "osProcessHandles": {
+            "count": 364
+          },
+          "openFixtureDocuments": 3
+        }
+      },
+      {
+        "label": "cycle-1-A-reopened",
+        "at": "2026-11-23T13:20:29.961Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "003e437b6f80eabb884a85d1eda973c8947316f1656183788b6346e6b76377d2",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180453376,
+          "heapUsedBytes": 43648612,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 4
+        }
+      },
+      {
+        "label": "cycle-1-both-reopened",
+        "at": "2026-11-23T13:20:30.242Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 3 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "267f7bc74a6acae928b09d9e5d081d1edcd7f970496dafdc8180e749c2f56edc",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180576256,
+          "heapUsedBytes": 44177048,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 5
+        }
+      },
+      {
+        "label": "cycle-2-B-retired",
+        "at": "2026-11-23T13:20:30.529Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "003e437b6f80eabb884a85d1eda973c8947316f1656183788b6346e6b76377d2",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180707328,
+          "heapUsedBytes": 44833244,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 5
+        }
+      },
+      {
+        "label": "cycle-2-last-root-retired",
+        "at": "2026-11-23T13:20:30.826Z",
+        "diagnostics": {
+          "a": [],
+          "b": [],
+          "trd": [],
+          "nested": []
+        },
+        "diagnosticFingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 180842496,
+          "heapUsedBytes": 45453108,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 5
+        }
+      },
+      {
+        "label": "cycle-2-stale-callback-check",
+        "at": "2026-11-23T13:20:33.257Z",
+        "diagnostics": {
+          "a": [],
+          "b": [],
+          "trd": [],
+          "nested": []
+        },
+        "diagnosticFingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 181305344,
+          "heapUsedBytes": 46085552,
+          "activeHandleProxy": 7,
+          "osProcessHandles": {
+            "count": 364
+          },
+          "openFixtureDocuments": 5
+        }
+      },
+      {
+        "label": "cycle-2-A-reopened",
+        "at": "2026-11-23T13:20:33.530Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "003e437b6f80eabb884a85d1eda973c8947316f1656183788b6346e6b76377d2",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 181370880,
+          "heapUsedBytes": 46553868,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 6
+        }
+      },
+      {
+        "label": "cycle-2-both-reopened",
+        "at": "2026-11-23T13:20:33.806Z",
+        "diagnostics": {
+          "a": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/smoke_missing_a.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 2 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "b": [
+            {
+              "code": "TPV002",
+              "severity": 1,
+              "line": 1,
+              "message": "Referenced file has 3 issue(s): terrain.trd",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "trd": [
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 1,
+              "message": "File not found: <<LOCAL_SHAPE>>",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 2,
+              "message": "File not found: assets/missing.shp",
+              "source": "TUFLOW Path Validator"
+            },
+            {
+              "code": "TPV001",
+              "severity": 0,
+              "line": 5,
+              "message": "File not found: assets/conditional_missing.shp",
+              "source": "TUFLOW Path Validator"
+            }
+          ],
+          "nested": []
+        },
+        "diagnosticFingerprint": "267f7bc74a6acae928b09d9e5d081d1edcd7f970496dafdc8180e749c2f56edc",
+        "resources": {
+          "pid": 219112,
+          "rssBytes": 181456896,
+          "heapUsedBytes": 47064136,
+          "activeHandleProxy": 10,
+          "osProcessHandles": {
+            "count": 370
+          },
+          "openFixtureDocuments": 7
+        }
+      }
+    ],
+    "diagnosticEvents": [
+      {
+        "at": "2026-11-23T13:20:24.390Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "a/runs/A.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:24.810Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:25.135Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:25.744Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:25.850Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:25.906Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:26.352Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:26.519Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:26.904Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:27.193Z",
+        "files": [
+          "shared/nested.trd",
+          "standalone/context/shared/terrain.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "b/runs/b.tcf.retired-1",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:27.476Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "a/runs/A.tcf",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "a/runs/a.tcf.retired-1",
+          "a/runs/A.tcf.retired-1"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:27.536Z",
+        "files": [
+          "a/runs/A.tcf.retired-1"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:27.848Z",
+        "files": [
+          "standalone/context/shared/terrain.trd"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:28.957Z",
+        "files": [
+          "standalone/context/shared/terrain.trd"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:30.208Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "a/runs/A.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:30.473Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:30.770Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "b/runs/b.tcf.retired-2",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:30.822Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "a/runs/A.tcf",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "a/runs/a.tcf.retired-2",
+          "a/runs/A.tcf.retired-2"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:31.108Z",
+        "files": [
+          "a/runs/A.tcf.retired-2"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:31.421Z",
+        "files": [
+          "standalone/context/shared/terrain.trd"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:32.533Z",
+        "files": [
+          "standalone/context/shared/terrain.trd"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:33.772Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "a/runs/A.tcf"
+        ]
+      },
+      {
+        "at": "2026-11-23T13:20:34.027Z",
+        "files": [
+          "standalone/context/shared/terrain.trd",
+          "shared/nested.trd",
+          "a/runs/a.tcf",
+          "b/runs/b.tcf",
+          "a/runs/A.tcf",
+          "b/runs/B.tcf"
+        ]
+      }
+    ],
+    "closeEvents": [
+      {
+        "relativeFile": "b/runs/B.tcf.retired-1",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:26.935Z"
+      },
+      {
+        "relativeFile": "b/runs/B.tcf",
+        "isClosed": true,
+        "at": "2026-11-23T13:20:26.938Z"
+      },
+      {
+        "relativeFile": "b/runs/B.tcf.retired-1",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:26.970Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf.retired-1",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:27.211Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf",
+        "isClosed": true,
+        "at": "2026-11-23T13:20:27.214Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf.retired-1",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:27.242Z"
+      },
+      {
+        "relativeFile": "b/runs/B.tcf.retired-2",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:30.496Z"
+      },
+      {
+        "relativeFile": "b/runs/B.tcf",
+        "isClosed": true,
+        "at": "2026-11-23T13:20:30.500Z"
+      },
+      {
+        "relativeFile": "b/runs/B.tcf.retired-2",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:30.527Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf.retired-2",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:30.791Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf",
+        "isClosed": true,
+        "at": "2026-11-23T13:20:30.794Z"
+      },
+      {
+        "relativeFile": "a/runs/A.tcf.retired-2",
+        "isClosed": false,
+        "at": "2026-11-23T13:20:30.822Z"
+      }
+    ],
+    "observations": [
+      {
+        "kind": "workspace-file-create",
+        "observed": true,
+        "actionToDiagnosticMs": 190.221
+      },
+      {
+        "kind": "actual-root-close",
+        "root": "B",
+        "cycle": 1,
+        "originalIsClosed": true
+      },
+      {
+        "kind": "actual-root-close",
+        "root": "A",
+        "cycle": 1,
+        "originalIsClosed": true
+      },
+      {
+        "kind": "actual-root-close",
+        "root": "B",
+        "cycle": 2,
+        "originalIsClosed": true
+      },
+      {
+        "kind": "actual-root-close",
+        "root": "A",
+        "cycle": 2,
+        "originalIsClosed": true
+      },
+      {
+        "kind": "resource-accounting-boundary",
+        "detail": "Process handles and Node active handles are proxies, not native FileSystemWatcher identities. Installed extension watcher disposal is not directly observable."
+      }
+    ],
+    "workspace": {
+      "folderCount": 1,
+      "matchedFixture": true,
+      "folderSchemes": [
+        "file"
+      ],
+      "folderIdentitySha256": [
+        "01e5e3898ead957b2a6de2061eb0adc2749d07cadbe43c571f5390b5fbab8b6a"
+      ],
+      "expectedIdentitySha256": "01e5e3898ead957b2a6de2061eb0adc2749d07cadbe43c571f5390b5fbab8b6a"
+    },
+    "installed": {
+      "id": "Chain-Frost.tuflow-path-validator",
+      "version": "0.2.6",
+      "engine": "^1.74.0",
+      "activatedFromInstalledPackage": true
+    }
+  }
+}

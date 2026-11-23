@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-11-23T21:18:27.6887180+08:00",
+  "os": {
+    "Caption": "Microsoft Windows 10 Pro",
+    "Version": "10.0.19045",
+    "BuildNumber": "19045",
+    "TotalVisibleMemorySize": 66279188
+  },
+  "cpu": {
+    "Name": "AMD Ryzen 7 7700X 8-Core Processor             ",
+    "NumberOfCores": 8,
+    "NumberOfLogicalProcessors": 16
+  },
+  "physicalLocalVolume": {
+    "filesystem": "NTFS",
+    "driveType": "Fixed"
+  },
+  "buildNode": "20.19.2 (existing Docker container)",
+  "launcherAndCoreNode": "22.23.0",
+  "buildChecks": "npm ci, compile, lint, package:vsix:ci, verify-vsix.py passed",
+  "buildAudit": "npm ci reported 23 vulnerabilities: 1 low, 9 moderate, 13 high; dependencies unchanged",
+  "remoteStorage": {
+    "ownerApproved": true,
+    "sameShareMappingVerified": true,
+    "sentinelSha256": "f62ff258f701ee2748b1ee7cc69de651debcc47315bc802c165c4573acd898d8",
+    "aliasHashesEqual": true,
+    "tcp445Reachable": true,
+    "remoteAddressDiffersFromAllLocalIPv4": true,
+    "sentinelChildRemovedBothAliases": true,
+    "dialect": "Unavailable: Get-SmbConnection access denied; no elevation or permission change",
+    "clientEthernetLinkBitsPerSecond": 2500000000,
+    "limits": "Adapter link speed is not measured SMB throughput. No network cache flushing, disconnection or server configuration changes."
+  },
+  "sanitization": "Storage spellings are aliases. Unsanitized paths, server/share, IP addresses, profiles and complete launcher logs remain local.",
+  "operatorVerification": "Runner networkVerifiedByOperator=false is a hard-coded harness field; physical storage verification is supplied separately here."
+}
