@@ -63,7 +63,7 @@ jobs:
       - name: Checkout unchanged, pinned B baseline
         uses: actions/checkout@v4
         with:
-          ref: 53f756aa9c96da7399425d32b0325fe23b6c6082
+          ref: cb038248e0987cb35a00223990185a0bb4016a25
           path: before-b
       - name: Checkout pinned and reviewed D1 driver
         uses: actions/checkout@v4
@@ -84,7 +84,7 @@ jobs:
       - name: Timed baseline B core analysis
         working-directory: before-b
         env:
-          TPV_SOURCE_SHA: '53f756aa9c96da7399425d32b0325fe23b6c6082'
+          TPV_SOURCE_SHA: 'cb038248e0987cb35a00223990185a0bb4016a25'
           TPV_VSIX_PATH: ${{ github.workspace }}/before-b/benchmark-b.vsix
           TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-before-b.json
           TPV_BENCHMARK_SAMPLES: '19'

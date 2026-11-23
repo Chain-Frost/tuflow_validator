@@ -5,24 +5,49 @@
 ## Current integration baseline — 23 November 2026
 
 D2 is reconciled with Agent B PR #21 at exact commit
-`53f756aa9c96da7399425d32b0325fe23b6c6082`, which includes merged main
+`cb038248e0987cb35a00223990185a0bb4016a25`, which includes merged main
 `936231289b767ec0028a0be7b18bb78596dc4fd6` (A1/A2, E1 packaging and E2 tooling).
-The existing D2 runtime source and regression are unchanged from reviewed
-`9c9ef571fb2f541ad6e6f063a75cb735d7bb166a`; the reconciliation retains the
+The two parent commits since B `53f756aa...` document the accepted network
+support boundary in the README and implementation record. The existing D2
+runtime source and regression remain unchanged from reviewed
+`9c9ef571fb2f541ad6e6f063a75cb735d7bb166a` and the previous D2 head
+`98596af122bd44279eb78835ce1005127d8e2943`. The reconciliation retains the
 current parent CI, lockfile, package boundary verifier and Windows filesystem
 regressions. No PR #24 manual-refresh change is included.
 
-The D2 paired workflow now pins **B `53f756aa9c96...`** for both checkout and
+The D2 paired workflow now pins **B `cb038248e098...`** for both checkout and
 recorded source identity. Both variants still use the identical reviewed D1
 driver `71b3cb56258ed03929665dbf2596af839c09bde6`. New exact-head CI and paired
 raw artifacts must be checked before accepting this reconciled candidate.
 Older timings and network evidence below belong only to their stated SHAs;
 this reconciliation does not relabel them as tests of the current source.
 
-PR #21 remains held by the no-workspace SMB notification defect in issue #23.
-D2 does not repair automatic event delivery, lift that hold, import the separate
-manual fallback, or close issues #3/#23. Native watcher/disposal qualification
-and any acceptance of a workspace-only limitation remain separate decisions.
+The owner accepted a permanent support limitation on 23 November 2026:
+automatic freshness on UNC/mapped network shares is supported only when the
+model directory is opened as a VS Code workspace, subject to the tested
+configurations. Automatic external updates for individually opened network
+files outside a workspace are unsupported and will not be implemented.
+[Issue #23](https://github.com/Chain-Frost/tuflow_validator/issues/23) is closed
+as **not planned**, not technically fixed, and no longer blocks PR #21.
+D2 does not change event delivery or add polling, a recursive watcher fallback
+or the separate PR #24 explicit refresh command. Manual refresh is an optional
+user action, not automatic monitoring. Keep issue #3 open for its separately
+scoped performance and network document-lifecycle evidence; it is not a reason
+to reopen the accepted outside-workspace limitation. Current-head checks,
+review and parent-first integration remain required; no PR merge is automatic.
+
+### Previous reconciled head: evidence retained
+
+The preceding D2 head `98596af122bd44279eb78835ce1005127d8e2943` passed
+[paired benchmark and Windows/Linux host/VSIX run 45115108969](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45115108969),
+[standard CI 45115109084](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45115109084)
+and [independent review](https://github.com/Chain-Frost/tuflow_validator/pull/22#issuecomment-7092069534).
+In that same-run local Linux comparison, B `53f756aa...` versus D2 `98596af...`
+had wide-graph median/p95 **48.296/58.049 → 35.548/42.464 ms**, with 19 timed
+trials after 3 warmups. Directory enumerations were **121 → 2**, reads
+**121 → 121** and existence checks **576 → 576**; all per-trial diagnostic
+signatures matched. These are historical synthetic local-runner results, not
+measurements of the new reconciled head or new SMB evidence.
 
 The following sections preserve the original benchmark and earlier integration
 record. Statements about unmerged predecessors and pending runs describe those
@@ -62,7 +87,7 @@ D2 adds **only a Map of physical sibling listings per normalised directory, scop
 
 A separate integration regression test exercises stale old-pass inventory followed by fresh-pass creation/deletion of a versioned sibling, verifying the new pass sees the change. Existing B tests already cover real directory watcher create/delete/rename, dirty buffers and shared roots; paired diagnostics verify no output regressions.
 
-## Remaining gates
+## Historical gates at the original measured head
 
 1. CI at **final D2 PR head** on Linux and actual Windows Extension Host must pass, including native Windows filesystem and Agent E-style packaged VSIX verification. Retain raw paired trials for the final head and document any differences.
 2. Independent review of this **actual production change** and test design; address all findings before owner merge approval.
@@ -70,10 +95,10 @@ A separate integration regression test exercises stale old-pass inventory follow
 4. No representative real Windows SMB UNC/mapped-drive measurements, actual network filesystem notifications or native watcher/handle counts are available in hosted CI. Use the narrowly-scoped [D1 local Windows handoff](https://github.com/Chain-Frost/tuflow_validator/blob/perf/issue-3-d1-core-baseline/docs/benchmarks/2026-11-22-windows-unc-agent-handoff.md). Do not equate synthetic delays with actual SMB timings.
 5. D1 proposed performance budgets are **screening proposals**, not approved thresholds. Keep issue #3 open; do not publish, release, bump extension version, automatically merge or close #3 from local-only evidence.
 
-## Integration refresh — Agent B current head, 23 November 2026
+## Historical integration refresh — Agent B bdb6769, 23 November 2026
 
 A later Agent B review fix, at commit `bdb6769f5366fd8ec3532a63254f5af4ac7470a6`, preserves the supplied historical text for non-`file` URI roots. D2 originally branched from `889d5e2`, so the two independent B source fixes (`src/diagnostics.ts`, `src/io.ts`) and the associated `src/test/suite/freshness.test.ts` regression are included unchanged here. The D2 physical directory cache remains scoped to a single analysis. The workflow now uses the updated B commit for **new** paired raw comparisons; results elsewhere in this report remain historical and pinned to their explicitly stated SHAs.
 
-Independent [Windows/real SMB acceptance](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt) confirmed D2's existing optimization on genuine remote storage: UNC median/p95 323/446 → 155/184 ms against the then-pinned B `889d5e2`, with identical diagnostics. This is **not** a remeasurement of the newer B source. The inherited outside-workspace SMB notification failure is tracked in [#23](https://github.com/Chain-Frost/tuflow_validator/issues/23); PR #24 proposes an explicit manual refresh, not automatic polling. Native watcher-type counting and network document unload remain unverified.
+Independent [Windows/real SMB acceptance](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt) confirmed D2's existing optimization on genuine remote storage: UNC median/p95 323/446 → 155/184 ms against the then-pinned B `889d5e2`, with identical diagnostics. This is **not** a remeasurement of the newer B source. The inherited outside-workspace SMB notification failure was recorded in [#23](https://github.com/Chain-Frost/tuflow_validator/issues/23), subsequently closed as not planned under the accepted support boundary above. PR #24 provides a separate explicit manual refresh, not automatic polling. Native watcher-type counting and network document unload were not qualified by that report.
 
 A new exact-head Linux/Windows VS Code integration and VSIX verification run and a same-run B/D2 benchmark are required for this integration commit before a merge recommendation. The actual D1 benchmark driver remains pinned at `71b3cb56258ed03929665dbf2596af839c09bde6`. No main-branch merge or release was authorized.
