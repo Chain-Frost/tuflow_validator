@@ -112,12 +112,12 @@ async function replace(document, from, to) {
     assert.equal(await vscode.workspace.applyEdit(edit), true);
 }
 async function retire(document, cycle, id) {
-    const originalUri = document.uri.toString();
+    const originalRelative = relativeFixture(document.fileName);
     const retired = vscode.Uri.file(document.fileName + '.retired-' + cycle);
     const edit = new vscode.WorkspaceEdit();
     edit.renameFile(document.uri, retired);
     assert.equal(await vscode.workspace.applyEdit(edit), true);
-    await until(() => evidence.closeEvents.some(e => e.uri === originalUri),
+    await until(() => evidence.closeEvents.some(e => e.relativeFile === originalRelative),
         'Actual onDidCloseTextDocument required for root ' + id);
     assert.equal(document.isClosed, true, 'Retired original TextDocument must be closed');
     // On VS Code 1.74, keep the renamed model alive through its language change.
@@ -144,7 +144,7 @@ exports.run = async function run() {
             engine: validator.packageJSON.engines.vscode, activatedFromInstalledPackage: true };
         subscriptions.push(vscode.workspace.onDidCloseTextDocument(doc => {
             const relative = doc.uri.scheme === 'file' ? relativeFixture(doc.uri.fsPath) : null;
-            if (relative) evidence.closeEvents.push({ uri: doc.uri.toString(),
+            if (relative) evidence.closeEvents.push({
                 relativeFile: relative, isClosed: doc.isClosed, at: new Date().toISOString() });
         }));
         subscriptions.push(vscode.languages.onDidChangeDiagnostics(event => {
