@@ -1,0 +1,9 @@
+{
+  "profileRemoved": true,
+  "fixtureRemoved": true,
+  "profile": "<LOCAL-TEMP>\\tpv-issue3-profile-90Nbn8",
+  "ownedProcesses": 0,
+  "fixture": "L:\\approved-local-parent\\tpv-issue3-lifecycle-3aMfaS",
+  "reason": "Initial launcher stderr interruption before probe; not counted as acceptance trial",
+  "fixtureManifestMatched": true
+}
