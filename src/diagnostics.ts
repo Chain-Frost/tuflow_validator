@@ -3,10 +3,11 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import {
     getConfiguredDiagnosticLevel,
-    getConfiguredIfStatementChecksEnabled
+    getConfiguredIfStatementChecksEnabled,
+    getConfiguredLatestVersionChecksEnabled
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
-import { readControlTextSnapshot } from './io';
+import { ControlTextReader, createControlTextSnapshotReader, pathIdentity, readControlTextSnapshot } from './io';
 import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 import { containsUnresolvedToken, extractPathCandidates, getInputFileRole, isControlTextInput, isLikelyFile, resolvePath } from './pathParsing';
@@ -16,11 +17,16 @@ import {
     checkScenarioEventTokensInValue,
     checkVersionTokenInFilename,
     LatestCheckContext,
+    isVersionSeriesCandidate,
     shouldCheckLatestReferencedVersions
 } from './versioning';
 
 let rootDiagnosticsByRoot = new Map<string, Map<string, vscode.Diagnostic[]>>();
 const rootDependenciesByRoot = new Map<string, Set<string>>();
+/** Filenames whose existing version series is consulted for each open root. */
+const versionSearchPathsByRoot = new Map<string, Set<string>>();
+/** Run directories whose .tcf listing affects latest-run eligibility. */
+const tcfSearchFoldersByRoot = new Map<string, Set<string>>();
 let mergedFiles = new Set<string>();
 let isRefreshing = false;
 const pendingDiagnosticUpdates = new Map<string, ReturnType<typeof setTimeout>>();
@@ -63,7 +69,7 @@ export function updateDiagnostics(document: vscode.TextDocument, collection: vsc
     for (const affectedRootKey of affectedRootKeys) {
         const rootDocument = findOpenDocumentByUri(affectedRootKey);
         if (!rootDocument || !shouldProcessDocument(rootDocument)) {
-            rootDiagnosticsByRoot.delete(affectedRootKey);
+            forgetRoot(affectedRootKey);
             continue;
         }
 
@@ -92,10 +98,7 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
     const rootKey = document.uri.toString();
     const affectedRootKeys = findRootKeysAffectedByDocument(document);
 
-    if (rootDiagnosticsByRoot.has(rootKey)) {
-        rootDiagnosticsByRoot.delete(rootKey);
-    }
-    rootDependenciesByRoot.delete(rootKey);
+    forgetRoot(rootKey);
 
     for (const affectedRootKey of affectedRootKeys) {
         if (affectedRootKey === rootKey) {
@@ -104,7 +107,7 @@ export function removeDiagnosticsForDocument(document: vscode.TextDocument, coll
 
         const rootDocument = findOpenDocumentByUri(affectedRootKey);
         if (!rootDocument || !shouldProcessDocument(rootDocument)) {
-            rootDiagnosticsByRoot.delete(affectedRootKey);
+            forgetRoot(affectedRootKey);
             continue;
         }
 
@@ -130,9 +133,13 @@ export async function refreshDiagnostics(collection: vscode.DiagnosticCollection
 
         rootDiagnosticsByRoot = nextRootDiagnostics;
         const activeRoots = new Set(nextRootDiagnostics.keys());
-        for (const root of rootDependenciesByRoot.keys()) {
+        for (const root of new Set([
+            ...rootDependenciesByRoot.keys(),
+            ...versionSearchPathsByRoot.keys(),
+            ...tcfSearchFoldersByRoot.keys()
+        ])) {
             if (!activeRoots.has(root)) {
-                rootDependenciesByRoot.delete(root);
+                forgetRoot(root);
             }
         }
         rebuildMergedDiagnostics(collection);
@@ -155,27 +162,71 @@ export function getTrackedDependencyPaths(): Set<string> {
     return paths;
 }
 
-/** Revalidate only open roots that depend on a changed file-system path. */
+/**
+ * Watch each directory once, independently of whether any diagnostics exist.
+ * The listener validates *events*, not directory contents; only affected roots
+ * are reanalysed.
+ */
+export function getTrackedWatchDirectories(): Set<string> {
+    const directories = new Set<string>();
+    for (const dependency of getTrackedDependencyPaths()) {
+        directories.add(pathIdentity(path.dirname(dependency)));
+    }
+    for (const sources of versionSearchPathsByRoot.values()) {
+        for (const source of sources) {
+            directories.add(pathIdentity(path.dirname(source)));
+        }
+    }
+    for (const folders of tcfSearchFoldersByRoot.values()) {
+        for (const folder of folders) {
+            directories.add(folder);
+        }
+    }
+    return directories;
+}
+
+/** Revalidate only roots affected by an exact file or relevant version sibling. */
 export function updateDiagnosticsForChangedPath(
     filePath: string,
     collection: vscode.DiagnosticCollection
 ): boolean {
-    const key = path.normalize(filePath);
+    const key = pathIdentity(filePath);
+    const directory = pathIdentity(path.dirname(filePath));
+    const tcfChanged = path.extname(filePath).toLowerCase() === '.tcf';
     let updated = false;
+
     for (const [root, dependencies] of rootDependenciesByRoot.entries()) {
-        if (!dependencies.has(key)) {
+        const inTcfDiscovery = tcfChanged && (tcfSearchFoldersByRoot.get(root)?.has(directory) ?? false);
+        const versionSources = versionSearchPathsByRoot.get(root);
+        const inVersionSeries = !dependencies.has(key) && !inTcfDiscovery &&
+            (versionSources !== undefined && [...versionSources].some(source =>
+                isVersionSeriesCandidate(source, filePath)
+            ));
+        if (!dependencies.has(key) && !inTcfDiscovery && !inVersionSeries) {
             continue;
         }
+
         const document = findOpenDocumentByUri(root);
         if (document && shouldProcessDocument(document)) {
             rootDiagnosticsByRoot.set(root, computeDiagnosticsForDocument(document));
-            updated = true;
+        } else {
+            forgetRoot(root);
         }
+        updated = true;
     }
+
     if (updated) {
         rebuildMergedDiagnostics(collection);
     }
     return updated;
+}
+
+/** Remove all three root-owned contributions without affecting other roots. */
+function forgetRoot(root: string): void {
+    rootDiagnosticsByRoot.delete(root);
+    rootDependenciesByRoot.delete(root);
+    versionSearchPathsByRoot.delete(root);
+    tcfSearchFoldersByRoot.delete(root);
 }
 
 function computeDiagnosticsForDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
@@ -258,14 +309,16 @@ function diagnosticFingerprint(diagnostic: vscode.Diagnostic): string {
 
 function findRootKeysAffectedByDocument(document: vscode.TextDocument): Set<string> {
     const affectedRootKeys = new Set<string>();
-    const filePath = path.normalize(document.fileName);
-
-    for (const [rootKey, diagnosticsByFile] of rootDiagnosticsByRoot.entries()) {
-        if (diagnosticsByFile.has(filePath)) {
+    if (document.uri.scheme !== 'file') {
+        return affectedRootKeys;
+    }
+    const filePath = pathIdentity(document.fileName);
+    // Diagnostics may be empty, but the dependency still needs revalidation.
+    for (const [rootKey, dependencies] of rootDependenciesByRoot.entries()) {
+        if (dependencies.has(filePath)) {
             affectedRootKeys.add(rootKey);
         }
     }
-
     return affectedRootKeys;
 }
 
@@ -328,10 +381,21 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
 function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.Diagnostic[]> {
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
-    const latestCheckContext = buildLatestCheckContext(document);
-    const dependencies = new Set<string>();
-    analyzeFile(rootPath, document.getText(), visited, latestCheckContext, undefined, new Map<string, string>(), dependencies);
-    rootDependenciesByRoot.set(document.uri.toString(), dependencies);
+    const readText = createControlTextSnapshotReader(document);
+    const rootContents = document.getText();
+    const latestCheckContext = buildLatestCheckContext(document, readText);
+    // Root files and latest-TCF graph sources are dependencies even when clean.
+    const dependencies = new Set<string>([pathIdentity(rootPath), ...latestCheckContext.discoveryPaths]);
+    const versionSearchPaths = new Set<string>();
+    analyzeFile(
+        rootPath, rootContents, visited, latestCheckContext, undefined,
+        new Map<string, string>(), dependencies, new Set<string>(), false,
+        versionSearchPaths, readText
+    );
+    const rootKey = document.uri.toString();
+    rootDependenciesByRoot.set(rootKey, dependencies);
+    versionSearchPathsByRoot.set(rootKey, versionSearchPaths);
+    tcfSearchFoldersByRoot.set(rootKey, latestCheckContext.tcfSearchFolders);
     return visited;
 }
 
@@ -354,15 +418,21 @@ function analyzeFile(
     staticVariables: Map<string, string> = new Map(),
     dependencies: Set<string> = new Set(),
     recursionStack: Set<string> = new Set(),
-    inheritedConditional = false
+    inheritedConditional = false,
+    versionSearchPaths: Set<string> = new Set(),
+    readText: ControlTextReader = readControlTextSnapshot
 ): vscode.Diagnostic[] {
     const normalizedPath = path.normalize(filePath);
+    const fileKey = pathIdentity(normalizedPath);
+    if (getConfiguredLatestVersionChecksEnabled()) {
+        versionSearchPaths.add(normalizedPath);
+    }
     // Repeated includes may use different variable values. Only stop cycles
     // along the active recursion path; don't memoise solely by filename.
-    if (recursionStack.has(normalizedPath)) {
+    if (recursionStack.has(fileKey)) {
         return [];
     }
-    recursionStack.add(normalizedPath);
+    recursionStack.add(fileKey);
     const diagnostics: vscode.Diagnostic[] = [];
 
     const lines = contents.split(/\r?\n/);
@@ -392,8 +462,8 @@ function analyzeFile(
             if (commentContent.startsWith('tpv-ignore-file')) {
                 // If we find a file-level ignore, we clear all diagnostics and memoize an empty result.
                 diagnostics.length = 0;
-                visited.set(normalizedPath, []);
-                recursionStack.delete(normalizedPath);
+                visited.set(fileKey, []);
+                recursionStack.delete(fileKey);
                 return [];
             }
             continue;
@@ -454,8 +524,23 @@ function analyzeFile(
                 continue;
             }
 
+            if (extension === '.trd' && !activeTcfDirectory) {
+                // Opening an included TRD does not establish a new source TCF.
+                // Its relative inputs remain unknown in this standalone pass;
+                // each known parent still checks them with its own context.
+                const normalizedCandidate = expanded.replace(/\\/g, '/');
+                const fullyQualifiedWindowsPath = /^[a-z]:\//i.test(normalizedCandidate)
+                    || /^\/\/[^/]+\/[^/]+(?:\/|$)/.test(normalizedCandidate);
+                const absoluteHostPath = process.platform !== 'win32' && path.isAbsolute(normalizedCandidate);
+                // A drive-relative or drive-less rooted Windows path also
+                // needs context. Concrete absolute inputs remain checkable.
+                if (!fullyQualifiedWindowsPath && !absoluteHostPath) {
+                    continue;
+                }
+            }
+
             const resolvedPath = resolvePath(pathBaseDirectory, expanded);
-            dependencies.add(path.normalize(resolvedPath));
+            dependencies.add(pathIdentity(resolvedPath));
             if (!fs.existsSync(resolvedPath)) {
                 diagnostics.push(createTpvDiagnostic(
                     candidate.range,
@@ -467,17 +552,19 @@ function analyzeFile(
             }
 
             if (shouldCheckLatestReferencedFiles) {
+                versionSearchPaths.add(path.normalize(resolvedPath));
                 checkReferencedFileLatestVersion(
                     resolvedPath,
                     candidate.range,
-                    diagnostics
+                    diagnostics,
+                    latestCheckContext
                 );
             }
 
             // A filename suffix never turns GIS, CSV or SWMM data into TUFLOW
             // command text. Control-file and Read File operands always do.
             if (isControlTextInput(inputRole)) {
-                const childContents = readControlTextSnapshot(resolvedPath);
+                const childContents = readText(resolvedPath);
                 if (childContents === null) {
                     continue;
                 }
@@ -495,7 +582,9 @@ function analyzeFile(
                     childVariables,
                     dependencies,
                     recursionStack,
-                    childConditional
+                    childConditional,
+                    versionSearchPaths,
+                    readText
                 );
                 if (childDiagnostics.length > 0) {
                     diagnostics.push(createTpvDiagnostic(
@@ -520,7 +609,7 @@ function analyzeFile(
         }
     }
 
-    const combined = visited.get(normalizedPath) ?? [];
+    const combined = visited.get(fileKey) ?? [];
     const seen = new Set(combined.map(diagnosticFingerprint));
     for (const diagnostic of diagnostics) {
         const key = diagnosticFingerprint(diagnostic);
@@ -529,8 +618,8 @@ function analyzeFile(
             seen.add(key);
         }
     }
-    visited.set(normalizedPath, combined);
-    recursionStack.delete(normalizedPath);
+    visited.set(fileKey, combined);
+    recursionStack.delete(fileKey);
     return diagnostics;
 }
 

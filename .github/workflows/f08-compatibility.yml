@@ -1,0 +1,83 @@
+name: F08 compatibility with pinned B
+
+on:
+  pull_request:
+    paths:
+      - 'src/diagnostics.ts'
+      - 'src/test/suite/trd_editor_context.test.ts'
+      - '.github/workflows/f08-compatibility.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pinned_b:
+    # This pinned comparison is an acceptance gate for this implementation PR,
+    # not a permanent requirement for unrelated future diagnostics changes.
+    if: github.event.pull_request.head.ref == 'fix/f08-trd-editor-context'
+    name: F08 + B / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out exact B source without modifying its branch
+        uses: actions/checkout@v4
+        with:
+          ref: 53f756aa9c96da7399425d32b0325fe23b6c6082
+          path: agent-b
+      - name: Check out F08 changes with history for the minimal patch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          path: f08
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: agent-b/package-lock.json
+      - name: Apply only the F08 production delta and its regression tests
+        shell: bash
+        env:
+          F08_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # Use this PR's merge base so stacking/retargeting cannot include
+          # inherited B/D2 changes. Reject empty or broadened production diffs.
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const { execFileSync } = require('node:child_process');
+          const { writeFileSync } = require('node:fs');
+          const git = args => execFileSync('git', ['-C', 'f08', ...args], { encoding: 'utf8' });
+          const range = `${process.env.F08_BASE_SHA}...HEAD`;
+          const reviewed = '936231289b767ec0028a0be7b18bb78596dc4fd6..9cb254b0a2aaaa77544eceb20eff35af9d79f9e3';
+          const productionFiles = git(['diff', '--name-only', range, '--', 'src'])
+            .trim().split('\n').filter(file => !file.startsWith('src/test/'));
+          assert.deepEqual(productionFiles, ['src/diagnostics.ts'], 'Expected only the F08 production file');
+          assert.equal(git(['diff', '--numstat', range, '--', 'src/diagnostics.ts']).trim(),
+            '15\t0\tsrc/diagnostics.ts', 'Expected the nonempty 15-line F08 guard');
+          const changedLines = revision => git(['diff', '--unified=0', revision, '--', 'src/diagnostics.ts'])
+            .split('\n').filter(line => /^[+-]/.test(line) && !/^(---|\+\+\+)/.test(line));
+          assert.deepEqual(changedLines(range), changedLines(reviewed), 'Production patch must match the reviewed F08 guard');
+          writeFileSync('f08.patch', git(['diff', '--unified=1', range, '--', 'src/diagnostics.ts']));
+          NODE
+          # B intentionally changes the dependency bookkeeping immediately
+          # after this guard; one context line keeps that independent change.
+          git -C agent-b apply --check ../f08.patch
+          git -C agent-b apply ../f08.patch
+          cp f08/src/test/suite/trd_editor_context.test.ts agent-b/src/test/suite/
+          echo "F08_SOURCE_SHA=$(git -C f08 rev-parse HEAD)"
+          echo "B_SOURCE_SHA=$(git -C agent-b rev-parse HEAD)"
+          git -C agent-b diff --stat
+      - run: npm ci
+        working-directory: agent-b
+      - name: Real Linux VS Code integration
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm test
+        working-directory: agent-b
+      - name: Real Windows VS Code integration
+        if: runner.os == 'Windows'
+        run: npm test
+        working-directory: agent-b
