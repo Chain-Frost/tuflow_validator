@@ -1,0 +1,65 @@
+name: Issue 3 current-build local lifecycle evidence
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-local-evidence:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out exact evidence branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Node 22 build tooling
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Python 3.14 VSIX verifier
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run lint
+      - name: Package exact checked-out source (never publish)
+        run: npm run package:vsix:ci
+      - run: python scripts/verify-vsix.py validator-ci.vsix
+      - name: Record exact checkout identity
+        shell: pwsh
+        run: |
+          $head = (git rev-parse HEAD).Trim()
+          Add-Content -Path $env:GITHUB_ENV -Value "TPV_SOURCE_SHA=$head"
+          Write-Host "Benchmark source: $head"
+      - name: Current-source Windows local-NTFS core trials
+        env:
+          TPV_${{ github.workspace }}/validator-ci.vsix: ${{ github.workspace }}/validator-ci.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/issue3-core-windows.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_BENCHMARK_WARMUPS: '3'
+          TPV_STORAGE_LABEL: 'GitHub hosted Windows temporary local storage; not independently NTFS-verified, not SMB'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Installed VSIX lifecycle in a disposable local workspace
+        env:
+          TPV_ISSUE3_LOCAL_SMOKE: '1'
+          TPV_ISSUE3_VSIX: ${{ github.workspace }}/validator-ci.vsix
+          TPV_ISSUE3_OUTPUT: ${{ github.workspace }}/issue3-lifecycle-windows.json
+          TPV_VSCODE_VERSION: stable
+          TPV_STORAGE_LABEL: 'GitHub hosted Windows local-only workspace; not SMB'
+        run: node scripts/acceptance/run-issue3-lifecycle.cjs
+      - name: Retain raw trials and actual-close/resource snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue3-current-build-hosted-windows-local
+          path: |
+            issue3-core-windows.json
+            issue3-lifecycle-windows.json
+          if-no-files-found: warn
+          retention-days: 30
