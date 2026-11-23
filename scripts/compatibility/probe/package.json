@@ -1,0 +1,7 @@
+{
+  "name": "tpv-compatibility-test-host",
+  "publisher": "tpv-tests",
+  "version": "0.0.0",
+  "engines": { "vscode": "^1.74.0" },
+  "main": "./extension.cjs"
+}

@@ -36,6 +36,10 @@ Path validation uses a command-aware allowlist. Each recognised input is classif
 
 ## Installation
 
+Requires **VS Code 1.74 or newer**, matching TUFLOW Helper's minimum. The
+extension runs in VS Code's bundled extension host; users do not need to install
+the Node.js version used by our build tools. See [compatibility and test coverage](docs/compatibility.md).
+
 ### Marketplace
 1. Open Extensions (Ctrl+Shift+X).
 2. Search for "TUFLOW Path Validator".
