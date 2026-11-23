@@ -1,58 +1,168 @@
-name: Publish to VS Code Marketplace (future OIDC)
+name: Publish to VS Code Marketplace (Trusted Publishing)
 
-# OIDC is manual-only until Marketplace trusted publishing is available.
-# See https://github.com/microsoft/vscode-vsce/issues/1275.
+# Intentionally manual-only. See docs/marketplace-publishing.md for policy,
+# environment protection and the separate authorisation to publish a release.
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing release tag to publish (for example, v0.2.7)
+        description: Existing immutable release tag (for example, v0.2.7)
+        required: true
+        type: string
+      commit:
+        description: Full reviewed commit SHA to which that tag must resolve
         required: true
         type: string
 
-permissions:
-  contents: read
+permissions: {}
 
 concurrency:
-  group: vscode-marketplace-${{ inputs.tag }}
+  group: vscode-marketplace-production
+  cancel-in-progress: false
 
 jobs:
-  publish:
-    name: Test and publish with OIDC
+  verify:
+    name: Verify and package the exact release commit
+    if: github.repository == 'Chain-Frost/tuflow_validator' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    outputs:
+      tag_object: ${{ steps.release.outputs.tag_object }}
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_COMMIT: ${{ inputs.commit }}
+    defaults:
+      run:
+        working-directory: release
+    steps:
+      - name: Check out the trusted dispatch workflow policy
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: release-policy
+          persist-credentials: false
+
+      - name: Check out the supplied commit without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit }}
+          path: release
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up the pinned build toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: release-policy/.nvmrc
+          cache: npm
+          cache-dependency-path: release/package-lock.json
+
+      - name: Verify release identity, version and immutable tag target
+        id: release
+        # The candidate commit cannot supply or override its own acceptance gate.
+        run: node ../release-policy/scripts/verify-release.cjs "$RELEASE_TAG" "$RELEASE_COMMIT"
+
+      - name: Require a configured production approval gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --silent --show-error --fail \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' \
+            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/environments/production" \
+            | node -e "let s=''; process.stdin.on('data', c => s += c).on('end', () => { const e=JSON.parse(s); if (!e.protection_rules?.some(r => r.type === 'required_reviewers' && r.reviewers?.length > 0)) { console.error('Configure required reviewers on the production environment before publishing.'); process.exitCode=1; } });"
+
+      - name: Set up Python for VSIX inspection
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Test release guards without publishing
+        run: npm run test:release
+
+      - name: Compile, lint and test the extension
+        run: xvfb-run -a npm test
+
+      - name: Package and inspect the tested source
+        run: |
+          npm run package:vsix:ci
+          python scripts/verify-vsix.py validator-ci.vsix
+          sha256sum validator-ci.vsix > validator-ci.vsix.sha256
+
+      - name: Retain the verified release package
+        uses: actions/upload-artifact@v4
+        with:
+          name: marketplace-release-${{ inputs.commit }}
+          path: |
+            release/validator-ci.vsix
+            release/validator-ci.vsix.sha256
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Approve and publish the verified package with OIDC
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
     permissions:
       contents: read
       id-token: write
     env:
       RELEASE_TAG: ${{ inputs.tag }}
-
+      RELEASE_COMMIT: ${{ inputs.commit }}
+      VERIFIED_TAG_OBJECT: ${{ needs.verify.outputs.tag_object }}
+    defaults:
+      run:
+        working-directory: release
     steps:
-      - name: Check out release tag
+      - name: Check out the trusted dispatch workflow policy
         uses: actions/checkout@v4
         with:
-          ref: refs/tags/${{ env.RELEASE_TAG }}
+          ref: ${{ github.workflow_sha }}
+          path: release-policy
+          persist-credentials: false
 
-      - name: Set up Node.js
+      - name: Check out the already-verified commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit }}
+          path: release
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up the pinned publishing toolchain
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: release-policy/.nvmrc
           cache: npm
+          cache-dependency-path: release/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install locked publishing tooling without lifecycle scripts
+        run: npm ci --ignore-scripts
 
-      - name: Verify release version
+      - name: Retrieve this run's verified package
+        uses: actions/download-artifact@v4
+        with:
+          name: marketplace-release-${{ inputs.commit }}
+          path: release
+
+      - name: Recheck the tag after environment approval
         shell: bash
         run: |
-          package_tag="v$(node -p "require('./package.json').version")"
-          if [[ "$package_tag" != "$RELEASE_TAG" ]]; then
-            echo "Release tag $RELEASE_TAG does not match package version $package_tag." >&2
+          node ../release-policy/scripts/verify-release.cjs "$RELEASE_TAG" "$RELEASE_COMMIT"
+          current_tag_object="$(git ls-remote --refs origin "refs/tags/$RELEASE_TAG" | cut -f1)"
+          if [[ -z "$VERIFIED_TAG_OBJECT" || "$current_tag_object" != "$VERIFIED_TAG_OBJECT" ]]; then
+            echo 'The release tag changed or disappeared after verification.' >&2
             exit 1
           fi
+          sha256sum --check validator-ci.vsix.sha256
 
-      - name: Run tests
-        run: xvfb-run -a npm test
-
-      - name: Publish to VS Code Marketplace
-        run: npm run publish:vsix:oidc
+      - name: Publish the verified VSIX using Trusted Publishing
+        # No version argument, auto-increment, repackaging, PAT or fallback.
+        run: npm run publish:vsix:oidc -- --packagePath validator-ci.vsix

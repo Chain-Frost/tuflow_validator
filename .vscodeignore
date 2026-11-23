@@ -22,6 +22,7 @@
 **/package-vsix.sh
 **/temp_commands.txt
 **/.gitignore
+**/.nvmrc
 **/docs/**
 **/fixtures/**
 **/coverage/**

@@ -108,8 +108,16 @@ king08.tcf     # latest (highest in its series)
 - It does not validate dataset contents, layer names, or runtime options.
 
 ## Development
+Use the Node version pinned in `.nvmrc` and install dependencies with `npm ci`.
+The build/publishing Node version is separate from the VS Code extension-host
+compatibility contract.
+
 ```bash
 npm run compile
 npm run test:container
 npm run package:vsix
 ```
+
+Marketplace release preparation uses a manual-only Trusted Publishing workflow.
+See [publishing configuration and verification status](docs/marketplace-publishing.md)
+for the exact publisher policy, protected environment and release prerequisites.

@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Set up Python for standard-library VSIX inspection
@@ -38,6 +38,9 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Verify release guards without publishing
+        run: npm run test:release
 
       # npm test runs pretest (TypeScript compilation + ESLint) before
       # starting the actual VS Code extension-host integration suite.
