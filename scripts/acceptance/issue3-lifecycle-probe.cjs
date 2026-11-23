@@ -133,8 +133,18 @@ exports.run = async function run() {
     const subscriptions = [];
     try {
         const workspace = vscode.workspace.workspaceFolders || [];
-        assert.ok(workspace.some(f => path.resolve(f.uri.fsPath) === path.resolve(base)),
-            'The SMB fixture directory MUST be open as a VS Code workspace');
+        const identity = file => {
+            const normal = path.resolve(file);
+            return process.platform === 'win32' ? normal.toLowerCase() : normal;
+        };
+        const matches = workspace.map(folder => folder.uri.scheme === 'file' &&
+            identity(folder.uri.fsPath) === identity(base));
+        evidence.workspace = { folderCount: workspace.length, matchedFixture: matches.includes(true),
+            folderSchemes: workspace.map(folder => folder.uri.scheme),
+            folderIdentitySha256: workspace.map(folder => digest(identity(folder.uri.fsPath))),
+            expectedIdentitySha256: digest(identity(base)) };
+        assert.ok(evidence.workspace.matchedFixture,
+            'The fixture directory MUST be open as a VS Code workspace');
         const validator = vscode.extensions.getExtension('Chain-Frost.tuflow-path-validator');
         assert.ok(validator, 'Installed Validator VSIX not found');
         const relative = path.relative(installation, validator.extensionPath);
