@@ -39,7 +39,7 @@ jobs:
           Write-Host "Benchmark source: $head"
       - name: Current-source Windows local-NTFS core trials
         env:
-          TPV_${{ github.workspace }}/validator-ci.vsix: ${{ github.workspace }}/validator-ci.vsix
+          TPV_VSIX_PATH: ${{ github.workspace }}/validator-ci.vsix
           TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/issue3-core-windows.json
           TPV_BENCHMARK_SAMPLES: '19'
           TPV_BENCHMARK_WARMUPS: '3'
