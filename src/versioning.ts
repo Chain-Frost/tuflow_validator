@@ -20,6 +20,8 @@ export interface LatestCheckContext {
     discoveryPaths: Set<string>;
     /** Directories whose .tcf listing determines which run files are latest. */
     tcfSearchFolders: Set<string>;
+    /** Physical file listings are reused only within this root analysis. */
+    directoryFilesByFolder?: Map<string, string[]>;
 }
 
 type LatestVersionStatus = 'no-version' | 'latest' | 'not-latest';
@@ -54,7 +56,11 @@ export function buildLatestCheckContext(
     const latestTcfReferencedControls = new Set<string>();
     const discoveryPaths = new Set<string>();
     const tcfSearchFolders = new Set<string>();
-    const context = { tcfFilesByFolder, latestTcfReferencedControls, discoveryPaths, tcfSearchFolders };
+    const directoryFilesByFolder = new Map<string, string[]>();
+    const context = {
+        tcfFilesByFolder, latestTcfReferencedControls, discoveryPaths,
+        tcfSearchFolders, directoryFilesByFolder
+    };
 
     if (!getConfiguredLatestVersionChecksEnabled() ||
         path.extname(document.fileName).toLowerCase() !== '.tcf') {
@@ -278,20 +284,21 @@ export function shouldCheckLatestReferencedVersions(
     }
 
     const candidateFiles = getCandidateFilesForLatestStatus(filePath, latestCheckContext);
-    const status = getLatestVersionStatus(filePath, candidateFiles);
+    const status = getLatestVersionStatus(filePath, candidateFiles, latestCheckContext.directoryFilesByFolder);
     return status.status === 'latest' || (ext === '.tcf' && status.status === 'no-version');
 }
 
 export function checkReferencedFileLatestVersion(
     filePath: string,
     range: vscode.Range,
-    diagnostics: vscode.Diagnostic[]
+    diagnostics: vscode.Diagnostic[],
+    latestCheckContext?: LatestCheckContext
 ): void {
     if (!getConfiguredLatestVersionChecksEnabled()) {
         return;
     }
 
-    const status = getLatestVersionStatus(filePath);
+    const status = getLatestVersionStatus(filePath, undefined, latestCheckContext?.directoryFilesByFolder);
     if (status.status === 'not-latest') {
         const currentVersion = status.currentVersion ?? 0;
         const latestVersion = status.latestVersion ?? currentVersion;
@@ -393,7 +400,11 @@ export function isVersionSeriesCandidate(referencePath: string, changedPath: str
         buildVersionPattern(referenceName, referenceMatch) === buildVersionPattern(changedName, changedMatch);
 }
 
-function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): LatestVersionResult {
+function getLatestVersionStatus(
+    filePath: string,
+    candidateFiles?: string[],
+    directoryFilesByFolder?: Map<string, string[]>
+): LatestVersionResult {
     const ext = path.extname(filePath).toLowerCase();
     const baseName = path.basename(filePath, ext);
     const cleanedBaseName = baseName.toLowerCase();
@@ -411,13 +422,25 @@ function getLatestVersionStatus(filePath: string, candidateFiles?: string[]): La
     if (candidateFiles) {
         entries = candidateFiles;
     } else {
-        try {
-            entries = fs
-                .readdirSync(path.dirname(filePath), { withFileTypes: true })
-                .filter(entry => entry.isFile())
-                .map(entry => path.join(path.dirname(filePath), entry.name));
-        } catch {
-            return { status: 'latest', currentVersion, latestVersion };
+        // A directory is immutable *only for this analysis pass*: this avoids
+        // repeated synchronous metadata scans without storing stale sibling
+        // listings across changed-path events, document edits or settings.
+        const directory = path.dirname(filePath);
+        const key = pathIdentity(directory);
+        const cached = directoryFilesByFolder?.get(key);
+        if (cached !== undefined) {
+            entries = cached;
+        } else {
+            try {
+                entries = fs
+                    .readdirSync(directory, { withFileTypes: true })
+                    .filter(entry => entry.isFile())
+                    .map(entry => path.join(directory, entry.name));
+            } catch {
+                // Preserve legacy semantics; never cache a failed enumeration.
+                return { status: 'latest', currentVersion, latestVersion };
+            }
+            directoryFilesByFolder?.set(key, entries);
         }
     }
 
