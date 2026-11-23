@@ -100,6 +100,14 @@ king05.tcf
 king08.tcf     # latest (highest in its series)
 ```
 
+## Network-project automatic freshness
+
+TUFLOW control files are ordinarily used as part of a model project. For models stored on UNC or mapped SMB shares, **automatic refresh after external filesystem changes is supported only when the relevant model directory is opened as a VS Code workspace** (use **File → Open Folder**). This support boundary is based on the tested Windows/network configurations; it is not a guarantee for every SMB server.
+
+**Opening an individual control file directly from a network share without a workspace is outside the supported automatic-freshness configuration.** Initial path diagnostics and editor-driven validation may still work, but external creation, deletion, renaming and editing of referenced files or newer-version siblings may not update Problems automatically. This is an accepted, permanent limitation, not a planned watcher fix.
+
+If available, use **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette after external changes; it is an explicit refresh, not automatic monitoring. This command is implemented separately in [PR #24](https://github.com/Chain-Frost/tuflow_validator/pull/24). See [issue #23](https://github.com/Chain-Frost/tuflow_validator/issues/23) for the accepted limitation and investigation evidence.
+
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored if they cannot be resolved.
 - An arbitrary-suffix inline `Read File` is discovered from its parent, not treated as a standalone validation root. Dirty `plaintext` buffers of those includes are used.
