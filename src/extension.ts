@@ -1,9 +1,8 @@
-import * as path from 'path';
 import * as vscode from 'vscode';
 import { IgnoreCodeActionProvider } from './codeActions';
 import {
     refreshDiagnostics,
-    getTrackedDependencyPaths,
+    getTrackedWatchDirectories,
     updateDiagnosticsForChangedPath,
     removeDiagnosticsForDocument,
     scheduleDiagnosticsUpdate,
@@ -15,17 +14,33 @@ export function activate(context: vscode.ExtensionContext) {
     const collection = vscode.languages.createDiagnosticCollection('tuflow');
     context.subscriptions.push(collection);
 
-    // A directory-level watcher is shared by all references in that folder.
-    // This avoids one native watcher per file in large TUFLOW models.
-    const watchers = new Map<string, vscode.FileSystemWatcher>();
+    // One watcher and exactly three owned listeners per directory, shared
+    // by all roots. An unreferenced version sibling is a relevant directory
+    // event even though it is not yet a file dependency.
+    interface DirectoryWatcher {
+        watcher: vscode.FileSystemWatcher;
+        listeners: vscode.Disposable[];
+    }
+    const watchers = new Map<string, DirectoryWatcher>();
     let reconcileTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const disposeWatcher = (directory: string): void => {
+        const entry = watchers.get(directory);
+        if (!entry) {
+            return;
+        }
+        for (const listener of entry.listeners) {
+            listener.dispose();
+        }
+        entry.watcher.dispose();
+        watchers.delete(directory);
+    };
+
     const reconcileWatchers = () => {
-        const dependencies = getTrackedDependencyPaths();
-        const directories = new Set([...dependencies].map(file => path.dirname(file)));
-        for (const [directory, watcher] of watchers) {
+        const directories = getTrackedWatchDirectories();
+        for (const directory of watchers.keys()) {
             if (!directories.has(directory)) {
-                watcher.dispose();
-                watchers.delete(directory);
+                disposeWatcher(directory);
             }
         }
         for (const directory of directories) {
@@ -36,16 +51,19 @@ export function activate(context: vscode.ExtensionContext) {
                 new vscode.RelativePattern(directory, '*')
             );
             const onFileEvent = (uri: vscode.Uri) => {
-                if (!getTrackedDependencyPaths().has(path.normalize(uri.fsPath))) {
-                    return;
+                // The handler checks exact missing/present dependencies, latest
+                // TCF discovery and current version series per root. Unrelated
+                // directory events do not trigger reanalysis.
+                if (updateDiagnosticsForChangedPath(uri.fsPath, collection)) {
+                    scheduleWatcherReconcile();
                 }
-                updateDiagnosticsForChangedPath(uri.fsPath, collection);
-                scheduleWatcherReconcile();
             };
-            watcher.onDidCreate(onFileEvent, undefined, context.subscriptions);
-            watcher.onDidChange(onFileEvent, undefined, context.subscriptions);
-            watcher.onDidDelete(onFileEvent, undefined, context.subscriptions);
-            watchers.set(directory, watcher);
+            const listeners = [
+                watcher.onDidCreate(onFileEvent),
+                watcher.onDidChange(onFileEvent),
+                watcher.onDidDelete(onFileEvent)
+            ];
+            watchers.set(directory, { watcher, listeners });
         }
     };
     function scheduleWatcherReconcile() {
@@ -63,14 +81,24 @@ export function activate(context: vscode.ExtensionContext) {
             if (reconcileTimer) {
                 clearTimeout(reconcileTimer);
             }
-            for (const watcher of watchers.values()) {
-                watcher.dispose();
+            for (const directory of watchers.keys()) {
+                disposeWatcher(directory);
             }
-            watchers.clear();
         }
     });
 
     void refreshDiagnostics(collection).then(scheduleWatcherReconcile);
+
+    // Explicit recovery when the host's native filesystem watcher cannot
+    // deliver notifications (e.g. remote files opened outside a workspace).
+    // Do not mask unsupported native watchers with unbounded network polling.
+    context.subscriptions.push(vscode.commands.registerCommand(
+        'tuflowValidator.refreshDiagnostics',
+        async () => {
+            await refreshDiagnostics(collection);
+            scheduleWatcherReconcile();
+        }
+    ));
 
     context.subscriptions.push(
         vscode.workspace.onDidOpenTextDocument(doc => {
@@ -79,6 +107,10 @@ export function activate(context: vscode.ExtensionContext) {
         }),
         vscode.workspace.onDidChangeTextDocument(event => {
             scheduleDiagnosticsUpdate(event.document, collection);
+            scheduleWatcherReconcile();
+        }),
+        vscode.workspace.onDidSaveTextDocument(doc => {
+            updateDiagnostics(doc, collection);
             scheduleWatcherReconcile();
         }),
         vscode.workspace.onDidCloseTextDocument(doc => {

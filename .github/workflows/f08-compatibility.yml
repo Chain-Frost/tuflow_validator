@@ -41,11 +41,32 @@ jobs:
           cache-dependency-path: agent-b/package-lock.json
       - name: Apply only the F08 production delta and its regression tests
         shell: bash
+        env:
+          F08_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
+          # Use this PR's merge base so stacking/retargeting cannot include
+          # inherited B/D2 changes. Reject empty or broadened production diffs.
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const { execFileSync } = require('node:child_process');
+          const { writeFileSync } = require('node:fs');
+          const git = args => execFileSync('git', ['-C', 'f08', ...args], { encoding: 'utf8' });
+          const range = `${process.env.F08_BASE_SHA}...HEAD`;
+          const reviewed = '936231289b767ec0028a0be7b18bb78596dc4fd6..9cb254b0a2aaaa77544eceb20eff35af9d79f9e3';
+          const productionFiles = git(['diff', '--name-only', range, '--', 'src'])
+            .trim().split('\n').filter(file => !file.startsWith('src/test/'));
+          assert.deepEqual(productionFiles, ['src/diagnostics.ts'], 'Expected only the F08 production file');
+          assert.equal(git(['diff', '--numstat', range, '--', 'src/diagnostics.ts']).trim(),
+            '15\t0\tsrc/diagnostics.ts', 'Expected the nonempty 15-line F08 guard');
+          const changedLines = revision => git(['diff', '--unified=0', revision, '--', 'src/diagnostics.ts'])
+            .split('\n').filter(line => /^[+-]/.test(line) && !/^(---|\+\+\+)/.test(line));
+          assert.deepEqual(changedLines(range), changedLines(reviewed), 'Production patch must match the reviewed F08 guard');
+          writeFileSync('f08.patch', git(['diff', '--unified=1', range, '--', 'src/diagnostics.ts']));
+          NODE
           # B intentionally changes the dependency bookkeeping immediately
           # after this guard; one context line keeps that independent change.
-          git -C f08 diff --unified=1 936231289b767ec0028a0be7b18bb78596dc4fd6 HEAD -- src/diagnostics.ts > f08.patch
-          if test -s f08.patch; then git -C agent-b apply ../f08.patch; fi
+          git -C agent-b apply --check ../f08.patch
+          git -C agent-b apply ../f08.patch
           cp f08/src/test/suite/trd_editor_context.test.ts agent-b/src/test/suite/
           echo "F08_SOURCE_SHA=$(git -C f08 rev-parse HEAD)"
           echo "B_SOURCE_SHA=$(git -C agent-b rev-parse HEAD)"
