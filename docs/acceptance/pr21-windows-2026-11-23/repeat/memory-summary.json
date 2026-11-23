@@ -1,0 +1,56 @@
+[
+  {
+    "storage": "local",
+    "mode": "workspace",
+    "pid": 125124,
+    "rssFirstMiB": 228.9609375,
+    "rssLastMiB": 194.42578125,
+    "heapFirstMiB": 47.11568069458008,
+    "heapLastMiB": 38.969451904296875
+  },
+  {
+    "storage": "local",
+    "mode": "lifecycle",
+    "pid": 126428,
+    "rssFirstMiB": 227.19921875,
+    "rssLastMiB": 194.828125,
+    "heapFirstMiB": 47.82069778442383,
+    "heapLastMiB": 38.71571731567383
+  },
+  {
+    "storage": "unc",
+    "mode": "workspace",
+    "pid": 125040,
+    "rssFirstMiB": 228.69140625,
+    "rssLastMiB": 191.234375,
+    "heapFirstMiB": 49.02960205078125,
+    "heapLastMiB": 38.91032028198242
+  },
+  {
+    "storage": "unc",
+    "mode": "lifecycle",
+    "pid": 130008,
+    "rssFirstMiB": 226.44140625,
+    "rssLastMiB": 195.1015625,
+    "heapFirstMiB": 50.9376106262207,
+    "heapLastMiB": 38.77661895751953
+  },
+  {
+    "storage": "mapped",
+    "mode": "workspace",
+    "pid": 125656,
+    "rssFirstMiB": 227.40625,
+    "rssLastMiB": 191.29296875,
+    "heapFirstMiB": 47.11208724975586,
+    "heapLastMiB": 39.16448974609375
+  },
+  {
+    "storage": "mapped",
+    "mode": "lifecycle",
+    "pid": 131732,
+    "rssFirstMiB": 227.8359375,
+    "rssLastMiB": 196.65625,
+    "heapFirstMiB": 49.05156326293945,
+    "heapLastMiB": 38.305686950683594
+  }
+]

@@ -1,0 +1,227 @@
+[main 2026-11-23T00:48:30.750Z] Error: Error mutex already exists
+    at xa.installMutex (file:///C:/Program%20Files/Microsoft%20VS%20Code/8a14f0cc1b/resources/app/out/mainImpl.js:334:30635)
+Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.remote-repositories' wants API proposal 'timeline' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+Via 'product.json#extensionEnabledApiProposals' extension 'github.vscode-pull-request-github' wants API proposal 'agentsWindowActivation' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+Via 'product.json#extensionEnabledApiProposals' extension 'github.remotehub' wants API proposal 'timeline' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+Extension 'github.copilot-chat' appears in product.json but enables LESS API proposals than the extension wants.
+package.json (LOSES): agentSessionsWorkspace
+speech
+structuralDiff
+agentsWindowConfiguration
+chatDebug
+chatHooks
+envIsConnectionMetered
+extensionsAny
+newSymbolNamesProvider
+interactive
+codeActionAI
+activeComment
+commentReveal
+contribCommentThreadAdditionalMenu
+contribCommentsViewThreadMenus
+contribChatEditorInlineGutterMenu
+documentFiltersExclusive
+embeddings
+findTextInFiles
+findTextInFiles2
+languageModelToolSupportsModel
+findFiles2
+textSearchProvider
+terminalDataWriteEvent
+terminalExecuteCommandEvent
+terminalSelection
+terminalQuickFixProvider
+mappedEditsProvider
+aiRelatedInformation
+aiSettingsSearch
+chatParticipantAdditions
+defaultChatParticipant
+contribSourceControlInputBoxMenu
+authLearnMore
+authIssuers
+testObserver
+aiTextSearchProvider
+chatParticipantPrivate
+chatProvider
+contribDebugCreateConfiguration
+chatReferenceDiagnostic
+textSearchProvider2
+chatReferenceBinaryData
+languageModelSystem
+languageModelCapabilities
+languageModelPricing
+languageModelRateLimit
+inlineCompletionsAdditions
+chatStatusItem
+chatInputNotification
+taskProblemMatcherStatus
+contribLanguageModelToolSets
+textDocumentChangeReason
+resolvers
+taskExecutionTerminal
+dataChannels
+languageModelThinkingPart
+chatSessionsProvider
+devDeviceId
+contribEditorContentMenu
+chatPromptFiles
+mcpServerDefinitions
+tabInputMultiDiff
+workspaceTrust
+environmentPower
+terminalTitle
+toolInvocationApproveCombination
+chatSessionCustomizationProvider
+product.json (WINS): agentSessionsWorkspace
+agentsWindowConfiguration
+interactive
+terminalDataWriteEvent
+terminalExecuteCommandEvent
+terminalSelection
+terminalQuickFixProvider
+chatParticipantAdditions
+defaultChatParticipant
+embeddings
+chatProvider
+mappedEditsProvider
+aiRelatedInformation
+aiSettingsSearch
+codeActionAI
+findTextInFiles
+findTextInFiles2
+textSearchProvider
+textSearchProvider2
+activeComment
+commentReveal
+contribSourceControlInputBoxMenu
+contribCommentEditorActionsMenu
+contribCommentThreadAdditionalMenu
+contribCommentsViewThreadMenus
+contribChatEditorInlineGutterMenu
+extensionAffinity
+newSymbolNamesProvider
+findFiles2
+chatReferenceDiagnostic
+extensionsAny
+authLearnMore
+authIssuers
+testObserver
+aiTextSearchProvider
+documentFiltersExclusive
+chatParticipantPrivate
+contribDebugCreateConfiguration
+inlineCompletionsAdditions
+chatReferenceBinaryData
+languageModelSystem
+languageModelCapabilities
+languageModelThinkingPart
+languageModelToolSupportsModel
+chatStatusItem
+taskProblemMatcherStatus
+contribLanguageModelToolSets
+textDocumentChangeReason
+resolvers
+taskExecutionTerminal
+dataChannels
+chatSessionsProvider
+chatSessionCustomizationProvider
+devDeviceId
+contribEditorContentMenu
+tokenInformation
+toolInvocationApproveCombination
+chatPromptFiles
+mcpServerDefinitions
+tabInputMultiDiff
+workspaceTrust
+chatHooks
+chatDebug
+envIsConnectionMetered
+environmentPower
+terminalTitle
+languageModelPricing
+languageModelRateLimit
+chatInputNotification
+speech
+DELTA: structuralDiff
+Proceeding with EXTRA proposals (structuralDiff) because extension is in development mode. Still, this EXTENSION WILL BE BROKEN unless product.json is updated.
+(node:120020) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `Code --trace-deprecation ...` to show where the warning was created)
+(node:120020) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+[main 2026-11-23T00:48:32.919Z] [UtilityProcessWorker]: createWorker() found an existing worker that will be terminated (window: 1, moduleId: vs/platform/files/node/watcher/watcherMain)
+[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+[main 2026-11-23T00:48:33.059Z] [UtilityProcessWorker]: createWorker() found an existing worker that will be terminated (window: 1, moduleId: vs/platform/files/node/watcher/watcherMain)
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[File Watcher (node.js)] Failed to watch t:\temp\<scratch>\tpv-notify-NIcgaw\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)
+[File Watcher (node.js)] Failed to watch t:\temp\<scratch>\tpv-notify-NIcgaw for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[main 2026-11-23T00:48:34.010Z] [AgentHost:stderr] (node:128484) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `Code --trace-deprecation ...` to show where the warning was created)
+
+[main 2026-11-23T00:48:34.030Z] [AgentHost:stderr] (node:128484) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+[AgentHostCustomizationMarketplace] Unable to load session-bound SDK installation receipts { name: 'Error' }
+Failed to move 'Run_v01.tcf' to the recycle bin (Failed to perform delete operation): Unknown (FileSystemError): Failed to move 'Run_v01.tcf' to the recycle bin (Failed to perform delete operation)
+    at o.create (file:///C:/Program%20Files/Microsoft%20VS%20Code/8a14f0cc1b/resources/app/out/mainImpl.js:39:70079)
+    at Ln (file:///C:/Program%20Files/Microsoft%20VS%20Code/8a14f0cc1b/resources/app/out/mainImpl.js:39:68661)
+    at zy.delete (file:///C:/Program%20Files/Microsoft%20VS%20Code/8a14f0cc1b/resources/app/out/mainImpl.js:244:34544)
+IGNORING workspace edit: Unknown (FileSystemError): Failed to move 'Run_v01.tcf' to the recycle bin (Failed to perform delete operation)
+[main 2026-11-23T00:48:42.254Z] AgentHostStarter: cannot create window connection: Agent Host process manager is shutting down.

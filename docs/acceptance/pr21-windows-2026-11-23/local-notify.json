@@ -1,0 +1,115 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 78820,
+    "workspaceFolders": []
+  },
+  "nativeEvents": [
+    {
+      "event": "rename",
+      "name": "geom_v02.tgc",
+      "time": "2026-11-23T00:48:08.165Z"
+    },
+    {
+      "event": "change",
+      "name": "geom_v02.tgc",
+      "time": "2026-11-23T00:48:08.165Z"
+    },
+    {
+      "event": "rename",
+      "name": "Run_v01.tcf",
+      "time": "2026-11-23T00:48:13.425Z"
+    }
+  ],
+  "apiEvents": [
+    {
+      "kind": "create",
+      "uri": "file:///e%3A/temp/tpv-pr21-acceptance-20261123/local-fixtures/tpv-notify-QLmxIo/geom_v02.tgc",
+      "time": "2026-11-23T00:48:08.341Z"
+    },
+    {
+      "kind": "change",
+      "uri": "file:///e%3A/temp/tpv-pr21-acceptance-20261123/local-fixtures/tpv-notify-QLmxIo/geom_v02.tgc",
+      "time": "2026-11-23T00:48:08.443Z"
+    },
+    {
+      "kind": "delete",
+      "uri": "file:///e%3A/temp/tpv-pr21-acceptance-20261123/local-fixtures/tpv-notify-QLmxIo/Run_v01.tcf",
+      "time": "2026-11-23T00:48:13.616Z"
+    }
+  ],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:48:08.407Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:48:08.501Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:48:12.323Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:48:13.491Z",
+      "diagnostics": []
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ],
+    "afterSettingsRefresh": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [
+    {
+      "file": "Run_v01.tcf",
+      "time": "2026-11-23T00:48:13.436Z"
+    }
+  ],
+  "probeRevision": 2,
+  "observationMs": 4000.3046999999997,
+  "notificationAcceptance": "passed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": true,
+    "closeEvents": [
+      {
+        "file": "Run_v01.tcf",
+        "time": "2026-11-23T00:48:13.436Z"
+      }
+    ],
+    "diagnostics": []
+  },
+  "actualDocumentCloseAcceptance": "passed",
+  "fixturesRemoved": true
+}

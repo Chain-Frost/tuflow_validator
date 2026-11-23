@@ -1,0 +1,17 @@
+const fs=require('fs'),path=require('path'),v=require('vscode'),{performance:p}=require('perf_hooks');const pause=ms=>new Promise(r=>setTimeout(r,ms));
+exports.run=async()=>{
+ const dir=fs.mkdtempSync(path.join(process.env.TPV_HOST_PARENT,'tpv-notify-'));const r={environment:{vscode:v.version,node:process.version,pid:process.pid,workspaceFolders:v.workspace.workspaceFolders?.map(x=>x.uri.toString())||[]},nativeEvents:[],apiEvents:[],diagnosticEvents:[],snapshots:{}};let nw,vw,sub,closeSub;const listeners=[];
+ r.closeEvents=[];closeSub=v.workspace.onDidCloseTextDocument(d=>{if(d.fileName.toLowerCase().startsWith(dir.toLowerCase()))r.closeEvents.push({file:path.basename(d.fileName),time:new Date().toISOString()});}); const u=v.Uri.file(path.join(dir,'Run_v01.tcf'));const view=()=>v.languages.getDiagnostics(u).filter(x=>x.source==='TUFLOW Path Validator').map(x=>({code:typeof x.code==='object'?x.code.value:x.code,message:x.message}));
+ try{
+ fs.writeFileSync(path.join(dir,'geom_v01.tgc'),'!first\n');fs.writeFileSync(u.fsPath,'Geometry Control File == geom_v01.tgc\n');
+ r.probeRevision=2;try{nw=fs.watch(dir,(event,name)=>r.nativeEvents.push({event,name,time:new Date().toISOString()}));nw.on('error',e=>r.nativeEvents.push({error:String(e)}));}catch(e){r.nativeWatchCreationError=String(e);}
+ vw=v.workspace.createFileSystemWatcher(new v.RelativePattern(dir,'*'));for(const [kind,fn]of [['create','onDidCreate'],['change','onDidChange'],['delete','onDidDelete']])listeners.push(vw[fn](x=>r.apiEvents.push({kind,uri:x.toString(),time:new Date().toISOString()})));
+ sub=v.languages.onDidChangeDiagnostics(e=>{if(e.uris.some(x=>x.toString()===u.toString()))r.diagnosticEvents.push({time:new Date().toISOString(),diagnostics:view()});});
+ const d=await v.workspace.openTextDocument(u);await v.window.showTextDocument(d,{preview:false});await v.extensions.getExtension('Chain-Frost.tuflow-path-validator').activate();await pause(1500);r.snapshots.before=view();
+ const start=p.now();fs.writeFileSync(path.join(dir,'geom_v02.tgc'),'!new version\n');await pause(4000);r.snapshots.afterCreate=view();r.observationMs=p.now()-start;
+ await v.workspace.getConfiguration('tuflowValidator').update('diagnosticLevel','warning',v.ConfigurationTarget.Global);await pause(600);r.snapshots.afterSettingsRefresh=view();
+ r.notificationAcceptance=r.snapshots.afterCreate.some(x=>x.code==='TPV022')?'passed':'failed'; await v.commands.executeCommand('workbench.action.closeAllEditors');await pause(500);r.afterTabClose={isClosed:d.isClosed,closeEvents:[...r.closeEvents]};const deletion=new v.WorkspaceEdit();deletion.deleteFile(u);await v.workspace.applyEdit(deletion);await pause(1500);r.afterDelete={isClosed:d.isClosed,closeEvents:[...r.closeEvents],diagnostics:view()};r.actualDocumentCloseAcceptance=d.isClosed&&r.closeEvents.length>0&&view().length===0?'passed':'blocked';
+ }catch(e){r.failure=String(e.stack||e);}finally{closeSub?.dispose();nw?.close();vw?.dispose();sub?.dispose();listeners.forEach(x=>x.dispose());try{await v.commands.executeCommand('workbench.action.closeAllEditors');fs.rmSync(dir,{recursive:true,force:true,maxRetries:12,retryDelay:250});}catch(e){r.cleanupError=String(e);}r.fixturesRemoved=!fs.existsSync(dir);fs.writeFileSync(process.env.TPV_HOST_OUTPUT,JSON.stringify(r,null,2));}
+};
+
+

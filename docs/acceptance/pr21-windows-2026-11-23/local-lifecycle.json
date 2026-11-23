@@ -1,0 +1,887 @@
+{
+  "storage": "local",
+  "pid": 126428,
+  "samples": [
+    {
+      "label": "cycle-0",
+      "time": "2026-11-23T00:48:58.423Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238235648,
+        "heapTotal": 73904128,
+        "heapUsed": 50143636,
+        "external": 8238170,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-1",
+      "time": "2026-11-23T00:48:59.652Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238346240,
+        "heapTotal": 73904128,
+        "heapUsed": 51347572,
+        "external": 8259432,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-2",
+      "time": "2026-11-23T00:49:00.908Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238559232,
+        "heapTotal": 73904128,
+        "heapUsed": 52545660,
+        "external": 8280659,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-3",
+      "time": "2026-11-23T00:49:02.128Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238624768,
+        "heapTotal": 73904128,
+        "heapUsed": 53877332,
+        "external": 8368622,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-4",
+      "time": "2026-11-23T00:49:03.401Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238817280,
+        "heapTotal": 73904128,
+        "heapUsed": 55068672,
+        "external": 8389844,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-5",
+      "time": "2026-11-23T00:49:04.643Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238665728,
+        "heapTotal": 71909376,
+        "heapUsed": 39879208,
+        "external": 7194493,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-6",
+      "time": "2026-11-23T00:49:05.868Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238694400,
+        "heapTotal": 71909376,
+        "heapUsed": 41200648,
+        "external": 7282456,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-7",
+      "time": "2026-11-23T00:49:07.088Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238739456,
+        "heapTotal": 71909376,
+        "heapUsed": 42525056,
+        "external": 7304883,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-8",
+      "time": "2026-11-23T00:49:08.303Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238768128,
+        "heapTotal": 71909376,
+        "heapUsed": 43940556,
+        "external": 7327312,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-9",
+      "time": "2026-11-23T00:49:09.543Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238813184,
+        "heapTotal": 71909376,
+        "heapUsed": 45142560,
+        "external": 7415277,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-10",
+      "time": "2026-11-23T00:49:10.771Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 240279552,
+        "heapTotal": 71909376,
+        "heapUsed": 46328576,
+        "external": 7436503,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-11",
+      "time": "2026-11-23T00:49:12.001Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 240312320,
+        "heapTotal": 71909376,
+        "heapUsed": 47627804,
+        "external": 7458934,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-12",
+      "time": "2026-11-23T00:49:13.307Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 240345088,
+        "heapTotal": 71909376,
+        "heapUsed": 49065156,
+        "external": 7548170,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-13",
+      "time": "2026-11-23T00:49:14.523Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238034944,
+        "heapTotal": 71909376,
+        "heapUsed": 50201540,
+        "external": 7569396,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-14",
+      "time": "2026-11-23T00:49:15.742Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238071808,
+        "heapTotal": 71909376,
+        "heapUsed": 51498792,
+        "external": 7657363,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-15",
+      "time": "2026-11-23T00:49:16.972Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 238235648,
+        "heapTotal": 72171520,
+        "heapUsed": 52643556,
+        "external": 7678589,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-16",
+      "time": "2026-11-23T00:49:18.188Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 234074112,
+        "heapTotal": 72171520,
+        "heapUsed": 40719628,
+        "external": 7263221,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-17",
+      "time": "2026-11-23T00:49:19.470Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 234131456,
+        "heapTotal": 72171520,
+        "heapUsed": 42010248,
+        "external": 7351188,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-18",
+      "time": "2026-11-23T00:49:20.752Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 234151936,
+        "heapTotal": 72171520,
+        "heapUsed": 43307972,
+        "external": 7373619,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "cycle-19",
+      "time": "2026-11-23T00:49:21.962Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "A.tcf",
+          "isClosed": false
+        },
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 234184704,
+        "heapTotal": 72171520,
+        "heapUsed": 44605064,
+        "external": 7396050,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "delete-B",
+      "time": "2026-11-23T00:49:23.992Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf"
+      ],
+      "docs": [
+        {
+          "name": "B.tcf",
+          "isClosed": true
+        }
+      ],
+      "memory": {
+        "rss": 203452416,
+        "heapTotal": 41500672,
+        "heapUsed": 39827444,
+        "external": 7192060,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": []
+    },
+    {
+      "label": "recreated-B",
+      "time": "2026-11-23T00:49:24.666Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [
+        "A.tcf",
+        "B.tcf"
+      ],
+      "docs": [
+        {
+          "name": "B.tcf",
+          "isClosed": false
+        }
+      ],
+      "memory": {
+        "rss": 204095488,
+        "heapTotal": 42024960,
+        "heapUsed": 40392212,
+        "external": 7265760,
+        "arrayBuffers": 0
+      },
+      "a": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ],
+      "b": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): child.payload"
+        }
+      ]
+    },
+    {
+      "label": "roots-deleted",
+      "time": "2026-11-23T00:49:26.728Z",
+      "trackedDirectories": [],
+      "registeredDocuments": [],
+      "docs": [],
+      "memory": {
+        "rss": 204292096,
+        "heapTotal": 42024960,
+        "heapUsed": 40596372,
+        "external": 7271236,
+        "arrayBuffers": 0
+      },
+      "a": [],
+      "b": []
+    }
+  ],
+  "closeEvents": [
+    "Run_v02.tcf",
+    "B.tcf",
+    "A.tcf",
+    "B.tcf"
+  ],
+  "identity": {
+    "uri": "file:///e%3A/temp/tpv-pr21-acceptance-20261123/local-fixtures/lifecycle-NSmAKh/A.tcf",
+    "fsPath": "e:\\temp\\tpv-pr21-acceptance-20261123\\local-fixtures\\lifecycle-NSmAKh\\A.tcf"
+  },
+  "unsaved": {
+    "dirty": true,
+    "ms": 329,
+    "root": [
+      {
+        "code": "TPV002",
+        "message": "Referenced file has 1 issue(s): other_v02.tgc"
+      }
+    ],
+    "child": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+      }
+    ],
+    "savedRoot": [
+      {
+        "code": "TPV002",
+        "message": "Referenced file has 1 issue(s): other_v02.tgc"
+      }
+    ],
+    "savedChild": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+      }
+    ],
+    "pass": true
+  },
+  "realClose": true,
+  "otherRootRetained": true,
+  "nativeWatcherCount": "not observable through VS Code API",
+  "fixturesRemoved": true
+}

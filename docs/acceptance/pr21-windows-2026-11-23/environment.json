@@ -1,0 +1,17 @@
+{
+    "buildNode":  "20.19.2 (Docker tuflow-helper-qa)",
+    "version":  "10.0.19045",
+    "vsixSHA256":  "F22E7CE1E27D8619FDB601E2E7DBCF4DD6E3EC2A43F11EF94B9BDC8B74518495",
+    "extensionHostNode":  "24.22.1",
+    "localVolume":  "E: NTFS, fixed",
+    "ramBytes":  67869888512,
+    "datePerth":  "2026-11-23",
+    "cpu":  "AMD Ryzen 7 7700X 8-Core Processor             ",
+    "launcherNode":  "22.23.0",
+    "remote":  "Distinct LAN SMB server; established TCP/445; existing mapped drive and matching UNC; 2.5 Gbps physical Ethernet",
+    "source":  "bdb6769f5366fd8ec3532a63254f5af4ac7470a6",
+    "build":  "19045",
+    "os":  "Microsoft Windows 10 Pro",
+    "vscodeCommit":  "8a14f0cc1b08d531eb83255ea3764ae22aa932b5",
+    "vscode":  "1.147.0"
+}

@@ -1,0 +1,44 @@
+[
+    {
+        "storage":  "local",
+        "mode":  "workspace",
+        "samples":  42,
+        "cpuSecondsDelta":  0.625,
+        "elapsedSeconds":  95.2213719
+    },
+    {
+        "storage":  "local",
+        "mode":  "lifecycle",
+        "samples":  14,
+        "cpuSecondsDelta":  1,
+        "elapsedSeconds":  31.1191455
+    },
+    {
+        "storage":  "unc",
+        "mode":  "workspace",
+        "samples":  42,
+        "cpuSecondsDelta":  0.90625,
+        "elapsedSeconds":  95.3429783
+    },
+    {
+        "storage":  "unc",
+        "mode":  "lifecycle",
+        "samples":  14,
+        "cpuSecondsDelta":  1.453125,
+        "elapsedSeconds":  30.9600987
+    },
+    {
+        "storage":  "mapped",
+        "mode":  "workspace",
+        "samples":  42,
+        "cpuSecondsDelta":  0.796875,
+        "elapsedSeconds":  95.67823709999999
+    },
+    {
+        "storage":  "mapped",
+        "mode":  "lifecycle",
+        "samples":  14,
+        "cpuSecondsDelta":  1.328125,
+        "elapsedSeconds":  30.9734536
+    }
+]

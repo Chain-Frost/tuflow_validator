@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 120020,
+    "workspaceFolders": []
+  },
+  "nativeEvents": [
+    {
+      "error": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "apiEvents": [],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:48:38.572Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [],
+    "afterSettingsRefresh": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [],
+  "probeRevision": 2,
+  "observationMs": 4017.9026000000003,
+  "notificationAcceptance": "failed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": false,
+    "closeEvents": [],
+    "diagnostics": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "actualDocumentCloseAcceptance": "blocked",
+  "fixturesRemoved": true
+}

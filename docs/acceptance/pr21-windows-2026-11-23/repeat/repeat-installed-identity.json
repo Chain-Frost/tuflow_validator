@@ -1,0 +1,68 @@
+[
+  {
+    "file": "codeActions.js",
+    "source": "bce73169a6dc8c25b2a4c2e65b331cb5b1058591e1ff9a66eaf1222676c79a20",
+    "installed": "bce73169a6dc8c25b2a4c2e65b331cb5b1058591e1ff9a66eaf1222676c79a20",
+    "equal": true
+  },
+  {
+    "file": "config.js",
+    "source": "e3ef6ca5e92666f6ab70a62671216a158204be2b40c8971cc09b582efa9b5424",
+    "installed": "e3ef6ca5e92666f6ab70a62671216a158204be2b40c8971cc09b582efa9b5424",
+    "equal": true
+  },
+  {
+    "file": "constants.js",
+    "source": "82ca28304951ba9de1b1139f68b73ae577f9be46eec6236fbf530afe5307014f",
+    "installed": "82ca28304951ba9de1b1139f68b73ae577f9be46eec6236fbf530afe5307014f",
+    "equal": true
+  },
+  {
+    "file": "diagnosticCodes.js",
+    "source": "35adc86488275c56a64e3a0be3b25d2d2ceeecf0a7ad9e5c3bd5557a5dd67219",
+    "installed": "35adc86488275c56a64e3a0be3b25d2d2ceeecf0a7ad9e5c3bd5557a5dd67219",
+    "equal": true
+  },
+  {
+    "file": "diagnostics.js",
+    "source": "1fa025d96b59e378ed2981dab98340253189c1114dee72324cc37f021f37b123",
+    "installed": "1fa025d96b59e378ed2981dab98340253189c1114dee72324cc37f021f37b123",
+    "equal": true
+  },
+  {
+    "file": "extension.js",
+    "source": "c489ba35041e30c86d5d3906742ffe713f23eb5bf161f9c08e42e6c7267d048d",
+    "installed": "c489ba35041e30c86d5d3906742ffe713f23eb5bf161f9c08e42e6c7267d048d",
+    "equal": true
+  },
+  {
+    "file": "formatter.js",
+    "source": "901c5eefad4412ebdab63c3549786efa469671b979a16aad2b31353a1f0653f1",
+    "installed": "901c5eefad4412ebdab63c3549786efa469671b979a16aad2b31353a1f0653f1",
+    "equal": true
+  },
+  {
+    "file": "io.js",
+    "source": "d29c0077760297062896c5acd62561b75e39cbfe54202b3ad5376ae89c1c0a40",
+    "installed": "d29c0077760297062896c5acd62561b75e39cbfe54202b3ad5376ae89c1c0a40",
+    "equal": true
+  },
+  {
+    "file": "pathParsing.js",
+    "source": "2bdd6d554228a074ea0e0cd96afb62bcaffb8e5c56d63cea12c3d7e9647efc46",
+    "installed": "2bdd6d554228a074ea0e0cd96afb62bcaffb8e5c56d63cea12c3d7e9647efc46",
+    "equal": true
+  },
+  {
+    "file": "staticVariables.js",
+    "source": "a0a18a7cad5484d6f4324a4993c6fa47b80d5da0ace1d1d6ca04e4cffadda0f9",
+    "installed": "a0a18a7cad5484d6f4324a4993c6fa47b80d5da0ace1d1d6ca04e4cffadda0f9",
+    "equal": true
+  },
+  {
+    "file": "versioning.js",
+    "source": "1c9b7a500e7af6d65569becfc2423f4b9c7c8afc33d8b4c741292aa482c6ecf8",
+    "installed": "1c9b7a500e7af6d65569becfc2423f4b9c7c8afc33d8b4c741292aa482c6ecf8",
+    "equal": true
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "source": "bdb6769f5366fd8ec3532a63254f5af4ac7470a6",
+  "resources": [
+    {
+      "storage": "local",
+      "workspace": {
+        "samples": 42,
+        "min": 367,
+        "max": 372,
+        "first": 372,
+        "last": 367
+      },
+      "lifecycle": {
+        "samples": 14,
+        "min": 370,
+        "max": 372,
+        "first": 372,
+        "last": 370
+      }
+    },
+    {
+      "storage": "unc",
+      "workspace": {
+        "samples": 42,
+        "min": 370,
+        "max": 375,
+        "first": 375,
+        "last": 370
+      },
+      "lifecycle": {
+        "samples": 14,
+        "min": 370,
+        "max": 372,
+        "first": 372,
+        "last": 370
+      }
+    },
+    {
+      "storage": "mapped",
+      "workspace": {
+        "samples": 42,
+        "min": 367,
+        "max": 372,
+        "first": 372,
+        "last": 367
+      },
+      "lifecycle": {
+        "samples": 14,
+        "min": 370,
+        "max": 373,
+        "first": 373,
+        "last": 370
+      }
+    }
+  ],
+  "unsaved": {
+    "local": {
+      "dirty": true,
+      "ms": 329,
+      "root": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "child": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "savedRoot": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "savedChild": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "pass": true
+    },
+    "unc": {
+      "dirty": true,
+      "ms": 329,
+      "root": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "child": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "savedRoot": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "savedChild": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "pass": true
+    },
+    "mapped": {
+      "dirty": true,
+      "ms": 319,
+      "root": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "child": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "savedRoot": [
+        {
+          "code": "TPV002",
+          "message": "Referenced file has 1 issue(s): other_v02.tgc"
+        }
+      ],
+      "savedChild": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2)."
+        }
+      ],
+      "pass": true
+    }
+  },
+  "workspaceCases": "| Version-sibling create/rename/delete + correct Quick Fix | PASS | PASS | PASS |\n| Unsaved TCF: nested outdated input; equal saved state | PASS | PASS | PASS |\n| Dirty .tgc / .trd / plaintext .payload; save/tab-close/disk changes | PASS | PASS | PASS |\n| Previously valid input delete/recreate | PASS | PASS | PASS |\n| Two static contexts; shared child; TCF-relative nested TRD; reopen | PASS | PASS | PASS |\n| 20 filesystem cycles: 80 transitions; no duplicate diagnostics | PASS | PASS | PASS |\n| 20 open/edit/save/tab-close/root-switch cycles | PASS | PASS | PASS |\n| Actual document-close ownership after root deletion | PASS | BLOCKED | BLOCKED |\n| Unknown command, runtime tokens, conditional missing, current version, unrelated file | PASS | PASS | PASS |\n| Remote file opened alone, no workspace: automatic sibling update | PASS | FAIL | FAIL |\n| Native watcher-type count and complete disposal proof | BLOCKED | BLOCKED | BLOCKED |",
+  "notification": {
+    "local": "passed",
+    "unc": "failed",
+    "mapped": "failed"
+  },
+  "nativeWatcherDisposal": "BLOCKED",
+  "mergeAcceptance": "INCOMPLETE"
+}
