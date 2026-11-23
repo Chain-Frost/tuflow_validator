@@ -5,8 +5,8 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { TPV_CODES } from '../../diagnosticCodes';
 import { getTrackedDependencyPaths, updateDiagnosticsForChangedPath } from '../../diagnostics';
-import { pathIdentity } from '../../io';
-import { isVersionSeriesCandidate } from '../../versioning';
+import { createControlTextSnapshotReader, pathIdentity } from '../../io';
+import { buildLatestCheckContext, isVersionSeriesCandidate } from '../../versioning';
 
 const outdated = (uri: vscode.Uri): vscode.Diagnostic[] =>
     vscode.languages.getDiagnostics(uri).filter(d =>
@@ -234,6 +234,39 @@ suite('Issue #3 freshness regressions', function () {
             }
         } finally {
             await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+
+    test('non-file root snapshot uses supplied historical revision, not working-tree contents', () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tpv-fresh-history-'));
+        const root = path.join(dir, 'Run_v02.tcf');
+        const current = path.join(dir, 'current_v02.tgc');
+        const historical = path.join(dir, 'historical_v02.tgc');
+        const worktree = 'Geometry Control File == current_v02.tgc\n';
+        const historicalText = 'Geometry Control File == historical_v02.tgc\n';
+        fs.writeFileSync(root, worktree);
+        fs.writeFileSync(current, '! current\n');
+        fs.writeFileSync(historical, '! historical\n');
+        try {
+            // Git diff/historical documents have non-file URI schemes but can
+            // refer to the same fileName as a different working-tree revision.
+            const sourceDoc = {
+                uri: vscode.Uri.from({ scheme: 'git', path: root }),
+                fileName: root,
+                getText: () => historicalText
+            } as vscode.TextDocument;
+            const readText = createControlTextSnapshotReader(sourceDoc);
+            assert.strictEqual(readText(root), historicalText,
+                'historical document text was replaced by working-tree contents');
+            const ctx = buildLatestCheckContext(sourceDoc, readText);
+            assert.ok(ctx.latestTcfReferencedControls.has(historical),
+                'latest-reference graph ignored the supplied root snapshot');
+            assert.ok(!ctx.latestTcfReferencedControls.has(current),
+                'latest-reference graph incorrectly read the working tree instead');
+            assert.strictEqual(fs.readFileSync(root, 'utf8'), worktree,
+                'snapshot reading must not rewrite the working tree');
+        } finally {
             fs.rmSync(dir, { recursive: true, force: true });
         }
     });
