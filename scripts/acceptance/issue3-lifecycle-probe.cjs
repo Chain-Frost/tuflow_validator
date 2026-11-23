@@ -26,6 +26,13 @@ const evidence = {
 };
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const fixturePath = relative => path.join(base, relative);
+function relativeFixture(file) {
+    if (!file || !base) return null;
+    const relative = path.relative(base, file);
+    if (!relative || relative === '..' ||
+        relative.startsWith('..' + path.sep) || path.isAbsolute(relative)) return null;
+    return relative.replace(/\\/g, '/');
+}
 const paths = {
     a: fixturePath('a/runs/A.tcf'),
     b: fixturePath('b/runs/B.tcf'),
@@ -77,8 +84,7 @@ function capture(label) {
                 ? process._getActiveHandles().length : null,
             osProcessHandles: osHandles(),
             openFixtureDocuments: vscode.workspace.textDocuments.filter(d =>
-                d.uri.scheme === 'file' && path.relative(base, d.uri.fsPath) &&
-                !path.relative(base, d.uri.fsPath).startsWith('..')).length
+                d.uri.scheme === 'file' && relativeFixture(d.uri.fsPath)).length
         }
     };
     evidence.phases.push(phase);
@@ -137,16 +143,15 @@ exports.run = async function run() {
         evidence.installed = { id: validator.id, version: validator.packageJSON.version,
             engine: validator.packageJSON.engines.vscode, activatedFromInstalledPackage: true };
         subscriptions.push(vscode.workspace.onDidCloseTextDocument(doc => {
-            evidence.closeEvents.push({ uri: doc.uri.toString(),
-                relativeFile: path.relative(base, doc.uri.fsPath).replace(/\\/g, '/'),
-                isClosed: doc.isClosed, at: new Date().toISOString() });
+            const relative = doc.uri.scheme === 'file' ? relativeFixture(doc.uri.fsPath) : null;
+            if (relative) evidence.closeEvents.push({ uri: doc.uri.toString(),
+                relativeFile: relative, isClosed: doc.isClosed, at: new Date().toISOString() });
         }));
         subscriptions.push(vscode.languages.onDidChangeDiagnostics(event => {
             evidence.diagnosticEvents.push({
                 at: new Date().toISOString(),
-                files: event.uris.filter(uri => uri.scheme === 'file').map(uri =>
-                    path.relative(base, uri.fsPath).replace(/\\/g, '/')).filter(p =>
-                    p && !p.startsWith('..'))
+                files: event.uris.filter(uri => uri.scheme === 'file')
+                    .map(uri => relativeFixture(uri.fsPath)).filter(Boolean)
             });
         }));
         capture('before-open');
