@@ -89,6 +89,17 @@ export function activate(context: vscode.ExtensionContext) {
 
     void refreshDiagnostics(collection).then(scheduleWatcherReconcile);
 
+    // Explicit recovery when the host's native filesystem watcher cannot
+    // deliver notifications (e.g. remote files opened outside a workspace).
+    // Do not mask unsupported native watchers with unbounded network polling.
+    context.subscriptions.push(vscode.commands.registerCommand(
+        'tuflowValidator.refreshDiagnostics',
+        async () => {
+            await refreshDiagnostics(collection);
+            scheduleWatcherReconcile();
+        }
+    ));
+
     context.subscriptions.push(
         vscode.workspace.onDidOpenTextDocument(doc => {
             updateDiagnostics(doc, collection);

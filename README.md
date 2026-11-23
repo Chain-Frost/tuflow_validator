@@ -53,7 +53,7 @@ Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
-Activation note: the extension activates only when a workspace contains at least one supported control file.
+Activation note: the extension activates when a supported file is opened with the TUFLOW language, or when a workspace contains a supported control file. Files opened outside a workspace can be validated.
 
 ## Ignoring issues
 Use comments to suppress diagnostics when needed.
@@ -106,7 +106,11 @@ TUFLOW control files are ordinarily used as part of a model project. For models 
 
 **Opening an individual control file directly from a network share without a workspace is outside the supported automatic-freshness configuration.** Initial path diagnostics and editor-driven validation may still work, but external creation, deletion, renaming and editing of referenced files or newer-version siblings may not update Problems automatically. This is an accepted, permanent limitation, not a planned watcher fix.
 
-If available, use **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette after external changes; it is an explicit refresh, not automatic monitoring. This command is implemented separately in [PR #24](https://github.com/Chain-Frost/tuflow_validator/pull/24). See [issue #23](https://github.com/Chain-Frost/tuflow_validator/issues/23) for the accepted limitation and investigation evidence.
+### Manual refresh
+
+Run **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette (`Ctrl+Shift+P`) to recompute diagnostics for all open supported control-file roots and their dependencies. The command uses current dirty editor buffers without saving files, changing settings or running TUFLOW. For individually opened network files outside a workspace, repeat it after external file changes.
+
+Manual refresh is an explicit action and does not provide automatic monitoring or background polling. The supported workflow for automatic network freshness remains **File → Open Folder**. See [issue #23](https://github.com/Chain-Frost/tuflow_validator/issues/23), closed as not planned, for the accepted limitation and [independent network evidence](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt). No GeoPackage database contents are accessed.
 
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored if they cannot be resolved.
