@@ -2,7 +2,33 @@
 
 **Tracking:** issue #3; [D2 PR #22](https://github.com/Chain-Frost/tuflow_validator/pull/22), separate from [D1 PR #16](https://github.com/Chain-Frost/tuflow_validator/pull/16).
 
-## Exact version and integration chain
+## Current integration baseline — 23 November 2026
+
+D2 is reconciled with Agent B PR #21 at exact commit
+`53f756aa9c96da7399425d32b0325fe23b6c6082`, which includes merged main
+`936231289b767ec0028a0be7b18bb78596dc4fd6` (A1/A2, E1 packaging and E2 tooling).
+The existing D2 runtime source and regression are unchanged from reviewed
+`9c9ef571fb2f541ad6e6f063a75cb735d7bb166a`; the reconciliation retains the
+current parent CI, lockfile, package boundary verifier and Windows filesystem
+regressions. No PR #24 manual-refresh change is included.
+
+The D2 paired workflow now pins **B `53f756aa9c96...`** for both checkout and
+recorded source identity. Both variants still use the identical reviewed D1
+driver `71b3cb56258ed03929665dbf2596af839c09bde6`. New exact-head CI and paired
+raw artifacts must be checked before accepting this reconciled candidate.
+Older timings and network evidence below belong only to their stated SHAs;
+this reconciliation does not relabel them as tests of the current source.
+
+PR #21 remains held by the no-workspace SMB notification defect in issue #23.
+D2 does not repair automatic event delivery, lift that hold, import the separate
+manual fallback, or close issues #3/#23. Native watcher/disposal qualification
+and any acceptance of a workspace-only limitation remain separate decisions.
+
+The following sections preserve the original benchmark and earlier integration
+record. Statements about unmerged predecessors and pending runs describe those
+historical points, not the current branch state.
+
+## Historical exact version and integration chain
 
 - Unmerged parent B [PR #21](https://github.com/Chain-Frost/tuflow_validator/pull/21): base commit **889d5e2e1951fe7de6edc187ea4508e6037d2179**, itself stacked on A2 #17 → A1 #14 → main.
 - Initial D2 measured source SHA **57b9404656238a6c1f46286168bf5c0fef896a85**, the first branch head with directory inventory optimization and the paired benchmark workflow.

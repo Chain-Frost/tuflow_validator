@@ -19,7 +19,9 @@ async function main(): Promise<void> {
         // Remote/container setups often force Electron to start as Node.
         delete process.env.ELECTRON_RUN_AS_NODE;
         const extensionDevelopmentPath = path.resolve(__dirname, '../../');
-        const extensionTestsPath = path.resolve(__dirname, './suite/index');
+        const extensionTestsPath = process.env.TPV_BENCHMARK_HOST === '1'
+            ? path.resolve(extensionDevelopmentPath, 'scripts/benchmarks/vscode-host.cjs')
+            : path.resolve(__dirname, './suite/index');
         dbusAddress = await startDbusDaemon();
         const dbusEnv = dbusAddress ?? 'unix:path=/dev/null';
         if (dbusAddress) {
