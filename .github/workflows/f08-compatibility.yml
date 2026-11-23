@@ -1,0 +1,57 @@
+name: F08 compatibility with pinned B
+
+on:
+  pull_request:
+    paths:
+      - 'src/diagnostics.ts'
+      - 'src/test/suite/trd_editor_context.test.ts'
+      - '.github/workflows/f08-compatibility.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pinned_b:
+    name: F08 + B / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out exact B source without modifying its branch
+        uses: actions/checkout@v4
+        with:
+          ref: 53f756aa9c96da7399425d32b0325fe23b6c6082
+          path: agent-b
+      - name: Check out F08 changes with history for the minimal patch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          path: f08
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: agent-b/package-lock.json
+      - name: Apply only the F08 production delta and its regression tests
+        shell: bash
+        run: |
+          git -C f08 diff 936231289b767ec0028a0be7b18bb78596dc4fd6 HEAD -- src/diagnostics.ts > f08.patch
+          if test -s f08.patch; then git -C agent-b apply ../f08.patch; fi
+          cp f08/src/test/suite/trd_editor_context.test.ts agent-b/src/test/suite/
+          echo "F08_SOURCE_SHA=$(git -C f08 rev-parse HEAD)"
+          echo "B_SOURCE_SHA=$(git -C agent-b rev-parse HEAD)"
+          git -C agent-b diff --stat
+      - run: npm ci
+        working-directory: agent-b
+      - name: Real Linux VS Code integration
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm test
+        working-directory: agent-b
+      - name: Real Windows VS Code integration
+        if: runner.os == 'Windows'
+        run: npm test
+        working-directory: agent-b
