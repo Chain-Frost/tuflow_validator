@@ -4,6 +4,7 @@
 **/.devcontainer/**
 **/node_modules/**
 **/.vscode-test/**
+**/.compatibility/**
 **/src/**
 **/test/**
 **/tests/**
