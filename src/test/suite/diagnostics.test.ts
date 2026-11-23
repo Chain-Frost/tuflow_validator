@@ -204,7 +204,7 @@ suite('TUFLOW diagnostics', function () {
         const rootPath = path.join(tempDir, 'root.tcf');
         const nestedPath = path.join(tempDir, 'nested.tgc');
 
-        fs.writeFileSync(rootPath, 'Read GIS Location == nested.tgc\n');
+        fs.writeFileSync(rootPath, 'Geometry Control File == nested.tgc\n');
         fs.writeFileSync(nestedPath, 'Read GIS BC == missing.shp\n');
 
         let nestedDoc: vscode.TextDocument | undefined;

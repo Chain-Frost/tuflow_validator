@@ -28,3 +28,33 @@ Sources: [TCF Appendix A — Read File](https://docs.tuflow.com/classic-hpc/manu
 - `| ` operands, layer selectors `>>`, existing line/file ignores and source-TCF-relative TRD behavior remain as implemented.
 - A concretely resolved missing input is an error, even in a runtime conditional block.
 - This work does not inspect file contents for datasets, invoke TUFLOW, change filename-version matching, or depend on deferred GeoPackage layer-validation PR #9.
+
+## Read/snapshot contract for Agent B (A2)
+
+`src/io.ts::readControlTextSnapshot(filePath)` is the shared synchronous read
+boundary for both diagnostics and latest-reference dependency discovery. It
+checks any currently open `file:` VS Code document by normalised path and
+returns the unsaved text independently of the language ID; otherwise it uses
+`safeReadFile`. Agent B may optimise IO and invalidation behind this read
+boundary but must preserve editor-first semantics.
+
+Traversal uses `getInputFileRole` and `isControlTextInput` in
+`src/pathParsing.ts`, never target suffix guessing. Only `control-file` and
+`inline-read-file` roles recurse. Registered `.adcf`, `.erd` and `.rdf`
+are also standalone supported control files; other inline suffixes are included
+through their parent, including when the VS Code buffer is `plaintext`.
+
+The traversal preserves active-stack cycle protection, variable context order,
+conditional missing-file diagnostics and TCF-relative TRD bases. The
+latest-reference graph follows the same command-role decision and uses the
+same snapshot reader. Do not import GeoPackage workers or readers from PR #9.
+
+Fixtures: `src/test/fixtures/control-includes` use exact commands from the
+linked official appendices. Database/INP fixtures deliberately contain
+command-shaped sentinel strings to prove they are never parsed as TUFLOW
+commands. This is a validator test, not an AD or SWMM execution fixture.
+
+Regression environment: GitHub CI runs full VS Code integration tests on
+Ubuntu and compile/lint on Windows. Windows/UNC path regressions exercised
+under Ubuntu are not evidence of native Windows or UNC execution; those
+must be separately reported from mocked/path-library tests.

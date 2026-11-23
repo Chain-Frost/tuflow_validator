@@ -6,7 +6,7 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - Validates input-file paths in recognised TUFLOW commands and reports missing files in the Problems view. Output locations, runtime conditions, variable declarations and unknown commands are not treated as input-file references.
 - Resolves relative paths from the current file, except paths in nested TRD files which resolve from their source TCF directory; honors `|`-separated lists and ignores GeoPackage selectors after `>>`.
 - Skips tokens and macros that remain unresolved (any `<<...>>` sequence) while still analyzing other paths.
-- Recursively checks referenced control files and summarizes issues discovered in nested dependencies.
+- Recursively validates actual control-command text referenced by control-file commands and inline `Read File` includes (including `.erd`, `.rdf`, `.adcf` and arbitrary text suffixes), and summarizes nested issues. Data files are checked for physical existence but not parsed as commands.
 - Warns when scenario/event tokens `<<~s1~>>`-`<<~s9~>>` or `<<~e1~>>`-`<<~e9~>>` appear in a value but are missing from the filename.
 - When a versioned TCF/TGC/TBC/ECF is the latest in its folder, referenced files with numeric versions (e.g., `v07`, `011`, `Model12`) are checked for newer alternatives or ambiguous updates.
 - Validates `Set Variable Version` tokens against the current filename and surfaces whether the token matches (info) or is missing (warning).
@@ -23,6 +23,9 @@ Path validation uses a command-aware allowlist. Each recognised input is classif
 - `.tgc`
 - `.tbc`
 - `.trd`
+- `.erd`
+- `.rdf`
+- `.adcf`
 - `.tef`
 - `.ecf`
 - `.qcf`
@@ -99,6 +102,7 @@ king08.tcf     # latest (highest in its series)
 
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored if they cannot be resolved.
+- An arbitrary-suffix inline `Read File` is discovered from its parent, not treated as a standalone validation root. Dirty `plaintext` buffers of those includes are used.
 - This extension does not implement a full TUFLOW grammar; it focuses on file-path validation.
 - Unrecognised commands are not assumed to consume files. Input-path validation is intentionally conservative to avoid false errors.
 - It does not validate dataset contents, layer names, or runtime options.

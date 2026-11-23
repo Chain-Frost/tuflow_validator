@@ -1,0 +1,4 @@
+! Read File arbitrary suffix: variables and nested includes.
+Set Variable ModelDir == ..\model
+Read GIS BC == <<ModelDir>>\existing.shp
+Read File == grandchild.odd

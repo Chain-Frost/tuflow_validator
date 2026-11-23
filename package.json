@@ -39,7 +39,7 @@
   ],
   "activationEvents": [
     "onLanguage:tuflow",
-    "workspaceContains:**/*.{tcf,tgc,tbc,trd,tef,ecf,qcf,tesf,tscf,trfc,toc}"
+    "workspaceContains:**/*.{tcf,tgc,tbc,trd,erd,rdf,adcf,tef,ecf,qcf,tesf,tscf,trfc,toc}"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -87,6 +87,9 @@
           ".tgc",
           ".tbc",
           ".trd",
+          ".erd",
+          ".rdf",
+          ".adcf",
           ".tef",
           ".ecf",
           ".qcf",

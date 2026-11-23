@@ -2,9 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { getConfiguredLatestVersionChecksEnabled } from './config';
-import { CONTROL_FILE_EXTENSIONS, LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
-import { extractPathCandidates, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey, shouldSkipKeyForFileLookup } from './pathParsing';
-import { safeReadFile } from './io';
+import { LATEST_CHECK_CONTROL_EXTENSIONS, SCENARIO_EVENT_TOKEN_REGEX } from './constants';
+import { extractPathCandidates, getInputFileRole, isControlTextInput, isLikelyFile, resolvePath, containsUnresolvedToken, normalizeKey } from './pathParsing';
+import { readControlTextSnapshot } from './io';
 import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
 
@@ -131,7 +131,7 @@ function collectReferencedControlFilesFromTcfs(tcfFiles: string[]): Set<string> 
     const referenced = new Set<string>();
 
     for (const tcfFile of tcfFiles) {
-        const contents = safeReadFile(tcfFile);
+        const contents = readControlTextSnapshot(tcfFile);
         if (contents === null) {
             continue;
         }
@@ -189,7 +189,8 @@ function collectReferencedControlFiles(
         const key = command.slice(0, separator).trim();
         const value = command.slice(separator + 2);
         applyStaticVariableDefinition(key, value, inheritedConditional || conditionalDepth > 0, variables);
-        if (shouldSkipKeyForFileLookup(key)) {
+        const inputRole = getInputFileRole(key);
+        if (inputRole === null || !isControlTextInput(inputRole)) {
             continue;
         }
         for (const candidate of extractPathCandidates(value, separator + 2, i)) {
@@ -198,23 +199,21 @@ function collectReferencedControlFiles(
                 continue;
             }
             const resolved = path.normalize(resolvePath(base, expanded));
-            const childExt = path.extname(resolved).toLowerCase();
-            if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(childExt) || !fs.existsSync(resolved)) {
+            if (!fs.existsSync(resolved)) {
                 continue;
             }
+            // Track nested command text by input role, regardless of suffix.
             referenced.add(resolved);
-            if (CONTROL_FILE_EXTENSIONS.has(childExt)) {
-                const nested = safeReadFile(resolved);
-                if (nested !== null) {
-                    const childConditional = inheritedConditional || conditionalDepth > 0;
-                    const childVariables = childConditional ? new Map(variables) : variables;
-                    const childTcfDirectory = childExt === '.tcf'
-                        ? path.dirname(resolved) : sourceTcfDirectory;
-                    collectReferencedControlFiles(
-                        resolved, nested, referenced, visited,
-                        childTcfDirectory, childVariables, childConditional
-                    );
-                }
+            const nested = readControlTextSnapshot(resolved);
+            if (nested !== null) {
+                const childConditional = inheritedConditional || conditionalDepth > 0;
+                const childVariables = childConditional ? new Map(variables) : variables;
+                const childTcfDirectory = path.extname(resolved).toLowerCase() === '.tcf'
+                    ? path.dirname(resolved) : sourceTcfDirectory;
+                collectReferencedControlFiles(
+                    resolved, nested, referenced, visited,
+                    childTcfDirectory, childVariables, childConditional
+                );
             }
         }
     }
@@ -242,11 +241,13 @@ export function shouldCheckLatestReferencedVersions(
     }
 
     const ext = path.extname(filePath).toLowerCase();
+    const normalizedPath = path.normalize(filePath);
+    // A custom Read File suffix is eligible only when reached from a latest
+    // TCF include graph; no version parsing policy changes are introduced.
     if (!LATEST_CHECK_CONTROL_EXTENSIONS.has(ext)) {
-        return false;
+        return latestCheckContext.latestTcfReferencedControls.has(normalizedPath);
     }
 
-    const normalizedPath = path.normalize(filePath);
     if (
         ext !== '.tcf' &&
         latestCheckContext.latestTcfReferencedControls.size > 0 &&

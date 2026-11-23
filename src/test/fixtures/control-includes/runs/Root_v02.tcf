@@ -1,0 +1,23 @@
+! Fixture command syntax: TCF Appendix A and Control Files section 4.1.
+AD Control File == ..\model\ad.adcf
+AD Control File == ..\model\missing.adcf
+SWMM Control File == ..\model\swmm.tscf
+Read File == parts.erd
+Read File == parts.rdf
+Read File == custom.foo
+Read File == missing.custom
+Read GIS Z Shape == ..\model\misleading.tgc
+Read GIS BC == ..\model\misleading.erd
+BC Database == ..\model\ad_bc.csv
+Read GIS Z Shape == ..\model\geometry_v01.gpkg >> contours
+Viscosity Formulation == SMAGORINSKY
+Viscosity Coefficients == 0.2, 0.1
+Start Time == 0.05
+Some Unknown Command == ..\model\no-such-file.dat
+Output Folder == ..\not-created\results
+If Scenario == Review
+    Read GIS BC == ..\model\missing-conditional.shp
+End If
+If Event == Review
+    Read GIS BC == <<~e1~>>\runtime-unknown.shp
+End If

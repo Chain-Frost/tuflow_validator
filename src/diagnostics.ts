@@ -6,10 +6,10 @@ import {
     getConfiguredIfStatementChecksEnabled
 } from './config';
 import { CONTROL_FILE_EXTENSIONS, ISSUE_SUMMARY_SEVERITY } from './constants';
-import { safeReadFile } from './io';
+import { readControlTextSnapshot } from './io';
 import { applyStaticVariableDefinition, expandStaticVariables } from './staticVariables';
 import { createTpvDiagnostic, TPV_CODES } from './diagnosticCodes';
-import { containsUnresolvedToken, extractPathCandidates, isLikelyFile, resolvePath, shouldSkipKeyForFileLookup } from './pathParsing';
+import { containsUnresolvedToken, extractPathCandidates, getInputFileRole, isControlTextInput, isLikelyFile, resolvePath } from './pathParsing';
 import {
     buildLatestCheckContext,
     checkReferencedFileLatestVersion,
@@ -46,14 +46,19 @@ interface BlockEntry {
 }
 
 export function updateDiagnostics(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
-    if (!shouldProcessDocument(document)) {
+    const isControlDocument = shouldProcessDocument(document);
+    const affectedRootKeys = findRootKeysAffectedByDocument(document);
+    // Read File may include arbitrary-suffix plaintext. Its dirty text must
+    // revalidate parent roots without promoting the file to a root itself.
+    if (!isControlDocument && affectedRootKeys.size === 0) {
         return;
     }
 
     clearPendingDiagnosticUpdate(document);
     const rootKey = document.uri.toString();
-    const affectedRootKeys = findRootKeysAffectedByDocument(document);
-    affectedRootKeys.add(rootKey);
+    if (isControlDocument) {
+        affectedRootKeys.add(rootKey);
+    }
 
     for (const affectedRootKey of affectedRootKeys) {
         const rootDocument = findOpenDocumentByUri(affectedRootKey);
@@ -69,7 +74,7 @@ export function updateDiagnostics(document: vscode.TextDocument, collection: vsc
 }
 
 export function scheduleDiagnosticsUpdate(document: vscode.TextDocument, collection: vscode.DiagnosticCollection): void {
-    if (!shouldProcessDocument(document)) {
+    if (!shouldProcessDocument(document) && findRootKeysAffectedByDocument(document).size === 0) {
         return;
     }
 
@@ -313,20 +318,6 @@ function shouldProcessDocument(document: vscode.TextDocument): boolean {
     return CONTROL_FILE_EXTENSIONS.has(path.extname(document.fileName).toLowerCase());
 }
 
-function getOpenDocumentForPath(filePath: string): vscode.TextDocument | undefined {
-    const normalizedPath = path.normalize(filePath);
-    return vscode.workspace.textDocuments.find(document => path.normalize(document.fileName) === normalizedPath);
-}
-
-function getControlFileContents(filePath: string): string | null {
-    const openDocument = getOpenDocumentForPath(filePath);
-    if (openDocument && shouldProcessDocument(openDocument)) {
-        return openDocument.getText();
-    }
-
-    return safeReadFile(filePath);
-}
-
 /**
  * Entry point for analyzing the root document.
  * Initializes context and starts analysis.
@@ -449,7 +440,8 @@ function analyzeFile(
             checkScenarioEventTokensInValue(valueText, valueStartIndex, i, normalizedPath, diagnostics);
         }
 
-        if (shouldSkipKeyForFileLookup(keyText)) {
+        const inputRole = getInputFileRole(keyText);
+        if (inputRole === null) {
             continue;
         }
 
@@ -482,9 +474,10 @@ function analyzeFile(
                 );
             }
 
-            // Recursive check for referenced control files
-            if (CONTROL_FILE_EXTENSIONS.has(path.extname(resolvedPath).toLowerCase())) {
-                const childContents = getControlFileContents(resolvedPath);
+            // A filename suffix never turns GIS, CSV or SWMM data into TUFLOW
+            // command text. Control-file and Read File operands always do.
+            if (isControlTextInput(inputRole)) {
+                const childContents = readControlTextSnapshot(resolvedPath);
                 if (childContents === null) {
                     continue;
                 }

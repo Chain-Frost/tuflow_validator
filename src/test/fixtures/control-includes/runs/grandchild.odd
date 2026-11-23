@@ -1,0 +1,4 @@
+! Recursive command text, arbitrary suffix; active-stack cycle is safe.
+Read GIS BC == nested-missing.shp
+Read GIS Z Shape == ..\model\geometry_v01.gpkg >> contours
+Read File == custom.foo
