@@ -213,6 +213,7 @@ suite('TRD editor context (F08)', function () {
         try {
             await open(f.a);
             const b = await open(f.b);
+            const originalBUri = b.uri.toString();
             await open(f.trd);
             await waitFor(() => missing(f.trd).some(message => message.includes('<<LOCAL_SHAPE>>')),
                 'Parent B must retain its genuinely missing variable target');
@@ -226,10 +227,13 @@ suite('TRD editor context (F08)', function () {
             const rename = new vscode.WorkspaceEdit();
             rename.renameFile(b.uri, retired);
             assert.strictEqual(await vscode.workspace.applyEdit(rename), true);
-            const retiredDocument = await vscode.workspace.openTextDocument(retired);
-            await vscode.languages.setTextDocumentLanguage(retiredDocument, 'plaintext');
-            await waitFor(() => closedUris.has(b.uri.toString()), 'A real parent TextDocument close event is required');
+            await waitFor(() => closedUris.has(originalBUri), 'A real parent TextDocument close event is required');
             assert.ok(b.isClosed);
+            // VS Code 1.74 releases its temporary model reference after a
+            // language change. A visible editor keeps the renamed model live.
+            const retiredEditor = await vscode.window.showTextDocument(retired, { preview: false });
+            const retiredDocument = await vscode.languages.setTextDocumentLanguage(retiredEditor.document, 'plaintext');
+            assert.strictEqual(retiredDocument.languageId, 'plaintext');
             await waitFor(() => !missing(f.trd).some(message => message.includes('<<LOCAL_SHAPE>>')),
                 'Closing B must retire B-only diagnostics while retaining A');
             assertKnownParentMissing(f);
