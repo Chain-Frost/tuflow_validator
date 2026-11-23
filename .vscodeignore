@@ -22,3 +22,8 @@
 **/package-vsix.sh
 **/temp_commands.txt
 **/.gitignore
+**/docs/**
+**/fixtures/**
+**/coverage/**
+**/package-lock.json
+**/*.vsix
