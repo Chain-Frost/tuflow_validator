@@ -1,8 +1,10 @@
 import * as path from 'path';
 import * as Mocha from 'mocha';
 import * as glob from 'glob';
+import * as vscode from 'vscode';
 
 export async function run(): Promise<void> {
+    console.log(`Actual VS Code integration host: ${vscode.version}; Node ${process.versions.node}`);
     const mocha = new Mocha({
         ui: 'tdd',
         color: true

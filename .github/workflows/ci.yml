@@ -11,15 +11,23 @@ permissions:
 
 jobs:
   test:
-    name: VS Code integration and VSIX (${{ matrix.os }})
+    name: VS Code ${{ matrix.vscode }} integration and VSIX (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 25
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
         os:
           - ubuntu-latest
           - windows-latest
+        vscode:
+          - '1.74.0'
+          - stable
+    env:
+      TPV_VSCODE_VERSION: ${{ matrix.vscode }}
+      # A fixed, reviewed Helper snapshot makes coexistence reproducible.
+      TPV_HELPER_SOURCE_SHA: 38ebb604697b21d7b45929e1ec989dad8559c94a
+      TPV_HELPER_VSIX: .compatibility/helper/tuflow-helper.vsix
 
     steps:
       - name: Check out source
@@ -38,6 +46,9 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Verify installed-host evidence fails closed
+        run: npm run test:compatibility-runner
 
       # npm test runs pretest (TypeScript compilation + ESLint) before
       # starting the actual VS Code extension-host integration suite.
@@ -59,3 +70,33 @@ jobs:
 
       - name: Verify VSIX archive and runtime boundary
         run: python scripts/verify-vsix.py validator-ci.vsix
+
+      - name: Check out pinned Helper for minimum-version coexistence
+        uses: actions/checkout@v4
+        with:
+          repository: Chain-Frost/tuflow-vscode
+          ref: 38ebb604697b21d7b45929e1ec989dad8559c94a
+          path: .compatibility/helper
+
+      - name: Build and verify the pinned Helper VSIX
+        working-directory: .compatibility/helper
+        run: |
+          npm ci
+          npm run package:vsix
+
+      - name: Test installed Validator and Helper coexistence (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm run test:compatibility
+
+      - name: Test installed Validator and Helper coexistence (Windows)
+        if: runner.os == 'Windows'
+        run: npm run test:compatibility
+
+      - name: Retain actual editor/runtime and installed-package evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compatibility-${{ matrix.os }}-${{ matrix.vscode }}
+          path: .compatibility/evidence/*.json
+          if-no-files-found: warn
+          retention-days: 30

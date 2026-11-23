@@ -18,7 +18,7 @@
     "url": "https://github.com/Chain-Frost/tuflow_validator/issues"
   },
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.74.0"
   },
   "categories": [
     "Programming Languages",
@@ -39,7 +39,8 @@
   ],
   "activationEvents": [
     "onLanguage:tuflow",
-    "workspaceContains:**/*.{tcf,tgc,tbc,trd,erd,rdf,adcf,tef,ecf,qcf,tesf,tscf,trfc,toc}"
+    "workspaceContains:**/*.{tcf,tgc,tbc,trd,erd,rdf,adcf,tef,ecf,qcf,tesf,tscf,trfc,toc}",
+    "onCommand:tuflowValidator.refreshDiagnostics"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -99,6 +100,13 @@
           ".toc"
         ]
       }
+    ],
+    "commands": [
+      {
+        "command": "tuflowValidator.refreshDiagnostics",
+        "title": "Refresh Path Diagnostics",
+        "category": "TUFLOW Path Validator"
+      }
     ]
   },
   "scripts": {
@@ -108,6 +116,8 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
+    "test:compatibility": "node scripts/compatibility/run-installed.cjs",
+    "test:compatibility-runner": "node --test scripts/compatibility/runner.test.cjs",
     "test:container": "bash scripts/test-container.sh",
     "package:vsix": "bash scripts/package-vsix.sh",
     "package:vsix:ci": "vsce package --no-dependencies --out validator-ci.vsix",
@@ -123,7 +133,7 @@
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
-    "@types/vscode": "1.70.0",
+    "@types/vscode": "1.74.0",
     "@typescript-eslint/eslint-plugin": "8.73.0",
     "@typescript-eslint/parser": "8.73.0",
     "@vscode/test-electron": "^2.2.0",

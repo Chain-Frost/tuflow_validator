@@ -29,7 +29,11 @@ async function main(): Promise<void> {
             process.env.DBUS_SYSTEM_BUS_ADDRESS = dbusAddress;
         }
 
-        const downloadOptions = { extensionDevelopmentPath };
+        // The build runner's Node version is not the extension-host runtime.
+        // Exercise the minimum supported editor explicitly as well as Stable.
+        const version = process.env.TPV_VSCODE_VERSION || 'stable';
+        console.log(`Requested VS Code integration host: ${version}`);
+        const downloadOptions = { extensionDevelopmentPath, version };
         vscodeExecutablePath = await downloadAndUnzipVSCode(downloadOptions);
         await patchNativeKeymap(vscodeExecutablePath);
 
