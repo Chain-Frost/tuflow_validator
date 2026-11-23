@@ -18,8 +18,27 @@ function nearestRank(values, q) {
     const sorted = [...values].sort((a, b) => a - b);
     return round(sorted[Math.ceil(values.length * q) - 1]);
 }
+// This evidence gate is deliberately coupled to the reviewed core-baseline
+// fixture scenarios. A changed/missing scenario requires an explicit review,
+// not a smaller successful summary that silently hides the evidence gap.
+const repeatedScenarios = [
+    'warmAnalysis', 'singleCharacterEdit', 'includedChildChange',
+    'versionSiblingExplicitRevalidation', 'multipleRootChildChange',
+    'repeatedIncludeDifferentVariables', 'deepGraph', 'wideGraph', 'longControlFile'
+];
+const expectedScenarios = ['firstAnalysis', ...repeatedScenarios].sort();
+const sha256Pattern = /^[0-9a-f]{64}$/;
+const sourcePattern = /^[0-9a-f]{40}$/;
+function requireFingerprint(value, context) {
+    assert.ok(typeof value === 'string' && sha256Pattern.test(value),
+        context + ': absent or invalid diagnostic fingerprint');
+    return value;
+}
 const source = data[0].source;
 const fixture = data[0].environment;
+assert.ok(sourcePattern.test(source.commit), 'Source SHA must be a complete Git commit');
+assert.ok(sha256Pattern.test(source.vsixSha256), 'VSIX SHA-256 must be recorded');
+assert.ok(sha256Pattern.test(fixture.fixtureManifestSha256), 'Fixture manifest SHA-256 must be recorded');
 for (const [i, item] of data.entries()) {
     assert.equal(item.failure, undefined, labels[i] + ' benchmark reported an error');
     assert.equal(item.source.commit, source.commit, 'Different source SHAs');
@@ -33,7 +52,16 @@ for (const [i, item] of data.entries()) {
     assert.equal(item.environment.syntheticIoLatencyMsPerFixtureOperation, 0,
         'Artificial latency is not physical storage evidence');
     assert.equal(item.environment.fixturesRemoved, true, 'Disposable benchmark fixture was not removed');
+    assert.deepEqual(Object.keys(item.results || {}).sort(), expectedScenarios,
+        labels[i] + ': missing or unexpected benchmark scenario');
+    const first = item.results.firstAnalysis;
+    assert.ok(Number.isFinite(first.elapsedMs) && first.elapsedMs >= 0,
+        labels[i] + ': invalid first-engine observation');
+    requireFingerprint(first.diagnosticSignature, labels[i] + '/firstAnalysis');
 }
+assert.equal(new Set(data.map((item, i) => requireFingerprint(
+    item.results.firstAnalysis.diagnosticSignature, labels[i] + '/firstAnalysis'))).size,
+1, 'First-analysis diagnostic parity failed across storage spellings');
 const result = {
     schemaVersion: 1, sourceSha: source.commit, vsixSha256: source.vsixSha256,
     fixture: { files: fixture.fixtureFiles, bytes: fixture.fixtureBytes,
@@ -41,12 +69,21 @@ const result = {
     note: 'Labels are operator-assigned; this script does not verify SMB, NTFS or cache state. Core FS calls are not network packets. p95 uses nearest rank.',
     rows: []
 };
-for (const key of Object.keys(data[0].results)) {
-    if (!data.every(item => Array.isArray(item.results[key]?.trials))) continue;
+for (const key of repeatedScenarios) {
     const signatures = [];
     for (const [i, item] of data.entries()) {
-        const trials = item.results[key].trials;
+        const trials = item.results[key]?.trials;
+        assert.ok(Array.isArray(trials), labels[i] + '/' + key + ': missing trial array');
         assert.ok(trials.length >= 19, labels[i] + '/' + key + ': fewer than 19 timed samples');
+        for (const [index, trial] of trials.entries()) {
+            requireFingerprint(trial.diagnosticSignature, labels[i] + '/' + key +
+                '/trial-' + index);
+            for (const operation of ['readFileSync', 'existsSync', 'readdirSync']) {
+                assert.ok(Number.isSafeInteger(trial[operation]) && trial[operation] >= 0,
+                    labels[i] + '/' + key + '/trial-' + index +
+                    ': missing or invalid ' + operation);
+            }
+        }
         const elapsed = trials.map(t => t.elapsedMs);
         assert.ok(elapsed.every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0),
             labels[i] + '/' + key + ': invalid elapsed time');
