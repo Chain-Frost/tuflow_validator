@@ -4,16 +4,23 @@ on:
   pull_request:
   push:
     branches:
-      - fix/issue-2-command-aware-validation
+      - main
 
 permissions:
   contents: read
 
 jobs:
   test:
-    name: TypeScript, lint and VS Code integration tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    name: VS Code integration and VSIX (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -24,25 +31,28 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Set up Python for standard-library VSIX inspection
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Install locked dependencies
         run: npm ci
 
-      - name: Run compilation, lint and VS Code tests
+      # npm test runs pretest (TypeScript compilation + ESLint) before
+      # starting the actual VS Code extension-host integration suite.
+      - name: Compile, lint and run VS Code integration tests (Linux)
+        if: runner.os == 'Linux'
         run: xvfb-run -a npm test
 
-  windows-integration:
-    name: Windows compile, lint and VS Code integration tests
-    runs-on: windows-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - run: npm ci
-
-      - name: Run compilation, lint and real VS Code extension-host tests
+      - name: Compile, lint and run VS Code integration tests (Windows)
+        if: runner.os == 'Windows'
         run: npm test
+
+      # This is a CI-only, platform-neutral packaging command. Publishing
+      # workflows and the existing release/package wrapper are unchanged.
+      - name: Package tested source
+        run: npm run package:vsix:ci
+
+      - name: Verify VSIX archive and runtime boundary
+        run: python scripts/verify-vsix.py validator-ci.vsix
