@@ -45,6 +45,9 @@ suite('Issue #23 explicit diagnostics refresh', function () {
                 'The fixture must be outside the active workspace');
             assert.ok((await vscode.commands.getCommands(true)).includes(REFRESH),
                 'Manual refresh command must be registered on activation');
+            const extension = vscode.extensions.getExtension('Chain-Frost.tuflow-path-validator');
+            assert.ok(extension?.packageJSON.activationEvents?.includes('onCommand:' + REFRESH),
+                'The contributed command must activate on VS Code versions before 1.74');
 
             await vscode.commands.executeCommand(REFRESH);
             assert.strictEqual(hasCode(rootUri, TPV_CODES.outdatedVersion), false);
