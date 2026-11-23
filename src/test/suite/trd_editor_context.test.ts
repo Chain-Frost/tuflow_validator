@@ -133,13 +133,19 @@ suite('TRD editor context (F08)', function () {
             const edit = new vscode.WorkspaceEdit();
             edit.replace(child.uri, new vscode.Range(child.positionAt(offset),
                 child.positionAt(offset + previous.length)), 'assets/edited_present.shp');
+            const missingOffset = child.getText().indexOf('assets/missing.shp');
+            edit.replace(child.uri, new vscode.Range(child.positionAt(missingOffset),
+                child.positionAt(missingOffset + 'assets/missing.shp'.length)), 'assets/present.shp');
             assert.strictEqual(await vscode.workspace.applyEdit(edit), true);
             assert.ok(child.isDirty);
-            await delay();
-            assertKnownParentMissing(f);
+            await waitFor(() => missing(f.trd).length === 1,
+                'Dirty child changes must retire the fixed error without saving');
+            assert.deepStrictEqual(missing(f.trd), ['File not found: assets/conditional_missing.shp']);
+            assert.deepStrictEqual(missing(f.nested), []);
             assert.strictEqual(await child.save(), true);
             await delay();
-            assertKnownParentMissing(f);
+            assert.deepStrictEqual(missing(f.trd), ['File not found: assets/conditional_missing.shp']);
+            assert.deepStrictEqual(missing(f.nested), []);
             assert.ok(diagnostics(f.a).some(issue => issue.code === TPV_CODES.childIssues));
         } finally {
             await cleanup(f);
