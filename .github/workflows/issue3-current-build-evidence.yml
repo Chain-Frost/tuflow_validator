@@ -31,6 +31,8 @@ jobs:
       - name: Package exact checked-out source (never publish)
         run: npm run package:vsix:ci
       - run: python scripts/verify-vsix.py validator-ci.vsix
+      - name: Reject incomplete or unsigned core evidence inputs
+        run: node --test scripts/acceptance/issue3-core-matrix.test.cjs
       - name: Record exact checkout identity
         shell: pwsh
         run: |
