@@ -113,7 +113,7 @@ suite('TRD editor context (F08)', function () {
         await config.update('enableIfStatementChecks', true, vscode.ConfigurationTarget.Global);
         console.log('TRD_CONTEXT_ENV ' + JSON.stringify({
             vscode: vscode.version, node: process.version, platform: process.platform,
-            source: process.env.GITHUB_SHA ?? 'local'
+            workflowSha: process.env.GITHUB_SHA ?? 'local'
         }));
     });
 

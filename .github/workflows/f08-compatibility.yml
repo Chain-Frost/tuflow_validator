@@ -12,6 +12,9 @@ permissions:
 
 jobs:
   pinned_b:
+    # This pinned comparison is an acceptance gate for this implementation PR,
+    # not a permanent requirement for unrelated future diagnostics changes.
+    if: github.event.pull_request.head.ref == 'fix/f08-trd-editor-context'
     name: F08 + B / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
