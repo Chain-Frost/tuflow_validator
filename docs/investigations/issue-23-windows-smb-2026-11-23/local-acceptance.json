@@ -1,0 +1,4669 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 148444,
+    "storage": "local",
+    "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6"
+  },
+  "checks": [
+    {
+      "name": "sibling-create",
+      "status": "PASS",
+      "details": {
+        "ms": 155.66049999999996,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "quick-fix-target",
+      "status": "PASS",
+      "details": [
+        {
+          "uri": "<LOCAL_LAB>\\local\\case-TTtsfq\\Run_v01.tcf",
+          "text": "geom_v02.tgc"
+        }
+      ]
+    },
+    {
+      "name": "sibling-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 154.47879999999986,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "sibling-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 158.6925000000001,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "sibling-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.91440000000057,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-0-create",
+      "status": "PASS",
+      "details": {
+        "ms": 157.76789999999983,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-0-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 155.1198999999997,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-0-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 156.14100000000053,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-0-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.54570000000058,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-1-create",
+      "status": "PASS",
+      "details": {
+        "ms": 157.63940000000002,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-1-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 160.09159999999974,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-1-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.60250000000087,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-1-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 160.10890000000109,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-2-create",
+      "status": "PASS",
+      "details": {
+        "ms": 159.66899999999987,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-2-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 158.0738999999994,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-2-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 160.05010000000038,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-2-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.04869999999937,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-3-create",
+      "status": "PASS",
+      "details": {
+        "ms": 159.60460000000057,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-3-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 158.11149999999907,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-3-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 154.50980000000163,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-3-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.80649999999878,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-4-create",
+      "status": "PASS",
+      "details": {
+        "ms": 157.04479999999967,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-4-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 158.29359999999724,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-4-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 158.1020000000026,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-4-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.0521000000008,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-5-create",
+      "status": "PASS",
+      "details": {
+        "ms": 158.11369999999806,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-5-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 156.03910000000178,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-5-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.5617999999995,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-5-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.86769999999888,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-6-create",
+      "status": "PASS",
+      "details": {
+        "ms": 160.0557000000008,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-6-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 158.50410000000193,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-6-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 158.13670000000275,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-6-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.07830000000104,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-7-create",
+      "status": "PASS",
+      "details": {
+        "ms": 159.91110000000117,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-7-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 156.25830000000133,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-7-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 160.10680000000139,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-7-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.89719999999943,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-8-create",
+      "status": "PASS",
+      "details": {
+        "ms": 160.05010000000038,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-8-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 159.19430000000284,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-8-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 159.62870000000112,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-8-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.52699999999822,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-9-create",
+      "status": "PASS",
+      "details": {
+        "ms": 156.14950000000317,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-9-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 160.15169999999853,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-9-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 155.95589999999356,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-9-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.8955999999962,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-10-create",
+      "status": "PASS",
+      "details": {
+        "ms": 156.14860000000044,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-10-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 156.08280000000377,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-10-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 155.16139999999723,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-10-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.61669999999867,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-11-create",
+      "status": "PASS",
+      "details": {
+        "ms": 156.0515000000014,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-11-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 157.18669999999838,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-11-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 156.19959999999992,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-11-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.02230000000418,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-12-create",
+      "status": "PASS",
+      "details": {
+        "ms": 155.6452999999965,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-12-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 157.85809999999765,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-12-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 158.41849999999977,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-12-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.35399999999936,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-13-create",
+      "status": "PASS",
+      "details": {
+        "ms": 158.06290000000445,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-13-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 156.22200000000157,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-13-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 158.06809999999678,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-13-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.4155000000028,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-14-create",
+      "status": "PASS",
+      "details": {
+        "ms": 158.12129999999888,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-14-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 158.42759999999544,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-14-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.86119999999937,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-14-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.21899999999732,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-15-create",
+      "status": "PASS",
+      "details": {
+        "ms": 159.22170000000187,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-15-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 160.0980000000054,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-15-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.45679999999993,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-15-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.20929999999498,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-16-create",
+      "status": "PASS",
+      "details": {
+        "ms": 157.03209999999672,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-16-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 155.56929999999556,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-16-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.21130000000267,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-16-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.09829999999783,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-17-create",
+      "status": "PASS",
+      "details": {
+        "ms": 157.3920999999973,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-17-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 157.20140000000538,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-17-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 154.7520000000004,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-17-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 157.15419999999722,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-18-create",
+      "status": "PASS",
+      "details": {
+        "ms": 154.22520000000077,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-18-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 160.11910000000353,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-18-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 157.28699999999662,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-18-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.04959999999846,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-19-create",
+      "status": "PASS",
+      "details": {
+        "ms": 156.12779999999475,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-19-rename-away",
+      "status": "PASS",
+      "details": {
+        "ms": 156.9395000000004,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "cycle-19-rename-back",
+      "status": "PASS",
+      "details": {
+        "ms": 159.0691999999981,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cycle-19-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 156.6152000000002,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "eligibility-baseline-sibling",
+      "status": "PASS",
+      "details": {
+        "ms": 158.7135000000053,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "latest-TCF-created",
+      "status": "PASS",
+      "details": {
+        "ms": 155.6834000000017,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "latest-TCF-removed",
+      "status": "PASS",
+      "details": {
+        "ms": 158.02900000000227,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\geom_v02.tgc",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "eligibility-sibling-cleanup",
+      "status": "PASS",
+      "details": {
+        "ms": 155.92829999999958,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "unsaved-root-new-graph",
+      "status": "PASS",
+      "details": {
+        "ms": 391.86769999998796,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): alternate_v02.tgc",
+              "line": 0
+            }
+          ],
+          "alternate_v02.tgc": [
+            {
+              "code": "TPV022",
+              "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2).",
+              "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\layer_v02.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unsaved-equals-saved",
+      "status": "PASS",
+      "details": {
+        "dirty": [
+          {
+            "code": "TPV022",
+            "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2).",
+            "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\layer_v02.csv",
+            "line": 0
+          }
+        ],
+        "saved": [
+          {
+            "code": "TPV022",
+            "message": "Referenced file is not the latest version in its folder: layer_v01.csv (found 1, latest 2).",
+            "target": "<LOCAL_LAB>\\local\\case-TTtsfq\\layer_v02.csv",
+            "line": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "dirty-tgc-missing",
+      "status": "PASS",
+      "details": {
+        "ms": 390.4542999999976,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.tgc",
+              "line": 0
+            }
+          ],
+          "dirty.tgc": [
+            {
+              "code": "TPV001",
+              "message": "File not found: dirty_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "dirty-tgc-clean",
+      "status": "PASS",
+      "details": {
+        "ms": 373.910200000013,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [],
+          "dirty.tgc": []
+        }
+      }
+    },
+    {
+      "name": "save-close-tgc",
+      "status": "PASS",
+      "details": {
+        "isClosed": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "disk-after-close-tgc",
+      "status": "PASS",
+      "details": {
+        "ms": 467.36500000000524,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.tgc",
+              "line": 0
+            }
+          ],
+          "dirty.tgc": [
+            {
+              "code": "TPV001",
+              "message": "File not found: disk_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "dirty-trd-missing",
+      "status": "PASS",
+      "details": {
+        "ms": 380.15260000000126,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.trd",
+              "line": 0
+            }
+          ],
+          "dirty.trd": [
+            {
+              "code": "TPV001",
+              "message": "File not found: dirty_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "dirty-trd-clean",
+      "status": "PASS",
+      "details": {
+        "ms": 375.8093999999983,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [],
+          "dirty.trd": []
+        }
+      }
+    },
+    {
+      "name": "save-close-trd",
+      "status": "PASS",
+      "details": {
+        "isClosed": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "disk-after-close-trd",
+      "status": "PASS",
+      "details": {
+        "ms": 471.27850000000035,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.trd",
+              "line": 0
+            }
+          ],
+          "dirty.trd": [
+            {
+              "code": "TPV001",
+              "message": "File not found: disk_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "dirty-payload-missing",
+      "status": "PASS",
+      "details": {
+        "ms": 382.6171999999933,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.payload",
+              "line": 0
+            }
+          ],
+          "dirty.payload": [
+            {
+              "code": "TPV001",
+              "message": "File not found: dirty_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "dirty-payload-clean",
+      "status": "PASS",
+      "details": {
+        "ms": 383.1628999999957,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [],
+          "dirty.payload": []
+        }
+      }
+    },
+    {
+      "name": "save-close-payload",
+      "status": "PASS",
+      "details": {
+        "isClosed": false,
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "disk-after-close-payload",
+      "status": "PASS",
+      "details": {
+        "ms": 471.83929999999236,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): dirty.payload",
+              "line": 0
+            }
+          ],
+          "dirty.payload": [
+            {
+              "code": "TPV001",
+              "message": "File not found: disk_missing.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "valid-delete",
+      "status": "PASS",
+      "details": {
+        "ms": 158.68499999999767,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": [
+            {
+              "code": "TPV001",
+              "message": "File not found: present.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing-recreate",
+      "status": "PASS",
+      "details": {
+        "ms": 156.14620000000286,
+        "events": 1,
+        "snapshots": {
+          "Run_v01.tcf": []
+        }
+      }
+    },
+    {
+      "name": "multi-root-static-TRD",
+      "status": "PASS",
+      "details": {
+        "a": [],
+        "b": [
+          {
+            "code": "TPV002",
+            "message": "Referenced file has 1 issue(s): context.trd",
+            "line": 1
+          }
+        ],
+        "child": [
+          {
+            "code": "TPV001",
+            "message": "File not found: <<DIR>>/present.csv",
+            "line": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "shared-child-clears-only-B",
+      "status": "PASS",
+      "details": {
+        "ms": 157.7908000000025,
+        "events": 1,
+        "snapshots": {
+          "RootA.tcf": [],
+          "RootB.tcf": [],
+          "shared/context.trd": []
+        }
+      }
+    },
+    {
+      "name": "shared-child-restores-only-B",
+      "status": "PASS",
+      "details": {
+        "ms": 157.18069999999716,
+        "events": 1,
+        "snapshots": {
+          "RootA.tcf": [],
+          "RootB.tcf": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): context.trd",
+              "line": 1
+            }
+          ],
+          "shared/context.trd": [
+            {
+              "code": "TPV001",
+              "message": "File not found: <<DIR>>/present.csv",
+              "line": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "actual-root-document-close",
+      "status": "BLOCKED",
+      "details": {
+        "aClosed": false,
+        "bClosed": false,
+        "closeEvents": []
+      }
+    },
+    {
+      "name": "roots-reopen",
+      "status": "PASS",
+      "details": {
+        "a": [],
+        "b": [
+          {
+            "code": "TPV002",
+            "message": "Referenced file has 1 issue(s): context.trd",
+            "line": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "negative-semantics",
+      "status": "PASS",
+      "details": [
+        {
+          "code": "TPV020",
+          "message": "Filename is missing token \"~s1~\" listed in this control file.",
+          "line": 1
+        },
+        {
+          "code": "TPV020",
+          "message": "Filename is missing token \"~e1~\" listed in this control file.",
+          "line": 1
+        },
+        {
+          "code": "TPV001",
+          "message": "File not found: conditional_missing.csv",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "name": "unrelated-file",
+      "status": "PASS",
+      "details": {
+        "events": 0
+      }
+    }
+  ],
+  "resources": [
+    {
+      "label": "settled",
+      "time": "2026-11-23T04:50:14.336Z",
+      "memory": {
+        "rss": 242651136,
+        "heapTotal": 75759616,
+        "heapUsed": 48176668,
+        "external": 7557730,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 1
+    },
+    {
+      "label": "cycle-4",
+      "time": "2026-11-23T04:50:31.502Z",
+      "memory": {
+        "rss": 241881088,
+        "heapTotal": 76021760,
+        "heapUsed": 52835572,
+        "external": 7720536,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 1
+    },
+    {
+      "label": "cycle-9",
+      "time": "2026-11-23T04:50:45.779Z",
+      "memory": {
+        "rss": 203653120,
+        "heapTotal": 42287104,
+        "heapUsed": 40539932,
+        "external": 7199021,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 1
+    },
+    {
+      "label": "cycle-14",
+      "time": "2026-11-23T04:51:00.067Z",
+      "memory": {
+        "rss": 204230656,
+        "heapTotal": 41500672,
+        "heapUsed": 39929140,
+        "external": 7257942,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 1
+    },
+    {
+      "label": "cycle-19",
+      "time": "2026-11-23T04:51:14.374Z",
+      "memory": {
+        "rss": 200626176,
+        "heapTotal": 41500672,
+        "heapUsed": 39979988,
+        "external": 7257947,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 1
+    },
+    {
+      "label": "after-tabs-close",
+      "time": "2026-11-23T04:51:38.648Z",
+      "memory": {
+        "rss": 201342976,
+        "heapTotal": 43073536,
+        "heapUsed": 40522896,
+        "external": 7456342,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 6
+    },
+    {
+      "label": "final-open",
+      "time": "2026-11-23T04:51:42.556Z",
+      "memory": {
+        "rss": 201162752,
+        "heapTotal": 42811392,
+        "heapUsed": 40963960,
+        "external": 7458375,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 6
+    },
+    {
+      "label": "final-tabs-closed",
+      "time": "2026-11-23T04:51:43.772Z",
+      "memory": {
+        "rss": 201080832,
+        "heapTotal": 42811392,
+        "heapUsed": 41022844,
+        "external": 7459865,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 6
+    },
+    {
+      "label": "after-fixture-delete",
+      "time": "2026-11-23T04:51:46.032Z",
+      "memory": {
+        "rss": 201461760,
+        "heapTotal": 42811392,
+        "heapUsed": 41389696,
+        "external": 7535731,
+        "arrayBuffers": 0
+      },
+      "activeHandlesProxy": 3,
+      "trackedDirectories": [],
+      "openFixtureDocuments": 6
+    }
+  ],
+  "closeEvents": [],
+  "jitter": [
+    10.651299999999992,
+    11.95530000000008,
+    11.944299999999657,
+    12.0604000000003,
+    11.986399999999776,
+    11.984500000000025,
+    11.145899999999983,
+    11.033199999999852,
+    11.015200000000277,
+    10.361300000000028,
+    11.998099999999795,
+    11.9996000000001,
+    9.833300000000236,
+    10.554999999999836,
+    11.54509999999982,
+    10.048200000000179,
+    10.99940000000015,
+    11.613999999999578,
+    10.367300000000341,
+    11.013099999999667,
+    11.006000000000313,
+    11.008800000000065,
+    11.341399999999794,
+    11.977600000000166,
+    12.009199999999964,
+    12.003999999999905,
+    11.540399999999863,
+    12.013400000000274,
+    9.965899999999692,
+    10.033800000000156,
+    10.921800000000076,
+    11.066800000000057,
+    10.977300000000014,
+    12.007200000000012,
+    12.008899999999812,
+    11.976200000000063,
+    12.003299999999854,
+    11.141700000000128,
+    11.141900000000078,
+    10.405299999999897,
+    11.0283000000004,
+    9.986399999999776,
+    10.430999999999585,
+    0,
+    7.070600000000013,
+    11.74330000000009,
+    10.977899999999863,
+    11.458800000000338,
+    11.984999999999673,
+    9.998400000000402,
+    12.02639999999974,
+    11,
+    10.984199999999873,
+    11.86580000000049,
+    10.311200000000099,
+    11.884900000000016,
+    12.010199999999713,
+    10.993599999999788,
+    10.982500000000073,
+    9.992600000000493,
+    11.991099999999278,
+    12.019400000000132,
+    11.01550000000043,
+    9.988099999999577,
+    9.993900000000394,
+    11.502199999999903,
+    11.996500000000196,
+    11.997999999999593,
+    12.016999999999825,
+    12.032600000000457,
+    11.993599999999788,
+    11.254799999999705,
+    10.848399999999856,
+    11.981700000000274,
+    11.990200000000186,
+    12.041900000000169,
+    10.974099999999453,
+    11.01970000000074,
+    11.98489999999947,
+    10.985099999999875,
+    10.451700000000528,
+    11.442199999999502,
+    11.602300000000469,
+    10.97689999999966,
+    10.981300000000374,
+    12.012499999999818,
+    11.986899999999878,
+    11.819700000000012,
+    10.413800000000265,
+    11.486299999999574,
+    12.011500000000524,
+    11.987699999999677,
+    10.9996000000001,
+    10.996000000000095,
+    12.015300000000025,
+    11.99659999999949,
+    11.959600000000137,
+    10.042100000000573,
+    11.719999999999345,
+    11.996100000000297,
+    12.025700000000143,
+    11.976200000000063,
+    11.807399999999689,
+    11.976800000000367,
+    12.026100000000042,
+    12.005799999999908,
+    12.003600000000006,
+    11.994899999999689,
+    11.990200000000186,
+    12.021200000000135,
+    11.940700000000106,
+    12.016299999999319,
+    10.698500000000422,
+    11.51299999999992,
+    11.464699999999539,
+    12.024500000000444,
+    11.987900000000081,
+    12.020700000000033,
+    11.96979999999985,
+    11.989800000000287,
+    9.889299999999821,
+    11.061799999999494,
+    11.03400000000056,
+    12.0024999999996,
+    11.99330000000009,
+    12.021200000000135,
+    11.979500000000371,
+    9.980399999999463,
+    11.047300000000178,
+    9.970900000000256,
+    10.976399999999558,
+    12.024100000000544,
+    11.031399999999849,
+    10.969199999999546,
+    12.03570000000036,
+    9.95219999999972,
+    11.03819999999996,
+    11.083700000000135,
+    9.892100000000028,
+    10.532799999999952,
+    11.531299999999646,
+    11.985400000000482,
+    12.024199999999837,
+    11.078700000000026,
+    10.90809999999965,
+    12.033500000000458,
+    12.005600000000413,
+    12.025699999999233,
+    12.010700000000725,
+    11.99119999999948,
+    10.980599999999868,
+    11.017300000000432,
+    12.024400000000242,
+    11.983099999999467,
+    12.004500000000007,
+    11.97649999999976,
+    10.036000000000058,
+    11.976400000000467,
+    10.114799999999377,
+    10.884100000000217,
+    11.027799999999843,
+    12.000200000000405,
+    10.99619999999959,
+    11.014800000000832,
+    10.936499999999796,
+    11.041999999999462,
+    11.983799999999974,
+    12.002300000000105,
+    12.014000000000124,
+    10.97149999999965,
+    11.01220000000012,
+    11.95810000000074,
+    11.81079999999929,
+    10.182800000000498,
+    12.018500000000131,
+    11.982399999998961,
+    11.990700000000288,
+    10.998700000000099,
+    10.003300000000309,
+    11.556800000000294,
+    11.799999999999272,
+    12.012000000000626,
+    10.999099999999089,
+    10.97990000000027,
+    12.003899999999703,
+    12.006100000000515,
+    10.561499999999796,
+    10.995500000000902,
+    9.990499999999884,
+    12.036099999999351,
+    11.977100000000064,
+    12.005000000001019,
+    11.516599999999016,
+    10.503399999999601,
+    11.023200000001452,
+    10.528199999998833,
+    11.939900000001217,
+    12.025299999999334,
+    11.974700000000666,
+    10.512699999999313,
+    10.49239999999918,
+    10.50799999999981,
+    11.992400000000998,
+    12.033699999999953,
+    11.993399999999383,
+    12.01640000000043,
+    11.993599999999788,
+    11.974900000001071,
+    12.031699999999546,
+    11.493199999998978,
+    11.984200000000783,
+    12.018599999999424,
+    11.628600000000006,
+    10.554299999999785,
+    11.982500000000073,
+    10.008900000000722,
+    12.024499999999534,
+    10.984400000001187,
+    10.981999999999971,
+    11.0112999999983,
+    11.025500000001557,
+    11.957300000000032,
+    11.995699999999488,
+    12.028599999999642,
+    11.991700000000492,
+    12.03099999999904,
+    12.078199999999924,
+    11.86830000000009,
+    12.03820000000087,
+    10.096400000000358,
+    10.886099999999715,
+    11.014900000000125,
+    11.98949999999968,
+    12.009399999999005,
+    11.980500000001484,
+    11.444499999999607,
+    12.037800000000061,
+    11.960499999999229,
+    12.081000000000131,
+    10.895800000000236,
+    11.173000000000684,
+    12.072599999999511,
+    11.940599999999904,
+    11.018899999999121,
+    11.002300000000105,
+    11.010200000000623,
+    10.993200000000797,
+    11.986899999999878,
+    12.00119999999879,
+    11.51810000000114,
+    12.022999999999229,
+    11.026299999999537,
+    11.01050000000032,
+    11.471300000001065,
+    12.0091999999986,
+    12.157200000001467,
+    10.310099999998783,
+    12.058600000000297,
+    11.01260000000002,
+    10.992099999999482,
+    11.991300000001502,
+    11.981299999999464,
+    12.03060000000005,
+    11.490599999999176,
+    9.962999999999738,
+    10.999800000001414,
+    11.037800000000061,
+    12.361399999999776,
+    11.877300000000105,
+    11.745299999998679,
+    12.019500000000335,
+    11.991799999999785,
+    12.044200000000274,
+    10.729600000000573,
+    11.030800000000454,
+    11.986699999999473,
+    12.001800000000003,
+    12.014400000000023,
+    11.977499999999054,
+    11.03060000000005,
+    10.688100000001214,
+    10.847999999999956,
+    11.964500000000044,
+    11.9992000000002,
+    11.97189999999864,
+    12.014400000000023,
+    12.029100000001563,
+    11.99789999999848,
+    11.981800000001385,
+    11.999299999999494,
+    12.003199999999197,
+    11.973299999999654,
+    12.008300000001327,
+    12.002399999999398,
+    12.079400000000533,
+    11.175999999999476,
+    9.85820000000058,
+    11.21349999999984,
+    10.965099999999438,
+    11.014199999999619,
+    11.997199999999793,
+    11.9971000000005,
+    12.010599999999613,
+    11.98070000000007,
+    10.023200000001452,
+    11.963299999999435,
+    12.048000000000684,
+    11.97439999999915,
+    12.0049999999992,
+    11.538100000001577,
+    11.98779999999897,
+    11.969600000000355,
+    12.004399999999805,
+    11.988499999999476,
+    11.021500000000742,
+    10.996999999999389,
+    12.016300000001138,
+    11.976299999998446,
+    12.040600000000268,
+    11.991700000000492,
+    11.001000000000204,
+    11.002599999999802,
+    12.009000000000015,
+    11.600800000000163,
+    11.213299999999435,
+    12.011800000000221,
+    11.540000000000873,
+    11.627699999999095,
+    11.880300000000716,
+    12.098599999999351,
+    10.227199999999357,
+    11.99960000000101,
+    12.003000000000611,
+    10.987099999998463,
+    11.4979000000003,
+    12.048800000000483,
+    11.98699999999917,
+    11.999700000000303,
+    11.997800000001007,
+    11.960299999998824,
+    12.034200000000055,
+    11.990200000000186,
+    11.97820000000138,
+    11.828799999999319,
+    11.420000000000073,
+    11.8757999999998,
+    12.134400000000824,
+    10.990399999998772,
+    10.900300000001153,
+    11.985399999999572,
+    12.0041999999994,
+    12.005600000000413,
+    11.97819999999956,
+    12.02520000000004,
+    10.000900000000911,
+    12.008099999999104,
+    10.985399999999572,
+    10.985700000001088,
+    11.998400000000402,
+    11.691999999999098,
+    10.293600000000879,
+    12.021299999998519,
+    11.972499999999854,
+    11.035900000000765,
+    10.982200000000375,
+    12.058399999999892,
+    11.014499999999316,
+    11.003099999999904,
+    10.992799999999988,
+    10.996900000000096,
+    12.011200000000827,
+    11.98739999999998,
+    12.000500000000102,
+    11.99159999999938,
+    11.988199999999779,
+    12.152299999999741,
+    11.916200000001481,
+    12.011199999999008,
+    11.016999999999825,
+    11.003200000001016,
+    10.501699999998891,
+    11.471800000001167,
+    11.971700000000055,
+    11.544099999999162,
+    11.998100000000704,
+    12.010499999998501,
+    11.98160000000098,
+    12.010099999999511,
+    12.010599999999613,
+    11.47740000000158,
+    12.027999999998428,
+    11.996800000000803,
+    11.997699999999895,
+    11.0041999999994,
+    10.984800000000178,
+    12.017799999999625,
+    11.01050000000032,
+    10.97479999999996,
+    12.020000000000437,
+    11.984200000000783,
+    11.99579999999878,
+    11.663300000000163,
+    11.486500000000888,
+    10.828999999999724,
+    12.023699999999735,
+    10.96060000000034,
+    11.038399999999456,
+    11.97899999999936,
+    12.012500000000728,
+    11.032499999999345,
+    10.73030000000108,
+    11.41610000000037,
+    12.010000000000218,
+    10.989999999999782,
+    11.022399999999834,
+    10.995100000000093,
+    10.997999999999593,
+    11.998199999999997,
+    12.000299999999697,
+    10.973599999999351,
+    11.001400000001013,
+    12.016599999999016,
+    12.01680000000124,
+    12.007499999999709,
+    10.733799999999974,
+    11.302400000000489,
+    11.110399999999572,
+    11.045899999999165,
+    10.97609999999986,
+    10.980500000001484,
+    11.026599999999235,
+    10.963299999999435,
+    12.030300000002171,
+    12.024999999997817,
+    11.979299999999057,
+    11.989300000001094,
+    11.016500000001543,
+    11.516700000000128,
+    10.96140000000014,
+    11.04109999999855,
+    10.025300000001153,
+    11.987300000000687,
+    11.954299999997602,
+    11.241500000000087,
+    10.738000000001193,
+    11.046299999998155,
+    9.991600000001199,
+    11.993299999998271,
+    12.04370000000199,
+    11.988099999998667,
+    11.673900000001595,
+    11.036299999999756,
+    11.0028999999995,
+    12.006399999998393,
+    11.184000000001106,
+    10.812099999999191,
+    11.003600000000006,
+    11.50090000000273,
+    11.821499999998196,
+    10.96389999999883,
+    11.02850000000035,
+    10.000700000000506,
+    12.008900000000722,
+    9.981800000001385,
+    12.020399999997608,
+    11.988600000000588,
+    11.074400000001333,
+    9.704099999999016,
+    11.993900000001304,
+    11.996899999998277,
+    12.001299999999901,
+    12.004499999999098,
+    12.003700000001118,
+    10.967599999999948,
+    11.015400000000227,
+    11.99539999999979,
+    11.079400000002352,
+    10.991899999997258,
+    11.959100000000035,
+    11.998400000000402,
+    11.979100000000471,
+    12.040000000000873,
+    12.048399999999674,
+    10.958099999999831,
+    10.992999999998574,
+    12.01090000000113,
+    12.007200000000012,
+    11.108100000001286,
+    10.98609999999826,
+    11.68999999999869,
+    11.989800000003015,
+    11.92949999999837,
+    12.023300000000745,
+    11.397099999998318,
+    12.01510000000053,
+    11.519800000001851,
+    12.005199999999604,
+    11.983299999999872,
+    11.002300000000105,
+    11.719600000000355,
+    11.123700000000099,
+    10.39509999999791,
+    11.855500000001484,
+    11.77100000000064,
+    10.996899999998277,
+    11.001599999999598,
+    11.974000000001979,
+    11.359699999997247,
+    11.606500000001688,
+    11.278699999998935,
+    11.005000000001019,
+    11.043399999998655,
+    11.226800000000367,
+    10.955200000000332,
+    11.235899999999674,
+    10.85989999999947,
+    11.13180000000284,
+    11.561399999998685,
+    9.600699999999051,
+    12.01090000000113,
+    12.004099999998289,
+    11.979699999999866,
+    12.014500000001135,
+    12.030099999999948,
+    9.94090000000142,
+    12.02049999999872,
+    11.995600000002014,
+    12.002300000000105,
+    11.51299999999901,
+    11.963700000000244,
+    10.836199999997916,
+    10.206500000000233,
+    11.021199999999226,
+    12.016200000001845,
+    11.999599999999191,
+    11.229699999999866,
+    10.764800000000832,
+    12.021899999999732,
+    9.991699999998673,
+    12.202000000001135,
+    11.061000000001513,
+    10.742599999997765,
+    10.992700000002515,
+    10.98569999999745,
+    12.034200000001874,
+    11.96730000000025,
+    12.01299999999901,
+    12.074400000001333,
+    10.920799999999872,
+    11.013899999998102,
+    11.984700000000885,
+    12.011800000000221,
+    12.102500000000873,
+    9.902500000000146,
+    11.988699999998062,
+    11.426100000000588,
+    12.016899999998714,
+    11.960100000000239,
+    12.029200000000856,
+    12.278399999999237,
+    11.723799999999756,
+    11.985700000001088,
+    11.995299999998679,
+    12.020599999999831,
+    11.98120000000199,
+    11.031999999999243,
+    10.9900000000016,
+    11.996899999998277,
+    12.001500000002125,
+    11.97689999999784,
+    11.47360000000117,
+    11.99029999999766,
+    9.99630000000252,
+    12.000199999998586,
+    11.179299999999785,
+    10.820800000001327,
+    10.0154999999977,
+    11.982500000001892,
+    11.989699999998265,
+    10.974700000002485,
+    10.318599999998696,
+    11.19210000000021,
+    11.996399999999994,
+    12.013999999999214,
+    11.002000000000407,
+    11.492300000001705,
+    12.02049999999872,
+    11.992600000001403,
+    11.976199999997334,
+    10.007100000002538,
+    10.977100000000064,
+    11.053599999999278,
+    11.982499999998254,
+    11.044000000001688,
+    10.949400000001333,
+    12.027299999997922,
+    10.661400000000867,
+    10.15650000000096,
+    11.363299999997253,
+    11.545600000001286,
+    12.023600000000442,
+    10.98240000000078,
+    10.998400000000402,
+    12.00789999999688,
+    11.99800000000323,
+    10.06579999999667,
+    11.926400000000285,
+    12.020599999999831,
+    10.997300000002724,
+    10.983699999997043,
+    11.998300000002928,
+    11.976499999997031,
+    11.993200000000797,
+    10.644500000002154,
+    10.788899999999558,
+    12.015999999999622,
+    10.01050000000032,
+    11.977399999999761,
+    12.018299999999726,
+    11.99069999999847,
+    10.969800000002579,
+    11.034999999999854,
+    11.997599999998783,
+    12.004300000000512,
+    11.987600000000384,
+    10.997400000000198,
+    11.021499999998923,
+    12.02520000000004,
+    11.97780000000057,
+    12.015599999998813,
+    10.975500000000466,
+    11.004300000000512,
+    11.82470000000103,
+    12.001000000000204,
+    10.084999999999127,
+    12.125700000000506,
+    11.784499999997934,
+    11.960500000001048,
+    10.640400000000227,
+    12.084200000001147,
+    11.892799999997806,
+    11.992300000001705,
+    12.070199999998295,
+    9.99120000000039,
+    12.209999999999127,
+    9.810300000001007,
+    10.989399999998568,
+    11.926100000000588,
+    12.33770000000004,
+    11.65179999999964,
+    12.000200000002224,
+    10.49029999999766,
+    11.022400000001653,
+    11.995999999999185,
+    12.021700000001147,
+    11.965000000000146,
+    12.00630000000092,
+    11.993999999998778,
+    12.09349999999904,
+    11.89140000000043,
+    12.008300000001327,
+    12.23359999999957,
+    10.484700000000885,
+    11.284099999997125,
+    12.025000000001455,
+    12.135999999998603,
+    11.850400000002992,
+    11.991399999998976,
+    10.86569999999847,
+    11.945900000002439,
+    10.043399999998655,
+    12.018499999998312,
+    10.993099999999686,
+    11.001400000001013,
+    11.976200000000972,
+    11.899600000000646,
+    10.572700000000623,
+    11.74319999999716,
+    11.358000000000175,
+    11.382200000000012,
+    11.994200000001001,
+    11.978100000000268,
+    11.994800000000396,
+    10.689500000000407,
+    10.66189999999915,
+    11.383399999998801,
+    12.01560000000245,
+    11.989899999996851,
+    12.005300000000716,
+    12.016299999999319,
+    11.974600000001374,
+    12.150499999999738,
+    11.846700000001874,
+    12.005999999997584,
+    12.013200000001234,
+    11.997999999999593,
+    11.985599999999977,
+    12.016100000000733,
+    11.990200000000186,
+    10.973799999999756,
+    11.009699999998702,
+    12.007499999999709,
+    12.031399999999849,
+    11.998900000002322,
+    11.973399999998946,
+    11.508300000001327,
+    12.206899999997404,
+    11.799700000003213,
+    11.000099999997474,
+    10.002199999998993,
+    11.020500000002357,
+    12.002099999997881,
+    11.986400000001595,
+    12.187300000001414,
+    11.092099999998027,
+    11.184799999999086,
+    10.508200000000215,
+    12.03150000000096,
+    11.989700000001903,
+    12.012799999996787,
+    12.320700000000215,
+    9.6775000000016,
+    11.990999999998166,
+    11.995600000002014,
+    11.01169999999911,
+    9.993500000000495,
+    11.004099999998289,
+    9.982100000001083,
+    12.056800000002113,
+    11.971099999998842,
+    11.823899999999412,
+    11.383099999999104,
+    11.415400000001682,
+    11.98530000000028,
+    12.02219999999943,
+    11.522899999999936,
+    12.003300000000309,
+    10.986199999999371,
+    11.003600000000006,
+    11.493999999998778,
+    12.028700000002573,
+    12.127199999998993,
+    11.871100000000297,
+    12.0154999999977,
+    11.487700000001496,
+    12.000599999999395,
+    11.704000000001543,
+    12.545799999999872,
+    11.953799999999319,
+    10.899399999998423,
+    10.115499999999884,
+    11.903400000002875,
+    11.991599999997561,
+    11.967400000001362,
+    12.047600000001694,
+    10.993399999999383,
+    11.000299999999697,
+    11.02639999999883,
+    10.96979999999894,
+    11.69550000000163,
+    12.191399999999703,
+    11.801699999999983,
+    11.520799999998417,
+    11.996000000002823,
+    12.010299999998097,
+    11.510300000001735,
+    12.03349999999773,
+    10.989700000001903,
+    11.019599999999627,
+    11.967199999999139,
+    12.010699999998906,
+    10.212800000001153,
+    11.17529999999897,
+    11.414700000001176,
+    9.980599999998958,
+    12.009100000002945,
+    12.011199999997189,
+    11.976700000002893,
+    11.997999999999593,
+    12.016899999998714,
+    12.016999999999825,
+    12.035800000001473,
+    11.993800000000192,
+    11.990499999999884,
+    11.260699999998906,
+    10.649600000000646,
+    11.600500000000466,
+    11.517399999996996,
+    11.979300000002695,
+    12.012500000000728,
+    12.019799999998213,
+    11.962500000001455,
+    12.019399999997404,
+    12.119900000001508,
+    11.162499999998545,
+    11.986000000000786,
+    11.694400000000314,
+    10.346000000001368,
+    11.940099999999802,
+    12.009899999997288,
+    10.98700000000099,
+    11.006799999999203,
+    11.480000000003201,
+    10.802399999996851,
+    10.431100000001607,
+    11.022300000000541,
+    10.520399999997608,
+    12.004300000000512,
+    9.910900000002584,
+    11.988900000000285,
+    12.028599999997823,
+    11.996500000001106,
+    10.992299999998068,
+    11.00170000000071,
+    11.9858000000022,
+    12.01379999999699,
+    9.98750000000291,
+    11.980199999998149,
+    11.9333000000006,
+    11.992099999999482,
+    11.592000000000553,
+    11.987900000000081,
+    11.998499999997875,
+    10.993000000002212,
+    11.058199999999488,
+    11.962299999999232,
+    12.030500000000757,
+    11.521300000000338,
+    12.00119999999879,
+    11.132100000002538,
+    10.839499999998225,
+    12.354899999998452,
+    11.657700000003388,
+    11.934799999999086,
+    12.044999999998254,
+    11.957099999999627,
+    12.014500000001135,
+    11.96940000000177,
+    12.0625,
+    11.986499999999069,
+    12.011099999999715,
+    12.000199999998586,
+    12.004300000000512,
+    11.502199999998993,
+    11.9887000000017,
+    11.011999999998807,
+    11.001400000001013,
+    12.01640000000043,
+    11.50539999999819,
+    11.99409999999989,
+    11.037500000002183,
+    10.946499999998196,
+    11.010300000001735,
+    11.0041999999994,
+    12.007900000000518,
+    11.983299999999872,
+    12.00340000000142,
+    11.998799999997573,
+    11.155399999999645,
+    11.9958000000006,
+    12.012399999999616,
+    12.08179999999993,
+    11.899700000001758,
+    12.06749999999738,
+    11.94890000000305,
+    11.990899999997055,
+    10.030500000000757,
+    11.304500000002008,
+    10.666399999998248,
+    11.021600000000035,
+    10.974600000001374,
+    10.960100000000239,
+    10.265999999999622,
+    12.023799999999028,
+    12.014200000001438,
+    11.516899999998714,
+    11.988799999999173,
+    10.013200000001234,
+    10.952499999999418,
+    11.010800000000017,
+    10.778200000000652,
+    12.022600000000239,
+    12.020300000000134,
+    12.012299999998504,
+    12.0525000000016,
+    11.938200000000506,
+    12.024900000000343,
+    12.30159999999887,
+    11.78559999999925,
+    10.4333000000006,
+    11.991600000001199,
+    12.007599999997183,
+    12.00550000000294,
+    11.990099999999074,
+    12.022600000000239,
+    11.959399999999732,
+    11.470499999999447,
+    11.380700000001525,
+    12.023299999997107,
+    11.97360000000117,
+    11.000199999998586,
+    11.01510000000053,
+    10.993600000001607,
+    10.99369999999908,
+    11.440800000000309,
+    12.044300000001385,
+    11.996799999997165,
+    11.981800000001385,
+    12.016599999999016,
+    11.97530000000188,
+    11.342199999999139,
+    11.487499999999272,
+    11.509099999999307,
+    12.011700000002747,
+    12.00079999999798,
+    11.199000000000524,
+    10.812000000001717,
+    11.976299999998446,
+    11.46559999999954,
+    12.00590000000011,
+    10.01469999999972,
+    11.977500000000873,
+    12.014999999999418,
+    11.990099999999074,
+    11.992200000000594,
+    12.28020000000106,
+    11.6179000000011,
+    11.065699999999197,
+    10.34649999999965,
+    11.03150000000096,
+    12.006199999999808,
+    11.488600000000588,
+    11.030699999999342,
+    9.97439999999915,
+    11.017199999998411,
+    11.97240000000238,
+    12.03059999999823,
+    11.99920000000202,
+    11.992500000000291,
+    12.023399999998219,
+    11.97609999999986,
+    11.999500000001717,
+    12.01589999999851,
+    11.498999999999796,
+    11.61409999999887,
+    12.004100000001927,
+    12.011099999999715,
+    11.968600000000151,
+    12.011900000001333,
+    12.016199999998207,
+    11.973399999998946,
+    12.040800000002491,
+    12.016799999997602,
+    11.969700000001467,
+    10.986700000001292,
+    11.007499999999709,
+    10.785899999995308,
+    11.032500000001164,
+    11.99260000000504,
+    10.992699999995239,
+    10.012800000004063,
+    11.23909999999887,
+    11.99539999999979,
+    10.978399999999965,
+    11.017299999999523,
+    11.539599999996426,
+    11.990700000002107,
+    12.017299999999523,
+    11.96429999999964,
+    12.082500000004075,
+    11.447799999994459,
+    10.481900000006135,
+    11.995199999997567,
+    11.993399999999383,
+    11.001799999998184,
+    9.995699999999488,
+    11.011500000000524,
+    11.271400000005087,
+    12.013800000000629,
+    10.600699999995413,
+    12.025200000003679,
+    10.984199999998964,
+    11.004399999997986,
+    12.014000000002852,
+    11.973500000000058,
+    12.020799999998417,
+    11.50800000000163,
+    11.992399999995541,
+    10.512800000004063,
+    12.008199999996577,
+    12.022000000004482,
+    12.000999999996566,
+    11.504200000003038,
+    12.077899999996589,
+    10.001600000003236,
+    11.504300000000512,
+    11.719199999999546,
+    11.613099999995029,
+    11.917500000003201,
+    12.023000000001048,
+    11.985599999999977,
+    11.995499999997264,
+    12.003799999998591,
+    11.00630000000092,
+    9.984799999998359,
+    11.038500000002387,
+    11.979299999999057,
+    12.008600000001024,
+    10.990599999997357,
+    10.992900000004738,
+    12.003499999998894,
+    12.012099999999919,
+    10.008900000000722,
+    11.981500000001688,
+    11.00329999999667,
+    10.987699999997858,
+    10.990000000005239,
+    11.023499999995693,
+    11.97320000000036,
+    10.999199999998382,
+    11.057600000000093,
+    11.949700000004668,
+    12.003700000001118,
+    11.012299999994866,
+    10.990200000000186,
+    12.000700000004144,
+    10.980299999995623,
+    11.01090000000113,
+    10.002500000002328,
+    12.012300000002142,
+    11.995799999996962,
+    11.122799999997369,
+    11.008900000000722,
+    10.760699999998906,
+    11.02679999999964,
+    10.966899999999441,
+    11.019600000006903,
+    10.962299999999232,
+    11.368099999999686,
+    10.631900000000314,
+    11.00619999999617,
+    11.029600000001665,
+    11.990700000002107,
+    10.988399999994726,
+    11.028300000005402,
+    11.969499999999243,
+    10.008199999996577,
+    10.996899999998277,
+    11.012200000004668,
+    11.991000000001804,
+    11.99699999999575,
+    11.019899999999325,
+    10.983899999999267,
+    12.00170000000071,
+    11.991000000001804,
+    12.006000000001222,
+    11.541100000002189,
+    10.99939999999333,
+    10.503100000001723,
+    11.993600000001607,
+    10.004800000002433,
+    12.37609999999404,
+    10.638900000005378,
+    10.982799999997951,
+    11.989999999997963,
+    9.916400000001886,
+    11.205399999998917,
+    10.400300000001153,
+    10.992899999997462,
+    11.51759999999922,
+    12.00850000000355,
+    11.998500000001513,
+    11.978799999997136,
+    11.011100000003353,
+    10.80619999999908,
+    10.245100000000093,
+    12.002399999997579,
+    12.01600000000326,
+    10.977999999995518,
+    10.984300000003714,
+    11.980499999997846,
+    11.87999999999738,
+    11.956000000005588,
+    12.02850000000035,
+    10.305599999999686,
+    11.695999999996275,
+    11.984000000004016,
+    10.009500000000116,
+    12.005499999999302,
+    11.518199999998615,
+    12.02850000000035,
+    11.984599999996135,
+    11.989600000000792,
+    10.014000000002852,
+    11.997499999997672,
+    11.999100000000908,
+    11.965400000000955,
+    12.010600000001432,
+    12.010099999999511,
+    12.004099999998289,
+    12.004000000000815,
+    11.980100000000675,
+    12.019699999997101,
+    10.9745000000039,
+    11.0112999999983,
+    12.019399999997404,
+    11.982600000003004,
+    11.993600000001607,
+    12.0112999999983,
+    10.983099999997648,
+    10.981500000001688,
+    11.011700000002747,
+    10.996299999998882,
+    12.052700000000186,
+    10.989699999998265,
+    10.989399999998568,
+    11.01600000000326,
+    10.970199999996112,
+    12.021800000002258,
+    11.98689999999624,
+    9.987200000003213,
+    12.007200000000012,
+    11.96809999999823,
+    11.116300000001502,
+    11.294699999998556,
+    11.026600000004692,
+    10.998699999996461,
+    11.995999999999185,
+    11.993900000001304,
+    11.995100000000093,
+    12.007400000002235,
+    10.964899999999034,
+    10.70509999999922,
+    11.492400000002817,
+    11.97780000000057,
+    12.040399999998044,
+    11.993799999996554,
+    12.010099999999511,
+    10.92160000000149,
+    10.961499999997613,
+    11.35910000000149,
+    12.013700000003155,
+    12.000399999997171,
+    11.315699999999197,
+    11.996299999998882,
+    10.979200000001583,
+    11.486300000004121,
+    11.438099999999395,
+    11.21979999999894,
+    12.000200000002224,
+    11.006999999997788,
+    10.51810000000114,
+    10.98689999999624,
+    12.37510000000475,
+    9.974599999994098,
+    11.289500000006228,
+    11.562200000000303,
+    11.93579999999929,
+    12.0141999999978,
+    10.050400000000081,
+    9.948199999998906,
+    11.99840000000404,
+    11.976499999997031,
+    11.10859999999957,
+    10.70339999999851,
+    11.52390000000014,
+    11.003900000003341,
+    11.629199999995762,
+    12.009600000004866,
+    9.942399999999907,
+    12.236499999999069,
+    10.821199999998498,
+    10.145299999996496,
+    9.998500000001513,
+    12.018700000000536,
+    10.994100000003527,
+    11.014899999994668,
+    10.986600000003818,
+    10.976499999997031,
+    12.028000000005704,
+    11.95329999999376,
+    11.032600000005914,
+    11.011800000000221,
+    12.015299999999115,
+    11.498699999996461,
+    11.001900000002934,
+    10.995899999994435,
+    11.978100000000268,
+    12.017400000004272,
+    11.997799999997369,
+    11.019000000000233,
+    10.998700000003737,
+    11.982100000001083,
+    12.011999999995169,
+    11.87159999999858,
+    9.99539999999979,
+    11.005199999999604,
+    10,
+    10.9829000000027,
+    12.012000000002445,
+    10.989199999996345,
+    9.998899999998685,
+    11.575700000001234,
+    11.569100000000617,
+    12.01140000000305,
+    10.996099999996659,
+    10.97330000000511,
+    11.70799999999872,
+    12.16530000000057,
+    11.85570000000007,
+    12.00499999999738,
+    9.977200000001176,
+    10.011500000000524,
+    11.150000000001455,
+    11.864999999997963,
+    11.955300000001444,
+    11.044099999999162,
+    10.986499999999069,
+    11.003499999998894,
+    10.984700000000885,
+    12.012699999999313,
+    11.496800000000803,
+    11.814399999995658,
+    11.253200000006473,
+    11.457399999999325,
+    11.940699999999197,
+    11.34429999999702,
+    11.512800000004063,
+    12.005099999994854,
+    11.964500000001863,
+    12.03070000000298,
+    10.025900000000547,
+    12.005199999999604,
+    12.01759999999922,
+    11.999299999995856,
+    11.517500000001746,
+    11.003100000001723,
+    10.974600000001374,
+    12.008099999999104,
+    11.335599999998522,
+    10.178899999998976,
+    11.99489999999787,
+    12.022500000006403,
+    12.210699999995995,
+    11.775200000003679,
+    12.007299999997485,
+    12.011099999996077,
+    10.481100000004517,
+    12.052600000002712,
+    12.004099999998289,
+    11.974099999999453,
+    11.01469999999972,
+    11.001400000001013,
+    11.498999999996158,
+    11.977700000003097,
+    12.035100000000966,
+    11.004300000000512,
+    10.97389999999723,
+    11.025699999998324,
+    11.002100000005157,
+    12.004899999999907,
+    11.976599999994505,
+    12.008399999998801,
+    12.01310000000376,
+    11.974699999998847,
+    12.027699999998731,
+    11.999100000000908,
+    11.480400000000373,
+    12.038899999999558,
+    11.95980000000418,
+    11.131399999998393,
+    10.650099999998929,
+    11.890399999996589,
+    11.9774000000034,
+    11.001799999998184,
+    11.028800000000047,
+    11.971799999999348,
+    12.223500000000058,
+    11.618200000004435,
+    11.273399999998219,
+    11.191800000000512,
+    9.981699999996636,
+    11.014600000002247,
+    10.99369999999908,
+    11.01020000000426,
+    11.97219999999652,
+    12.00630000000092,
+    12.004199999995762,
+    10.76140000000305,
+    11.167699999998149,
+    10.980500000005122,
+    11.029599999994389,
+    11.974300000001676,
+    12.039300000004005,
+    11.986399999994319,
+    10.154200000004494,
+    10.916700000001583,
+    11.870899999994435,
+    12.100200000000768,
+    11.917999999997846,
+    11.005800000006275,
+    10.986599999996542,
+    12.004300000000512,
+    10.883699999998498,
+    10.826200000003155,
+    10.3295999999973,
+    12.082800000003772,
+    11.920599999997648,
+    12.004000000000815,
+    10.964200000002165,
+    10.002199999995355,
+    11.023600000000442,
+    12.091700000004494,
+    10.882699999994657,
+    11.063099999999395,
+    11.973100000002887,
+    10.977200000001176,
+    11.16070000000036,
+    12.019599999999627,
+    11.979200000001583,
+    10.974799999996321,
+    11.016900000002352,
+    10.017899999998917,
+    11.987199999995937,
+    12.008300000001327,
+    11.98189999999886,
+    11.62039999999979,
+    10.95860000000539,
+    10.895199999999022,
+    11.989699999998265,
+    12.027699999998731,
+    11.984499999998661,
+    11.997300000002724,
+    12.001300000003539,
+    11.981199999994715,
+    12.025000000001455,
+    9.97280000000319,
+    12.024799999999232,
+    11.991799999996147,
+    11.98909999999887,
+    11.013300000005984,
+    10.984299999996438,
+    11.286700000004203,
+    11.005599999996775,
+    11.003499999998894,
+    12.00050000000192,
+    12,
+    11.005199999999604,
+    10.983299999999872,
+    12.01260000000184,
+    12.003599999996368,
+    12.006200000003446,
+    11.9971000000005,
+    9.997400000000198,
+    12.003699999993842,
+    11.977500000000873,
+    12.029500000004191,
+    11.957600000001548,
+    12.012699999999313,
+    11.110899999999674,
+    11.346899999996822,
+    12.117700000002515,
+    11.88409999999567,
+    12.02610000000277,
+    12.007100000002538,
+    11.975699999995413,
+    10.894500000002154,
+    11.205300000001444,
+    11.0112999999983,
+    11.017399999996996,
+    10.006000000001222,
+    12.015500000001339,
+    10.97149999999965,
+    9.993200000004435,
+    11.47609999999986,
+    10.992199999993318,
+    11.162100000001374,
+    12.010600000001432,
+    11.993099999999686,
+    12.012900000001537,
+    11.563900000001013,
+    9.958200000000943,
+    12.019399999997404,
+    11.980199999998149,
+    12.128199999999197,
+    11.920799999999872,
+    12.113000000004831,
+    11.865599999997357,
+    11.99500000000262,
+    11.98700000000099,
+    11.603399999999965,
+    11.84649999999965,
+    11.999100000000908,
+    11.985099999998056,
+    12.00909999999567,
+    12.002700000004552,
+    11.990699999994831,
+    10.994200000001001,
+    10.981400000004214,
+    10.31529999999475,
+    11.878800000005867,
+    10.98359999999957,
+    10.013399999996182,
+    10.988400000002002,
+    11.262799999996787,
+    12.066300000005867,
+    12.012799999996787,
+    12.029699999999139,
+    11.990499999999884,
+    12.00460000000021,
+    10.997000000003027,
+    9.981299999999464,
+    11.015800000001036,
+    11.002399999997579,
+    10.998899999998685,
+    12.009100000002945,
+    10.994299999998475,
+    10.997999999999593,
+    11.98859999999695,
+    12.035400000000664,
+    11.00340000000142,
+    10.974200000004203,
+    11.544699999998556,
+    11.994599999998172,
+    12.006900000000314,
+    11.974000000001979,
+    12.009899999997288,
+    11.993399999999383,
+    12.024300000004587,
+    10.737099999998463,
+    11.052199999998265,
+    11.61420000000362,
+    9.967799999998533,
+    12.00909999999567,
+    12.021200000002864,
+    11.981299999999464,
+    11.975299999998242,
+    11.121299999998882,
+    10.209000000002561,
+    12.09309999999823,
+    10.021500000002561,
+    12.001100000001315,
+    12.002599999999802,
+    11.504799999995157,
+    12.00850000000355,
+    12.029799999996612,
+    12.061100000006263,
+    12.011399999995774,
+    11.514999999999418,
+    12.02219999999943,
+    11.939500000000407,
+    12.080999999998312,
+    10.588500000005297,
+    10.992200000000594,
+    12.01879999999801,
+    11.538000000000466,
+    11.965100000001257,
+    11.991799999996147,
+    11.025200000003679,
+    10.498399999996764,
+    10.993399999999383,
+    11.000800000001618,
+    9.96600000000035,
+    11.94550000000163,
+    10.967799999998533,
+    11.052300000003015,
+    11.985099999998056,
+    11.977099999996426,
+    12.030800000000454,
+    11.965900000002875,
+    11.281999999999243,
+    10.706899999997404,
+    11.996299999998882,
+    11.989600000000792,
+    11.98420000000624,
+    12.008499999996275,
+    12.000299999999697,
+    12.162300000003597,
+    11.039199999999255,
+    11.21979999999894,
+    12.040000000000873,
+    11.954299999997602,
+    12.093600000000151,
+    11.989000000001397,
+    11.996899999998277,
+    10.998200000001816,
+    10.972999999998137,
+    12.014999999999418,
+    11.303700000004028,
+    10.883699999998498,
+    11.973599999997532,
+    11.018700000000536,
+    11.002599999999802,
+    11.979299999999057,
+    11.986400000001595,
+    12.206400000002759,
+    11.805999999996857,
+    12.108899999999267,
+    11.898699999997916,
+    11.007100000002538,
+    11.00959999999759,
+    11.991700000005949,
+    12.042199999996228,
+    10.009200000000419,
+    11.973700000002282,
+    10.997499999997672,
+    10.02219999999943,
+    11.007100000002538,
+    11.013800000000629,
+    10.964099999997416,
+    12.046699999998964,
+    11.991800000003423,
+    10.002199999995355,
+    12.006500000003143,
+    11.987999999997555,
+    11.009799999999814,
+    10.970800000002782,
+    12.002500000002328,
+    11.971999999994296,
+    10.029399999999441,
+    11.991800000003423,
+    11.51759999999922,
+    11.149700000001758,
+    10.949899999999616,
+    12.041700000001583,
+    11.970499999995809,
+    10.286800000001676,
+    10.705699999998615,
+    11.011500000000524,
+    12.065200000004552,
+    10.995999999999185,
+    11.01919999999518,
+    11.992700000002515,
+    11.981699999996636,
+    11.019100000004983,
+    10.512199999997392,
+    11.996100000003935,
+    11.01749999999447,
+    10.994500000000698,
+    11.960400000003574,
+    11.00909999999567,
+    11.0028999999995,
+    11.97570000000269,
+    12.253700000001118,
+    9.983000000000175,
+    12.000099999997474,
+    11.017100000004575,
+    9.98179999999411,
+    10.993900000001304,
+    12.016800000004878,
+    10.991199999996752,
+    10.171900000001187,
+    10.997699999999895,
+    11.634899999997288,
+    10.604899999998452,
+    11.333200000000943,
+    12.004400000005262,
+    11.022799999998824,
+    11.492999999994936,
+    11.991200000004028,
+    11.246299999998882,
+    10.813099999999395,
+    10.888800000000629,
+    11.998899999998685,
+    12.021099999998114,
+    11.96200000000681,
+    11.045199999993201,
+    11.041300000004412,
+    11.955199999996694,
+    11.991200000004028,
+    11.006900000000314,
+    10.992200000000594,
+    11.99489999999787,
+    12.127699999997276,
+    11.02270000000135,
+    11.008999999998196,
+    11.993900000001304,
+    12.005499999999302,
+    11.03070000000298,
+    10.981800000001385,
+    12.03689999999915,
+    11.98359999999957,
+    11.994999999995343,
+    11.01310000000376,
+    10.537100000001374,
+    11.98189999999886,
+    9.988199999999779,
+    12.018299999996088,
+    11.00640000000567,
+    10.515399999996589,
+    12.022499999999127,
+    10.002599999999802,
+    11.50630000000092,
+    11.97729999999865,
+    12.025800000003073,
+    12.011800000000221,
+    11.010600000001432,
+    11.01299999999901,
+    11.009899999997288,
+    10.984600000003411,
+    12.012099999999919,
+    10.990200000000186,
+    11.02209999999468,
+    11.035400000000664,
+    10.993600000001607,
+    11.34599999999773,
+    11.996500000001106,
+    11.410400000000664,
+    10.616699999998673,
+    12.083700000002864,
+    10.98739999999816,
+    11.016200000005483,
+    11.993499999996857,
+    11.004399999997986,
+    10.987700000005134,
+    11.952899999996589,
+    11.96940000000177,
+    11.990899999997055,
+    12.015599999998813,
+    9.986499999999069,
+    12.007000000005064,
+    11.990200000000186,
+    12.024099999995087,
+    12.052400000000489,
+    11.994900000005146,
+    12.021799999994982,
+    11.988300000004529,
+    11.983699999997043,
+    12.019800000001851,
+    12.03229999999894,
+    10.994700000002922,
+    10.985899999999674,
+    11.994299999998475,
+    12.00329999999667,
+    12.12170000000333,
+    11.883999999998196,
+    12.0141999999978,
+    11.994200000001001,
+    12.020799999998417,
+    9.988100000002305,
+    10.987900000000081,
+    11.008900000000722,
+    11.982000000003609,
+    12.019799999994575,
+    11.998899999998685,
+    12.004900000007183,
+    11.998099999997066,
+    10.108399999997346,
+    10.902200000004086,
+    10.96759999999631,
+    12.036400000004505,
+    12.004300000000512,
+    11.988499999999476,
+    12.005099999994854,
+    11.287199999998847,
+    12.030100000003586,
+    10.947299999999814,
+    11.049400000003516,
+    11.973699999995006,
+    11.987600000000384,
+    12.02900000000227,
+    12.054299999996147,
+    11.138600000005681,
+    10.963199999998324,
+    12.029900000001362,
+    11.987499999995634,
+    12.018900000002759,
+    11.983099999997648,
+    11.52049999999872,
+    12.167600000000675,
+    11.017899999998917,
+    11.024900000003981,
+    11.992099999995844,
+    12.001100000001315,
+    12.014400000000023,
+    12.217499999998836,
+    11.781600000002072,
+    11.50970000000234,
+    11.992799999999988,
+    11.021499999995285,
+    10.97110000000248,
+    11.283000000003085,
+    11.504799999995157,
+    11.029500000004191,
+    11.020199999999022,
+    11.046000000002095,
+    11.98070000000007,
+    10.971299999997427,
+    11.013299999998708,
+    11.240100000002712,
+    11.037100000001374,
+    9.968699999997625,
+    12.063999999998487,
+    11.966800000001967,
+    10.979299999999057,
+    10.98189999999886,
+    11.997900000002119,
+    10.824199999995471,
+    11.375800000001618,
+    10.986199999999371,
+    10.848100000002887,
+    12.106599999999162,
+    10.555599999999686,
+    10.869200000001001,
+    11.028200000000652,
+    10.970900000000256,
+    11.027399999999034,
+    11.006600000000617,
+    11.991799999996147,
+    12.031100000000151,
+    10.983800000001793,
+    10.991399999998976,
+    10.978699999999662,
+    11.024199999999837,
+    11.963900000002468,
+    12.17779999999766,
+    10.443500000001222,
+    11.203800000002957,
+    12.006999999997788,
+    11.963799999997718,
+    11.035500000005413,
+    10.97609999999986,
+    11.97599999999511,
+    11.98540000000503,
+    11.540600000000268,
+    10.652099999999336,
+    11.90350000000035,
+    12.054700000000594,
+    11.998899999998685,
+    11.992200000000594,
+    11.981099999997241,
+    11.394399999997404,
+    12.01820000000589,
+    12.000799999994342,
+    12.022100000001956,
+    11.996200000001409,
+    11.971299999997427,
+    12.024499999999534,
+    11.987600000000384,
+    11.991099999999278,
+    12.042700000005425,
+    12.000599999999395,
+    11.978100000000268,
+    12.031199999997625,
+    9.987200000003213,
+    11.992699999995239,
+    11.195200000001932,
+    9.99829999999929,
+    11.006399999998393,
+    10.991900000000896,
+    11.160100000000966,
+    11.417900000000373,
+    10.095800000002782,
+    12.030399999996007,
+    11.98240000000078,
+    11.506000000001222,
+    10.990799999999581,
+    10.252699999997276,
+    11.573199999998906,
+    11.026900000004389,
+    11.0141999999978,
+    11.9774000000034,
+    12.021899999999732,
+    11.971399999994901,
+    10.172400000003108,
+    10.606299999999464,
+    11.90520000000106,
+    11.747300000002724,
+    11.976999999998952,
+    12.055099999997765,
+    11.953699999998207,
+    11.97729999999865,
+    12.026400000002468,
+    10.998599999998987,
+    11.863199999999779,
+    11.694500000005064,
+    12.008199999996577,
+    12.009799999999814,
+    11.331500000000233,
+    12.00329999999667,
+    12.097500000003492,
+    11.889999999999418,
+    11.067699999999604,
+    10.300699999999779,
+    10.983000000000175,
+    12.016799999997602,
+    11.991900000000896,
+    11.007799999999406,
+    11.000299999999697,
+    10.981600000006438,
+    11.834199999997509,
+    10.86830000000191,
+    11.962199999994482,
+    12.111100000001898,
+    11.13810000000376,
+    11.008499999996275,
+    11.496500000001106,
+    10.541299999997136,
+    10.622000000003027,
+    11.012399999999616,
+    11.98530000000028,
+    11.6475999999966,
+    11.3466000000044,
+    11.975399999995716,
+    11.1846000000005,
+    10.709300000002258,
+    12.043899999996938,
+    11.868600000001607,
+    12.000400000004447,
+    12.012599999994563,
+    11.499200000005658,
+    11.995999999999185,
+    11.997299999995448,
+    11.983700000004319,
+    0,
+    7.29769999999553,
+    10.990200000000186,
+    13.67280000000028,
+    10.3466000000044,
+    11.993999999998778,
+    11.998699999996461,
+    11.015800000001036,
+    11.0028999999995,
+    11.979400000003807,
+    12.002499999995052,
+    12.005500000006577,
+    12.003399999994144,
+    11.986199999999371,
+    11.997300000002724,
+    11.979099999996834,
+    11.562400000002526,
+    11.439899999997579,
+    11.325000000004366,
+    12.002699999997276,
+    11.996200000001409,
+    9.986199999999371,
+    12.132499999999709,
+    11.89100000000326,
+    10.986700000001292,
+    11.0766999999978,
+    12.020700000000943,
+    10.918799999999464,
+    10.983099999997648,
+    12.038699999997334,
+    11.987700000005134,
+    11.997199999997974,
+    11.52780000000348,
+    10.985499999995227,
+    11.02440000000206,
+    11.985899999999674,
+    11.99949999999808,
+    11.533500000005006,
+    12.127000000000407,
+    11.983199999995122,
+    9.979599999998754,
+    12.018500000005588,
+    10.664599999996426,
+    10.971799999999348,
+    11.850800000000163,
+    11.979700000003504,
+    9.993399999999383,
+    12.002999999996973,
+    11.605400000000373,
+    11.979400000003807,
+    11.980199999998149,
+    10.388500000000931,
+    12.028699999995297,
+    11.007900000004156,
+    10.998999999996158,
+    11.978100000000268,
+    11.966800000001967,
+    12.047700000002806,
+    10.437599999997474,
+    12.025800000003073,
+    12.032599999998638,
+    11.990099999995437,
+    12.014500000004773,
+    11.999299999995856,
+    11.98080000000482,
+    11.024099999995087,
+    10.981700000003912,
+    12.001100000001315,
+    11.999099999993632,
+    12.00470000000496,
+    12.021099999998114,
+    11.968800000002375,
+    11.994500000000698,
+    11.19029999999475,
+    10.134000000005472,
+    11.339499999994587,
+    11.047200000000885,
+    10.983800000001793,
+    12.002200000002631,
+    10.02719999999681,
+    11.981099999997241,
+    11.99550000000454,
+    11.992299999998068,
+    12.012099999999919,
+    11.977700000003097,
+    11.002599999999802,
+    11.02219999999943,
+    11.005199999999604,
+    11.22099999999773,
+    10.7899000000034,
+    10.018899999995483,
+    11.50340000000142,
+    12.01260000000184,
+    11.988799999999173,
+    12.010000000002037,
+    12.018299999996088,
+    12.015200000001641,
+    11.998099999997066,
+    12.199500000002445,
+    11.7954000000027,
+    11.997400000000198,
+    11.546799999996438,
+    11.997999999999593,
+    11.99550000000454,
+    11.979299999999057,
+    11.2016999999978,
+    11.182600000000093,
+    12.088000000003376,
+    12.020199999999022,
+    11.967699999993783,
+    12.020900000003166,
+    9.989900000000489,
+    11.969199999999546,
+    12.002599999999802,
+    11.5795999999973,
+    12.009799999999814,
+    12.01810000000114,
+    12.008099999999104,
+    11.520000000004075,
+    12.170200000000477,
+    11.869500000000698,
+    11.197199999995064,
+    11.621200000001409,
+    9.993200000004435,
+    10.985899999999674,
+    11.011599999997998,
+    11.966200000002573,
+    11.556599999996251,
+    11.980100000000675,
+    11.64100000000326,
+    11.928599999999278,
+    10.10099999999511,
+    11.517899999998917,
+    11.975200000000768,
+    11.79790000000503,
+    11.071499999998196,
+    10.143599999995786,
+    10.884400000002643,
+    11.686800000003132,
+    12.01249999999709,
+    11.982100000001083,
+    12.02679999999964,
+    11.959199999997509,
+    12.040000000000873,
+    11.952100000002247,
+    12.173499999997148,
+    11.218899999999849,
+    11.994800000000396,
+    10.423000000002503,
+    11.409200000001874,
+    11.990699999994831,
+    11.983700000004319,
+    11.188199999996868,
+    10.88130000000092,
+    10.983299999999872,
+    12.036700000004203,
+    11.991299999994226,
+    11.974000000001979,
+    12.013599999998405,
+    10.973500000000058,
+    11.010999999998603,
+    11.993000000002212,
+    12.031500000004598,
+    9.995599999994738,
+    11.539000000004307,
+    11.98189999999886,
+    11.503100000001723,
+    12.00669999999809,
+    11.990499999999884,
+    12.014299999995274,
+    12.00630000000092,
+    11.997800000004645,
+    12.007299999997485,
+    11.95560000000114,
+    12.033300000002782,
+    11.966899999999441,
+    11.202999999994063,
+    10.831100000003062,
+    10.145500000005995,
+    11.846799999999348,
+    12.009399999995367,
+    10.990300000004936,
+    9.972399999998743,
+    11.023199999995995,
+    12.004100000005565,
+    11.753700000001118,
+    11.993399999992107,
+    12.033299999995506,
+    11.03059999999823,
+    11.001100000008591,
+    10.038300000000163,
+    11.994999999995343,
+    10.996299999998882,
+    9.977599999998347,
+    10.777200000011362,
+    11.010999999998603,
+    11.74539999999979,
+    12.004099999991013,
+    10.51589999999851,
+    11.009000000005472,
+    11.98880000000645,
+    12.301899999991292,
+    11.535100000008242,
+    10.977999999988242,
+    11.035600000002887,
+    9.993000000002212,
+    11.505900000003749,
+    12.005699999994249,
+    11.986300000004121,
+    12.009900000004563,
+    10.957599999994272,
+    10.99880000000121,
+    12.011599999997998,
+    10.824900000006892,
+    8.040399999998044,
+    14.4372999999905,
+    11.01929999999993,
+    11.938500000003842,
+    12.044500000003609,
+    11.983299999992596,
+    11.984400000001187,
+    11.41830000000482,
+    10.888800000000629,
+    12.006500000003143,
+    11.976899999994203,
+    12.029800000003888,
+    11.974799999996321,
+    11.98189999999886,
+    11.34320000000298,
+    11.190000000002328,
+    11.436900000000605,
+    9.977899999998044,
+    12.024199999999837,
+    11.015100000004168,
+    10.982099999993807,
+    11.76140000000305,
+    10.234400000001187,
+    12.013099999996484,
+    9.973100000002887,
+    10.050900000002002,
+    11.011399999988498,
+    11.980600000009872,
+    11.530100000003586,
+    11.537700000000768,
+    12.002999999996973,
+    10.993399999992107,
+    10.997799999997369,
+    12.018000000010943,
+    11.993799999996554,
+    12.001999999993131,
+    10.012800000011339,
+    11.003899999996065,
+    10.967399999994086,
+    9.920100000003004,
+    10.513200000001234,
+    10.982499999998254,
+    11.102899999998044,
+    11.706700000009732,
+    12.024799999999232,
+    10.988400000002002,
+    10.990399999995134,
+    11.915699999997742,
+    0,
+    0.8237999999983003,
+    0,
+    14.87939999999071,
+    12.008700000005774,
+    11.981199999994715,
+    12.122300000002724,
+    11.880199999999604,
+    12,
+    11.811900000000605,
+    11.036500000001979,
+    12.03200000000652,
+    11.970000000001164,
+    11.008699999991222,
+    11.001300000003539,
+    11.994900000005146,
+    11.557600000000093,
+    10.994699999995646,
+    11.000700000004144,
+    12.024699999994482,
+    10.013399999996182,
+    11.96820000000298,
+    11.016600000002654,
+    10.98530000000028,
+    11.551599999991595,
+    11.980000000010477,
+    12.015499999994063,
+    10.99670000000333,
+    11.167799999995623,
+    10.009500000000116,
+    10.622000000003027,
+    12.024900000003981,
+    12.527600000001257,
+    11.631099999998696,
+    10.960299999991548,
+    11.029900000008638,
+    12.000599999999395,
+    11.992799999992712,
+    11.994099999996251,
+    12.00820000001113,
+    11.523099999991246,
+    12.014300000009825,
+    11.990599999990081,
+    11.99199999999837,
+    11.99900000001071,
+    10.96119999999064,
+    11.052100000000792,
+    11.982600000003004,
+    12.010599999994156,
+    10.982400000008056,
+    11.004899999999907,
+    11.58860000000277,
+    11.461999999999534,
+    10.676999999996042,
+    10.96950000000652,
+    10.015199999994365,
+    11.028900000004796,
+    10.9887000000017,
+    10.974099999992177,
+    11.010500000003958,
+    12.003799999991315,
+    12.108600000006845,
+    9.824299999992945,
+    3.6375000000116415,
+    4.301699999996345,
+    1.6339999999909196,
+    4.6365000000078,
+    11.478699999992386,
+    12.012500000011642,
+    11.984700000000885,
+    11.025899999993271,
+    10.98760000000766,
+    11.989900000000489,
+    11.998999999996158,
+    11.997799999997369,
+    11.004400000005262,
+    10.992699999987963,
+    10.47620000000461,
+    11.548999999999069,
+    11.997900000002119,
+    11.982199999998556,
+    10.012100000007194,
+    12.005799999998999,
+    11.97729999999865,
+    11.580300000001444,
+    12.001899999988382,
+    12.004100000005565,
+    11.997199999997974,
+    11.975800000000163,
+    12.05350000000908,
+    9.951499999995576,
+    11.991200000004028,
+    12.005399999994552,
+    12.003200000006473,
+    12.003899999996065,
+    12.01469999999972,
+    11.980500000005122,
+    12.03629999999248,
+    10.04210000000603,
+    11.996099999989383,
+    12.017200000002049,
+    11.510699999998906,
+    10.985800000009476,
+    10.998299999992014,
+    0.7250000000058208,
+    6.27379999999539,
+    10.106100000004517,
+    10.87609999999404,
+    11.183400000008987,
+    10.837699999989127,
+    10.012199999997392,
+    11.987300000007963,
+    11.299599999998463,
+    10.689599999997881,
+    11.970000000001164,
+    12.021399999997811,
+    11.687100000010105,
+    0.4399999999877764,
+    6.653500000000349,
+    10.024499999999534,
+    14.005300000004354,
+    11.963300000003073,
+    11.823600000003353,
+    10.375299999999697,
+    11.980799999990268,
+    11.991099999999278,
+    11.625899999999092,
+    12.0341000000044,
+    11.00789999999688,
+    10.99330000000191,
+    12.37380000000121,
+    11.63640000000305,
+    10.99880000000121,
+    11.498299999992014,
+    12.027000000001863,
+    11.986199999999371,
+    11.995800000004238,
+    11.995599999994738,
+    10.996300000013434,
+    10.985599999999977,
+    0.19939999999769498,
+    8.170799999992596,
+    11.380700000008801,
+    10.05109999999695,
+    10.991599999993923,
+    11.02049999999872,
+    11.509900000004563,
+    11.98750000000291,
+    11.00119999999879,
+    11.521599999992759,
+    11.518600000010338,
+    12.049099999989267,
+    11.998600000006263,
+    11.529200000004494,
+    10.99539999999979,
+    11.971399999994901,
+    12.009399999995367,
+    11.576800000009825,
+    11.934899999992922,
+    0,
+    8.475399999995716,
+    12.036300000007031,
+    11.989300000001094,
+    12.003599999996368,
+    12.012100000007194,
+    11.99529999999504,
+    10.968399999997928,
+    11.015299999999115,
+    11.009000000005472,
+    11.957500000004075,
+    11.03159999998752,
+    12.131000000008498,
+    11.927100000000792,
+    11.06019999999262,
+    10.94570000001113,
+    12.014099999985774,
+    10.014400000000023,
+    10.66390000001411,
+    10.73189999999886,
+    12.091699999989942,
+    11.898200000010547,
+    12.025999999998021,
+    11.952599999989616,
+    10.999300000010408,
+    11.995599999994738,
+    9.939299999998184,
+    11.994200000001001,
+    11.509999999994761,
+    12.008600000001024,
+    11.349500000011176,
+    10.630099999994854,
+    12.028600000005099,
+    11.97149999999965,
+    9.968499999988126,
+    11.035600000002887,
+    10.569900000002235,
+    10.99220000000787,
+    11.984299999996438,
+    10.569099999993341,
+    12.016799999997602,
+    11.665300000007846,
+    11.993900000001304,
+    11.936199999996461,
+    0,
+    7.065700000006473,
+    10.89999999999418,
+    12.006099999998696,
+    12.000400000004447,
+    11.998299999992014,
+    12.001400000008289,
+    11.39900000000489,
+    11.993699999991804,
+    11.265199999994365,
+    12.01370000001043,
+    12.02039999999397,
+    12.00329999999667,
+    12.342199999999139,
+    11.613400000002002,
+    12.065200000011828,
+    11.13389999998617,
+    12.04780000000028,
+    12.00800000000163,
+    11.969100000002072,
+    10.037800000005518,
+    10.987999999997555,
+    11.009300000005169,
+    12.002199999988079,
+    11.512700000006589,
+    12.007400000002235,
+    11.479599999991478,
+    12.015600000013364,
+    12.01249999999709,
+    11.989499999996042,
+    12.006200000003446,
+    10.006500000003143,
+    11.990499999999884,
+    11.97609999999986,
+    12.030299999998533,
+    11.99880000000121,
+    11.992099999988568,
+    12.003300000011222,
+    12.004999999990105,
+    11.969200000006822,
+    0.4360000000015134,
+    7.57050000000163,
+    10.695599999991828,
+    10.944799999997485,
+    11.9774000000034,
+    11.03859999999986,
+    10.947299999999814,
+    11.298800000004121,
+    10.747300000002724,
+    11.543299999990268,
+    12.040000000008149,
+    12.01469999999972,
+    11.617599999997765,
+    0,
+    3.5388999999995576,
+    15.191700000010314,
+    12.01140000000305,
+    10.904299999994691,
+    11.174799999993411,
+    12.023100000005797,
+    12.002599999992526,
+    11.985100000005332,
+    11.959000000002561,
+    12.0454000000027,
+    11.522199999992154,
+    11.991399999998976,
+    10.001000000003842,
+    11.98979999999574,
+    12.023200000010547,
+    11.967499999998836,
+    12.057699999990291,
+    11.47960000000603,
+    12.011700000002747,
+    12.148000000001048,
+    11.865200000000186,
+    0.6134000000020023,
+    7.340499999991152,
+    10.032500000001164,
+    11.989100000006147,
+    12.018199999991339,
+    11.957800000003772,
+    12.02730000000156,
+    11.48739999999816,
+    10.999599999995553,
+    10.640400000003865,
+    10.01610000000801,
+    11.003399999986868,
+    11.121299999998882,
+    12.19110000001092,
+    9.789399999994203,
+    11.425700000007055,
+    10.980799999990268,
+    11.00350000000617,
+    11.019000000000233,
+    11.463999999992666,
+    12.01810000000114,
+    11.99890000000596,
+    12.005399999994552,
+    12.005600000004051,
+    11.956200000000536,
+    12.03859999999986,
+    11.958599999998114,
+    12.026599999997416,
+    12.028800000000047,
+    11.486000000004424,
+    12.130699999994249,
+    11.407800000000861,
+    10.000899999999092,
+    11.926500000001397,
+    11.032800000000861,
+    10.48640000000887,
+    10.006299999993644,
+    11.998099999997066,
+    11.985000000000582,
+    11.517600000006496,
+    12.079199999992852,
+    11.920599999997648,
+    12.010900000008405,
+    12.015499999994063,
+    11.967799999998533,
+    12.009600000004866,
+    12.175600000002305,
+    9.83310000000347,
+    11.981499999994412,
+    12.023199999995995,
+    12.001700000007986,
+    11.52270000000135,
+    11.998899999991409,
+    12.004300000000512,
+    11.963000000003376,
+    12.00810000000638,
+    12.011499999993248,
+    11.555999999996857,
+    11.986700000008568,
+    12.01229999998759,
+    11.995900000008987,
+    10.547999999995227,
+    12.021500000002561,
+    11.14320000000589,
+    27.494699999995646,
+    11.438899999993737,
+    11.943599999998696,
+    11.00690000000759,
+    11.281600000002072,
+    11.988299999997253,
+    12.028699999995297,
+    11.96020000000135,
+    11.733699999997043,
+    11.281600000002072,
+    11.026899999997113,
+    9.800500000012107,
+    11.995599999994738,
+    0.7146999999968102,
+    7.294900000008056,
+    11.985000000000582,
+    10.017799999986892,
+    10.601600000009057,
+    11.567500000004657,
+    12.01239999999234,
+    11.998300000006566,
+    12.016399999993155,
+    11.997600000002421,
+    12.008799999995972,
+    11.002800000002026,
+    10.989100000006147,
+    11.998999999996158,
+    10.999400000000605,
+    11.033899999994901,
+    12.018700000000536,
+    11.949900000006892,
+    12.025999999998021,
+    10.001799999998184,
+    11.500199999994948,
+    11.984700000000885,
+    12.00789999999688,
+    11.996600000013132,
+    11.015199999994365,
+    10.975699999995413,
+    9.968399999997928,
+    12.00340000000142,
+    12.036800000001676,
+    11.813000000009197,
+    11.888299999991432,
+    12.030400000003283,
+    11.99309999999241,
+    11.986199999999371,
+    11.006000000008498,
+    10.997900000002119,
+    11.024299999990035,
+    12.092600000003586,
+    9.893500000005588,
+    11.122399999992922,
+    0,
+    5.152799999996205,
+    13.744300000005751,
+    11.005799999998999,
+    11.981499999994412,
+    12.010500000003958,
+    12.012900000001537,
+    10.024799999999232,
+    11.957299999994575,
+    12.028800000000047,
+    11.991900000008172,
+    10.965599999995902,
+    10.237000000008265,
+    11.15659999998752,
+    10.617000000012922,
+    10.985499999995227,
+    10.764100000000326,
+    11.310799999992014,
+    10.945400000011432,
+    11.03959999998915,
+    11.033200000005309,
+    11.948600000003353,
+    11.343500000002678,
+    12.005099999994854,
+    11.951300000000629,
+    11.002399999997579,
+    11.036699999996927,
+    12.004899999999907,
+    12.013400000010733,
+    11.976699999999255,
+    11.997399999992922,
+    12.001000000003842,
+    12.007299999997485,
+    9.968600000007427,
+    12.031199999997625,
+    11.984199999991688,
+    11.987999999997555,
+    12.026000000012573,
+    11.983099999997648,
+    12.009899999990012,
+    11.999600000010105,
+    11.57390000000305,
+    10.36809999999241,
+    10.978600000002189,
+    12.043499999999767,
+    11.98750000000291,
+    11.990899999989779,
+    12.010699999998906,
+    11.978200000012293,
+    11.021699999997509,
+    11.097500000003492,
+    12.03399999999965,
+    12.019899999999325,
+    11.978499999997439,
+    12.00779999999213,
+    11.805000000007567,
+    11.248299999992014,
+    11.172300000005635,
+    11.248200000001816,
+    12.023000000001048,
+    11.968399999997928,
+    12.009799999999814,
+    11.327499999999418,
+    12.029500000004191,
+    11.870799999989686,
+    10.013800000000629,
+    11.938600000008591,
+    11.995899999994435,
+    11.01140000000305,
+    11.400099999998929,
+    11.994500000000698,
+    11.990200000000186,
+    11.992499999993015,
+    11.99550000000454,
+    10.282399999996414,
+    12.045200000007753,
+    12.021599999992759,
+    11.275000000008731,
+    10.990200000000186,
+    11.00779999999213,
+    11.990700000009383,
+    9.973399999988033,
+    11.027600000001257,
+    10.965200000006007,
+    12.021299999993062,
+    5.212700000003679,
+    2.305000000007567,
+    3.866299999994226,
+    4.748200000001816,
+    6.8202000000019325,
+    0.5923000000038883,
+    1.0038999999960652,
+    6.970199999996112,
+    12.032399999996414,
+    10.96480000000156,
+    11.00680000000284,
+    12.013099999996484,
+    12.031700000006822,
+    11.962899999998626,
+    10.993600000001607,
+    10.000599999999395,
+    11.00909999999567,
+    12.408899999994901,
+    11.605300000010175,
+    11.481499999994412,
+    11.008499999996275,
+    10.970500000010361,
+    10.747399999992922,
+    10.255700000008801,
+    12.043899999989662,
+    11.02960000000894,
+    11.399099999995087,
+    10.61040000000503,
+    12.002599999992526,
+    11.991800000003423,
+    11.994500000000698,
+    12.012699999992037,
+    11.640700000003562,
+    10.44199999999546,
+    11.05000000000291,
+    11.033800000004703,
+    11.982000000003609,
+    9.986199999999371,
+    11.009500000000116,
+    10.993000000002212,
+    11.8975999999966,
+    10.26919999999518,
+    11.547000000005937,
+    10.98189999999886,
+    10.99189999999362,
+    12.018700000000536,
+    11.980100000000675,
+    12.08640000000014,
+    11.705199999996694,
+    10.030100000003586,
+    12.028200000000652,
+    11.974799999996321,
+    10.684000000008382,
+    12.007700000001932,
+    11.016699999992852,
+    11.132800000006682,
+    11.170599999997648,
+    11.222500000003492,
+    10.990099999995437,
+    12.008799999995972,
+    12.00329999999667,
+    11.969700000001467,
+    11.997600000002421,
+    11.490200000000186,
+    10.878700000001118,
+    10.516499999997905,
+    11.995999999999185,
+    11.993900000001304,
+    11.984400000001187,
+    12.007100000002538,
+    10.997300000002724,
+    11.008099999991828,
+    11.054400000008172,
+    0,
+    7.739300000001094,
+    11.983800000001793,
+    12.024499999999534,
+    11.50119999999879,
+    12.024699999994482,
+    11.957900000008522,
+    12.023399999990943,
+    11.987300000007963,
+    10.019000000000233,
+    12.023099999991246,
+    10.983200000002398,
+    11.071900000009919,
+    11.429099999993923,
+    11.99090000000433,
+    12.02390000000014,
+    10.005699999994249,
+    11.983399999997346,
+    12.006099999998696,
+    12.013200000001234,
+    12.004000000000815,
+    11.971000000005006,
+    12.010699999998906,
+    11.004400000005262,
+    11.053799999994226,
+    10.976500000004307,
+    10.967699999993783,
+    11.994800000000396,
+    11.017800000001444,
+    10.99649999999383,
+    11.6365000000078,
+    11.891600000002654,
+    10.7100999999966,
+    11.164099999994505,
+    11.009100000010221,
+    11.018599999995786,
+    12.024199999999837,
+    11.995899999994435,
+    11.96020000000135,
+    12.046000000002095,
+    11.138500000000931,
+    11.561799999995856,
+    11.547500000000582,
+    9.970000000001164,
+    11.008400000006077,
+    11.011799999992945,
+    11.991300000008778,
+    12.001299999988987,
+    11.999700000000303,
+    10.965800000005402,
+    10.329500000007101,
+    11.531499999997322,
+    12.001900000002934,
+    10.996099999989383,
+    11.009100000010221,
+    11.98049999999057,
+    12.0740000000078,
+    11.319900000002235,
+    3.5124999999970896,
+    2.7955999999976484,
+    12.237999999997555,
+    11.804799999998068,
+    11.97630000000936,
+    9.997099999993225,
+    10.9829000000027,
+    11.025399999998626,
+    11.713900000002468,
+    11.338199999998324,
+    10.90219999999681,
+    11.00810000000638,
+    11.994299999991199,
+    12.01030000000901,
+    11.953099999998813,
+    11.987099999998463,
+    12.025899999993271,
+    12.014400000000023,
+    12.007100000002538,
+    12.025200000003679,
+    10.973499999992782,
+    11.005499999999302,
+    11.004100000005565,
+    0,
+    7.521300000007614,
+    11.024499999999534,
+    9.971899999989546,
+    11.02049999999872,
+    12.007200000007288,
+    11.996100000003935,
+    12.000899999999092,
+    11.991199999989476,
+    11.981500000008964,
+    12.025199999989127,
+    11.992500000007567,
+    12.00669999999809,
+    11.986300000004121,
+    11.990099999995437,
+    12.01020000000426,
+    12.012099999992643,
+    11.98300000000745,
+    10.973599999997532,
+    11.031099999992875,
+    11.37050000000454,
+    12.009700000009616,
+    11.993799999996554,
+    11.994699999995646,
+    11.97609999999986,
+    11.994300000005751,
+    11.498099999997066,
+    11.21820000000298,
+    11.287199999991572,
+    10.935100000002421,
+    12.002399999997579,
+    11.469599999996717,
+    11.989100000006147,
+    12.01919999999518,
+    12.023100000005797,
+    9.968999999997322,
+    12.001799999998184,
+    11.020400000008522,
+    10.970199999996112,
+    9.9600999999966,
+    11.178899999998976,
+    10.936900000000605,
+    12.160499999998137,
+    11.876600000003236,
+    11.95690000000468,
+    12.005499999999302,
+    12.024199999999837,
+    11.998599999991711,
+    10.998400000011316,
+    10.995699999999488,
+    11.99319999999716,
+    10.998299999992014,
+    11.001300000003539,
+    12.02960000000894,
+    11.980400000000373,
+    12.001499999998487,
+    11.99769999999262,
+    10.010000000009313,
+    11.962099999989732,
+    11.463900000002468,
+    12.02390000000014,
+    12.028600000005099,
+    12.004000000000815,
+    11.98189999999886,
+    12.018299999996088,
+    12.020900000003166,
+    10.993399999992107,
+    10.975300000005518,
+    11.995599999994738,
+    12.009300000005169,
+    12.003100000001723,
+    11.99539999999979,
+    12.021599999992759,
+    11.978100000007544,
+    12.000199999994948,
+    12.026800000006915,
+    12.029099999999744,
+    11.50460000000021,
+    11.17489999999816,
+    11.919899999993504,
+    11.97960000000603,
+    12.03530000000319,
+    11.978799999997136,
+    11.032800000000861,
+    10.969599999996717,
+    11.98519999999553,
+    12.013800000000629,
+    11.999600000010105,
+    11.318699999988894,
+    12.005700000008801,
+    11.992199999993318,
+    12.013200000001234,
+    11.430000000007567,
+    11.98979999999574,
+    11.995699999999488,
+    12.014500000004773,
+    11.994099999996251,
+    11.981499999994412,
+    12.010800000003655,
+    12.016199999998207,
+    12.00119999999879,
+    10.969599999996717,
+    11.39320000000589,
+    11.443799999993644,
+    10.98430000001099,
+    10.993399999992107,
+    9.999700000000303,
+    11.014400000000023,
+    10.959000000002561,
+    11.005999999993946,
+    10.555000000007567,
+    12.03169999999227,
+    11.025600000008126,
+    10.013500000000931,
+    10.998099999997066,
+    10.971300000004703,
+    10.993799999996554,
+    10.007700000001932,
+    12.001799999998184,
+    10.994000000006054,
+    10.983599999992293,
+    12.019899999999325,
+    9.990000000005239,
+    12.008199999996577,
+    12.000700000004144,
+    12.003599999996368,
+    11.546199999997043,
+    10.481400000004214,
+    12.006200000003446,
+    11.975500000000466,
+    11.017299999992247,
+    10.95209999999497,
+    11.01810000000114,
+    10.515800000008312,
+    10.978999999992084,
+    11.796900000001187,
+    11.455200000011246,
+    11.030399999988731,
+    11.007800000006682,
+    11.999499999990803,
+    12.005900000003749
+  ],
+  "fixturesRemoved": true
+}

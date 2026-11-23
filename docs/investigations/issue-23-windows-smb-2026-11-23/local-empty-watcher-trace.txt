@@ -1,0 +1,211 @@
+2026-11-23 12:46:25.374 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\local-empty\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0)
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-empty\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-empty\User\settings.json')
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-empty\User\settings.json (correlationId: undefined)
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-empty\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-empty\User\keybindings.json')
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-empty\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-empty\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-empty\User\prompts')
+2026-11-23 12:46:25.375 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-empty\User\prompts (correlationId: undefined)
+2026-11-23 12:46:25.377 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-empty\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-empty\User\tasks.json')
+2026-11-23 12:46:25.378 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-empty\User\tasks.json (correlationId: undefined)
+2026-11-23 12:46:25.378 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-empty\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-empty\User\mcp.json')
+2026-11-23 12:46:25.378 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-empty\User\mcp.json (correlationId: undefined)
+2026-11-23 12:46:25.378 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\local-empty\User'
+2026-11-23 12:46:25.439 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\local-empty\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-empty\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:25.485 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-empty\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:46:25.486 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-empty\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:46:25.486 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-empty\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:46:25.487 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-empty\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:46:25.487 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-empty\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:46:25.487 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.519 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.715 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.715 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.715 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.715 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.716 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.716 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.716 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.716 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.716 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.717 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.718 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.718 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.719 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.719 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:25.719 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.097 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\local-empty\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:26.103 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\local-empty\User\snippets'
+2026-11-23 12:46:26.103 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.104 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.104 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.183 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\profiles\local-empty\User\snippets
+2026-11-23 12:46:26.183 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.183 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\profiles\local-empty\User\snippets
+2026-11-23 12:46:26.270 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local\probe-JUxOkh\Run_v01.tcf (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:26.277 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\local\probe-JUxOkh\Run_v01.tcf'
+2026-11-23 12:46:26.312 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local\probe-JUxOkh (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:26.322 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\local\probe-JUxOkh'
+2026-11-23 12:46:26.322 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.323 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.327 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.394 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.397 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.474 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.626 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.627 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.628 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.628 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.628 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.629 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.629 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.629 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.629 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.630 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.630 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.630 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.630 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.631 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.632 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.632 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.632 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.632 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.632 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.676 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.833 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.861 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:26.875 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\globalStorage
+2026-11-23 12:46:28.275 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:28.352 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:28.384 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:28.462 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:29.292 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:29.292 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:29.371 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:29.372 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:30.206 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:30.206 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:30.285 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:30.285 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:31.114 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:31.193 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:31.910 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:31.988 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:32.019 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:32.097 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:32.923 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:32.923 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:33.003 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:33.003 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:33.837 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:33.838 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:33.915 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:33.915 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:34.741 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:34.819 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:38.561 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:38.640 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:38.672 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:38.751 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:39.583 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:39.583 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:39.661 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:39.661 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:40.494 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:40.494 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:40.574 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:40.574 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:41.405 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:41.483 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:42.204 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:42.281 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:42.313 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:42.390 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:43.230 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:43.230 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:43.308 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:43.308 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:44.132 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:44.132 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:44.209 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:44.209 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:45.044 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:45.124 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:46.873 [trace] [File Watcher ('parcel')] Request to start watching: <LOCAL_LAB>\local\probe-JUxOkh (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:46.877 [trace] [File Watcher ('parcel')] Started watching: '<LOCAL_LAB>\local\probe-JUxOkh' with backend 'windows'
+2026-11-23 12:46:48.870 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:48.871 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:48.934 [trace] [File Watcher ('parcel')] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:48.949 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:48.950 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:48.981 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.061 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.773 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.773 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:49.852 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.852 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:49.884 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:49.884 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.967 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:49.967 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:50.685 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:50.685 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:50.764 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:50.764 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:50.796 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:50.796 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:50.874 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:50.874 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:51.592 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:51.672 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:51.710 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:51.785 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.505 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.505 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.567 [trace] [File Watcher ('parcel')] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.583 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.583 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.614 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:52.697 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:53.414 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:53.414 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:53.491 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:53.491 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:53.522 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:53.522 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:53.603 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:53.603 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:54.329 [trace] [File Watcher ('parcel')] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:54.329 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:54.406 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:54.406 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:54.437 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:54.437 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:54.514 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\other.txt
+2026-11-23 12:46:54.514 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:55.235 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:55.313 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:55.344 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:55.422 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:56.160 [trace] [File Watcher ('parcel')] Request to stop watching: <LOCAL_LAB>\local\probe-JUxOkh (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:46:56.160 [trace] [File Watcher ('parcel')] stopping file watcher (path: <LOCAL_LAB>\local\probe-JUxOkh)
+2026-11-23 12:46:57.149 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:57.226 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:57.258 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:57.336 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\probe-JUxOkh\geom_v02.tgc
+2026-11-23 12:46:58.161 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\profiles\local-empty\User\settings.json.vsctmp
+2026-11-23 12:46:58.191 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-empty\User\settings.json.vsctmp
+2026-11-23 12:46:58.246 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\profiles\local-empty\User\settings.json.vsctmp
+2026-11-23 12:46:58.294 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\profiles\local-empty\User\settings.json.vsctmp
+2026-11-23 12:46:58.294 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\profiles\local-empty\User\settings.json
+2026-11-23 12:46:58.374 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\profiles\local-empty\User\settings.json.vsctmp
+2026-11-23 12:46:58.375 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\profiles\local-empty\User\settings.json

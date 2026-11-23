@@ -1,0 +1,905 @@
+{
+  "time": "2026-11-23T04:49:33.219Z",
+  "fixture": "<MAPPED_SCRATCH>\\probe-hbgmwP",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [
+    "file:///<MAPPED_SCRATCH>"
+  ],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<MAPPED_SCRATCH>\\probe-hbgmwP",
+      "glob": "*",
+      "time": "2026-11-23T04:49:33.465Z"
+    },
+    {
+      "pattern": "uri-star",
+      "base": "file:///<MAPPED_SCRATCH>/probe-hbgmwP",
+      "glob": "*",
+      "time": "2026-11-23T04:49:43.786Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "base": "file:///<MAPPED_SCRATCH>/probe-hbgmwP",
+      "glob": "**/*",
+      "time": "2026-11-23T04:49:54.087Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:35.569Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:36.474Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:36.474Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:37.395Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:37.395Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:38.291Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:39.218Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:40.123Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:40.123Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:41.045Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:41.045Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:41.956Z"
+    },
+    {
+      "pattern": "uri-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:45.888Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:46.782Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:46.782Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:47.702Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:47.702Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:48.611Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:49.514Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:50.438Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:50.438Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:51.345Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:51.345Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:52.272Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:56.192Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:57.095Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:57.095Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:58.009Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:49:58.009Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:58.934Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:49:59.845Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:50:00.742Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:50:00.742Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:50:01.667Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+      "time": "2026-11-23T04:50:01.667Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+      "time": "2026-11-23T04:50:02.584Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:49:36.380Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:35.569Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:37.300Z",
+      "elapsedMs": 920,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:36.474Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:36.474Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:38.210Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:37.395Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:37.395Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:39.124Z",
+      "elapsedMs": 914,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:38.291Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:49:40.042Z",
+      "elapsedMs": 918,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:39.218Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:40.950Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:40.123Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:40.123Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:41.863Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:41.045Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:41.045Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:49:42.771Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:41.956Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:49:46.696Z",
+      "elapsedMs": 907,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:45.888Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:47.602Z",
+      "elapsedMs": 906,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:46.782Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:46.782Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:48.512Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:47.702Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:47.702Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:49.428Z",
+      "elapsedMs": 916,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:48.611Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:49:50.342Z",
+      "elapsedMs": 914,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:49.514Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:51.259Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:50.438Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:50.438Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:52.174Z",
+      "elapsedMs": 915,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:51.345Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:51.345Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:49:53.086Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:52.272Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:49:57.011Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:56.192Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:57.924Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:57.095Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:57.095Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:58.834Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:58.009Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:49:58.009Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:59.746Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:58.934Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:50:00.658Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:49:59.845Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:50:01.568Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:50:00.742Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:50:00.742Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:50:02.485Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:50:01.667Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/other.txt",
+          "time": "2026-11-23T04:50:01.667Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:50:03.395Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-hbgmwP/geom_v02.tgc",
+          "time": "2026-11-23T04:50:02.584Z"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:49:35.467Z",
+      "cpu": {
+        "user": 546000,
+        "system": 234000
+      },
+      "memory": {
+        "rss": 244260864,
+        "heapTotal": 75194368,
+        "heapUsed": 50616844,
+        "external": 7838825,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:49:42.771Z",
+      "cpu": {
+        "user": 593000,
+        "system": 234000
+      },
+      "memory": {
+        "rss": 243494912,
+        "heapTotal": 75980800,
+        "heapUsed": 52057012,
+        "external": 7970904,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-before",
+      "time": "2026-11-23T04:49:45.787Z",
+      "cpu": {
+        "user": 593000,
+        "system": 234000
+      },
+      "memory": {
+        "rss": 243519488,
+        "heapTotal": 75980800,
+        "heapUsed": 52108520,
+        "external": 7970924,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-after",
+      "time": "2026-11-23T04:49:53.086Z",
+      "cpu": {
+        "user": 625000,
+        "system": 234000
+      },
+      "memory": {
+        "rss": 243576832,
+        "heapTotal": 75980800,
+        "heapUsed": 53039420,
+        "external": 7980300,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-before",
+      "time": "2026-11-23T04:49:56.092Z",
+      "cpu": {
+        "user": 625000,
+        "system": 234000
+      },
+      "memory": {
+        "rss": 243576832,
+        "heapTotal": 75980800,
+        "heapUsed": 53061212,
+        "external": 7980320,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-after",
+      "time": "2026-11-23T04:50:03.395Z",
+      "cpu": {
+        "user": 750000,
+        "system": 265000
+      },
+      "memory": {
+        "rss": 205979648,
+        "heapTotal": 41500672,
+        "heapUsed": 39458472,
+        "external": 7192076,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:50:06.399Z",
+      "cpu": {
+        "user": 906000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 222969856,
+        "heapTotal": 57323520,
+        "heapUsed": 48401572,
+        "external": 7361831,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "beforeExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

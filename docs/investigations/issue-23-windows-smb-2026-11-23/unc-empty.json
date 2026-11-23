@@ -1,0 +1,554 @@
+{
+  "time": "2026-11-23T04:47:40.706Z",
+  "fixture": "<UNC_SCRATCH>\\probe-ssgTZ2",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<UNC_SCRATCH>\\probe-ssgTZ2",
+      "glob": "*",
+      "time": "2026-11-23T04:47:41.056Z"
+    },
+    {
+      "pattern": "uri-star",
+      "base": "file:<UNC_SCRATCH>/probe-ssgTZ2",
+      "glob": "*",
+      "time": "2026-11-23T04:47:51.365Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "base": "file:<UNC_SCRATCH>/probe-ssgTZ2",
+      "glob": "**/*",
+      "time": "2026-11-23T04:48:01.676Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:03.793Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+      "time": "2026-11-23T04:48:04.703Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:04.703Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:05.611Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+      "time": "2026-11-23T04:48:05.611Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:06.516Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:07.445Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+      "time": "2026-11-23T04:48:08.362Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:08.362Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:09.275Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+      "time": "2026-11-23T04:48:09.275Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+      "time": "2026-11-23T04:48:10.180Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:47:43.986Z",
+      "elapsedMs": 915,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:47:44.892Z",
+      "elapsedMs": 906,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:47:45.803Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:47:46.715Z",
+      "elapsedMs": 912,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:47:47.634Z",
+      "elapsedMs": 919,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:47:48.540Z",
+      "elapsedMs": 906,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:47:49.451Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:47:50.360Z",
+      "elapsedMs": 909,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:47:54.280Z",
+      "elapsedMs": 907,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:47:55.190Z",
+      "elapsedMs": 910,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:47:56.109Z",
+      "elapsedMs": 918,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:47:57.016Z",
+      "elapsedMs": 907,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:47:57.931Z",
+      "elapsedMs": 915,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:47:58.847Z",
+      "elapsedMs": 916,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:47:59.759Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:48:00.672Z",
+      "elapsedMs": 913,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:48:04.605Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:03.793Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:05.514Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+          "time": "2026-11-23T04:48:04.703Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:04.703Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:06.431Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:05.611Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+          "time": "2026-11-23T04:48:05.611Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:48:07.348Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:06.516Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:48:08.265Z",
+      "elapsedMs": 917,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:07.445Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:09.176Z",
+      "elapsedMs": 911,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+          "time": "2026-11-23T04:48:08.362Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:08.362Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:10.085Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:09.275Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/other.txt",
+          "time": "2026-11-23T04:48:09.275Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:48:10.999Z",
+      "elapsedMs": 914,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-ssgTZ2/geom_v02.tgc",
+          "time": "2026-11-23T04:48:10.180Z"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:47:43.069Z",
+      "cpu": {
+        "user": 468000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 243478528,
+        "heapTotal": 77324288,
+        "heapUsed": 55234468,
+        "external": 9162944,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:47:50.361Z",
+      "cpu": {
+        "user": 468000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 243601408,
+        "heapTotal": 77324288,
+        "heapUsed": 55665648,
+        "external": 9219133,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-before",
+      "time": "2026-11-23T04:47:53.371Z",
+      "cpu": {
+        "user": 468000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 243609600,
+        "heapTotal": 77324288,
+        "heapUsed": 55692848,
+        "external": 9219153,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-after",
+      "time": "2026-11-23T04:48:00.672Z",
+      "cpu": {
+        "user": 468000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 243630080,
+        "heapTotal": 77324288,
+        "heapUsed": 55774768,
+        "external": 9219153,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-before",
+      "time": "2026-11-23T04:48:03.691Z",
+      "cpu": {
+        "user": 468000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 243638272,
+        "heapTotal": 77324288,
+        "heapUsed": 55805424,
+        "external": 9219173,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-after",
+      "time": "2026-11-23T04:48:10.999Z",
+      "cpu": {
+        "user": 625000,
+        "system": 328000
+      },
+      "memory": {
+        "rss": 206573568,
+        "heapTotal": 40714240,
+        "heapUsed": 38952940,
+        "external": 7257612,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:48:13.990Z",
+      "cpu": {
+        "user": 796000,
+        "system": 375000
+      },
+      "memory": {
+        "rss": 221741056,
+        "heapTotal": 57323520,
+        "heapUsed": 47939176,
+        "external": 7296432,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "beforeExplicitRefresh": [],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

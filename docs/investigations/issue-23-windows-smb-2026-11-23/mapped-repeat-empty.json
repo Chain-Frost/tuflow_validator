@@ -1,0 +1,155 @@
+{
+  "time": "2026-11-23T04:56:32.161Z",
+  "fixture": "<MAPPED_SCRATCH>\\probe-fuarXL",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<MAPPED_SCRATCH>\\probe-fuarXL",
+      "glob": "*",
+      "time": "2026-11-23T04:56:32.428Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:56:35.395Z",
+      "elapsedMs": 956,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:56:36.347Z",
+      "elapsedMs": 952,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:56:37.301Z",
+      "elapsedMs": 954,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:56:38.251Z",
+      "elapsedMs": 950,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:56:39.190Z",
+      "elapsedMs": 939,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:56:40.144Z",
+      "elapsedMs": 954,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:56:41.088Z",
+      "elapsedMs": 944,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:56:42.032Z",
+      "elapsedMs": 944,
+      "apiEvents": [],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:56:34.437Z",
+      "cpu": {
+        "user": 531000,
+        "system": 125000
+      },
+      "memory": {
+        "rss": 243560448,
+        "heapTotal": 77856768,
+        "heapUsed": 55654720,
+        "external": 9171440,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:56:42.032Z",
+      "cpu": {
+        "user": 531000,
+        "system": 140000
+      },
+      "memory": {
+        "rss": 243785728,
+        "heapTotal": 77856768,
+        "heapUsed": 56519596,
+        "external": 9227958,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:56:44.979Z",
+      "cpu": {
+        "user": 687000,
+        "system": 187000
+      },
+      "memory": {
+        "rss": 243916800,
+        "heapTotal": 79081472,
+        "heapUsed": 48886132,
+        "external": 7362054,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "mutationsInSeparateProcess": true,
+  "beforeExplicitRefresh": [],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

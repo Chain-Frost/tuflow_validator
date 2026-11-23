@@ -1,0 +1,23 @@
+{
+  "fixture": "<LOCAL_LAB>\\local\\depth-kcmJBL",
+  "time": "2026-11-23T04:55:06.321Z",
+  "events": [
+    {
+      "pattern": "**/*",
+      "uri": "file:///<LOCAL_LAB>/local/depth-kcmJBL/unrelated/deep/unreferenced.txt",
+      "time": "2026-11-23T04:55:08.415Z"
+    }
+  ],
+  "registrations": [
+    {
+      "pattern": "**/*",
+      "time": "2026-11-23T04:55:06.322Z"
+    },
+    {
+      "pattern": "*/unmatchable-control-file.tgc",
+      "time": "2026-11-23T04:55:06.322Z"
+    }
+  ],
+  "vscode": "1.147.0",
+  "fixtureRemoved": true
+}

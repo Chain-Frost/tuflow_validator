@@ -1,0 +1,24 @@
+{
+  "fixture": "<UNC_SCRATCH>\\depth-r2wLC9",
+  "time": "2026-11-23T04:55:14.115Z",
+  "events": [
+    {
+      "pattern": "**/*",
+      "uri": "file:<UNC_SCRATCH>/depth-r2wLC9/unrelated/deep/unreferenced.txt",
+      "time": "2026-11-23T04:55:16.223Z"
+    }
+  ],
+  "registrations": [
+    {
+      "pattern": "**/*",
+      "time": "2026-11-23T04:55:14.120Z"
+    },
+    {
+      "pattern": "*/unmatchable-control-file.tgc",
+      "time": "2026-11-23T04:55:14.120Z"
+    }
+  ],
+  "vscode": "1.147.0",
+  "nativeRecursiveError": "Error: UNKNOWN: unknown error, watch",
+  "fixtureRemoved": true
+}

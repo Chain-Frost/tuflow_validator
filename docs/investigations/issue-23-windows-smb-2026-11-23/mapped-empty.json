@@ -1,0 +1,554 @@
+{
+  "time": "2026-11-23T04:48:55.749Z",
+  "fixture": "<MAPPED_SCRATCH>\\probe-08JCDC",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<MAPPED_SCRATCH>\\probe-08JCDC",
+      "glob": "*",
+      "time": "2026-11-23T04:48:56.016Z"
+    },
+    {
+      "pattern": "uri-star",
+      "base": "file:///<MAPPED_SCRATCH>/probe-08JCDC",
+      "glob": "*",
+      "time": "2026-11-23T04:49:06.335Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "base": "file:///<MAPPED_SCRATCH>/probe-08JCDC",
+      "glob": "**/*",
+      "time": "2026-11-23T04:49:16.647Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:18.753Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+      "time": "2026-11-23T04:49:19.663Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:19.663Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:20.571Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+      "time": "2026-11-23T04:49:20.571Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:21.484Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:22.381Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+      "time": "2026-11-23T04:49:23.304Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:23.304Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:24.217Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+      "time": "2026-11-23T04:49:24.217Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+      "time": "2026-11-23T04:49:25.112Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:48:58.934Z",
+      "elapsedMs": 904,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:59.846Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:00.751Z",
+      "elapsedMs": 905,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:01.661Z",
+      "elapsedMs": 910,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:49:02.577Z",
+      "elapsedMs": 916,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:03.499Z",
+      "elapsedMs": 922,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:04.409Z",
+      "elapsedMs": 909,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:49:05.319Z",
+      "elapsedMs": 910,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:49:09.250Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:10.168Z",
+      "elapsedMs": 918,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:11.078Z",
+      "elapsedMs": 910,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:11.986Z",
+      "elapsedMs": 908,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:49:12.901Z",
+      "elapsedMs": 914,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:13.813Z",
+      "elapsedMs": 912,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:14.725Z",
+      "elapsedMs": 912,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:49:15.636Z",
+      "elapsedMs": 911,
+      "apiEvents": [],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:49:19.565Z",
+      "elapsedMs": 911,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:18.753Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:20.474Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+          "time": "2026-11-23T04:49:19.663Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:19.663Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:21.387Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:20.571Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+          "time": "2026-11-23T04:49:20.571Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:49:22.297Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:21.484Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:49:23.208Z",
+      "elapsedMs": 911,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:22.381Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:49:24.121Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+          "time": "2026-11-23T04:49:23.304Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:23.304Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:49:25.030Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:24.217Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/other.txt",
+          "time": "2026-11-23T04:49:24.217Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:49:25.934Z",
+      "elapsedMs": 904,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:///<MAPPED_SCRATCH>/probe-08JCDC/geom_v02.tgc",
+          "time": "2026-11-23T04:49:25.112Z"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:48:58.028Z",
+      "cpu": {
+        "user": 593000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 240283648,
+        "heapTotal": 77848576,
+        "heapUsed": 56653464,
+        "external": 9231935,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:49:05.319Z",
+      "cpu": {
+        "user": 593000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 240418816,
+        "heapTotal": 77848576,
+        "heapUsed": 57019648,
+        "external": 9288124,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-before",
+      "time": "2026-11-23T04:49:08.338Z",
+      "cpu": {
+        "user": 593000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 240427008,
+        "heapTotal": 77848576,
+        "heapUsed": 57047600,
+        "external": 9288144,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-after",
+      "time": "2026-11-23T04:49:15.636Z",
+      "cpu": {
+        "user": 593000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 240451584,
+        "heapTotal": 77848576,
+        "heapUsed": 57143884,
+        "external": 9288144,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-before",
+      "time": "2026-11-23T04:49:18.652Z",
+      "cpu": {
+        "user": 593000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 240467968,
+        "heapTotal": 77848576,
+        "heapUsed": 57175528,
+        "external": 9288164,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-after",
+      "time": "2026-11-23T04:49:25.934Z",
+      "cpu": {
+        "user": 734000,
+        "system": 218000
+      },
+      "memory": {
+        "rss": 201187328,
+        "heapTotal": 40714240,
+        "heapUsed": 38958924,
+        "external": 7257612,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:49:28.948Z",
+      "cpu": {
+        "user": 875000,
+        "system": 296000
+      },
+      "memory": {
+        "rss": 218124288,
+        "heapTotal": 57061376,
+        "heapUsed": 47961256,
+        "external": 7361374,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "beforeExplicitRefresh": [],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

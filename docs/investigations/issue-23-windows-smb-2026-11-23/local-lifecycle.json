@@ -1,0 +1,120 @@
+{
+  "fixture": "<LOCAL_LAB>\\local\\lifecycle-RfnANw",
+  "vscode": "1.147.0",
+  "pid": 169544,
+  "observations": [
+    {
+      "label": "open",
+      "time": "2026-11-23T04:55:32.097Z",
+      "documents": [
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootA.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        },
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootB.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        }
+      ],
+      "memory": {
+        "rss": 243585024,
+        "heapTotal": 75497472,
+        "heapUsed": 48135716,
+        "external": 7597171,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 562000,
+        "system": 359000
+      }
+    },
+    {
+      "label": "tabs-closed",
+      "time": "2026-11-23T04:55:32.813Z",
+      "documents": [
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootA.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        },
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootB.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        }
+      ],
+      "memory": {
+        "rss": 243716096,
+        "heapTotal": 75497472,
+        "heapUsed": 48446848,
+        "external": 7654774,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 562000,
+        "system": 359000
+      }
+    },
+    {
+      "label": "workspace-delete",
+      "time": "2026-11-23T04:55:34.822Z",
+      "documents": [
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootA.tcf",
+          "isClosed": true,
+          "diagnostics": []
+        },
+        {
+          "uri": "file:///<LOCAL_LAB>/local/lifecycle-RfnANw/RootB.tcf",
+          "isClosed": true,
+          "diagnostics": []
+        }
+      ],
+      "memory": {
+        "rss": 243933184,
+        "heapTotal": 75497472,
+        "heapUsed": 48801796,
+        "external": 7726082,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 562000,
+        "system": 359000
+      }
+    }
+  ],
+  "closeEvents": [
+    {
+      "file": "<LOCAL_LAB>\\local\\lifecycle-RfnANw\\RootA.tcf",
+      "time": "2026-11-23T04:55:33.009Z"
+    },
+    {
+      "file": "<LOCAL_LAB>\\local\\lifecycle-RfnANw\\RootB.tcf",
+      "time": "2026-11-23T04:55:33.010Z"
+    }
+  ],
+  "deleteAccepted": true,
+  "fixtureRemoved": true
+}

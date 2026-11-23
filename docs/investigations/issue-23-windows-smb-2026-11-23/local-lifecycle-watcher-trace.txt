@@ -1,0 +1,157 @@
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\local-lifecycle\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<LOCAL_LAB>\local\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-lifecycle\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-lifecycle\User\settings.json')
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-lifecycle\User\settings.json (correlationId: undefined)
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.vscode (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.vscode')
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.vscode (correlationId: undefined)
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.vscode\settings.json')
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.vscode\tasks.json')
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:55:29.198 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.vscode\launch.json')
+2026-11-23 12:55:29.204 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.vscode\mcp.json')
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json')
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-lifecycle\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-lifecycle\User\prompts')
+2026-11-23 12:55:29.205 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-lifecycle\User\prompts (correlationId: undefined)
+2026-11-23 12:55:29.208 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.claude (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.claude')
+2026-11-23 12:55:29.208 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.claude (correlationId: 0)
+2026-11-23 12:55:29.208 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.github\copilot')
+2026-11-23 12:55:29.208 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.github\copilot (correlationId: 1)
+2026-11-23 12:55:29.225 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\local-lifecycle\User'
+2026-11-23 12:55:29.225 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\local-lifecycle\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<LOCAL_LAB>\local\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-lifecycle\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.226 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-lifecycle\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.227 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-lifecycle\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.228 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:55:29.228 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:55:29.310 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.365 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.486 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.540 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.543 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.543 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.543 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.543 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.544 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.544 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.544 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.545 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.545 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.545 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.545 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.546 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.546 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.546 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.878 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:29.882 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json')
+2026-11-23 12:55:29.882 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json (correlationId: undefined)
+2026-11-23 12:55:29.882 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json')
+2026-11-23 12:55:29.883 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json (correlationId: undefined)
+2026-11-23 12:55:29.934 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.934 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\local-lifecycle\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:29.935 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:29.935 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-lifecycle\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.935 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\local-lifecycle\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:29.935 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.935 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:29.936 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\local-lifecycle\User\snippets'
+2026-11-23 12:55:29.954 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:29.963 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.claude (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.claude')
+2026-11-23 12:55:29.963 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.claude (correlationId: undefined)
+2026-11-23 12:55:29.964 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\local'
+2026-11-23 12:55:30.032 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.033 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\profiles\local-lifecycle\User\snippets
+2026-11-23 12:55:30.046 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:30.048 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:30.048 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:30.048 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.mcp.json')
+2026-11-23 12:55:30.048 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\local\.mcp.json (correlationId: undefined)
+2026-11-23 12:55:30.048 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.079 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\profiles\local-lifecycle\User\snippets
+2026-11-23 12:55:30.130 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.192 [trace] [File Watcher (node.js)] [ADDED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:30.192 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:30.231 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:30.231 [trace] [File Watcher (node.js)]  >> normalized [ADDED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:30.265 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <LOCAL_LAB>\local\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<LOCAL_LAB>\local\.agents\skills')
+2026-11-23 12:55:30.265 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <LOCAL_LAB>\local\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<LOCAL_LAB>\local\.github\skills')
+2026-11-23 12:55:30.266 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <LOCAL_LAB>\local\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<LOCAL_LAB>\local\.claude\skills')
+2026-11-23 12:55:30.266 [trace] [File Watcher ('parcel')] Request to start watching: <LOCAL_LAB>\local (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:30.323 [trace] [File Watcher ('parcel')] Started watching: '<LOCAL_LAB>\local' with backend 'windows'
+2026-11-23 12:55:30.323 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <LOCAL_LAB>\local\.agents\skills
+2026-11-23 12:55:30.323 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <LOCAL_LAB>\local\.github\skills
+2026-11-23 12:55:30.323 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <LOCAL_LAB>\local\.claude\skills
+2026-11-23 12:55:30.323 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:55:30.324 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:55:30.601 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.602 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.602 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.602 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3)
+2026-11-23 12:55:30.602 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\local\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\local\.mcp.json')
+2026-11-23 12:55:30.602 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <LOCAL_LAB>\local\.mcp.json
+2026-11-23 12:55:30.603 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.603 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.604 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.604 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.604 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.604 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.605 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.605 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.605 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.605 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.605 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.606 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.606 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.606 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.607 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.633 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.633 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.633 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.634 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.635 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.635 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.635 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.635 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.635 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.636 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.662 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3)
+2026-11-23 12:55:30.662 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3))
+2026-11-23 12:55:30.662 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.696 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.779 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\local\lifecycle-rfnanw (excludes: <none>, includes: [{"base":"<LOCAL_LAB>\\local","pattern":".git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".hg/store/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:55:30.789 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\local\lifecycle-rfnanw'
+2026-11-23 12:55:30.946 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:30.990 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\local-lifecycle\User\globalStorage
+2026-11-23 12:55:32.841 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw\RootA.tcf
+2026-11-23 12:55:32.924 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw\RootA.tcf
+2026-11-23 12:55:32.927 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:32.955 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\lifecycle-rfnanw\RootA.tcf
+2026-11-23 12:55:32.955 [trace] [File Watcher (node.js)]  >> ignored (not included) <LOCAL_LAB>\local\lifecycle-rfnanw\RootA.tcf
+2026-11-23 12:55:33.017 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:33.051 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw\RootB.tcf
+2026-11-23 12:55:33.110 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:33.110 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\lifecycle-rfnanw\RootB.tcf
+2026-11-23 12:55:33.110 [trace] [File Watcher (node.js)]  >> ignored (not included) <LOCAL_LAB>\local\lifecycle-rfnanw\RootB.tcf
+2026-11-23 12:55:33.125 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw\RootB.tcf
+2026-11-23 12:55:33.186 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:33.502 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\local\lifecycle-rfnanw (excludes: <none>, includes: [{"base":"<LOCAL_LAB>\\local","pattern":".git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".hg/store/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:55:33.502 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\local\lifecycle-rfnanw (excludes: <none>, includes: [{"base":"<LOCAL_LAB>\\local","pattern":".git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":".hg/store/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/objects/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.git/subtree-cache/**/**"},{"base":"<LOCAL_LAB>\\local","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>))
+2026-11-23 12:55:34.824 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:34.824 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw\child.tgc
+2026-11-23 12:55:34.885 [trace] [File Watcher ('parcel')] [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:34.901 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:34.902 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:34.933 [trace] [File Watcher (node.js)] [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw
+2026-11-23 12:55:35.010 [trace] [File Watcher (node.js)]  >> normalized [DELETED] <LOCAL_LAB>\local\lifecycle-RfnANw

@@ -1,0 +1,448 @@
+{
+  "time": "2026-11-23T04:55:57.928Z",
+  "fixture": "<LOCAL_LAB>\\local\\probe-Vp4Lnr",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<LOCAL_LAB>\\local\\probe-Vp4Lnr",
+      "glob": "*",
+      "time": "2026-11-23T04:55:58.185Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "change",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:00.320Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Change",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:00.413Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "other.txt"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+      "time": "2026-11-23T04:56:01.357Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:01.357Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "other.txt"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:02.322Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+      "time": "2026-11-23T04:56:02.322Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:03.268Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "change",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:04.104Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Change",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:04.216Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "other.txt"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+      "time": "2026-11-23T04:56:05.161Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:05.161Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "other.txt"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:06.103Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+      "time": "2026-11-23T04:56:06.103Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+      "time": "2026-11-23T04:56:07.048Z"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "rename",
+      "name": "geom_v02.tgc"
+    },
+    {
+      "pattern": "string-star",
+      "native": true,
+      "kind": "change",
+      "name": "geom_v02.tgc"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:56:01.137Z",
+      "elapsedMs": 944,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:00.320Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Change",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:00.413Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:56:02.086Z",
+      "elapsedMs": 949,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+          "time": "2026-11-23T04:56:01.357Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:01.357Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:56:03.048Z",
+      "elapsedMs": 962,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:02.322Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+          "time": "2026-11-23T04:56:02.322Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:56:03.993Z",
+      "elapsedMs": 945,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:03.268Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:56:04.938Z",
+      "elapsedMs": 945,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:04.104Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Change",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:04.216Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:56:05.885Z",
+      "elapsedMs": 947,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+          "time": "2026-11-23T04:56:05.161Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:05.161Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:56:06.827Z",
+      "elapsedMs": 942,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:06.103Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/other.txt",
+          "time": "2026-11-23T04:56:06.103Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:56:07.775Z",
+      "elapsedMs": 948,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:///<LOCAL_LAB>/local/probe-Vp4Lnr/geom_v02.tgc",
+          "time": "2026-11-23T04:56:07.048Z"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:56:00.192Z",
+      "cpu": {
+        "user": 546000,
+        "system": 296000
+      },
+      "memory": {
+        "rss": 240549888,
+        "heapTotal": 74809344,
+        "heapUsed": 55357932,
+        "external": 9462205,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:56:07.775Z",
+      "cpu": {
+        "user": 562000,
+        "system": 312000
+      },
+      "memory": {
+        "rss": 241098752,
+        "heapTotal": 75071488,
+        "heapUsed": 57349540,
+        "external": 9529474,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 4
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:56:10.718Z",
+      "cpu": {
+        "user": 718000,
+        "system": 390000
+      },
+      "memory": {
+        "rss": 243847168,
+        "heapTotal": 78557184,
+        "heapUsed": 49097648,
+        "external": 7296962,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "mutationsInSeparateProcess": true,
+  "beforeExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

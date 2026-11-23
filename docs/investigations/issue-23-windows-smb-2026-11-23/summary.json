@@ -1,0 +1,230 @@
+{
+  "watchers": [
+    {
+      "case": "local-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-empty",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-empty",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-repeat-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-workspace",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-workspace",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "local-workspace",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "mapped-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "mapped-empty",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "mapped-empty",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "mapped-repeat-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "mapped-workspace",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "mapped-workspace",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "mapped-workspace",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "unc-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "unc-empty",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "unc-empty",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "unc-repeat-empty",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 0,
+      "correctDiagnosticSnapshots": 4
+    },
+    {
+      "case": "unc-workspace",
+      "pattern": "string-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "unc-workspace",
+      "pattern": "uri-star",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    },
+    {
+      "case": "unc-workspace",
+      "pattern": "uri-recursive",
+      "transitions": 8,
+      "transitionsWithApiEvents": 8,
+      "correctDiagnosticSnapshots": 8
+    }
+  ],
+  "acceptance": [
+    {
+      "case": "local-acceptance",
+      "statuses": {
+        "PASS": 111,
+        "FAIL": 0,
+        "BLOCKED": 1
+      },
+      "cycleTransitions": 80,
+      "cyclePasses": 80,
+      "latencyMedianMs": 157.62804999999935,
+      "latencyP95Ms": 160.0980000000054,
+      "latencyMaxMs": 160.15169999999853,
+      "failure": null
+    },
+    {
+      "case": "mapped-acceptance",
+      "statuses": {
+        "PASS": 111,
+        "FAIL": 0,
+        "BLOCKED": 1
+      },
+      "cycleTransitions": 80,
+      "cyclePasses": 80,
+      "latencyMedianMs": 156.2833499999997,
+      "latencyP95Ms": 159.4315999999999,
+      "latencyMaxMs": 186.69440000000031,
+      "failure": null
+    },
+    {
+      "case": "unc-acceptance",
+      "statuses": {
+        "PASS": 111,
+        "FAIL": 0,
+        "BLOCKED": 1
+      },
+      "cycleTransitions": 80,
+      "cyclePasses": 80,
+      "latencyMedianMs": 156.25740000000224,
+      "latencyP95Ms": 182.09589999999844,
+      "latencyMaxMs": 186.174500000001,
+      "failure": null
+    }
+  ],
+  "resources": [
+    {
+      "case": "local-acceptance",
+      "pid": 148444,
+      "samples": 37,
+      "handlesFirst": 375,
+      "handlesLast": 370,
+      "handlesMin": 370,
+      "handlesMax": 375,
+      "cpuSecondsDelta": 0.59375,
+      "peakWorkingSetBytes": 242966528
+    },
+    {
+      "case": "mapped-acceptance",
+      "pid": 189276,
+      "samples": 37,
+      "handlesFirst": 370,
+      "handlesLast": 365,
+      "handlesMin": 365,
+      "handlesMax": 370,
+      "cpuSecondsDelta": 0.921875,
+      "peakWorkingSetBytes": 247676928
+    },
+    {
+      "case": "unc-acceptance",
+      "pid": 175792,
+      "samples": 37,
+      "handlesFirst": 375,
+      "handlesLast": 370,
+      "handlesMin": 370,
+      "handlesMax": 375,
+      "cpuSecondsDelta": 0.921875,
+      "peakWorkingSetBytes": 242470912
+    }
+  ]
+}

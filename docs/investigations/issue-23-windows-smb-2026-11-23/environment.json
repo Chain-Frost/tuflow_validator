@@ -1,0 +1,16 @@
+{
+  "datePerth": "2026-11-23",
+  "source": "53f756aa9c96da7399425d32b0325fe23b6c6082",
+  "defaultBranch": "936231289b767ec0028a0be7b18bb78596dc4fd6",
+  "vsixSHA256": "67a13b61952a65246c09843bc475d754d7ddae47535f7c0b879b8eb65ae05573",
+  "vscode": "1.147.0",
+  "vscodeCommit": "8a14f0cc1b08d531eb83255ea3764ae22aa932b5",
+  "os": "Microsoft Windows 10 Pro",
+  "osVersion": "10.0.19045.0",
+  "buildNode": "20.19.2 (Docker tuflow-helper-qa)",
+  "launcherNode": "22.23.0",
+  "hostNode": "24.22.1",
+  "localFilesystem": "NTFS",
+  "network": "existing genuine SMB mapping and corresponding UNC; established TCP/445; same scratch sentinel hash through aliases",
+  "aliasSentinelSHA256": "e0487ea55a6d036b0ded12c238d06e82d08ce847860d513b2a19e31eebf47456"
+}

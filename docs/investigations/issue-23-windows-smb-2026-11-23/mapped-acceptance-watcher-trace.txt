@@ -1,0 +1,759 @@
+2026-11-23 12:53:25.701 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:53:25.726 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:25.726 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:25.726 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:25.727 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:53:25.727 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:25.727 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:53:25.727 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:25.728 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:25.728 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:25.729 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:53:25.729 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:25.729 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:25.729 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:25.729 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:53:25.731 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:25.731 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:53:25.732 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:25.732 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:53:25.732 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:25.732 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:53:25.732 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User'
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.757 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.758 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:25.759 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:53:25.759 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:53:25.763 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:25.769 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:25.769 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:25.769 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:25.770 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:25.770 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.854 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.907 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.907 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.907 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.907 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.908 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.908 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.933 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.934 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.935 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.935 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.935 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.936 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.936 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.936 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:25.936 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:26.049 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:26.256 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:26.256 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:26.256 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:26.438 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:26.438 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets'
+2026-11-23 12:53:26.495 [trace] [File Watcher (node.js)] Request to start watching: <MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:26.538 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:26.538 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:53:26.538 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:26.538 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\globalStorage
+2026-11-23 12:53:26.541 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:26.542 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:26.841 [trace] [File Watcher ('parcel')] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.agents\skills (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.agents\skills')
+2026-11-23 12:53:26.841 [trace] [File Watcher ('parcel')] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\skills (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\skills')
+2026-11-23 12:53:26.841 [trace] [File Watcher ('parcel')] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude\skills (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude\skills')
+2026-11-23 12:53:26.842 [trace] [File Watcher ('parcel')] starting fs.watchFile() on <MAPPED_SCRATCH>\.agents\skills (correlationId: undefined)
+2026-11-23 12:53:26.842 [trace] [File Watcher ('parcel')] starting fs.watchFile() on <MAPPED_SCRATCH>\.github\skills (correlationId: undefined)
+2026-11-23 12:53:26.842 [trace] [File Watcher ('parcel')] starting fs.watchFile() on <MAPPED_SCRATCH>\.claude\skills (correlationId: undefined)
+2026-11-23 12:53:26.842 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:53:26.842 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:26.843 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:26.844 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:53:26.844 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:26.844 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:26.844 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:26.844 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:26.846 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.mcp.json (correlationId: undefined)
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] starting fs.watchFile() on <MAPPED_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User'
+2026-11-23 12:53:26.847 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets'
+2026-11-23 12:53:26.848 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:26.848 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:26.848 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:26.975 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.agents\skills')
+2026-11-23 12:53:27.006 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.github\skills')
+2026-11-23 12:53:27.006 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.claude\skills')
+2026-11-23 12:53:27.006 [trace] [File Watcher ('parcel')] Request to start watching: <MAPPED_SCRATCH> (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:27.007 [trace] [File Watcher ('parcel')] Started watching: '<MAPPED_SCRATCH>' with backend 'windows'
+2026-11-23 12:53:27.007 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.agents\skills
+2026-11-23 12:53:27.007 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\skills
+2026-11-23 12:53:27.008 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude\skills
+2026-11-23 12:53:27.008 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:53:27.009 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:27.009 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:27.009 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:27.009 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode
+2026-11-23 12:53:27.041 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:27.041 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\settings.json
+2026-11-23 12:53:27.042 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:27.042 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:27.042 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:27.042 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:27.043 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:27.044 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\launch.json
+2026-11-23 12:53:27.045 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:27.045 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:27.045 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:27.045 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\tasks.json
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\mcp.json
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.046 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.047 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.047 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.047 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.047 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:27.047 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\copilot
+2026-11-23 12:53:27.048 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:27.048 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:27.048 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:27.189 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.agents\skills')
+2026-11-23 12:53:27.189 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.github\skills')
+2026-11-23 12:53:27.189 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.claude\skills')
+2026-11-23 12:53:27.189 [trace] [File Watcher ('parcel')] Request to start watching: <MAPPED_SCRATCH> (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:27.200 [trace] [File Watcher ('parcel')] Started watching: '<MAPPED_SCRATCH>' with backend 'windows'
+2026-11-23 12:53:27.200 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.agents\skills
+2026-11-23 12:53:27.200 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\skills
+2026-11-23 12:53:27.200 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude\skills
+2026-11-23 12:53:27.216 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\settings.json
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\tasks.json
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:27.217 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:27.237 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:27.237 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\launch.json
+2026-11-23 12:53:27.237 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:27.238 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:27.238 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:27.238 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode
+2026-11-23 12:53:27.239 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:27.239 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\mcp.json
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.240 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\copilot
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User'
+2026-11-23 12:53:27.241 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets'
+2026-11-23 12:53:27.241 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:27.242 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:27.394 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.agents\skills')
+2026-11-23 12:53:27.394 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.github\skills')
+2026-11-23 12:53:27.394 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.claude\skills')
+2026-11-23 12:53:27.394 [trace] [File Watcher ('parcel')] Request to start watching: <MAPPED_SCRATCH> (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:27.401 [trace] [File Watcher ('parcel')] Started watching: '<MAPPED_SCRATCH>' with backend 'windows'
+2026-11-23 12:53:27.406 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.agents\skills
+2026-11-23 12:53:27.406 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\skills
+2026-11-23 12:53:27.406 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude\skills
+2026-11-23 12:53:27.418 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\case-t9tlrs (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3),c:\Users\<USER>\.copilot\mcp-config.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 4)
+2026-11-23 12:53:27.425 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\settings.json
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:27.426 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:27.427 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:27.431 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:27.431 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:27.431 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:27.431 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:27.431 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\tasks.json
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\launch.json
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.432 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:27.433 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\mcp.json
+2026-11-23 12:53:27.433 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.433 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.433 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.433 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.434 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:27.434 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\copilot
+2026-11-23 12:53:27.434 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User'
+2026-11-23 12:53:27.434 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets'
+2026-11-23 12:53:27.443 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:27.443 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:27.444 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:27.585 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.agents\skills')
+2026-11-23 12:53:27.585 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.github\skills')
+2026-11-23 12:53:27.586 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <MAPPED_SCRATCH>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<MAPPED_SCRATCH>\.claude\skills')
+2026-11-23 12:53:27.586 [trace] [File Watcher ('parcel')] Request to start watching: <MAPPED_SCRATCH> (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:53:27.586 [trace] [File Watcher ('parcel')] Started watching: '<MAPPED_SCRATCH>' with backend 'windows'
+2026-11-23 12:53:27.588 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.agents\skills
+2026-11-23 12:53:27.588 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\skills
+2026-11-23 12:53:27.588 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude\skills
+2026-11-23 12:53:27.600 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\mapped-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\case-t9tlrs (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3),c:\Users\<USER>\.copilot\mcp-config.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 4)
+2026-11-23 12:53:27.603 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json')
+2026-11-23 12:53:27.603 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode')
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\settings.json
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\tasks.json
+2026-11-23 12:53:27.606 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json')
+2026-11-23 12:53:27.608 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:53:27.608 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts')
+2026-11-23 12:53:27.609 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:53:27.609 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:53:27.609 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\launch.json
+2026-11-23 12:53:27.611 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json')
+2026-11-23 12:53:27.611 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:53:27.611 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json')
+2026-11-23 12:53:27.611 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:53:27.611 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.vscode\mcp.json
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.claude')
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.claude
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.615 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.616 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.mcp.json')
+2026-11-23 12:53:27.616 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.mcp.json
+2026-11-23 12:53:27.616 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\.github\copilot')
+2026-11-23 12:53:27.616 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\.github\copilot
+2026-11-23 12:53:27.616 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>'
+2026-11-23 12:53:27.620 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:27.620 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:27.621 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User'
+2026-11-23 12:53:27.621 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\mapped-acceptance\User\snippets'
+2026-11-23 12:53:27.621 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>\case-t9tlrs'
+2026-11-23 12:53:27.624 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:27.624 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:28.476 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3),c:\Users\<USER>\.copilot\mcp-config.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 4)
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.501 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.502 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.502 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.502 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\mapped-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.502 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.503 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:53:28.503 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:53:28.503 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:53:28.503 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3))
+2026-11-23 12:53:29.148 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:29.207 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:29.239 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:29.867 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:29.867 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:29.925 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:29.956 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:29.956 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:30.583 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:30.643 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:30.644 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:30.658 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:30.658 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:31.316 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:31.377 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:31.393 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.028 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.086 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.118 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.747 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.808 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.808 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:32.823 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:32.824 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:33.460 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:33.460 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:33.517 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:33.549 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:33.549 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.176 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.236 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.251 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.885 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.941 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:34.972 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:35.622 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:35.682 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:35.682 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:35.713 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:35.713 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:36.343 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:36.403 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:36.403 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:36.419 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:36.419 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.056 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.114 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.146 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.767 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.826 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:37.857 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:38.487 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:38.487 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:38.546 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:38.577 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:38.577 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:39.207 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:39.208 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:39.265 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:39.296 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:39.296 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:39.914 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:39.972 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:40.003 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:40.622 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:40.681 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:40.713 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:41.342 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:41.402 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:41.403 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:41.418 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:41.419 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:42.066 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:42.126 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:42.126 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:42.156 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:42.157 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:42.785 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:42.845 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:42.860 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:43.506 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:43.563 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:43.595 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:44.221 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:44.282 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:44.282 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:44.297 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:44.297 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:44.942 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:45.001 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:45.001 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:45.032 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:45.033 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:45.648 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:45.708 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:45.724 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:46.368 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:46.426 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:46.458 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:47.072 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:47.073 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.131 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.162 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:47.162 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.792 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.851 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:47.851 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.882 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:47.882 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:48.501 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:48.561 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:48.577 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.210 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.268 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.300 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.920 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.979 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.979 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:49.995 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:49.996 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:50.629 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:50.691 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:50.691 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:50.706 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:50.707 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:51.339 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:51.398 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:51.429 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.060 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.119 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.135 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.768 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.769 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:52.828 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:52.858 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:52.858 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:53.488 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:53.488 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:53.548 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:53.564 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:53.564 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:54.208 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:54.268 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:54.283 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:54.922 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:54.980 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:55.012 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:55.634 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:55.634 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:55.678 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\workspaceStorage
+2026-11-23 12:53:55.692 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:55.723 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:55.724 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:55.756 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\mapped-acceptance\User\workspaceStorage
+2026-11-23 12:53:56.354 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:56.412 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:56.412 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:56.442 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:56.442 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.070 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.129 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.160 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.779 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.838 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:57.869 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:58.499 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:58.557 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:58.557 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:58.588 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:58.588 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:59.203 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:59.263 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:59.263 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:59.279 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:53:59.279 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:59.913 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:53:59.972 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:00.001 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:00.631 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:00.693 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:00.709 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:01.344 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:01.405 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:01.405 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:01.420 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:01.420 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:02.056 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:02.113 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:02.113 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:02.145 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:02.145 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:02.764 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:02.824 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:02.840 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:03.487 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:03.545 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:03.576 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:04.193 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:04.194 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:04.252 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:04.284 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:04.285 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:04.916 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:04.975 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:04.976 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:05.006 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:05.006 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:05.625 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:05.683 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:05.714 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:06.342 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:06.398 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:06.430 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:07.062 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:07.062 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:07.122 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:07.138 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:07.138 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:07.772 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:07.772 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:07.830 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:07.861 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:07.861 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:08.491 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:08.552 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:08.566 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:09.212 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:09.286 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:09.302 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:09.924 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:09.924 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:09.981 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:10.013 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:10.013 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:10.630 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:10.630 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:10.690 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:10.706 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:10.706 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:11.336 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:11.397 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:11.412 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.059 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.118 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.149 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.776 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.776 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:12.837 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:12.853 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:12.853 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:13.488 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:13.488 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:13.547 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:13.578 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:13.578 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:14.208 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:14.266 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:14.296 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:14.929 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:14.988 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:15.017 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:15.646 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:15.706 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:15.707 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:15.736 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:15.737 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:16.361 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:16.362 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:16.421 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:16.452 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:16.452 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.069 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.128 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.159 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.778 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.836 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:17.867 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:18.496 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:18.496 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:18.555 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:18.586 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:18.587 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:19.242 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:19.242 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:19.302 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:19.317 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:19.317 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:19.963 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:20.022 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:20.053 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:20.672 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:20.730 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:20.762 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:21.392 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:21.392 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:21.450 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:21.482 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:21.482 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:22.105 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:22.164 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:22.164 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:22.195 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:22.195 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:22.821 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:22.880 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:22.896 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:23.530 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:23.590 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:23.605 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:24.248 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:24.248 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:24.307 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:24.338 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:24.339 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:24.964 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:25.024 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:25.025 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:25.040 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:25.040 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:25.681 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:25.740 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:25.770 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:26.399 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:26.456 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:26.488 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:27.117 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:27.117 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:27.175 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:27.206 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:27.206 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:27.837 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:27.837 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:27.897 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:27.927 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\other.txt
+2026-11-23 12:54:27.927 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:28.557 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:28.614 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:28.645 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:29.271 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:29.332 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:29.348 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:29.983 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:30.039 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:30.071 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:30.724 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:30.783 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:30.799 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v02.tcf
+2026-11-23 12:54:31.432 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:31.490 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:31.521 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v02.tgc
+2026-11-23 12:54:31.662 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\alternate_v02.tgc
+2026-11-23 12:54:31.663 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v01.csv
+2026-11-23 12:54:31.663 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v02.csv
+2026-11-23 12:54:31.742 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\alternate_v02.tgc
+2026-11-23 12:54:31.742 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v01.csv
+2026-11-23 12:54:31.742 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v02.csv
+2026-11-23 12:54:32.545 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:32.603 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:32.633 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:33.217 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:33.305 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:33.321 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:33.321 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:33.398 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:33.399 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:35.835 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:35.898 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:35.924 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:37.029 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:37.086 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:37.118 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:37.591 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:37.591 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:37.668 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:37.669 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:40.101 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:40.162 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:40.188 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:41.292 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:41.379 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:41.379 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:41.844 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:41.845 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:41.924 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:41.925 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:44.383 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:44.450 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:44.470 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:45.560 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:45.648 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:45.649 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:46.136 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:46.137 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:46.214 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:46.215 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:47.855 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:47.915 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:47.932 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:48.575 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:48.633 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:48.663 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:48.811 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\RootA.tcf
+2026-11-23 12:54:48.814 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\RootB.tcf
+2026-11-23 12:54:48.814 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\a
+2026-11-23 12:54:48.814 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\a\present.csv
+2026-11-23 12:54:48.814 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\shared
+2026-11-23 12:54:48.814 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\shared\context.trd
+2026-11-23 12:54:48.897 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\RootA.tcf
+2026-11-23 12:54:48.899 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\RootB.tcf
+2026-11-23 12:54:48.899 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\a
+2026-11-23 12:54:48.899 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\a\present.csv
+2026-11-23 12:54:48.900 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\shared
+2026-11-23 12:54:48.900 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\shared\context.trd
+2026-11-23 12:54:49.432 [trace] [File Watcher (node.js)] Request to start watching: <MAPPED_SCRATCH>\case-t9tlrs\shared (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:54:49.435 [trace] [File Watcher (node.js)] Request to start watching: <MAPPED_SCRATCH>\case-t9tlrs\a (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>),<MAPPED_SCRATCH>\case-t9tlrs\b (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:54:49.436 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <MAPPED_SCRATCH>\case-t9tlrs\b (error: Error: ENOENT: no such file or directory, stat '<MAPPED_SCRATCH>\case-t9tlrs\b')
+2026-11-23 12:54:49.436 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <MAPPED_SCRATCH>\case-t9tlrs\b
+2026-11-23 12:54:49.437 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>\case-t9tlrs\shared'
+2026-11-23 12:54:49.438 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:54:49.438 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:54:49.441 [trace] [File Watcher (node.js)] Started watching: '<MAPPED_SCRATCH>\case-t9tlrs\a'
+2026-11-23 12:54:49.442 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:54:49.442 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:54:50.247 [trace] [File Watcher (node.js)] Request to stop watching: <MAPPED_SCRATCH>\case-t9tlrs\b (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:54:50.247 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\case-t9tlrs\b (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>))
+2026-11-23 12:54:50.928 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\b
+2026-11-23 12:54:50.986 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\b
+2026-11-23 12:54:50.986 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\b\present.csv
+2026-11-23 12:54:51.017 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\b
+2026-11-23 12:54:51.017 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\b\present.csv
+2026-11-23 12:54:51.652 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\b\present.csv
+2026-11-23 12:54:51.713 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\b\present.csv
+2026-11-23 12:54:51.728 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\b\present.csv
+2026-11-23 12:54:53.538 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:53.604 [trace] [File Watcher ('parcel')] [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:53.620 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:55.235 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\unrelated.txt
+2026-11-23 12:54:55.292 [trace] [File Watcher ('parcel')] [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\unrelated.txt
+2026-11-23 12:54:55.323 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <MAPPED_SCRATCH>\case-t9Tlrs\unrelated.txt
+2026-11-23 12:54:57.964 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\a\present.csv
+2026-11-23 12:54:58.053 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\a\present.csv
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\RootA.tcf
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\RootB.tcf
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\Run_v01.tcf
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\a
+2026-11-23 12:54:58.101 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\a\present.csv
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\alternate_v02.tgc
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\b
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.payload
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.tgc
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\dirty.trd
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\geom_v01.tgc
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v01.csv
+2026-11-23 12:54:58.102 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\layer_v02.csv
+2026-11-23 12:54:58.103 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\present.csv
+2026-11-23 12:54:58.103 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\shared
+2026-11-23 12:54:58.103 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\shared\context.trd
+2026-11-23 12:54:58.103 [trace] [File Watcher ('parcel')] [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs\unrelated.txt
+2026-11-23 12:54:58.178 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <MAPPED_SCRATCH>\case-t9Tlrs
+2026-11-23 12:54:58.524 [trace] [File Watcher (node.js)] Request to stop watching: <MAPPED_SCRATCH>\case-t9tlrs\a (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:54:58.524 [trace] [File Watcher (node.js)] stopping file watcher (<MAPPED_SCRATCH>\case-t9tlrs\a (excludes: <none>, includes: [{"base":"<MAPPED_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<MAPPED_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>))

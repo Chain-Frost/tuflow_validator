@@ -1,0 +1,905 @@
+{
+  "time": "2026-11-23T04:48:18.281Z",
+  "fixture": "<UNC_SCRATCH>\\probe-052C8c",
+  "vscode": "1.147.0",
+  "node": "v24.22.1",
+  "workspace": [
+    "file:<UNC_SCRATCH>"
+  ],
+  "registrations": [
+    {
+      "pattern": "string-star",
+      "base": "<UNC_SCRATCH>\\probe-052C8c",
+      "glob": "*",
+      "time": "2026-11-23T04:48:18.544Z"
+    },
+    {
+      "pattern": "uri-star",
+      "base": "file:<UNC_SCRATCH>/probe-052C8c",
+      "glob": "*",
+      "time": "2026-11-23T04:48:28.877Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "base": "file:<UNC_SCRATCH>/probe-052C8c",
+      "glob": "**/*",
+      "time": "2026-11-23T04:48:39.180Z"
+    }
+  ],
+  "events": [
+    {
+      "pattern": "string-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:20.649Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:21.554Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:21.554Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:22.464Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:22.464Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:23.359Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:24.273Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:25.189Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:25.189Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:26.116Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:26.116Z"
+    },
+    {
+      "pattern": "string-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:27.054Z"
+    },
+    {
+      "pattern": "uri-star",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:30.963Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:31.889Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:31.889Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:32.810Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:32.810Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:33.726Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:34.637Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:35.537Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:35.537Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:36.447Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:36.447Z"
+    },
+    {
+      "pattern": "uri-star",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:37.359Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "nativeError": "Error: UNKNOWN: unknown error, watch"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:41.289Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:42.189Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:42.189Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:43.099Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:43.099Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:44.028Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:44.919Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:45.842Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:45.842Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Create",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:46.751Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+      "time": "2026-11-23T04:48:46.751Z"
+    },
+    {
+      "pattern": "uri-recursive",
+      "kind": "Delete",
+      "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+      "time": "2026-11-23T04:48:47.666Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:48:21.461Z",
+      "elapsedMs": 914,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:20.649Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:22.368Z",
+      "elapsedMs": 907,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:21.554Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:21.554Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:23.277Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:22.464Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:22.464Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:48:24.192Z",
+      "elapsedMs": 915,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:23.359Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:48:25.107Z",
+      "elapsedMs": 915,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:24.273Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:26.022Z",
+      "elapsedMs": 915,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:25.189Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:25.189Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:26.942Z",
+      "elapsedMs": 920,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:26.116Z"
+        },
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:26.116Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "string-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:48:27.870Z",
+      "elapsedMs": 928,
+      "apiEvents": [
+        {
+          "pattern": "string-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:27.054Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:48:31.791Z",
+      "elapsedMs": 912,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:30.963Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:32.709Z",
+      "elapsedMs": 918,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:31.889Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:31.889Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:33.627Z",
+      "elapsedMs": 918,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:32.810Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:32.810Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:48:34.535Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:33.726Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:48:35.439Z",
+      "elapsedMs": 904,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:34.637Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:36.348Z",
+      "elapsedMs": 909,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:35.537Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:35.537Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:37.261Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:36.447Z"
+        },
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:36.447Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-star",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:48:38.168Z",
+      "elapsedMs": 907,
+      "apiEvents": [
+        {
+          "pattern": "uri-star",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:37.359Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "create",
+      "time": "2026-11-23T04:48:42.103Z",
+      "elapsedMs": 913,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:41.289Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:43.013Z",
+      "elapsedMs": 910,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:42.189Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:42.189Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:43.929Z",
+      "elapsedMs": 916,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:43.099Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:43.099Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 0,
+      "action": "delete",
+      "time": "2026-11-23T04:48:44.835Z",
+      "elapsedMs": 906,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:44.028Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "create",
+      "time": "2026-11-23T04:48:45.743Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:44.919Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-away",
+      "time": "2026-11-23T04:48:46.651Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:45.842Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:45.842Z"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "rename-back",
+      "time": "2026-11-23T04:48:47.569Z",
+      "elapsedMs": 918,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Create",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:46.751Z"
+        },
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/other.txt",
+          "time": "2026-11-23T04:48:46.751Z"
+        }
+      ],
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "pattern": "uri-recursive",
+      "cycle": 1,
+      "action": "delete",
+      "time": "2026-11-23T04:48:48.477Z",
+      "elapsedMs": 908,
+      "apiEvents": [
+        {
+          "pattern": "uri-recursive",
+          "kind": "Delete",
+          "uri": "file:<UNC_SCRATCH>/probe-052C8c/geom_v02.tgc",
+          "time": "2026-11-23T04:48:47.666Z"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "resources": [
+    {
+      "label": "string-star-before",
+      "time": "2026-11-23T04:48:20.546Z",
+      "cpu": {
+        "user": 468000,
+        "system": 359000
+      },
+      "memory": {
+        "rss": 241893376,
+        "heapTotal": 73019392,
+        "heapUsed": 45944660,
+        "external": 7556316,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "string-star-after",
+      "time": "2026-11-23T04:48:27.870Z",
+      "cpu": {
+        "user": 500000,
+        "system": 390000
+      },
+      "memory": {
+        "rss": 241156096,
+        "heapTotal": 73019392,
+        "heapUsed": 47425272,
+        "external": 7625659,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-before",
+      "time": "2026-11-23T04:48:30.878Z",
+      "cpu": {
+        "user": 500000,
+        "system": 390000
+      },
+      "memory": {
+        "rss": 241188864,
+        "heapTotal": 73019392,
+        "heapUsed": 47526236,
+        "external": 7625699,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-star-after",
+      "time": "2026-11-23T04:48:38.168Z",
+      "cpu": {
+        "user": 500000,
+        "system": 406000
+      },
+      "memory": {
+        "rss": 241307648,
+        "heapTotal": 73019392,
+        "heapUsed": 48471720,
+        "external": 7703111,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-before",
+      "time": "2026-11-23T04:48:41.188Z",
+      "cpu": {
+        "user": 500000,
+        "system": 406000
+      },
+      "memory": {
+        "rss": 241356800,
+        "heapTotal": 73019392,
+        "heapUsed": 48630348,
+        "external": 7703893,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "uri-recursive-after",
+      "time": "2026-11-23T04:48:48.477Z",
+      "cpu": {
+        "user": 625000,
+        "system": 437000
+      },
+      "memory": {
+        "rss": 204759040,
+        "heapTotal": 40714240,
+        "heapUsed": 39447032,
+        "external": 7192076,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 3
+    },
+    {
+      "label": "disposed",
+      "time": "2026-11-23T04:48:51.466Z",
+      "cpu": {
+        "user": 828000,
+        "system": 500000
+      },
+      "memory": {
+        "rss": 223780864,
+        "heapTotal": 57323520,
+        "heapUsed": 50659364,
+        "external": 7539133,
+        "arrayBuffers": 0
+      },
+      "handlesProxy": 7
+    }
+  ],
+  "extensionPath": "<LOCAL_LAB>\\installed\\chain-frost.tuflow-path-validator-0.2.6",
+  "beforeExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "afterExplicitRefresh": [
+    {
+      "code": "TPV022",
+      "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+    }
+  ],
+  "fixtureRemoved": true
+}

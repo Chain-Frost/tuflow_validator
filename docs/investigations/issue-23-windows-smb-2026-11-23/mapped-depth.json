@@ -1,0 +1,24 @@
+{
+  "fixture": "<MAPPED_SCRATCH>\\depth-9i6zIp",
+  "time": "2026-11-23T04:55:22.003Z",
+  "events": [
+    {
+      "pattern": "**/*",
+      "uri": "file:///<MAPPED_SCRATCH>/depth-9i6zIp/unrelated/deep/unreferenced.txt",
+      "time": "2026-11-23T04:55:24.102Z"
+    }
+  ],
+  "registrations": [
+    {
+      "pattern": "**/*",
+      "time": "2026-11-23T04:55:22.008Z"
+    },
+    {
+      "pattern": "*/unmatchable-control-file.tgc",
+      "time": "2026-11-23T04:55:22.008Z"
+    }
+  ],
+  "vscode": "1.147.0",
+  "nativeRecursiveError": "Error: UNKNOWN: unknown error, watch",
+  "fixtureRemoved": true
+}

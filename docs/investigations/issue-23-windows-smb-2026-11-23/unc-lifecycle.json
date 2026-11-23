@@ -1,0 +1,121 @@
+{
+  "fixture": "<UNC_SCRATCH>\\lifecycle-8gDhxn",
+  "vscode": "1.147.0",
+  "pid": 189288,
+  "observations": [
+    {
+      "label": "open",
+      "time": "2026-11-23T04:55:40.683Z",
+      "documents": [
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootA.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        },
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootB.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        }
+      ],
+      "memory": {
+        "rss": 242847744,
+        "heapTotal": 76283904,
+        "heapUsed": 48248336,
+        "external": 7559339,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 625000,
+        "system": 218000
+      }
+    },
+    {
+      "label": "tabs-closed",
+      "time": "2026-11-23T04:55:41.406Z",
+      "documents": [
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootA.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        },
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootB.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        }
+      ],
+      "memory": {
+        "rss": 243003392,
+        "heapTotal": 76283904,
+        "heapUsed": 48544596,
+        "external": 7617142,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 640000,
+        "system": 218000
+      }
+    },
+    {
+      "label": "workspace-delete",
+      "time": "2026-11-23T04:55:43.263Z",
+      "documents": [
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootA.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        },
+        {
+          "uri": "file:<UNC_SCRATCH>/lifecycle-8gDhxn/RootB.tcf",
+          "isClosed": false,
+          "diagnostics": [
+            {
+              "code": "TPV002",
+              "message": "Referenced file has 1 issue(s): child.tgc"
+            }
+          ]
+        }
+      ],
+      "memory": {
+        "rss": 240586752,
+        "heapTotal": 76283904,
+        "heapUsed": 48601408,
+        "external": 7618124,
+        "arrayBuffers": 0
+      },
+      "cpu": {
+        "user": 640000,
+        "system": 218000
+      }
+    }
+  ],
+  "closeEvents": [],
+  "deleteAccepted": false,
+  "fixtureRemoved": true
+}

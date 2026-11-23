@@ -1,0 +1,745 @@
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.664 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:48.665 [trace] [File Watcher (node.js)] Request to start watching: <UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:51:48.680 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:51:48.680 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.680 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.680 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:48.680 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:51:48.691 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:48.692 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:48.692 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:48.692 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:48.899 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:48.900 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:51:48.901 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:48.901 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:48.901 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.902 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.903 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:48.904 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:48.905 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:48.905 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:48.905 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User\snippets'
+2026-11-23 12:51:48.905 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:48.905 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:48.906 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:49.181 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:49.181 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:49.182 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:49.183 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:49.183 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.184 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:49.184 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:51:49.184 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:49.184 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:51:49.185 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:49.186 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:51:49.186 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.186 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:51:49.186 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:49.187 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User\snippets'
+2026-11-23 12:51:49.187 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:49.187 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:49.187 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:49.319 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:49.334 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.348 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:49.349 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:49.349 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:49.349 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:51:49.349 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:49.349 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:49.350 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:49.350 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.351 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.352 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.353 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.353 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:51:49.354 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User\snippets'
+2026-11-23 12:51:49.357 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:49.357 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:49.357 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:49.565 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:49.566 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\launch.json (correlationId: undefined)
+2026-11-23 12:51:49.567 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:49.567 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:49.568 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:49.568 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.568 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: undefined)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.claude (correlationId: 0)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.github\copilot (correlationId: 1)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.vscode (correlationId: undefined)
+2026-11-23 12:51:49.569 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.mcp.json')
+2026-11-23 12:51:49.570 [trace] [File Watcher (node.js)] starting fs.watchFile() on <UNC_SCRATCH>\.mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.570 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:49.570 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User\snippets'
+2026-11-23 12:51:49.617 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:49.617 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:49.617 [error] [File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:49.891 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <UNC_SCRATCH>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<UNC_SCRATCH>\.agents\skills')
+2026-11-23 12:51:49.891 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <UNC_SCRATCH>\.github\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<UNC_SCRATCH>\.github\skills')
+2026-11-23 12:51:49.891 [trace] [File Watcher ('parcel')] ignoring a request for watching who's lstat failed to resolve: <UNC_SCRATCH>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>) (error: Error: ENOENT: no such file or directory, lstat '<UNC_SCRATCH>\.claude\skills')
+2026-11-23 12:51:49.891 [trace] [File Watcher ('parcel')] Request to start watching: <UNC_SCRATCH> (excludes: .git/objects/**,.git/subtree-cache/**,.hg/store/**,*/.git/objects/**,*/.git/subtree-cache/**,*/.hg/store/**, includes: <all>, filter: <none>, correlationId: <none>)
+2026-11-23 12:51:49.913 [trace] [File Watcher ('parcel')] Started watching: '<UNC_SCRATCH>' with backend 'windows'
+2026-11-23 12:51:49.913 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.agents\skills
+2026-11-23 12:51:49.913 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.github\skills
+2026-11-23 12:51:49.913 [trace] [File Watcher ('parcel')] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.claude\skills
+2026-11-23 12:51:49.913 [trace] [File Watcher (node.js)] Request to start watching: <LOCAL_LAB>\profiles\unc-acceptance\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH> (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\snippets (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-seti\icons\vs-seti-icon-theme.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Program Files\Microsoft VS Code\8a14f0cc1b\resources\app\extensions\theme-defaults\themes\2026-dark.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1),c:\Users\<USER>\.vscode\agent-plugins (excludes: <none>, includes: <all>, filter: <none>, correlationId: 2)
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json')
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (correlationId: undefined)
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode')
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.vscode
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\settings.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\settings.json')
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.vscode\settings.json
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json')
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (correlationId: undefined)
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\prompts')
+2026-11-23 12:51:49.914 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\prompts (correlationId: undefined)
+2026-11-23 12:51:49.916 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json')
+2026-11-23 12:51:49.916 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (correlationId: undefined)
+2026-11-23 12:51:49.916 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (error: Error: ENOENT: no such file or directory, stat '<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json')
+2026-11-23 12:51:49.916 [trace] [File Watcher (node.js)] starting fs.watchFile() on <LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (correlationId: undefined)
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\tasks.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\tasks.json')
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.vscode\tasks.json
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\launch.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\launch.json')
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.vscode\launch.json
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.vscode\mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.vscode\mcp.json')
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.vscode\mcp.json
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.mcp.json')
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.mcp.json
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.935 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.claude
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.claude (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.claude')
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.claude
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.github\copilot (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.github\copilot')
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.github\copilot
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User'
+2026-11-23 12:51:49.936 [trace] [File Watcher (node.js)] Started watching: '<LOCAL_LAB>\profiles\unc-acceptance\User\snippets'
+2026-11-23 12:51:49.937 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>'
+2026-11-23 12:51:49.937 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:49.937 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:50.041 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:50.043 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:50.074 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:50.136 [trace] [File Watcher (node.js)] Request to start watching: <UNC_SCRATCH>\case-3hej9c (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:51:50.136 [trace] [File Watcher (node.js)] Request to stop watching: <LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\agents (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.agents\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\skills (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.copilot\hooks (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\<USER>\.claude\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0),<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1)
+2026-11-23 12:51:50.136 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.136 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.137 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.137 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.137 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\launch.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.137 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.vscode\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.138 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\keybindings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.138 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\prompts (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.139 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\tasks.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.139 [trace] [File Watcher (node.js)] stopping file watcher (<LOCAL_LAB>\profiles\unc-acceptance\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.140 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.140 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+2026-11-23 12:51:50.140 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.claude (excludes: <none>, includes: <all>, filter: <none>, correlationId: 0))
+2026-11-23 12:51:50.140 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.github\copilot (excludes: <none>, includes: <all>, filter: <none>, correlationId: 1))
+2026-11-23 12:51:50.145 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>\case-3hej9c'
+2026-11-23 12:51:50.147 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:51:50.147 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:51:50.152 [trace] [File Watcher (node.js)] Request to start watching: <UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3),c:\Users\<USER>\.copilot\mcp-config.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 4)
+2026-11-23 12:51:50.153 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\.mcp.json (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\.mcp.json')
+2026-11-23 12:51:50.153 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\.mcp.json
+2026-11-23 12:51:50.217 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:50.286 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:50.969 [trace] [File Watcher (node.js)] Request to stop watching: <UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3),c:\Users\<USER>\.copilot\mcp-config.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 4)
+2026-11-23 12:51:50.970 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\.mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: 3))
+2026-11-23 12:51:51.997 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:52.056 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:52.086 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:52.717 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:52.717 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:52.776 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:52.808 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:52.808 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:53.466 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:53.466 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:53.524 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:53.556 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:53.556 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:54.216 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:54.274 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:54.306 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:54.937 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:54.997 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:55.027 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:55.648 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:55.706 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:55.706 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:55.737 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:55.738 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:56.367 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:56.426 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:56.426 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:56.457 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:56.457 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.085 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.144 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.160 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.801 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.859 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:57.890 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:58.518 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:58.577 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:58.577 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:58.609 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:58.610 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:59.010 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:59.098 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\globalStorage
+2026-11-23 12:51:59.242 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:59.242 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:59.300 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:59.332 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:51:59.332 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:51:59.962 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:00.029 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:00.052 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:00.683 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:00.739 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:00.769 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:01.415 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:01.415 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:01.473 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:01.504 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:01.504 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:02.133 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:02.193 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:02.194 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:02.209 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:02.210 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:02.855 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:02.915 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:02.931 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:03.576 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:03.634 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:03.665 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:04.293 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:04.352 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:04.352 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:04.384 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:04.385 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:05.014 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:05.014 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:05.073 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:05.089 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:05.090 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:05.721 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:05.781 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:05.811 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:06.438 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:06.496 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:06.528 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.146 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.205 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.205 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:07.236 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.236 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:07.867 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.867 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:07.925 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:07.956 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:07.956 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:08.575 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:08.634 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:08.650 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:09.283 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:09.341 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:09.372 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:10.002 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:10.061 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:10.061 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:10.092 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:10.092 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:10.722 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:10.780 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:10.780 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:10.812 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:10.812 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:11.440 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:11.499 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:11.515 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.150 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.208 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.239 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.865 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.865 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:12.924 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:12.954 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:12.954 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:13.611 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:13.670 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:13.670 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:13.686 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:13.686 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:14.328 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:14.386 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:14.417 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.035 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.093 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.125 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.757 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.817 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.818 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:15.833 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:15.833 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:16.482 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:16.482 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:16.542 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:16.558 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:16.558 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.190 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.249 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.280 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.905 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.958 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:17.989 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:18.572 [trace] [File Watcher (node.js)] [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\workspaceStorage
+2026-11-23 12:52:18.647 [trace] [File Watcher (node.js)]  >> normalized [CHANGED] <LOCAL_LAB>\profiles\unc-acceptance\User\workspaceStorage
+2026-11-23 12:52:18.649 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:18.708 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:18.708 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:18.739 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:18.739 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:19.367 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:19.367 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:19.425 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:19.456 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:19.456 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.072 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.131 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.162 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.794 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.850 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:20.882 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:21.512 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:21.572 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:21.572 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:21.588 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:21.588 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:22.222 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:22.282 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:22.282 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:22.298 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:22.298 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:22.933 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:22.991 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:23.023 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:23.671 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:23.701 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:23.732 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:24.375 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:24.376 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:24.434 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:24.450 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:24.451 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:25.093 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:25.152 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:25.152 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:25.183 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:25.183 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:25.814 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:25.874 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:25.890 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:26.537 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:26.594 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:26.626 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:27.255 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:27.313 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:27.314 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:27.344 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:27.345 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:27.992 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:28.050 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:28.050 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:28.081 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:28.081 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:28.740 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:28.798 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:28.829 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:29.450 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:29.509 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:29.539 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:30.169 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:30.169 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.228 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.260 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:30.261 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.877 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.937 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:30.937 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.967 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:30.967 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:31.583 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:31.643 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:31.659 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:32.292 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:32.350 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:32.381 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:32.996 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:33.055 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:33.055 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:33.086 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:33.087 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:33.707 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:33.765 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:33.766 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:33.797 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:33.797 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:34.417 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:34.475 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:34.506 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.137 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.197 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.227 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.859 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.918 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.918 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:35.949 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:35.949 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:36.580 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:36.638 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:36.638 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:36.669 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:36.669 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:37.283 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:37.343 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:37.358 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:37.993 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.052 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.082 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.708 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.767 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.767 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:38.797 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:38.797 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:39.428 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:39.428 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:39.485 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:39.516 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:39.516 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.148 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.207 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.238 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.875 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.930 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:40.961 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:41.595 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:41.653 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:41.654 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:41.669 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:41.670 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:42.306 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:42.364 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:42.365 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:42.380 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:42.381 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.025 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.082 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.114 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.736 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.793 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:43.825 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:44.446 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:44.506 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:44.507 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:44.522 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:44.522 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:45.157 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:45.157 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:45.217 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:45.233 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:45.233 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:45.869 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:45.928 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:45.945 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:46.582 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:46.638 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:46.671 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:47.313 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:47.374 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:47.375 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:47.390 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:47.390 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:48.040 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:48.040 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:48.099 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:48.115 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:48.116 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:48.750 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:48.810 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:48.825 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:49.460 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:49.517 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:49.549 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:50.180 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:50.180 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.240 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.256 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:50.256 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.892 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.951 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:50.951 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.982 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\other.txt
+2026-11-23 12:52:50.982 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:51.638 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:51.695 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:51.727 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:52.349 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:52.404 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:52.435 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:53.054 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:53.113 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:53.129 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:53.765 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:53.821 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:53.853 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\Run_v02.tcf
+2026-11-23 12:52:54.471 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:54.526 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:54.557 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v02.tgc
+2026-11-23 12:52:54.696 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\alternate_v02.tgc
+2026-11-23 12:52:54.696 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\layer_v01.csv
+2026-11-23 12:52:54.696 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\layer_v02.csv
+2026-11-23 12:52:54.773 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\alternate_v02.tgc
+2026-11-23 12:52:54.773 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\layer_v01.csv
+2026-11-23 12:52:54.773 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\layer_v02.csv
+2026-11-23 12:52:55.599 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:52:55.667 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:52:55.683 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:52:56.272 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:56.360 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:56.376 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:52:56.376 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:56.455 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:52:56.455 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:58.894 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:58.961 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:52:58.976 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:53:00.084 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:53:00.157 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:53:00.173 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:53:00.647 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:00.647 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:00.725 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:00.725 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:03.160 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:03.228 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:03.247 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:04.372 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:04.446 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:04.461 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:04.931 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:04.931 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:05.009 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:05.009 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:07.459 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:07.514 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:07.546 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:08.648 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:08.723 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:08.738 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:08.815 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:08.986 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:08.986 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:09.064 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:09.065 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:10.701 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:10.761 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:10.777 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:11.414 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:11.471 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:11.503 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:11.656 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\RootA.tcf
+2026-11-23 12:53:11.659 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\RootB.tcf
+2026-11-23 12:53:11.659 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\a
+2026-11-23 12:53:11.659 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\a\present.csv
+2026-11-23 12:53:11.659 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\shared
+2026-11-23 12:53:11.659 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\shared\context.trd
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\RootA.tcf
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\RootB.tcf
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\a
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\a\present.csv
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\shared
+2026-11-23 12:53:11.728 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\shared\context.trd
+2026-11-23 12:53:12.248 [trace] [File Watcher (node.js)] Request to start watching: <UNC_SCRATCH>\case-3hej9c\shared (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:53:12.251 [trace] [File Watcher (node.js)] Request to start watching: <UNC_SCRATCH>\case-3hej9c\a (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>),<UNC_SCRATCH>\case-3hej9c\b (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:53:12.251 [trace] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: <UNC_SCRATCH>\case-3hej9c\b (error: Error: ENOENT: no such file or directory, stat '<UNC_SCRATCH>\case-3hej9c\b')
+2026-11-23 12:53:12.251 [trace] [File Watcher (node.js)] reusing an existing recursive watcher to monitor <UNC_SCRATCH>\case-3hej9c\b
+2026-11-23 12:53:12.252 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>\case-3hej9c\shared'
+2026-11-23 12:53:12.254 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:12.255 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:12.256 [trace] [File Watcher (node.js)] Started watching: '<UNC_SCRATCH>\case-3hej9c\a'
+2026-11-23 12:53:12.257 [error] [File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)
+2026-11-23 12:53:12.257 [error] [File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)
+2026-11-23 12:53:13.056 [trace] [File Watcher (node.js)] Request to stop watching: <UNC_SCRATCH>\case-3hej9c\b (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:53:13.056 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\case-3hej9c\b (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>))
+2026-11-23 12:53:13.777 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\b
+2026-11-23 12:53:13.837 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\b
+2026-11-23 12:53:13.837 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\b\present.csv
+2026-11-23 12:53:13.867 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\b
+2026-11-23 12:53:13.867 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\b\present.csv
+2026-11-23 12:53:14.515 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\b\present.csv
+2026-11-23 12:53:14.573 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\b\present.csv
+2026-11-23 12:53:14.603 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\b\present.csv
+2026-11-23 12:53:16.438 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:16.501 [trace] [File Watcher ('parcel')] [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:16.517 [trace] [File Watcher ('parcel')]  >> normalized [CHANGED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:18.146 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\unrelated.txt
+2026-11-23 12:53:18.204 [trace] [File Watcher ('parcel')] [ADDED] <UNC_SCRATCH>\case-3HEj9c\unrelated.txt
+2026-11-23 12:53:18.221 [trace] [File Watcher ('parcel')]  >> normalized [ADDED] <UNC_SCRATCH>\case-3HEj9c\unrelated.txt
+2026-11-23 12:53:20.870 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\a\present.csv
+2026-11-23 12:53:20.958 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c\a\present.csv
+2026-11-23 12:53:21.005 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c
+2026-11-23 12:53:21.005 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\RootA.tcf
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\RootB.tcf
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\Run_v01.tcf
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\a
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\a\present.csv
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\alternate_v02.tgc
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\b
+2026-11-23 12:53:21.006 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\dirty.payload
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\dirty.tgc
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\dirty.trd
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\geom_v01.tgc
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\layer_v01.csv
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\layer_v02.csv
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\present.csv
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\shared
+2026-11-23 12:53:21.007 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\shared\context.trd
+2026-11-23 12:53:21.008 [trace] [File Watcher ('parcel')] [DELETED] <UNC_SCRATCH>\case-3HEj9c\unrelated.txt
+2026-11-23 12:53:21.083 [trace] [File Watcher ('parcel')]  >> normalized [DELETED] <UNC_SCRATCH>\case-3HEj9c
+2026-11-23 12:53:21.446 [trace] [File Watcher (node.js)] Request to stop watching: <UNC_SCRATCH>\case-3hej9c\a (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>)
+2026-11-23 12:53:21.446 [trace] [File Watcher (node.js)] stopping file watcher (<UNC_SCRATCH>\case-3hej9c\a (excludes: <none>, includes: [{"base":"<UNC_SCRATCH>","pattern":".git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":".git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":".hg/store/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/objects/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.git/subtree-cache/**/**"},{"base":"<UNC_SCRATCH>","pattern":"*/.hg/store/**/**"}], filter: <none>, correlationId: <none>))
