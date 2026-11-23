@@ -3,7 +3,7 @@
 **Assessment prepared:** 23 November 2026.  
 **Tracking:** [issue #3](https://github.com/Chain-Frost/tuflow_validator/issues/3) — evidence/test work only, Refs #3.  
 **Base production source:** main at 78050053c5330bd51f49fea536c6f6f7524080e4.  
-**Status:** current-build genuine Windows SMB acceptance **NOT YET RUN**. No new measured pass, native watcher count or approved performance threshold is claimed here.
+**Status:** genuine current-build UNC/mapped SMB acceptance **NOT YET RUN**. Hosted Windows local-only current-build acceptance passed at evidence SHA `82f85d2c07f011a633387de00af41986de3098aa`; native watcher attribution and performance acceptance thresholds remain unverified.
 
 The evidence branch adds only opt-in probes, a summariser, this record and local-only hosted CI. Record the final branch SHA independently from the unchanged base main source SHA.
 
@@ -13,22 +13,32 @@ The evidence branch adds only opt-in probes, a summariser, this record and local
 - [Historical real Windows SMB evidence](https://github.com/Chain-Frost/tuflow_validator/tree/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23) tested earlier B 889d5e2 and D2 f584550 source, **not current main**. N=19 warm trials after three warmups: wide graph median B→D2 local 94.129→65.527 ms, mapped 273.598→120.963 ms, UNC 323.267→154.845 ms; directory enumerations 121→2 without diagnostic changes. The old network probe could not produce actual TextDocument disposal. Process handle values were not native watcher counts.
 - [PR #28](https://github.com/Chain-Frost/tuflow_validator/pull/28) and [PR #29](https://github.com/Chain-Frost/tuflow_validator/pull/29) supersede [unmerged investigation PR #18](https://github.com/Chain-Frost/tuflow_validator/pull/18). Preserve its [immutable historical report at 3940b4b9](https://github.com/Chain-Frost/tuflow_validator/blob/3940b4b9ddbb1b1799ebdb1b37dca014b8fec6bd/docs/investigations/f08-trd-editor-root.md), recommend closing #18 **unmerged**, and do not import its old observational probe or workflow.
 
-## Evidence matrix — preparation state
+## Evidence matrix — current assessment
 
 | Question | Classification | Completion evidence |
 | --- | --- | --- |
 | Static variables, dependencies, F08 parent context, latest version, manual refresh and minimum-host behavior on main | **PASSED (existing main CI)** | Full regression, exact-main CI 45166290943; do not repeat 240 transitions |
-| Current-build installed VSIX, local Windows workspace lifecycle | **NOT YET RUN** | Current-head hosted installed-probe artifact: actual close/reopen events, diagnostic states, package/installed JS hashes |
-| Current-build synchronous validation on genuine local NTFS | **NOT YET RUN** | Real NTFS confirmed + raw 19-trial core JSON; hosted temporary storage is local-only, not independent NTFS certification |
+| Current-build installed VSIX, hosted Windows local workspace lifecycle | **PASSED (hosted local only)** | [Run 45174533535](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533535): actual close/reopen, independent diagnostics, installed 11/11 runtime JS byte identity and scratch cleanup |
+| Current-build synchronous validation on genuine local NTFS | **BLOCKED (NTFS not independently verified)** | Hosted Windows temporary local core passed; local operator must establish physical NTFS and collect matching 19-trial raw JSON |
 | Current-build synchronous validation on remote UNC and matching mapped SMB | **BLOCKED here** | Owner-approved real remote share and same-build/fixture raw samples for each spelling |
-| Current installed supported-workspace file create/delete/change smoke | **NOT YET RUN** | Installed probe with live diagnostic event and corrected target state on each storage spelling |
+| Current installed supported-workspace file create/delete smoke | **PASSED (hosted local only)** | Installed extension received diagnostic event with target state changes; genuine SMB spellings still to test |
 | Current installed network workspace: close event, B-only retirement, other parent preserved, last-root retirement, stale callbacks, reopening | **BLOCKED here** | Real onDidCloseTextDocument and isClosed=true, before/after diagnostics, two bounded cycles, not merely closed tabs |
 | Native watcher types/identities attributed to active Validator | **BLOCKED / not exposed by current package** | Only attributable native traces if available. A missing native counter is a measurement limit, not automatically a product defect |
-| OS process handles/RSS/heap, Node handle proxy and isolated host shutdown | **NOT YET RUN** | Phase samples + runner completion; do not equate any proxy to watcher count |
+| OS process handles/RSS/heap, Node handle proxy and isolated host shutdown | **PASSED (hosted local samples only)** | 16 measured phases at actual extension-host PID, isolated runner exit; these are *not* native watcher identities or a no-leak claim |
 | Earlier B/D2 SMB speedup and tab-close observations | **HISTORICAL-ONLY** | Retain old source SHAs and evidence |
 | Outside-workspace SMB automatic notification | **ACCEPTED UNSUPPORTED** | Permanent owner decision; [#23](https://github.com/Chain-Frost/tuflow_validator/issues/23) closed as not planned |
 
 PASSED requires a directly observed result on identified source and environment. DEFECT requires a minimal in-scope reproducer. BLOCKED identifies missing hardware, access or observability. HISTORICAL-ONLY cannot qualify a different source. No invented latency or memory acceptance threshold is applied.
+
+## Completed current-build hosted Windows evidence (not SMB)
+
+[Exact-head hosted run 45174533535](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533535) passed at evidence source SHA `82f85d2c07f011a633387de00af41986de3098aa`; it differs from unchanged production main only by opt-in tests, workflow and documentation. The VSIX SHA-256 was `81b9ffb56024fff98767a72880bd1cdfcfe083f566df6d65f9baacbea20531f8`; all 11 installed runtime JavaScript modules were byte-identical to compiled source. Actual VS Code 1.147.0 / Extension Host Node 24.22.1; build Node 22.23.5.
+
+The installed probe passed 16 diagnostic/resource snapshots, two cycles of **actual** A/B `onDidCloseTextDocument` events and original `isClosed=true`, removal of B-only errors with A unchanged, last-root error retirement, no stale callback republishing, and independent A/B reopening. A supported local workspace file create/delete smoke test passed; `isClosed=false` notifications for the intermediate renamed document were not misclassified as root closure. Scratch sentinels retained hashes, temporary directories and the isolated profile were removed, and the runner observed extension-host termination.
+
+The synthetic core corpus has **183 files / 117,425 bytes** and fixture manifest SHA-256 `55a7a7a506948fc5317c00ce8dac5f24e86e739d15d04c07657de398c45f163d`. N=19 warm trials after 3 discarded warmups: **wide median/p95 124.226/131.516 ms**; **121 reads, 576 exists, 2 readdir** per wide trial. Windows hosted temporary storage was not independently certified NTFS; there is no current real SMB, cold physical-disk, native watcher-type or owner-defined latency acceptance claim. [Raw trial and lifecycle JSON artifact 14818292138](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533535/artifacts/14818292138).
+
+The full cross-platform VS Code 1.74/current Stable matrix, [run 45174533609](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533609), also passed with identical file-tree identity between its GitHub test merge commit and `82f85d2`. [Core baseline workflow](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533556) and [D2 workflow](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45174533449) passed. Codex identified two P2 fail-open gaps in the first three-spelling matrix implementation: dropped scenario arrays and absent fingerprints could spuriously pass. The matrix now requires all reviewed repeated scenarios and a real SHA-256 signature for each first/warm trial; dedicated negative tests exercise missing scenarios, missing/null fingerprints, mismatched parity and provenance. **The first hosted results precede these evidence-only matrix test corrections; their exact source identity is retained, and revised-head CI/review must pass separately before any integration.**
 
 ## Fixture coverage and probe limits
 
