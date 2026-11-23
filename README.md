@@ -53,6 +53,8 @@ Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
+For relative paths in a TRD, open the source TCF so validation has the correct base directory and inherited static variables. Opening the included TRD for editing keeps each known TCF's independent context. Without a known source TCF, relative TRD references remain unchecked; block diagnostics and fully specified absolute input paths are still checked. A missing diagnostic does not establish that an unchecked reference exists.
+
 Activation note: the extension activates when a supported file is opened with the TUFLOW language, or when a workspace contains a supported control file. Files opened outside a workspace can be validated.
 
 ## Ignoring issues

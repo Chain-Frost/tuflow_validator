@@ -524,6 +524,21 @@ function analyzeFile(
                 continue;
             }
 
+            if (extension === '.trd' && !activeTcfDirectory) {
+                // Opening an included TRD does not establish a new source TCF.
+                // Its relative inputs remain unknown in this standalone pass;
+                // each known parent still checks them with its own context.
+                const normalizedCandidate = expanded.replace(/\\/g, '/');
+                const fullyQualifiedWindowsPath = /^[a-z]:\//i.test(normalizedCandidate)
+                    || /^\/\/[^/]+\/[^/]+(?:\/|$)/.test(normalizedCandidate);
+                const absoluteHostPath = process.platform !== 'win32' && path.isAbsolute(normalizedCandidate);
+                // A drive-relative or drive-less rooted Windows path also
+                // needs context. Concrete absolute inputs remain checkable.
+                if (!fullyQualifiedWindowsPath && !absoluteHostPath) {
+                    continue;
+                }
+            }
+
             const resolvedPath = resolvePath(pathBaseDirectory, expanded);
             dependencies.add(pathIdentity(resolvedPath));
             if (!fs.existsSync(resolvedPath)) {
