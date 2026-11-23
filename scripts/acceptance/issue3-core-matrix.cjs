@@ -39,6 +39,16 @@ const fixture = data[0].environment;
 assert.ok(sourcePattern.test(source.commit), 'Source SHA must be a complete Git commit');
 assert.ok(sha256Pattern.test(source.vsixSha256), 'VSIX SHA-256 must be recorded');
 assert.ok(sha256Pattern.test(fixture.fixtureManifestSha256), 'Fixture manifest SHA-256 must be recorded');
+assert.equal(fixture.platform, 'win32', 'This matrix qualifies a single Windows client');
+assert.equal(fixture.warmups, 3, 'Comparable runs require three discarded warmups');
+assert.equal(fixture.timedSamples, 19, 'Comparable runs require 19 timed trials');
+assert.ok(fixture.settings && typeof fixture.settings === 'object',
+    'Recorded Validator settings are required');
+const sameHostFields = ['platform', 'arch', 'node', 'osRelease', 'cpuModel', 'cpuCount'];
+for (const name of sameHostFields) {
+    assert.ok(fixture[name] !== undefined && fixture[name] !== null && fixture[name] !== '',
+        'Missing baseline host identity: ' + name);
+}
 for (const [i, item] of data.entries()) {
     assert.equal(item.failure, undefined, labels[i] + ' benchmark reported an error');
     assert.equal(item.source.commit, source.commit, 'Different source SHAs');
@@ -52,6 +62,13 @@ for (const [i, item] of data.entries()) {
     assert.equal(item.environment.syntheticIoLatencyMsPerFixtureOperation, 0,
         'Artificial latency is not physical storage evidence');
     assert.equal(item.environment.fixturesRemoved, true, 'Disposable benchmark fixture was not removed');
+    assert.equal(item.environment.warmups, fixture.warmups, 'Different warmup counts');
+    assert.equal(item.environment.timedSamples, fixture.timedSamples, 'Different timed sample counts');
+    assert.deepEqual(item.environment.settings, fixture.settings, 'Different Validator settings');
+    for (const name of sameHostFields) {
+        assert.equal(item.environment[name], fixture[name],
+            labels[i] + ': different Windows client identity ' + name);
+    }
     assert.deepEqual(Object.keys(item.results || {}).sort(), expectedScenarios,
         labels[i] + ': missing or unexpected benchmark scenario');
     const first = item.results.firstAnalysis;
@@ -74,7 +91,8 @@ for (const key of repeatedScenarios) {
     for (const [i, item] of data.entries()) {
         const trials = item.results[key]?.trials;
         assert.ok(Array.isArray(trials), labels[i] + '/' + key + ': missing trial array');
-        assert.ok(trials.length >= 19, labels[i] + '/' + key + ': fewer than 19 timed samples');
+        assert.equal(trials.length, item.environment.timedSamples,
+            labels[i] + '/' + key + ': raw trial count differs from declared sample count');
         for (const [index, trial] of trials.entries()) {
             requireFingerprint(trial.diagnosticSignature, labels[i] + '/' + key +
                 '/trial-' + index);
