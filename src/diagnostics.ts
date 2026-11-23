@@ -382,7 +382,7 @@ function analyzeRootDocument(document: vscode.TextDocument): Map<string, vscode.
     const visited = new Map<string, vscode.Diagnostic[]>();
     const rootPath = document.fileName;
     const readText = createControlTextSnapshotReader(document);
-    const rootContents = readText(rootPath) ?? document.getText();
+    const rootContents = document.getText();
     const latestCheckContext = buildLatestCheckContext(document, readText);
     // Root files and latest-TCF graph sources are dependencies even when clean.
     const dependencies = new Set<string>([pathIdentity(rootPath), ...latestCheckContext.discoveryPaths]);
