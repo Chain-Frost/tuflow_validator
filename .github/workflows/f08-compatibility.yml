@@ -39,7 +39,9 @@ jobs:
       - name: Apply only the F08 production delta and its regression tests
         shell: bash
         run: |
-          git -C f08 diff 936231289b767ec0028a0be7b18bb78596dc4fd6 HEAD -- src/diagnostics.ts > f08.patch
+          # B intentionally changes the dependency bookkeeping immediately
+          # after this guard; one context line keeps that independent change.
+          git -C f08 diff --unified=1 936231289b767ec0028a0be7b18bb78596dc4fd6 HEAD -- src/diagnostics.ts > f08.patch
           if test -s f08.patch; then git -C agent-b apply ../f08.patch; fi
           cp f08/src/test/suite/trd_editor_context.test.ts agent-b/src/test/suite/
           echo "F08_SOURCE_SHA=$(git -C f08 rev-parse HEAD)"

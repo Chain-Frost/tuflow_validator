@@ -8,7 +8,7 @@ The regression-only commit `7fb15b310fb2b22a2b29abae9905e5ebc895941b` has no pro
 
 - Main source baseline: `936231289b767ec0028a0be7b18bb78596dc4fd6`; [run 45115200604](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45115200604).
 - Pinned B source: `53f756aa9c96da7399425d32b0325fe23b6c6082`; [compatibility run 45115200670](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45115200670). Only the new test is copied into this checkout before the production fix exists; B's branch is never modified.
-- Linux jobs reproduce all four expected regression failures. Windows baseline and post-fix results are pending at this documentation snapshot; consult the final PR evidence before treating them as passed.
+- Linux and Windows jobs reproduce all four expected regression failures on both sources. Existing tests pass: main 55 Linux / 56 Windows, B 62 Linux / 63 Windows (one Windows-only test skipped on Linux). The failing assertions show only the additional F08 errors. Post-fix results are pending at this documentation snapshot; consult the final PR evidence before treating them as passed.
 
 Both correct and formerly incorrect nested-include locations are inside the unique disposable fixture. The regression suite asserts the correct behavior; it does not encode the defect as a permanent passing observation.
 
