@@ -59,6 +59,10 @@ versions, checked source SHAs, both VSIX SHA-256 hashes, installed locations and
 individual checks. `Stable` intentionally tracks the current editor; its resolved
 version is recorded rather than described as a fixed version.
 
+Every installed-host invocation removes old evidence and verifies a fresh unique
+invocation ID, mode, source SHAs and package hashes. A zero editor exit without
+probe execution fails; the runner's regression tests cover that failure mode.
+
 This is not a network-drive acceptance suite, a minimum-OS certification, or a
 claim about every third-party extension. Real UNC/SMB reliability remains
 separately tracked. The pinned Helper source is a reproducible coexistence

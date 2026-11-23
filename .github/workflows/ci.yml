@@ -47,6 +47,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Verify installed-host evidence fails closed
+        run: npm run test:compatibility-runner
+
       # npm test runs pretest (TypeScript compilation + ESLint) before
       # starting the actual VS Code extension-host integration suite.
       - name: Compile, lint and run VS Code integration tests (Linux)

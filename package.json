@@ -109,6 +109,7 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "test:compatibility": "node scripts/compatibility/run-installed.cjs",
+    "test:compatibility-runner": "node --test scripts/compatibility/runner.test.cjs",
     "test:container": "bash scripts/test-container.sh",
     "package:vsix": "bash scripts/package-vsix.sh",
     "package:vsix:ci": "vsce package --no-dependencies --out validator-ci.vsix",

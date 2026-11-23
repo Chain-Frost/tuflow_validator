@@ -45,6 +45,8 @@ async function main() {
             'telemetry.telemetryLevel': 'off'
         }));
         const profileArgs = [`--user-data-dir=${profile}`, `--extensions-dir=${extensions}`];
+        const invocation = { invocationId: crypto.randomUUID(), mode, requestedVSCode: version,
+            sourceSha, helperSha, packages };
         try {
             for (const vsix of mode === 'with-helper' ? [validatorVsix, helperVsix] : [validatorVsix]) {
                 const result = await runVSCodeCommand(
@@ -53,7 +55,7 @@ async function main() {
                 );
                 console.log(result.stdout.trim());
             }
-            await runTests({
+            const evidence = await runProbeWithFreshEvidence(resultFile, invocation, () => runTests({
                 vscodeExecutablePath,
                 extensionDevelopmentPath: path.join(__dirname, 'probe'),
                 extensionTestsPath: path.join(__dirname, 'probe/index.cjs'),
@@ -63,11 +65,9 @@ async function main() {
                     TPV_COMPAT_WORKSPACE: workspace,
                     TPV_COMPAT_EXTENSIONS: extensions,
                     TPV_COMPAT_EVIDENCE: resultFile,
-                    TPV_COMPAT_PROVENANCE: JSON.stringify({ requestedVSCode: version, sourceSha, helperSha, packages })
+                    TPV_COMPAT_PROVENANCE: JSON.stringify(invocation)
                 }
-            });
-            const evidence = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
-            assert.equal(evidence.status, 'passed', 'Installed-host checks must report success');
+            }));
             console.log(JSON.stringify(evidence));
         } finally {
             fs.rmSync(disposable, { recursive: true, force: true, maxRetries: 20, retryDelay: 100 });
@@ -75,7 +75,23 @@ async function main() {
     }
 }
 
-main().catch(error => {
-    console.error(error);
-    process.exitCode = 1;
-});
+async function runProbeWithFreshEvidence(resultFile, expected, runProbe) {
+    // A zero exit code alone does not prove that the editor executed the probe.
+    // Do not let a previous successful run satisfy this invocation's checks.
+    fs.rmSync(resultFile, { force: true });
+    await runProbe();
+    const evidence = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
+    assert.equal(evidence.status, 'passed', 'Installed-host checks must report success');
+    for (const [key, value] of Object.entries(expected)) {
+        assert.deepEqual(evidence[key], value, `Installed evidence has incorrect ${key}`);
+    }
+    return evidence;
+}
+
+exports.runProbeWithFreshEvidence = runProbeWithFreshEvidence;
+if (require.main === module) {
+    main().catch(error => {
+        console.error(error);
+        process.exitCode = 1;
+    });
+}
