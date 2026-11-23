@@ -55,15 +55,6 @@ Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 
 Activation note: the extension activates when a supported file is opened with the TUFLOW language, or when a workspace contains a supported control file. Files opened outside a workspace can be validated.
 
-## Refresh diagnostics when remote notifications fail
-
-If a TUFLOW control file is opened directly from a mapped/UNC network share **without opening that folder as a VS Code workspace**, some Windows/SMB configurations do not deliver filesystem change events. The Problems panel may then retain an outdated result after a file is created, renamed, deleted or changed on disk.
-
-- Prefer **File → Open Folder** for the relevant model/scratch folder. Network change notifications passed the independent Windows acceptance tests when the share was opened as a workspace.
-- When a folder cannot be opened, run **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette (`Ctrl+Shift+P`). This rescans the open control-file roots and their dependencies using current dirty editor buffers, without saving files, changing settings or running TUFLOW. Repeat it after external file changes.
-
-**This is an explicit recovery action, not a replacement for automatic notifications.** It does not enable background polling or guarantee that remote filesystem watchers work without a workspace. See [the tracked remote-watcher limitation](https://github.com/Chain-Frost/tuflow_validator/issues/23) and the [independent network evidence](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt). No GeoPackage database contents are accessed.
-
 ## Ignoring issues
 Use comments to suppress diagnostics when needed.
 - **Ignore a specific line**: append `! tpv-ignore`.
@@ -108,6 +99,18 @@ file02.tcf     # latest (highest in its series)
 king05.tcf
 king08.tcf     # latest (highest in its series)
 ```
+
+## Network-project automatic freshness
+
+TUFLOW control files are ordinarily used as part of a model project. For models stored on UNC or mapped SMB shares, **automatic refresh after external filesystem changes is supported only when the relevant model directory is opened as a VS Code workspace** (use **File → Open Folder**). This support boundary is based on the tested Windows/network configurations; it is not a guarantee for every SMB server.
+
+**Opening an individual control file directly from a network share without a workspace is outside the supported automatic-freshness configuration.** Initial path diagnostics and editor-driven validation may still work, but external creation, deletion, renaming and editing of referenced files or newer-version siblings may not update Problems automatically. This is an accepted, permanent limitation, not a planned watcher fix.
+
+### Manual refresh
+
+Run **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette (`Ctrl+Shift+P`) to recompute diagnostics for all open supported control-file roots and their dependencies. The command uses current dirty editor buffers without saving files, changing settings or running TUFLOW. For individually opened network files outside a workspace, repeat it after external file changes.
+
+Manual refresh is an explicit action and does not provide automatic monitoring or background polling. The supported workflow for automatic network freshness remains **File → Open Folder**. See [issue #23](https://github.com/Chain-Frost/tuflow_validator/issues/23), closed as not planned, for the accepted limitation and [independent network evidence](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt). No GeoPackage database contents are accessed.
 
 ## Limitations and non-goals
 - Macros and variables like `<<OutputRoot>>` or `<<~s1~>>` are ignored if they cannot be resolved.
