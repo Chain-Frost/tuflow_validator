@@ -31,7 +31,11 @@ function report() {
         source: { commit: 'a'.repeat(40), vsixSha256: 'b'.repeat(64) },
         environment: { fixtureFiles: 183, fixtureBytes: 117425,
             fixtureManifestSha256: 'c'.repeat(64),
-            syntheticIoLatencyMsPerFixtureOperation: 0, fixturesRemoved: true, warmups: 3 },
+            syntheticIoLatencyMsPerFixtureOperation: 0, fixturesRemoved: true, warmups: 3,
+            timedSamples: 19, platform: 'win32', arch: 'x64', node: 'v22.23.5',
+            osRelease: '10.0.test', cpuModel: 'synthetic-test-cpu', cpuCount: 4,
+            settings: { diagnosticLevel: 'hint', enableLatestVersionChecks: true,
+                enableIfStatementChecks: true, enableIfStatementFormatting: false } },
         results
     };
 }
@@ -120,4 +124,21 @@ test('missing scenario from every spelling must still fail', () => {
     expectRejected(reports => {
         for (const report of reports) delete report.results.wideGraph;
     }, /missing or unexpected benchmark scenario/);
+});
+
+test('different Validator settings cannot be compared', () => {
+    expectRejected(reports => { reports[2].environment.settings.diagnosticLevel = 'none'; },
+        /Different Validator settings/);
+});
+test('different Windows host identity cannot be compared', () => {
+    expectRejected(reports => { reports[2].environment.cpuModel = 'another-host'; },
+        /different Windows client identity/);
+});
+test('different discarded-warmup setting cannot be compared', () => {
+    expectRejected(reports => { reports[1].environment.warmups = 2; },
+        /Different warmup counts/);
+});
+test('a truncated trial set must be rejected rather than reinterpreted', () => {
+    expectRejected(reports => { reports[1].results.wideGraph.trials.pop(); },
+        /raw trial count differs from declared sample count/);
 });
