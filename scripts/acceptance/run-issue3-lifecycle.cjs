@@ -60,6 +60,41 @@ function checkSentinels(directory, sentinels) {
         fs.existsSync(path.join(directory, s.relative)) &&
         sha(fs.readFileSync(path.join(directory, s.relative))) === s.sha256);
 }
+
+function installedRuntimeIdentity(extensions) {
+    const candidates = fs.readdirSync(extensions, { withFileTypes: true })
+        .filter(entry => entry.isDirectory()).map(entry => path.join(extensions, entry.name))
+        .filter(directory => {
+            const pkg = path.join(directory, 'package.json');
+            if (!fs.existsSync(pkg)) return false;
+            const data = JSON.parse(fs.readFileSync(pkg, 'utf8'));
+            return String(data.publisher).toLowerCase() === 'chain-frost' &&
+                data.name === 'tuflow-path-validator';
+        });
+    assert.equal(candidates.length, 1, 'Exactly one isolated installed Validator package is required');
+    const extensionPath = candidates[0];
+    const entries = [];
+    function walk(directory) {
+        for (const item of fs.readdirSync(directory, { withFileTypes: true })) {
+            const name = path.join(directory, item.name);
+            if (item.isDirectory()) walk(name);
+            else if (item.isFile() && name.endsWith('.js')) {
+                const relative = path.relative(extensionPath, name).replace(/\\/g, '/');
+                const compiled = path.join(root, relative);
+                assert.ok(fs.existsSync(compiled), 'Installed runtime JS has no source build: ' + relative);
+                const installedHash = sha(fs.readFileSync(name));
+                const compiledHash = sha(fs.readFileSync(compiled));
+                assert.equal(installedHash, compiledHash, 'Installed runtime differs from compiled source: ' + relative);
+                entries.push({ path: relative, sha256: installedHash });
+            }
+        }
+    }
+    walk(path.join(extensionPath, 'out'));
+    assert.ok(entries.length >= 1, 'No installed runtime JS files were verified');
+    entries.sort((a, b) => a.path.localeCompare(b.path));
+    return { installedModuleCount: entries.length, byteIdenticalToCompiled: true, entries };
+}
+
 function assertFixtureParent() {
     assert.ok(parent && fs.existsSync(parent) && fs.statSync(parent).isDirectory(),
         'Set TPV_ISSUE3_FIXTURE_PARENT to a pre-existing approved scratch parent');
@@ -107,6 +142,7 @@ async function main() {
         const profileArgs = ['--user-data-dir=' + profile, '--extensions-dir=' + installation];
         await runVSCodeCommand([...profileArgs, '--install-extension', vsix, '--force', '--no-sandbox'],
             { version: requestedVSCode, spawn: { timeout: 120000 } });
+        report.installedRuntime = installedRuntimeIdentity(installation);
         fs.rmSync(probeResult, { force: true });
         await runTests({
             vscodeExecutablePath: executable,
