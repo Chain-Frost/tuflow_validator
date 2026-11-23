@@ -161,7 +161,7 @@ exports.run = async function run() {
         capture('only-A-open');
         let b = await open(paths.b);
         const child = await open(paths.trd);
-        await until(() => missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>'),
+        await until(() => missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>')),
             'B-specific inherited missing variable');
         assert.equal(missing(paths.trd).length, 3, 'Shared TRD must contain two shared and one B-only error');
         assert.ok(diagnostics(paths.a).some(d => d.code === 'TPV002'));
@@ -194,7 +194,7 @@ exports.run = async function run() {
 
         for (let cycle = 1; cycle <= 2; cycle++) {
             const retiredB = await retire(b, cycle, 'B');
-            await until(() => !missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>'),
+            await until(() => !missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>')),
                 'B-only shared diagnostic must retire');
             assert.equal(missing(paths.trd).length, 2, 'A shared errors must survive B retirement');
             assert.deepEqual(diagnostics(paths.b), []);
@@ -225,7 +225,7 @@ exports.run = async function run() {
             capture('cycle-' + cycle + '-A-reopened');
             fs.copyFileSync(retiredB, paths.b);
             b = await open(paths.b);
-            await until(() => missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>'),
+            await until(() => missing(paths.trd).some(m => m.includes('<<LOCAL_SHAPE>>')),
                 'Reopened B must restore its independent contribution');
             assert.equal(missing(paths.trd).length, 3);
             capture('cycle-' + cycle + '-both-reopened');
