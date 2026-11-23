@@ -163,12 +163,12 @@ exports.run = async function run() {
         assert.ok(diagnostics(paths.b).some(d => d.code === 'TPV002'));
         capture('both-roots-open');
 
-        await replace(child, 'assets/missing.shp', 'assets/present.shp');
+        await replace(child, 'assets/missing.shp', 'assets/edited_present.shp');
         assert.ok(child.isDirty, 'The child edit must be an unsaved editor buffer');
         await until(() => missing(paths.trd).length === 2,
             'Dirty child edit should remove the common error without saving');
         capture('child-dirty-updated');
-        await replace(child, 'assets/present.shp', 'assets/missing.shp');
+        await replace(child, 'assets/edited_present.shp', 'assets/missing.shp');
         await until(() => missing(paths.trd).length === 3,
             'Dirty child restore should reinstate the common error');
         capture('child-dirty-restored');
