@@ -99,6 +99,13 @@
           ".toc"
         ]
       }
+    ],
+    "commands": [
+      {
+        "command": "tuflowValidator.refreshDiagnostics",
+        "title": "Refresh Path Diagnostics",
+        "category": "TUFLOW Path Validator"
+      }
     ]
   },
   "scripts": {
