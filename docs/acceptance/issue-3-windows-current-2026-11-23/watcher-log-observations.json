@@ -1,8 +1,216 @@
 {
   "warnings": {
     "ntfs": [],
-    "unc": [],
-    "mapped": []
+    "unc": [
+      {
+        "sourceLine": 184,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 185,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 189,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 190,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 195,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 196,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 203,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 204,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 211,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 212,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 217,
+        "text": "[main 2026-11-23T13:20:03.778Z] [AgentHost:stderr] Error: UNKNOWN: unknown error, watch"
+      },
+      {
+        "sourceLine": 226,
+        "text": "[main 2026-11-23T13:20:03.877Z] [AgentHost:stderr] Error: UNKNOWN: unknown error, watch"
+      },
+      {
+        "sourceLine": 234,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 235,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 491,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 492,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 494,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 495,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 497,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 498,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 500,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 501,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 503,
+        "text": "[File Watcher (node.js)] Failed to watch \\\\SMB-SERVER\\TEST-SHARE\\approved-parent\\tpv-issue3-lifecycle-zx6fau\\b\\runs for"
+      },
+      {
+        "sourceLine": 505,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 506,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      }
+    ],
+    "mapped": [
+      {
+        "sourceLine": 187,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 188,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 195,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 196,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 201,
+        "text": "[main 2026-11-23T13:20:24.206Z] [AgentHost:stderr] Error: UNKNOWN: unknown error, watch"
+      },
+      {
+        "sourceLine": 210,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 211,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 215,
+        "text": "[main 2026-11-23T13:20:24.343Z] [AgentHost:stderr] Error: UNKNOWN: unknown error, watch"
+      },
+      {
+        "sourceLine": 259,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 260,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 267,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 268,
+        "text": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 319,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 320,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 462,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 463,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 465,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 466,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 468,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 469,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 471,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 472,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 474,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 475,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      },
+      {
+        "sourceLine": 477,
+        "text": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+      },
+      {
+        "sourceLine": 478,
+        "text": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+      }
+    ]
   },
+  "sourceEncoding": "UTF-16LE PowerShell launcher logs",
+  "ntfsObservation": "No matching watcher warnings in the NTFS launcher log; empty NTFS array is intentional.",
   "interpretation": "These messages are not attributed native watcher identities. Workspace create/delete diagnostic assertions passed on every spelling. No native watcher count or leak-free claim is made."
 }

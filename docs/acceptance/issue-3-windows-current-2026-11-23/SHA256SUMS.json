@@ -1,18 +1,18 @@
 [
   {
     "path": "aborted-launch-cleanup.json",
-    "bytes": 346,
-    "sha256": "42c01dc5ded61ce084d0c282682ddfefeee63d786caa7c470e1b4994666171b3"
+    "bytes": 337,
+    "sha256": "849ab8d65bb3a88894ed09cec4096f564e5aa4431a4c3c1f53dab41a111949b8"
   },
   {
     "path": "core-mapped.json",
-    "bytes": 180639,
-    "sha256": "011578b6fedb70e75cc56e21ca035b71bd9c84a97f106e669dcd28c49e96617e"
+    "bytes": 175458,
+    "sha256": "f221191ecc388d608775efe8625bdce14477299c2673115cdf68768cad53498c"
   },
   {
     "path": "core-ntfs.json",
-    "bytes": 180501,
-    "sha256": "c39ff10ab1bdccb891741a1353f1c22ac7713e5334a8b6907092cfc3f1eaa650"
+    "bytes": 175320,
+    "sha256": "8dfda1bc9efe489561aa6c01472a5c834cad6477292385a06da6aecd189e1780"
   },
   {
     "path": "core-summary.csv",
@@ -21,47 +21,47 @@
   },
   {
     "path": "core-summary.json",
-    "bytes": 9944,
-    "sha256": "f6e83e9338f543db285cebbcd3356583b45d037e5386e1b40714edb6d371417c"
+    "bytes": 9607,
+    "sha256": "89e96f26a87d30d937337dacd63c2d5f4bc5fa03d8ea44fc3eb25afe766e37c9"
   },
   {
     "path": "core-unc.json",
-    "bytes": 180688,
-    "sha256": "ed52f53e98be01d47e3b98188636094ce24c93d13e629ed1fdff8adc875c04c8"
+    "bytes": 175507,
+    "sha256": "8aa258bbefe0fe5db931e4a82dfbb36dbc976b6762e029786cfb3031827bea16"
   },
   {
     "path": "environment.json",
-    "bytes": 1678,
-    "sha256": "a66c0f46cb385b02771356d38d96325ec65721d62035306526da4357822aba60"
+    "bytes": 1642,
+    "sha256": "6dd43ec5d2c4959144a859399166cd519a49ce6f87a429475b9af39ead4931b4"
   },
   {
     "path": "lifecycle-mapped.json",
-    "bytes": 36570,
-    "sha256": "1316d1495b76c307fda5e4a2a141a12880b1fe587a9600f6f36bffed9a16b08d"
+    "bytes": 35350,
+    "sha256": "d3cb3497bdeaa26d36c216aa607114200f65877ccf3f62551d24a94cd5ba1000"
   },
   {
     "path": "lifecycle-ntfs.json",
-    "bytes": 36427,
-    "sha256": "8b421c27a2af371d5057695b54aa9f9317fc76c3d038fcc8bfc4f60b09f2f5d1"
+    "bytes": 35211,
+    "sha256": "dd1156098e1ea95bfb8beb1482ec9b632cc319529a5979e6dd383fa852c9a015"
   },
   {
     "path": "lifecycle-unc.json",
-    "bytes": 36786,
-    "sha256": "7728a7d9e2fcfb6523c51db3c0adb730fed89464dc3cdfdc67334284565cea47"
+    "bytes": 35557,
+    "sha256": "8b41955e5db2eedce62ad2d430b0c61299244944f1bf5573aec8666a7a9143f5"
   },
   {
     "path": "REPORT.md",
-    "bytes": 10765,
-    "sha256": "5d05520b496750410c143b096980e8def70c0a13e4cc5daf4e498c1d785fc930"
+    "bytes": 10694,
+    "sha256": "481c4b36b1fb4a44a46ba3938c7a252d48feeb8cb4452104ea820c48fc7db815"
   },
   {
     "path": "shutdown.json",
-    "bytes": 95,
-    "sha256": "9ce28ff50281b3d60aa16ce01b83ba4eeaca3eeae9abaa19fed62b42376c4305"
+    "bytes": 91,
+    "sha256": "888043bbc5b80c99aa9dbbe957c6c17e90485e325cf6978be0519c8fc3ffa9e9"
   },
   {
     "path": "watcher-log-observations.json",
-    "bytes": 288,
-    "sha256": "1831fa5681ae0216b05d5e44f7db436c149aca4d1f602ca9213495f4eea3ca35"
+    "bytes": 9796,
+    "sha256": "269354e49ed1e37a4df483c1615201523b68602d92620993d1ec508998503f5c"
   }
 ]
