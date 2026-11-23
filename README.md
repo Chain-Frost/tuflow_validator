@@ -14,6 +14,10 @@ Lightweight VS Code extension that validates file paths referenced in TUFLOW con
 - Configurable minimum diagnostic severity (default: `hint`) and focus on path validation rather than a full TUFLOW grammar.
 - **Quick Fixes** help add ignore comments for a specific line or the entire file when issues should be suppressed, and offer to update versioned references when a `Set Variable Version` header is present in a `.tcf`.
 
+## Documented command inputs
+
+Path validation uses a command-aware allowlist. Each recognised input is classified as a data file, a referenced control file or an inline `Read File` include. See [the official-source command audit](docs/input-commands.md) for the AD and SWMM additions and scope limits.
+
 ## Supported control files
 - `.tcf`
 - `.tgc`
