@@ -2,7 +2,15 @@ name: Issue 3 current-build local lifecycle evidence
 
 on:
   pull_request:
+    paths:
+      - '.github/workflows/issue3-current-build-evidence.yml'
+      - 'scripts/acceptance/**'
+      - 'docs/acceptance/issue-3-current-build-2026-11-23.md'
   workflow_dispatch:
+
+concurrency:
+  group: issue3-evidence-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
