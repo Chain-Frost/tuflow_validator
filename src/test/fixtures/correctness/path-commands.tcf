@@ -11,3 +11,6 @@ If Event == 01.0p | 02.0p
 End If
 Set Variable OutputRoot == ..\missing\results\
 Some Custom Command == ..\missing\custom.shp
+Viscosity Formulation == SMAGORINSKY
+Viscosity Coefficients == 0.2, 0.1
+Unknown Experimental Command == value.2026

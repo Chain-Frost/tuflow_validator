@@ -59,6 +59,11 @@ suite('TUFLOW command-aware validation and block diagnostics', function () {
         assert.ok(!diagnostics.some(d => d.message.includes('custom.shp')));
         assert.ok(!diagnostics.some(d => d.message.includes('results')));
         assert.ok(!diagnostics.some(d => d.message.includes('DEV.2026')));
+        // #10: viscosity coefficients and version-like unknown values are not paths.
+        for (const value of ['SMAGORINSKY', '0.2, 0.1', 'value.2026']) {
+            assert.ok(!diagnostics.some(d => d.message.includes(value)),
+                `Unexpected diagnostic for non-file value: ${value}`);
+        }
 
         const actions = await vscode.commands.executeCommand<vscode.CodeAction[]>(
             'vscode.executeCodeActionProvider',
