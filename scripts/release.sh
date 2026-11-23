@@ -12,7 +12,7 @@ Usage: scripts/release.sh [--skip-tests] [--publish-entra] [--tag] [--gh-release
 Runs the local release workflow: install, compile, test, and package a VSIX.
 Optionally publishes interactively with Entra ID, creates a tag, and creates a
 GitHub release. GitHub releases do not currently trigger Marketplace
-publishing. OIDC is reserved for the future Marketplace rollout.
+publishing. OIDC uses the separate, configured manual GitHub Actions workflow.
 
 Environment:
   Azure authentication is required only with --publish-entra. Authenticate
@@ -81,7 +81,7 @@ if [[ "$publish_entra" -eq 1 ]]; then
   # vsce obtains a short-lived access token from Azure CLI or managed identity.
   run_npx vsce publish --azure-credential
 else
-  echo "==> Marketplace not published; use --publish-entra until OIDC is available"
+  echo "==> Marketplace not published; use an approved Entra release or the configured manual OIDC workflow"
 fi
 
 # Derive the git tag name directly from the `package.json` version.

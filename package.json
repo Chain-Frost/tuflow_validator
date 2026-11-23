@@ -126,7 +126,8 @@
     "publish:ovsx": "npx ovsx publish -p \"$OVSX_PAT\"",
     "publish:all": "npm run publish:vsix && npm run publish:ovsx",
     "publish:vsix:entra": "npx vsce publish --azure-credential",
-    "publish:vsix:oidc": "npx vsce publish --oidc"
+    "publish:vsix:oidc": "vsce publish --oidc",
+    "test:release": "node --test scripts/tests/verify-release.test.cjs"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
@@ -136,7 +137,7 @@
     "@typescript-eslint/eslint-plugin": "8.73.0",
     "@typescript-eslint/parser": "8.73.0",
     "@vscode/test-electron": "^2.2.0",
-    "@vscode/vsce": "^3.9.2",
+    "@vscode/vsce": "4.1.1",
     "eslint": "8.57.1",
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
