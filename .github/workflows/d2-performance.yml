@@ -1,0 +1,112 @@
+name: D2 directory listing optimisation qualification
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extension-host-and-vsix:
+    name: Agent E equivalent host + VSIX (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: npm ci
+      - name: Linux VS Code extension-host integration
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm test
+      - name: Windows VS Code extension-host integration
+        if: runner.os == 'Windows'
+        run: npm test
+      - name: Package tested source (never publish)
+        run: npx vsce package --out benchmark-d2.vsix
+      - name: Agent E VSIX boundary/identity verifier
+        run: python scripts/verify-vsix.py benchmark-d2.vsix
+
+  paired-core:
+    name: Paired B vs D2 core, same runner, no network claims
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: |
+          npm ci
+          npm run compile
+          npm run lint
+          npx vsce package --out benchmark-d2.vsix
+      # Checkouts occur AFTER root compilation and VSIX packaging; nested
+      # repository TypeScript sources would otherwise be included by tsc.
+      - name: Checkout unchanged, pinned B baseline
+        uses: actions/checkout@v4
+        with:
+          ref: cb038248e0987cb35a00223990185a0bb4016a25
+          path: before-b
+      - name: Checkout pinned and reviewed D1 driver
+        uses: actions/checkout@v4
+        with:
+          ref: 71b3cb56258ed03929665dbf2596af839c09bde6
+          path: d1-driver
+      - name: Compile original Agent B source separately
+        working-directory: before-b
+        run: |
+          npm ci
+          npm run compile
+          npx vsce package --out benchmark-b.vsix
+      - name: Use exactly the same D1 core benchmark driver in each checkout
+        run: |
+          mkdir -p scripts/benchmarks before-b/scripts/benchmarks
+          cp d1-driver/scripts/benchmarks/core-baseline.cjs scripts/benchmarks/core-baseline.cjs
+          cp d1-driver/scripts/benchmarks/core-baseline.cjs before-b/scripts/benchmarks/core-baseline.cjs
+      - name: Timed baseline B core analysis
+        working-directory: before-b
+        env:
+          TPV_SOURCE_SHA: 'cb038248e0987cb35a00223990185a0bb4016a25'
+          TPV_VSIX_PATH: ${{ github.workspace }}/before-b/benchmark-b.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-before-b.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_STORAGE_LABEL: 'same GitHub local runner as D2, cache/disk not cold'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Timed D2 candidate core analysis
+        env:
+          TPV_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          TPV_VSIX_PATH: ${{ github.workspace }}/benchmark-d2.vsix
+          TPV_BENCHMARK_OUTPUT: ${{ github.workspace }}/benchmark-after-d2.json
+          TPV_BENCHMARK_SAMPLES: '19'
+          TPV_STORAGE_LABEL: 'same GitHub local runner as B, cache/disk not cold'
+        run: node scripts/benchmarks/core-baseline.cjs
+      - name: Fail on changed diagnostics; show operation and wall-time comparison
+        run: node scripts/benchmarks/compare-core.cjs benchmark-before-b.json benchmark-after-d2.json
+      - name: Upload pinned before/after raw trials
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpv-b-vs-d2-linux
+          path: |
+            benchmark-before-b.json
+            benchmark-after-d2.json
+          if-no-files-found: warn
+          retention-days: 30
