@@ -53,7 +53,16 @@ Read GIS Z Shape == gis/terrain.gpkg >> contours
 Read GIS BC == missing/bc_01.shp | bc/valid_02.shp
 ```
 
-Activation note: the extension activates only when a workspace contains at least one supported control file.
+Activation note: the extension activates when a supported file is opened with the TUFLOW language, or when a workspace contains a supported control file. Files opened outside a workspace can be validated.
+
+## Refresh diagnostics when remote notifications fail
+
+If a TUFLOW control file is opened directly from a mapped/UNC network share **without opening that folder as a VS Code workspace**, some Windows/SMB configurations do not deliver filesystem change events. The Problems panel may then retain an outdated result after a file is created, renamed, deleted or changed on disk.
+
+- Prefer **File → Open Folder** for the relevant model/scratch folder. Network change notifications passed the independent Windows acceptance tests when the share was opened as a workspace.
+- When a folder cannot be opened, run **TUFLOW Path Validator: Refresh Path Diagnostics** from the Command Palette (`Ctrl+Shift+P`). This rescans the open control-file roots and their dependencies using current dirty editor buffers, without saving files, changing settings or running TUFLOW. Repeat it after external file changes.
+
+**This is an explicit recovery action, not a replacement for automatic notifications.** It does not enable background polling or guarantee that remote filesystem watchers work without a workspace. See [the tracked remote-watcher limitation](https://github.com/Chain-Frost/tuflow_validator/issues/23) and the [independent network evidence](https://github.com/Chain-Frost/tuflow_validator/blob/3600377d823562bbe3aebd6abdfd58407798f12e/docs/acceptance/windows-network-2026-11-23/README.txt). No GeoPackage database contents are accessed.
 
 ## Ignoring issues
 Use comments to suppress diagnostics when needed.
