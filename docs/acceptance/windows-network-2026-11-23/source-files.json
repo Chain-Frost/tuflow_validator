@@ -1,0 +1,182 @@
+{
+  "d1": {
+    "runtimeSourceFiles": [
+      {
+        "path": "src/codeActions.ts",
+        "sha256": "54c326e78e74019d1c0b486f3469eb26515ccb0d3d23b1feda36438ba7a79d56",
+        "bytes": 5616
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "d448b9aaafa16c21f1fa03b32eda980801161a1e42647a6fbdf4df86cf9a880e",
+        "bytes": 901
+      },
+      {
+        "path": "src/constants.ts",
+        "sha256": "8c466a3d66e43f96c1e265f5a36a1e5ed75e28374e15fc63449485277f77fb24",
+        "bytes": 915
+      },
+      {
+        "path": "src/diagnosticCodes.ts",
+        "sha256": "26ca4e99dd62f9b05c4e3ba1af644c6f17d4ec1a9da4d352e341486619170ddb",
+        "bytes": 850
+      },
+      {
+        "path": "src/diagnostics.ts",
+        "sha256": "246b897fe45508e659763389ee90bfd52c87031bf1c3bd2b7e17cb43d7758b38",
+        "bytes": 25012
+      },
+      {
+        "path": "src/extension.ts",
+        "sha256": "5188884fa0ae5d5f0520632d62341afc16dd625eef4a97573578b2473238c6f6",
+        "bytes": 4553
+      },
+      {
+        "path": "src/formatter.ts",
+        "sha256": "b75a0875ad702381dd45c4f15f9c50057fc02fccc299e9f9a510183cdcb5408b",
+        "bytes": 6708
+      },
+      {
+        "path": "src/io.ts",
+        "sha256": "406dee594ce03dd15eb1e185bd2b21e425b2759ed0336bf2c584e8c512c59f5d",
+        "bytes": 424
+      },
+      {
+        "path": "src/pathParsing.ts",
+        "sha256": "392dc4a861acc9d54f7caa4df4c557cccddcd8cedfd84e903e69bf1cbd40c2e9",
+        "bytes": 6448
+      },
+      {
+        "path": "src/staticVariables.ts",
+        "sha256": "fcfb94ddd09030f89cdb1a0bd1569756882bf573732bbcca5e0d483c26ef8b87",
+        "bytes": 1992
+      },
+      {
+        "path": "src/versioning.ts",
+        "sha256": "259cb29c93a68197aa56ada7e3b09bcf47fd80f5288a68d53ca4fe2f4b0b85e9",
+        "bytes": 18701
+      }
+    ],
+    "canonicalFileManifestSha256": "01ec7e5a16e5ee8fc6107cba292dd94f895f7a4d74310e8e08bc28565dbc066e"
+  },
+  "before": {
+    "runtimeSourceFiles": [
+      {
+        "path": "src/codeActions.ts",
+        "sha256": "54c326e78e74019d1c0b486f3469eb26515ccb0d3d23b1feda36438ba7a79d56",
+        "bytes": 5616
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "d448b9aaafa16c21f1fa03b32eda980801161a1e42647a6fbdf4df86cf9a880e",
+        "bytes": 901
+      },
+      {
+        "path": "src/constants.ts",
+        "sha256": "052635be7c27b50040ac19d3dba4ca299235c8c337030d70f05a66ba67d920ce",
+        "bytes": 995
+      },
+      {
+        "path": "src/diagnosticCodes.ts",
+        "sha256": "26ca4e99dd62f9b05c4e3ba1af644c6f17d4ec1a9da4d352e341486619170ddb",
+        "bytes": 850
+      },
+      {
+        "path": "src/diagnostics.ts",
+        "sha256": "2542f76b348348fa1cf232da64d946ce6587e1e13f60da936576db0d245635a2",
+        "bytes": 28140
+      },
+      {
+        "path": "src/extension.ts",
+        "sha256": "6047781362c568f511fdf5c905aac150a0dc53a4a2eba9ef564440fb5032ad8f",
+        "bytes": 5160
+      },
+      {
+        "path": "src/formatter.ts",
+        "sha256": "b75a0875ad702381dd45c4f15f9c50057fc02fccc299e9f9a510183cdcb5408b",
+        "bytes": 6708
+      },
+      {
+        "path": "src/io.ts",
+        "sha256": "915b1fa3e4b806afabbd3569fa9e665855a959057dd9feb4fd3a8b0a171e64aa",
+        "bytes": 2365
+      },
+      {
+        "path": "src/pathParsing.ts",
+        "sha256": "b0b1c52b365407c1c032e5dabe72363425ed496773624f74451b7a842a129a6a",
+        "bytes": 7914
+      },
+      {
+        "path": "src/staticVariables.ts",
+        "sha256": "fcfb94ddd09030f89cdb1a0bd1569756882bf573732bbcca5e0d483c26ef8b87",
+        "bytes": 1992
+      },
+      {
+        "path": "src/versioning.ts",
+        "sha256": "e10be6e22a9215dce2ae2365871a029077ba0cdb0e84166b2d96f4aad93d4d29",
+        "bytes": 21461
+      }
+    ],
+    "canonicalFileManifestSha256": "b07cf5bca2ba797489d7c3fb17702db8e6c3613557c63d89646758a075b8f3b6"
+  },
+  "d2": {
+    "runtimeSourceFiles": [
+      {
+        "path": "src/codeActions.ts",
+        "sha256": "54c326e78e74019d1c0b486f3469eb26515ccb0d3d23b1feda36438ba7a79d56",
+        "bytes": 5616
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "d448b9aaafa16c21f1fa03b32eda980801161a1e42647a6fbdf4df86cf9a880e",
+        "bytes": 901
+      },
+      {
+        "path": "src/constants.ts",
+        "sha256": "052635be7c27b50040ac19d3dba4ca299235c8c337030d70f05a66ba67d920ce",
+        "bytes": 995
+      },
+      {
+        "path": "src/diagnosticCodes.ts",
+        "sha256": "26ca4e99dd62f9b05c4e3ba1af644c6f17d4ec1a9da4d352e341486619170ddb",
+        "bytes": 850
+      },
+      {
+        "path": "src/diagnostics.ts",
+        "sha256": "a4a6d2ddfa6ec35fa2aa72393cc110bdbb7406fb9a751d45077f4468973e462e",
+        "bytes": 28181
+      },
+      {
+        "path": "src/extension.ts",
+        "sha256": "6047781362c568f511fdf5c905aac150a0dc53a4a2eba9ef564440fb5032ad8f",
+        "bytes": 5160
+      },
+      {
+        "path": "src/formatter.ts",
+        "sha256": "b75a0875ad702381dd45c4f15f9c50057fc02fccc299e9f9a510183cdcb5408b",
+        "bytes": 6708
+      },
+      {
+        "path": "src/io.ts",
+        "sha256": "915b1fa3e4b806afabbd3569fa9e665855a959057dd9feb4fd3a8b0a171e64aa",
+        "bytes": 2365
+      },
+      {
+        "path": "src/pathParsing.ts",
+        "sha256": "b0b1c52b365407c1c032e5dabe72363425ed496773624f74451b7a842a129a6a",
+        "bytes": 7914
+      },
+      {
+        "path": "src/staticVariables.ts",
+        "sha256": "fcfb94ddd09030f89cdb1a0bd1569756882bf573732bbcca5e0d483c26ef8b87",
+        "bytes": 1992
+      },
+      {
+        "path": "src/versioning.ts",
+        "sha256": "95a1765201b3b353054c8b7f5ab24dfac16a902451937cd36056997c7eb4bcf5",
+        "bytes": 22544
+      }
+    ],
+    "canonicalFileManifestSha256": "a7574bf1889b16b03f73cbb0699350dcd1d7eb9f39143dac56c294dd8906604b"
+  }
+}

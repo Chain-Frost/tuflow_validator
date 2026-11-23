@@ -1,0 +1,75 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 108036,
+    "workspaceFolders": []
+  },
+  "nativeEvents": [
+    {
+      "error": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "apiEvents": [],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:27:43.670Z",
+      "diagnostics": [
+        {
+          "code": {
+            "value": "TPV022",
+            "target": {
+              "$mid": 1,
+              "path": "/[MAPPED_SCRATCH]/tpv-notify-PzXrLa/geom_v02.tgc",
+              "scheme": "file"
+            }
+          },
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [],
+    "afterSettingsRefresh": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[MAPPED_SCRATCH]/tpv-notify-PzXrLa/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [],
+  "observationMs": 4006.1925,
+  "notificationAcceptance": "failed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": false,
+    "closeEvents": [],
+    "diagnostics": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[MAPPED_SCRATCH]/tpv-notify-PzXrLa/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "actualDocumentCloseAcceptance": "blocked",
+  "fixturesRemoved": true
+}

@@ -1,0 +1,77 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 110872,
+    "workspaceFolders": [
+      "file:[UNC_SCRATCH]"
+    ]
+  },
+  "nativeEvents": [
+    {
+      "error": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "apiEvents": [
+    {
+      "kind": "create",
+      "uri": "file:[UNC_SCRATCH]/tpv-notify-HoHGRN/geom_v02.tgc",
+      "time": "2026-11-23T00:28:15.072Z"
+    }
+  ],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:28:15.333Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:28:19.136Z",
+      "diagnostics": [
+        {
+          "code": "TPV022",
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ],
+    "afterSettingsRefresh": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [],
+  "probeRevision": 2,
+  "observationMs": 4013.0103000000004,
+  "notificationAcceptance": "passed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": false,
+    "closeEvents": [],
+    "diagnostics": [
+      {
+        "code": "TPV022",
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "actualDocumentCloseAcceptance": "blocked",
+  "fixturesRemoved": true
+}

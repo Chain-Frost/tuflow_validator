@@ -1,0 +1,150 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 108176,
+    "workspaceFolders": [
+      "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123"
+    ]
+  },
+  "nativeEvents": [
+    {
+      "event": "rename",
+      "name": "geom_v02.tgc",
+      "time": "2026-11-23T00:27:27.759Z"
+    },
+    {
+      "event": "change",
+      "name": "geom_v02.tgc",
+      "time": "2026-11-23T00:27:27.760Z"
+    },
+    {
+      "event": "change",
+      "name": "geom_v02.tgc",
+      "time": "2026-11-23T00:27:27.760Z"
+    },
+    {
+      "event": "rename",
+      "name": "Run_v01.tcf",
+      "time": "2026-11-23T00:27:33.018Z"
+    }
+  ],
+  "apiEvents": [
+    {
+      "kind": "change",
+      "uri": "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123/tpv-notify-tYaqbH",
+      "time": "2026-11-23T00:27:26.340Z"
+    },
+    {
+      "kind": "change",
+      "uri": "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123/tpv-notify-tYaqbH",
+      "time": "2026-11-23T00:27:27.858Z"
+    },
+    {
+      "kind": "create",
+      "uri": "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123/tpv-notify-tYaqbH/geom_v02.tgc",
+      "time": "2026-11-23T00:27:27.909Z"
+    },
+    {
+      "kind": "delete",
+      "uri": "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123/tpv-notify-tYaqbH/Run_v01.tcf",
+      "time": "2026-11-23T00:27:33.105Z"
+    },
+    {
+      "kind": "change",
+      "uri": "file:///c%3A/Users/Ryan/AppData/Local/Temp/tpv-acceptance-20261123/tpv-notify-tYaqbH",
+      "time": "2026-11-23T00:27:33.198Z"
+    }
+  ],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:27:27.965Z",
+      "diagnostics": [
+        {
+          "code": {
+            "value": "TPV022",
+            "target": {
+              "$mid": 1,
+              "path": "/[LOCAL_SCRATCH]/tpv-notify-tYaqbH/geom_v02.tgc",
+              "scheme": "file"
+            }
+          },
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:27:31.916Z",
+      "diagnostics": [
+        {
+          "code": {
+            "value": "TPV022",
+            "target": {
+              "$mid": 1,
+              "path": "/[LOCAL_SCRATCH]/tpv-notify-tYaqbH/geom_v02.tgc",
+              "scheme": "file"
+            }
+          },
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:27:33.088Z",
+      "diagnostics": []
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[LOCAL_SCRATCH]/tpv-notify-tYaqbH/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ],
+    "afterSettingsRefresh": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[LOCAL_SCRATCH]/tpv-notify-tYaqbH/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [
+    {
+      "file": "Run_v01.tcf",
+      "time": "2026-11-23T00:27:33.030Z"
+    }
+  ],
+  "observationMs": 4001.2641000000003,
+  "notificationAcceptance": "failed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": true,
+    "closeEvents": [
+      {
+        "file": "Run_v01.tcf",
+        "time": "2026-11-23T00:27:33.030Z"
+      }
+    ],
+    "diagnostics": []
+  },
+  "actualDocumentCloseAcceptance": "passed",
+  "fixturesRemoved": true
+}

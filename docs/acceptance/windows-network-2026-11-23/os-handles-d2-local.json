@@ -1,0 +1,1530 @@
+[
+  {
+    "time": "2026-11-23T08:20:35.1975118+08:00",
+    "pid": 44176,
+    "handleCount": 333,
+    "workingSetBytes": 144732160,
+    "privateMemoryBytes": 45248512,
+    "cpuSeconds": 0.0625
+  },
+  {
+    "time": "2026-11-23T08:20:37.4256076+08:00",
+    "pid": 44176,
+    "handleCount": 975,
+    "workingSetBytes": 211488768,
+    "privateMemoryBytes": 131194880,
+    "cpuSeconds": 0.90625
+  },
+  {
+    "time": "2026-11-23T08:20:37.4546077+08:00",
+    "pid": 78312,
+    "handleCount": 369,
+    "workingSetBytes": 244056064,
+    "privateMemoryBytes": 211042304,
+    "cpuSeconds": 0.546875
+  },
+  {
+    "time": "2026-11-23T08:20:37.5181208+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 144855040,
+    "privateMemoryBytes": 19718144,
+    "cpuSeconds": 0.125
+  },
+  {
+    "time": "2026-11-23T08:20:37.5706335+08:00",
+    "pid": 85244,
+    "handleCount": 374,
+    "workingSetBytes": 118513664,
+    "privateMemoryBytes": 13393920,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:37.6081478+08:00",
+    "pid": 94976,
+    "handleCount": 485,
+    "workingSetBytes": 607297536,
+    "privateMemoryBytes": 514035712,
+    "cpuSeconds": 2.96875
+  },
+  {
+    "time": "2026-11-23T08:20:37.6541471+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:37.6831474+08:00",
+    "pid": 101688,
+    "handleCount": 334,
+    "workingSetBytes": 201121792,
+    "privateMemoryBytes": 140210176,
+    "cpuSeconds": 0.765625
+  },
+  {
+    "time": "2026-11-23T08:20:37.7081471+08:00",
+    "pid": 101716,
+    "handleCount": 314,
+    "workingSetBytes": 143966208,
+    "privateMemoryBytes": 77078528,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:37.7371466+08:00",
+    "pid": 101968,
+    "handleCount": 372,
+    "workingSetBytes": 225263616,
+    "privateMemoryBytes": 159285248,
+    "cpuSeconds": 0.59375
+  },
+  {
+    "time": "2026-11-23T08:20:39.8966034+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 219058176,
+    "privateMemoryBytes": 133836800,
+    "cpuSeconds": 1.578125
+  },
+  {
+    "time": "2026-11-23T08:20:39.9186035+08:00",
+    "pid": 78312,
+    "handleCount": 394,
+    "workingSetBytes": 261074944,
+    "privateMemoryBytes": 228859904,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:39.9431891+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 144756736,
+    "privateMemoryBytes": 19283968,
+    "cpuSeconds": 0.25
+  },
+  {
+    "time": "2026-11-23T08:20:39.9671956+08:00",
+    "pid": 85244,
+    "handleCount": 371,
+    "workingSetBytes": 118378496,
+    "privateMemoryBytes": 13279232,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:39.9941955+08:00",
+    "pid": 94976,
+    "handleCount": 413,
+    "workingSetBytes": 551665664,
+    "privateMemoryBytes": 446627840,
+    "cpuSeconds": 4.40625
+  },
+  {
+    "time": "2026-11-23T08:20:40.0171951+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:40.0411947+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 210808832,
+    "privateMemoryBytes": 202854400,
+    "cpuSeconds": 0.984375
+  },
+  {
+    "time": "2026-11-23T08:20:40.0601947+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:40.0791947+08:00",
+    "pid": 101968,
+    "handleCount": 372,
+    "workingSetBytes": 235585536,
+    "privateMemoryBytes": 170463232,
+    "cpuSeconds": 0.71875
+  },
+  {
+    "time": "2026-11-23T08:20:42.1828742+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 219009024,
+    "privateMemoryBytes": 133836800,
+    "cpuSeconds": 1.578125
+  },
+  {
+    "time": "2026-11-23T08:20:42.2018738+08:00",
+    "pid": 78312,
+    "handleCount": 394,
+    "workingSetBytes": 261357568,
+    "privateMemoryBytes": 229117952,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:42.2218738+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 147357696,
+    "privateMemoryBytes": 22089728,
+    "cpuSeconds": 0.25
+  },
+  {
+    "time": "2026-11-23T08:20:42.2388739+08:00",
+    "pid": 85244,
+    "handleCount": 371,
+    "workingSetBytes": 118378496,
+    "privateMemoryBytes": 13279232,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:42.2578749+08:00",
+    "pid": 94976,
+    "handleCount": 413,
+    "workingSetBytes": 556556288,
+    "privateMemoryBytes": 452272128,
+    "cpuSeconds": 4.40625
+  },
+  {
+    "time": "2026-11-23T08:20:42.2748750+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:42.2898747+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 210808832,
+    "privateMemoryBytes": 202854400,
+    "cpuSeconds": 0.984375
+  },
+  {
+    "time": "2026-11-23T08:20:42.3048731+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:42.3188751+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 235945984,
+    "privateMemoryBytes": 170672128,
+    "cpuSeconds": 0.71875
+  },
+  {
+    "time": "2026-11-23T08:20:44.5990793+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224358400,
+    "privateMemoryBytes": 139350016,
+    "cpuSeconds": 1.609375
+  },
+  {
+    "time": "2026-11-23T08:20:44.6330598+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261029888,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:44.6676732+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 142102528,
+    "privateMemoryBytes": 22122496,
+    "cpuSeconds": 0.28125
+  },
+  {
+    "time": "2026-11-23T08:20:44.7016734+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118472704,
+    "privateMemoryBytes": 13373440,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:44.7366727+08:00",
+    "pid": 94976,
+    "handleCount": 413,
+    "workingSetBytes": 556441600,
+    "privateMemoryBytes": 457830400,
+    "cpuSeconds": 4.453125
+  },
+  {
+    "time": "2026-11-23T08:20:44.7706725+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:44.8056715+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204222464,
+    "privateMemoryBytes": 141418496,
+    "cpuSeconds": 1.109375
+  },
+  {
+    "time": "2026-11-23T08:20:44.8446717+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:44.8806710+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236027904,
+    "privateMemoryBytes": 170680320,
+    "cpuSeconds": 0.71875
+  },
+  {
+    "time": "2026-11-23T08:20:47.0724580+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.703125
+  },
+  {
+    "time": "2026-11-23T08:20:47.1024562+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 260993024,
+    "privateMemoryBytes": 228630528,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:47.1304563+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 147546112,
+    "privateMemoryBytes": 22593536,
+    "cpuSeconds": 0.28125
+  },
+  {
+    "time": "2026-11-23T08:20:47.1574560+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118472704,
+    "privateMemoryBytes": 13373440,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:47.1754563+08:00",
+    "pid": 94976,
+    "handleCount": 413,
+    "workingSetBytes": 567996416,
+    "privateMemoryBytes": 463863808,
+    "cpuSeconds": 4.609375
+  },
+  {
+    "time": "2026-11-23T08:20:47.1974562+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:47.2164564+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204349440,
+    "privateMemoryBytes": 141770752,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:47.2334565+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:47.2474555+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236093440,
+    "privateMemoryBytes": 170950656,
+    "cpuSeconds": 0.765625
+  },
+  {
+    "time": "2026-11-23T08:20:49.3991527+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.703125
+  },
+  {
+    "time": "2026-11-23T08:20:49.4241513+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 260993024,
+    "privateMemoryBytes": 228630528,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:49.4481514+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 144965632,
+    "privateMemoryBytes": 20148224,
+    "cpuSeconds": 0.28125
+  },
+  {
+    "time": "2026-11-23T08:20:49.4711508+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:49.4901510+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 446509056,
+    "privateMemoryBytes": 336498688,
+    "cpuSeconds": 4.796875
+  },
+  {
+    "time": "2026-11-23T08:20:49.5061507+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:49.5271508+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204349440,
+    "privateMemoryBytes": 141770752,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:49.5471503+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:49.5681505+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236118016,
+    "privateMemoryBytes": 170958848,
+    "cpuSeconds": 0.765625
+  },
+  {
+    "time": "2026-11-23T08:20:51.6852184+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.703125
+  },
+  {
+    "time": "2026-11-23T08:20:51.7032185+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 260993024,
+    "privateMemoryBytes": 228630528,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:51.7172186+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141434880,
+    "privateMemoryBytes": 22593536,
+    "cpuSeconds": 0.3125
+  },
+  {
+    "time": "2026-11-23T08:20:51.7332198+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:51.7482186+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 442511360,
+    "privateMemoryBytes": 338907136,
+    "cpuSeconds": 4.890625
+  },
+  {
+    "time": "2026-11-23T08:20:51.7642207+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:51.7792206+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204349440,
+    "privateMemoryBytes": 141770752,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:51.7972175+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:51.8112174+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236146688,
+    "privateMemoryBytes": 170962944,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:53.9166676+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.703125
+  },
+  {
+    "time": "2026-11-23T08:20:53.9286675+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:53.9396674+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141434880,
+    "privateMemoryBytes": 22593536,
+    "cpuSeconds": 0.3125
+  },
+  {
+    "time": "2026-11-23T08:20:53.9516683+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:53.9656683+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 444944384,
+    "privateMemoryBytes": 341385216,
+    "cpuSeconds": 4.90625
+  },
+  {
+    "time": "2026-11-23T08:20:53.9836683+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:54.0006685+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204349440,
+    "privateMemoryBytes": 141770752,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:54.0156675+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:54.0326696+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236167168,
+    "privateMemoryBytes": 170967040,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:56.1419688+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.703125
+  },
+  {
+    "time": "2026-11-23T08:20:56.1639669+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:56.1829680+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141377536,
+    "privateMemoryBytes": 22589440,
+    "cpuSeconds": 0.3125
+  },
+  {
+    "time": "2026-11-23T08:20:56.1999661+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:56.2189660+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 448843776,
+    "privateMemoryBytes": 345673728,
+    "cpuSeconds": 4.90625
+  },
+  {
+    "time": "2026-11-23T08:20:56.2379670+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:56.2519659+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204349440,
+    "privateMemoryBytes": 141770752,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:56.2689657+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144220160,
+    "privateMemoryBytes": 77377536,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:56.2869740+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236204032,
+    "privateMemoryBytes": 170975232,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:20:58.4017229+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:20:58.4207238+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:20:58.4367234+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 148660224,
+    "privateMemoryBytes": 22769664,
+    "cpuSeconds": 0.375
+  },
+  {
+    "time": "2026-11-23T08:20:58.4497213+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:58.4647224+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 469983232,
+    "privateMemoryBytes": 360312832,
+    "cpuSeconds": 5.03125
+  },
+  {
+    "time": "2026-11-23T08:20:58.4797218+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:20:58.4977218+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204398592,
+    "privateMemoryBytes": 141774848,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:20:58.5167255+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144322560,
+    "privateMemoryBytes": 77381632,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:20:58.5377206+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236355584,
+    "privateMemoryBytes": 171061248,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:21:00.6657561+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:00.6867555+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:21:00.7057555+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 145948672,
+    "privateMemoryBytes": 20156416,
+    "cpuSeconds": 0.375
+  },
+  {
+    "time": "2026-11-23T08:21:00.7227584+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:00.7377565+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 473399296,
+    "privateMemoryBytes": 364007424,
+    "cpuSeconds": 5.0625
+  },
+  {
+    "time": "2026-11-23T08:21:00.7657549+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:00.7847551+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204398592,
+    "privateMemoryBytes": 141774848,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:21:00.7987572+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144322560,
+    "privateMemoryBytes": 77381632,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:21:00.8177546+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236388352,
+    "privateMemoryBytes": 171331584,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:21:02.9562462+08:00",
+    "pid": 44176,
+    "handleCount": 1065,
+    "workingSetBytes": 224444416,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:02.9782445+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:21:03.0002447+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 142925824,
+    "privateMemoryBytes": 22601728,
+    "cpuSeconds": 0.375
+  },
+  {
+    "time": "2026-11-23T08:21:03.0232456+08:00",
+    "pid": 85244,
+    "handleCount": 373,
+    "workingSetBytes": 118476800,
+    "privateMemoryBytes": 13377536,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:03.0572451+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 472072192,
+    "privateMemoryBytes": 368730112,
+    "cpuSeconds": 5.0625
+  },
+  {
+    "time": "2026-11-23T08:21:03.0842449+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 112005120,
+    "privateMemoryBytes": 9609216,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:03.1012430+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204398592,
+    "privateMemoryBytes": 141774848,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:21:03.1182429+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144322560,
+    "privateMemoryBytes": 77381632,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:21:03.1332448+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236396544,
+    "privateMemoryBytes": 171335680,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:21:05.2388570+08:00",
+    "pid": 44176,
+    "handleCount": 1064,
+    "workingSetBytes": 224432128,
+    "privateMemoryBytes": 139419648,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:05.2568566+08:00",
+    "pid": 78312,
+    "handleCount": 393,
+    "workingSetBytes": 261038080,
+    "privateMemoryBytes": 228671488,
+    "cpuSeconds": 0.84375
+  },
+  {
+    "time": "2026-11-23T08:21:05.2738584+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 142913536,
+    "privateMemoryBytes": 22560768,
+    "cpuSeconds": 0.390625
+  },
+  {
+    "time": "2026-11-23T08:21:05.2904495+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:05.3064496+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 475078656,
+    "privateMemoryBytes": 372011008,
+    "cpuSeconds": 5.0625
+  },
+  {
+    "time": "2026-11-23T08:21:05.3244491+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:05.3464490+08:00",
+    "pid": 101688,
+    "handleCount": 337,
+    "workingSetBytes": 204398592,
+    "privateMemoryBytes": 141774848,
+    "cpuSeconds": 1.125
+  },
+  {
+    "time": "2026-11-23T08:21:05.3634488+08:00",
+    "pid": 101716,
+    "handleCount": 315,
+    "workingSetBytes": 144322560,
+    "privateMemoryBytes": 77381632,
+    "cpuSeconds": 0.15625
+  },
+  {
+    "time": "2026-11-23T08:21:05.3804486+08:00",
+    "pid": 101968,
+    "handleCount": 371,
+    "workingSetBytes": 236408832,
+    "privateMemoryBytes": 171339776,
+    "cpuSeconds": 0.828125
+  },
+  {
+    "time": "2026-11-23T08:21:07.4986288+08:00",
+    "pid": 44176,
+    "handleCount": 1064,
+    "workingSetBytes": 192499712,
+    "privateMemoryBytes": 105742336,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:07.5216288+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 232579072,
+    "privateMemoryBytes": 198189056,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:07.5416287+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141365248,
+    "privateMemoryBytes": 22560768,
+    "cpuSeconds": 0.390625
+  },
+  {
+    "time": "2026-11-23T08:21:07.5596289+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:07.5796283+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 356896768,
+    "privateMemoryBytes": 252792832,
+    "cpuSeconds": 5.375
+  },
+  {
+    "time": "2026-11-23T08:21:07.6006282+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:07.6176280+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152608768,
+    "privateMemoryBytes": 90046464,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:07.6326302+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135421952,
+    "privateMemoryBytes": 68063232,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:07.6476278+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 201949184,
+    "privateMemoryBytes": 135536640,
+    "cpuSeconds": 0.953125
+  },
+  {
+    "time": "2026-11-23T08:21:09.7580894+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 192483328,
+    "privateMemoryBytes": 105697280,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:09.7760893+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 232579072,
+    "privateMemoryBytes": 198189056,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:09.7930912+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141365248,
+    "privateMemoryBytes": 22560768,
+    "cpuSeconds": 0.40625
+  },
+  {
+    "time": "2026-11-23T08:21:09.8070890+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:09.8220889+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 359071744,
+    "privateMemoryBytes": 255352832,
+    "cpuSeconds": 5.40625
+  },
+  {
+    "time": "2026-11-23T08:21:09.8370890+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:09.8530902+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152608768,
+    "privateMemoryBytes": 90046464,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:09.8710885+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135421952,
+    "privateMemoryBytes": 68063232,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:09.8890886+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 202735616,
+    "privateMemoryBytes": 136429568,
+    "cpuSeconds": 0.953125
+  },
+  {
+    "time": "2026-11-23T08:21:12.0262934+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 192483328,
+    "privateMemoryBytes": 105697280,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:12.0412936+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233025536,
+    "privateMemoryBytes": 198451200,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:12.0552959+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141365248,
+    "privateMemoryBytes": 22560768,
+    "cpuSeconds": 0.40625
+  },
+  {
+    "time": "2026-11-23T08:21:12.0692941+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:12.0928221+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 361357312,
+    "privateMemoryBytes": 257654784,
+    "cpuSeconds": 5.484375
+  },
+  {
+    "time": "2026-11-23T08:21:12.1148212+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:12.1328295+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152608768,
+    "privateMemoryBytes": 90046464,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:12.1498293+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135421952,
+    "privateMemoryBytes": 68063232,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:12.1648294+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 203468800,
+    "privateMemoryBytes": 137453568,
+    "cpuSeconds": 0.953125
+  },
+  {
+    "time": "2026-11-23T08:21:14.2667272+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 193445888,
+    "privateMemoryBytes": 106713088,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:14.2857250+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233033728,
+    "privateMemoryBytes": 198451200,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:14.3027243+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 138293248,
+    "privateMemoryBytes": 19460096,
+    "cpuSeconds": 0.421875
+  },
+  {
+    "time": "2026-11-23T08:21:14.3197244+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:14.3357243+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 364634112,
+    "privateMemoryBytes": 259698688,
+    "cpuSeconds": 5.625
+  },
+  {
+    "time": "2026-11-23T08:21:14.3487243+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:14.3617243+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152854528,
+    "privateMemoryBytes": 90259456,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:14.3777239+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135487488,
+    "privateMemoryBytes": 68067328,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:14.3927285+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 203517952,
+    "privateMemoryBytes": 137502720,
+    "cpuSeconds": 0.953125
+  },
+  {
+    "time": "2026-11-23T08:21:16.5440913+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 193445888,
+    "privateMemoryBytes": 106713088,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:16.5650911+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233033728,
+    "privateMemoryBytes": 198451200,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:16.5910915+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 138342400,
+    "privateMemoryBytes": 19464192,
+    "cpuSeconds": 0.4375
+  },
+  {
+    "time": "2026-11-23T08:21:16.6140914+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:16.6380904+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 358928384,
+    "privateMemoryBytes": 253669376,
+    "cpuSeconds": 5.796875
+  },
+  {
+    "time": "2026-11-23T08:21:16.6619716+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:16.6819719+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152879104,
+    "privateMemoryBytes": 90263552,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:16.7009716+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135593984,
+    "privateMemoryBytes": 68136960,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:16.7189712+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 203776000,
+    "privateMemoryBytes": 137822208,
+    "cpuSeconds": 0.953125
+  },
+  {
+    "time": "2026-11-23T08:21:18.8911072+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 193503232,
+    "privateMemoryBytes": 106717184,
+    "cpuSeconds": 1.71875
+  },
+  {
+    "time": "2026-11-23T08:21:18.9136209+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233521152,
+    "privateMemoryBytes": 199237632,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:18.9366266+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 139464704,
+    "privateMemoryBytes": 19279872,
+    "cpuSeconds": 0.453125
+  },
+  {
+    "time": "2026-11-23T08:21:18.9556247+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118300672,
+    "privateMemoryBytes": 13176832,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:18.9716265+08:00",
+    "pid": 94976,
+    "handleCount": 412,
+    "workingSetBytes": 363724800,
+    "privateMemoryBytes": 257740800,
+    "cpuSeconds": 5.828125
+  },
+  {
+    "time": "2026-11-23T08:21:18.9886259+08:00",
+    "pid": 99504,
+    "handleCount": 199,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:19.0046248+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 152887296,
+    "privateMemoryBytes": 90263552,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:19.0246243+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135651328,
+    "privateMemoryBytes": 68136960,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:19.0426228+08:00",
+    "pid": 101968,
+    "handleCount": 370,
+    "workingSetBytes": 203218944,
+    "privateMemoryBytes": 137543680,
+    "cpuSeconds": 0.96875
+  },
+  {
+    "time": "2026-11-23T08:21:21.2147730+08:00",
+    "pid": 44176,
+    "handleCount": 1058,
+    "workingSetBytes": 193708032,
+    "privateMemoryBytes": 106991616,
+    "cpuSeconds": 1.75
+  },
+  {
+    "time": "2026-11-23T08:21:21.2527728+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233525248,
+    "privateMemoryBytes": 199237632,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:21.2877716+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 141258752,
+    "privateMemoryBytes": 20119552,
+    "cpuSeconds": 0.453125
+  },
+  {
+    "time": "2026-11-23T08:21:21.3247712+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118304768,
+    "privateMemoryBytes": 13180928,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:21.3607724+08:00",
+    "pid": 94976,
+    "handleCount": 431,
+    "workingSetBytes": 401821696,
+    "privateMemoryBytes": 332939264,
+    "cpuSeconds": 6.0625
+  },
+  {
+    "time": "2026-11-23T08:21:21.4007700+08:00",
+    "pid": 99504,
+    "handleCount": 206,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:21.4387715+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 153264128,
+    "privateMemoryBytes": 90472448,
+    "cpuSeconds": 1.1875
+  },
+  {
+    "time": "2026-11-23T08:21:21.4677696+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135729152,
+    "privateMemoryBytes": 68136960,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:21.4987697+08:00",
+    "pid": 101968,
+    "handleCount": 380,
+    "workingSetBytes": 219779072,
+    "privateMemoryBytes": 154570752,
+    "cpuSeconds": 1.28125
+  },
+  {
+    "time": "2026-11-23T08:21:23.6270216+08:00",
+    "pid": 44176,
+    "handleCount": 1057,
+    "workingSetBytes": 197419008,
+    "privateMemoryBytes": 111005696,
+    "cpuSeconds": 1.875
+  },
+  {
+    "time": "2026-11-23T08:21:23.6485487+08:00",
+    "pid": 78312,
+    "handleCount": 392,
+    "workingSetBytes": 233975808,
+    "privateMemoryBytes": 199761920,
+    "cpuSeconds": 1.03125
+  },
+  {
+    "time": "2026-11-23T08:21:23.6685486+08:00",
+    "pid": 81520,
+    "handleCount": 311,
+    "workingSetBytes": 139698176,
+    "privateMemoryBytes": 15302656,
+    "cpuSeconds": 0.5
+  },
+  {
+    "time": "2026-11-23T08:21:23.6865484+08:00",
+    "pid": 85244,
+    "handleCount": 372,
+    "workingSetBytes": 118304768,
+    "privateMemoryBytes": 13180928,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:23.7045481+08:00",
+    "pid": 94976,
+    "handleCount": 431,
+    "workingSetBytes": 391995392,
+    "privateMemoryBytes": 321257472,
+    "cpuSeconds": 6.375
+  },
+  {
+    "time": "2026-11-23T08:21:23.7215505+08:00",
+    "pid": 99504,
+    "handleCount": 206,
+    "workingSetBytes": 111951872,
+    "privateMemoryBytes": 9506816,
+    "cpuSeconds": 0.015625
+  },
+  {
+    "time": "2026-11-23T08:21:23.7385482+08:00",
+    "pid": 101688,
+    "handleCount": 333,
+    "workingSetBytes": 153825280,
+    "privateMemoryBytes": 91250688,
+    "cpuSeconds": 1.203125
+  },
+  {
+    "time": "2026-11-23T08:21:23.7505478+08:00",
+    "pid": 101716,
+    "handleCount": 311,
+    "workingSetBytes": 135892992,
+    "privateMemoryBytes": 68665344,
+    "cpuSeconds": 0.21875
+  },
+  {
+    "time": "2026-11-23T08:21:23.7685477+08:00",
+    "pid": 101968,
+    "handleCount": 380,
+    "workingSetBytes": 220200960,
+    "privateMemoryBytes": 154931200,
+    "cpuSeconds": 1.3125
+  },
+  {
+    "time": "2026-11-23T08:21:23.7835476+08:00",
+    "pid": 103016,
+    "handleCount": 164,
+    "workingSetBytes": 127660032,
+    "privateMemoryBytes": 32485376,
+    "cpuSeconds": 0.0625
+  }
+]

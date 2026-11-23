@@ -1,0 +1,37 @@
+[
+  {
+    "build": "d1",
+    "commit": "71b3cb56258ed03929665dbf2596af839c09bde6",
+    "sourceArchiveSha256": "2b2107a59d54acc4f788770e67789410b0a3ece87740ed8875fd6ded2267cab7",
+    "vsixSha256": "48c65e94ccb957547235dc47ceeac00d3f552c004cb29fd10d2386fa369ec674",
+    "runtimeModules": 11,
+    "archiveEntries": 17,
+    "compiledPackagedInstalledRuntimeIdentical": true,
+    "sourceChanges": ""
+  },
+  {
+    "build": "before",
+    "commit": "889d5e2e1951fe7de6edc187ea4508e6037d2179",
+    "sourceArchiveSha256": "59e47384a18f288bffb38d68919764abf292b2c1024c4a97b787e9ebb60cdc03",
+    "vsixSha256": "f0dfbb3115bbb8121ebf70a5f61003626bd7c6cf7673615f16b849ffbe849cde",
+    "runtimeModules": 11,
+    "archiveEntries": 17,
+    "compiledPackagedInstalledRuntimeIdentical": true,
+    "sourceChanges": ""
+  },
+  {
+    "build": "d2",
+    "commit": "f5845503fc0587e37c43d807bf11bfd6bfbbdfe4",
+    "sourceArchiveSha256": "467b50d7b949e3a66b93f17aaa3fdbc8ec795039f3a0287ba300e4a3f9bcd6fa",
+    "vsixSha256": "b39d6f9f5afa753b5db4d48d2809194ea60499da806b3920c75a38bdef157899",
+    "runtimeModules": 11,
+    "archiveEntries": 17,
+    "compiledPackagedInstalledRuntimeIdentical": true,
+    "sourceChanges": ""
+  },
+  {
+    "driverCommit": "71b3cb56258ed03929665dbf2596af839c09bde6",
+    "driverSha256": "dcbe42f1999f53cda7f3b4a937c757f8896b0b6f97acf07d6072874847010069",
+    "nodeZipSha256": "425a5bd68cc95e8eb16bcccd0a75081b48983fc6a26f67126bd4d6c7198231e8"
+  }
+]

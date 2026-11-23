@@ -1,0 +1,41 @@
+{
+  "overall": "failed_with_blocked_items",
+  "items": [
+    {
+      "item": "same-machine NTFS/mapped/UNC and 19-sample deep/wide/shared/multi-root/static-context core tests",
+      "status": "passed"
+    },
+    {
+      "item": "paired B/D2 core diagnostic parity and real-network D2 directory-operation improvement",
+      "status": "passed"
+    },
+    {
+      "item": "dirty root/child editor changes and settings invalidation",
+      "status": "passed"
+    },
+    {
+      "item": "concrete conditional missing inputs, unresolved runtime substitutions and filename version detection",
+      "status": "passed"
+    },
+    {
+      "item": "remote filesystem freshness for files opened outside any workspace",
+      "status": "failed"
+    },
+    {
+      "item": "open-workspace remote notification sequence",
+      "status": "passed"
+    },
+    {
+      "item": "local actual document-close event and diagnostic cleanup",
+      "status": "passed"
+    },
+    {
+      "item": "network actual document-close/disposal and native watcher-type counts",
+      "status": "blocked"
+    },
+    {
+      "item": "true cold-disk/cache-cleared, server OS/SMB dialect, actual UI-frame measurement and long-duration leak acceptance",
+      "status": "blocked"
+    }
+  ]
+}

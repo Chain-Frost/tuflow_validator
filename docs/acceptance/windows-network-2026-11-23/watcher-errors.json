@@ -1,0 +1,722 @@
+[
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-followup-SIKSkd\\Runtime_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-followup-SIKSkd\\Wide_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-followup-SIKSkd\\Wide_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-followup-CVT0PI\\Runtime_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-followup-CVT0PI\\Wide_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "followup-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-followup-CVT0PI\\Wide_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-native-host-LUFLFB\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-native-host-LUFLFB\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-native-host-LUFLFB\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-mapped.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-native-host-luflfb\\geom_v01.tgc for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-native-host-63mA2e\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-native-host-63mA2e\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-native-host-63mA2e\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-native-host-63mA2e\\Run_v01.tcf for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "host-d2-unc.stderr.log",
+    "line": "[File Watcher (node.js)] Failed to watch [UNC_SCRATCH]\\tpv-native-host-63ma2e\\geom_v01.tgc for changes using fs.watch() (Error: UNKNOWN: unknown error, watch, undefined)"
+  },
+  {
+    "log": "notify-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-before-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-notify-PzXrLa for "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-before-unc-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-before-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-d2-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch [MAPPED_SCRATCH]\\tpv-notify-ytF1Ig for "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-d2-unc-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-d2-unc-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-empty.log",
+    "line": "[File Watcher (node.js)] Failed to watch "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, "
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "notify-replay-before-mapped-workspace.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-mapped.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] restarting watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher ('parcel')] Unexpected error: A system error occurred (UNKNOWN: unknown error, watch) (EUNKNOWN)"
+  },
+  {
+    "log": "workspace-d2-unc.stderr.log",
+    "line": "[File Watcher (universal)] gave up attempting to restart watcher after unexpected error: A system error occurred (UNKNOWN: unknown error, watch)"
+  }
+]

@@ -1,0 +1,111 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 109632,
+    "workspaceFolders": [
+      "file:///t%3A/temp/tpv-acceptance-4618e56f21274601952bd920f41b012e"
+    ]
+  },
+  "nativeEvents": [
+    {
+      "error": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "apiEvents": [
+    {
+      "kind": "create",
+      "uri": "file:///t%3A/temp/tpv-acceptance-4618e56f21274601952bd920f41b012e/tpv-notify-qSKL10/geom_v02.tgc",
+      "time": "2026-11-23T00:27:51.472Z"
+    }
+  ],
+  "diagnosticEvents": [
+    {
+      "time": "2026-11-23T00:27:51.695Z",
+      "diagnostics": [
+        {
+          "code": {
+            "value": "TPV022",
+            "target": {
+              "$mid": 1,
+              "path": "/[MAPPED_SCRATCH]/tpv-notify-qSKL10/geom_v02.tgc",
+              "scheme": "file"
+            }
+          },
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T00:27:55.512Z",
+      "diagnostics": [
+        {
+          "code": {
+            "value": "TPV022",
+            "target": {
+              "$mid": 1,
+              "path": "/[MAPPED_SCRATCH]/tpv-notify-qSKL10/geom_v02.tgc",
+              "scheme": "file"
+            }
+          },
+          "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[MAPPED_SCRATCH]/tpv-notify-qSKL10/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ],
+    "afterSettingsRefresh": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[MAPPED_SCRATCH]/tpv-notify-qSKL10/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "closeEvents": [],
+  "observationMs": 4026.5736,
+  "notificationAcceptance": "failed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": false,
+    "closeEvents": [],
+    "diagnostics": [
+      {
+        "code": {
+          "value": "TPV022",
+          "target": {
+            "$mid": 1,
+            "path": "/[MAPPED_SCRATCH]/tpv-notify-qSKL10/geom_v02.tgc",
+            "scheme": "file"
+          }
+        },
+        "message": "Referenced file is not the latest version in its folder: geom_v01.tgc (found 1, latest 2)."
+      }
+    ]
+  },
+  "actualDocumentCloseAcceptance": "blocked",
+  "fixturesRemoved": true
+}

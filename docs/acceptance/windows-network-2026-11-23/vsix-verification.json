@@ -1,0 +1,17 @@
+[
+  {
+    "exitCode": 0,
+    "result": "Verified d1.vsix: 17 archive entries, 11 JavaScript runtime modules, no test/source/example/dependency payload.",
+    "build": "d1"
+  },
+  {
+    "exitCode": 0,
+    "result": "Verified before.vsix: 17 archive entries, 11 JavaScript runtime modules, no test/source/example/dependency payload.",
+    "build": "before"
+  },
+  {
+    "exitCode": 0,
+    "result": "Verified d2.vsix: 17 archive entries, 11 JavaScript runtime modules, no test/source/example/dependency payload.",
+    "build": "d2"
+  }
+]

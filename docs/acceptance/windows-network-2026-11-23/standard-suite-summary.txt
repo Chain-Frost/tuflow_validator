@@ -1,0 +1,6 @@
+  47 passing (8s)
+[main 2026-11-23T00:29:43.919Z] Extension host with pid 115884 exited with code: 0, signal: unknown.
+Exit code:   0
+  62 passing (16s)
+[main 2026-11-23T00:30:03.373Z] Extension host with pid 110036 exited with code: 0, signal: unknown.
+Exit code:   0

@@ -1,0 +1,86 @@
+[
+  {
+    "file": "notify-before-local-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": false,
+    "apiEvents": 3,
+    "actualClose": "passed"
+  },
+  {
+    "file": "notify-before-local-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": false,
+    "apiEvents": 5,
+    "actualClose": "passed"
+  },
+  {
+    "file": "notify-before-mapped-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "failed",
+    "nativeFsWatchError": true,
+    "apiEvents": 0,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-before-mapped-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": true,
+    "apiEvents": 1,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-before-unc-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "failed",
+    "nativeFsWatchError": true,
+    "apiEvents": 0,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-before-unc-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": true,
+    "apiEvents": 1,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-d2-local-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": false,
+    "apiEvents": 3,
+    "actualClose": "passed"
+  },
+  {
+    "file": "notify-d2-local-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": false,
+    "apiEvents": 6,
+    "actualClose": "passed"
+  },
+  {
+    "file": "notify-d2-mapped-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "failed",
+    "nativeFsWatchError": true,
+    "apiEvents": 0,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-d2-mapped-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": true,
+    "apiEvents": 1,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-d2-unc-false.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "failed",
+    "nativeFsWatchError": true,
+    "apiEvents": 0,
+    "actualClose": "blocked"
+  },
+  {
+    "file": "notify-d2-unc-true.json",
+    "notificationVerdictFromRawDiagnosticCodeValue": "passed",
+    "nativeFsWatchError": true,
+    "apiEvents": 1,
+    "actualClose": "blocked"
+  }
+]

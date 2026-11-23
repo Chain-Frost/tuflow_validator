@@ -1,0 +1,35 @@
+{
+  "environment": {
+    "vscode": "1.147.0",
+    "node": "v24.22.1",
+    "pid": 110572,
+    "workspaceFolders": []
+  },
+  "nativeEvents": [
+    {
+      "error": "Error: UNKNOWN: unknown error, watch"
+    }
+  ],
+  "apiEvents": [],
+  "diagnosticEvents": [],
+  "snapshots": {
+    "before": [],
+    "afterCreate": [],
+    "afterSettingsRefresh": []
+  },
+  "closeEvents": [],
+  "probeRevision": 2,
+  "observationMs": 4010.2885999999994,
+  "notificationAcceptance": "failed",
+  "afterTabClose": {
+    "isClosed": false,
+    "closeEvents": []
+  },
+  "afterDelete": {
+    "isClosed": false,
+    "closeEvents": [],
+    "diagnostics": []
+  },
+  "actualDocumentCloseAcceptance": "blocked",
+  "fixturesRemoved": true
+}

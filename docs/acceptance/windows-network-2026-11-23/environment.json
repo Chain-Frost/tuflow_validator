@@ -1,0 +1,67 @@
+{
+  "recordedAt": "2026-11-23T08:18:03.0301099+08:00",
+  "os": {
+    "Caption": "Microsoft Windows 10 Pro",
+    "Version": "10.0.19045",
+    "BuildNumber": "19045",
+    "TotalVisibleMemorySize": 66279188
+  },
+  "cpu": {
+    "Name": "AMD Ryzen 7 7700X 8-Core Processor             ",
+    "NumberOfLogicalProcessors": 16
+  },
+  "adapters": [
+    {
+      "Name": "vEthernet (WSL)",
+      "InterfaceDescription": "Hyper-V Virtual Ethernet Adapter #2",
+      "Status": "Up",
+      "LinkSpeed": "10 Gbps"
+    },
+    {
+      "Name": "Ethernet 2",
+      "InterfaceDescription": "Marvell AQtion 10Gbit Network Adapter",
+      "Status": "Up",
+      "LinkSpeed": "2.5 Gbps"
+    },
+    {
+      "Name": "Ethernet",
+      "InterfaceDescription": "Intel(R) Ethernet Controller (3) I225-V",
+      "Status": "Disconnected",
+      "LinkSpeed": "2.5 Gbps"
+    },
+    {
+      "Name": "vEthernet (Default Switch)",
+      "InterfaceDescription": "Hyper-V Virtual Ethernet Adapter",
+      "Status": "Up",
+      "LinkSpeed": "10 Gbps"
+    },
+    {
+      "Name": "Bluetooth Network Connection",
+      "InterfaceDescription": "Bluetooth Device (Personal Area Network)",
+      "Status": "Disconnected",
+      "LinkSpeed": "3 Mbps"
+    },
+    {
+      "Name": "Tailscale",
+      "InterfaceDescription": "Tailscale Tunnel",
+      "Status": "Up",
+      "LinkSpeed": "100 Gbps"
+    },
+    {
+      "Name": "Local Area Connection",
+      "InterfaceDescription": "Private Internet Access Network Adapter",
+      "Status": "Up",
+      "LinkSpeed": "1 Gbps"
+    }
+  ],
+  "mappings": [
+    {
+      "storage": "remote SMB, mapped alias and matching UNC",
+      "status": "accessible",
+      "serverIdentity": "retained in local private environment record; public redaction required by prior owner instruction"
+    }
+  ],
+  "serverDNS": "Distinct private LAN server IPv4; actual mapping, DNS, TCP/445 and route retained privately",
+  "smbSessionDetails": "Get-SmbConnection denied access; no elevation requested",
+  "cache": "No cache flushing. First engine invocation after fixture creation is not cold disk."
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "compileExit": 0,
+    "build": "d1",
+    "lintExit": 0
+  },
+  {
+    "compileExit": 0,
+    "build": "before",
+    "lintExit": 0
+  },
+  {
+    "compileExit": 0,
+    "build": "d2",
+    "lintExit": 0
+  }
+]
