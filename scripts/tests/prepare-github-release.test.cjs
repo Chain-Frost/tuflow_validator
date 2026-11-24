@@ -90,3 +90,27 @@ test('fails closed on missing or malformed release notes', t => {
     fs.writeFileSync(notesPath, '# TUFLOW Path Validator v0.2.7\n\n## Changes since published v0.2.6\n\nNothing');
     assert.throws(() => prepareGithubRelease(f.root, tag, commit, run), /changes section is empty/);
 });
+
+test('workflow requires successful Marketplace publish and separates credentials', () => {
+    const workflow = fs.readFileSync(
+        path.resolve(__dirname, '../../.github/workflows/publish-vscode.yml'), 'utf8'
+    );
+    const releaseStart = workflow.indexOf('\n  github_release:\n');
+    const publishStart = workflow.indexOf('\n  publish:\n');
+    assert.ok(publishStart > 0 && releaseStart > publishStart);
+    const publish = workflow.slice(publishStart, releaseStart);
+    const release = workflow.slice(releaseStart);
+    assert.match(publish, /environment: production/);
+    assert.match(publish, /id-token: write/);
+    assert.doesNotMatch(release, /id-token: write/);
+    assert.match(release, /needs: \[verify, publish\]/);
+    assert.match(release, /contents: write/);
+    assert.match(release, /gh release create/);
+    assert.match(release, /--verify-tag/);
+    assert.match(release, /github\.workflow_sha/);
+    assert.match(release, /sha256sum --check validator-ci\.vsix\.sha256/);
+    assert.equal((workflow.match(/id-token: write/g) ?? []).length, 1);
+    assert.equal((workflow.match(/contents: write/g) ?? []).length, 1);
+    assert.equal((workflow.match(/workflow_dispatch:/g) ?? []).length, 1);
+    assert.doesNotMatch(workflow, /release: published/);
+});
