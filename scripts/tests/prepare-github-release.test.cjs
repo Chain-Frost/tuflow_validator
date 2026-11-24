@@ -83,6 +83,8 @@ test('fails closed on changed payload and malformed checksum sidecar', t => {
 test('fails closed on missing or malformed release notes', t => {
     const f = fixture(t);
     const notesPath = path.join(f.root, 'docs', 'releases', 'v0.2.7.md');
+    fs.writeFileSync(notesPath, '# TUFLOW Path Validator v0.2.70 — proposed release notes\n\n## Changes since published v0.2.6\n\n- wrong-version changes');
+    assert.throws(() => prepareGithubRelease(f.root, tag, commit, run), /exact tag/);
     fs.writeFileSync(notesPath, '# unrelated\n## Changes since published v0.2.6\n- fix');
     assert.throws(() => prepareGithubRelease(f.root, tag, commit, run), /exact tag/);
     fs.writeFileSync(notesPath, '# TUFLOW Path Validator v0.2.7\n\n## Pending\n- fix');
