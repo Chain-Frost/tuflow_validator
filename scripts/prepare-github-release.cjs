@@ -31,7 +31,9 @@ function prepareGithubRelease(root, tag, commit, runUrl) {
 
     const notesPath = path.join(root, 'docs', 'releases', `${tag}.md`);
     const rawNotes = fs.readFileSync(notesPath, 'utf8');
-    if (!rawNotes.startsWith(`# TUFLOW Path Validator ${tag}`)) {
+    const expectedHeading = `# TUFLOW Path Validator ${tag}`;
+    const heading = rawNotes.split(/\r?\n/, 1)[0];
+    if (heading !== expectedHeading && !heading.startsWith(`${expectedHeading} — `)) {
         throw new Error('Release notes must identify the exact tag.');
     }
     const changesStart = rawNotes.search(/^## Changes since published [^\n]+$/m);
