@@ -94,6 +94,9 @@ jobs:
           python scripts/verify-vsix.py validator-ci.vsix
           sha256sum validator-ci.vsix > validator-ci.vsix.sha256
 
+      - name: Preflight GitHub Release notes and checksum before approval
+        run: node ../release-policy/scripts/prepare-github-release.cjs "$RELEASE_TAG" "$RELEASE_COMMIT" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
       - name: Retain the verified release package
         uses: actions/upload-artifact@v4
         with:
@@ -166,3 +169,82 @@ jobs:
       - name: Publish the verified VSIX using Trusted Publishing
         # No version argument, auto-increment, repackaging, PAT or fallback.
         run: npm run publish:vsix:oidc -- --packagePath validator-ci.vsix
+
+  github_release:
+    name: Create GitHub Release from the approved Marketplace package
+    needs: [verify, publish]
+    if: github.repository == 'Chain-Frost/tuflow_validator' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # GitHub Release write permission is isolated from both the verifier and
+    # the OIDC publishing job; this job does not request an OIDC token.
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_COMMIT: ${{ inputs.commit }}
+      VERIFIED_TAG_OBJECT: ${{ needs.verify.outputs.tag_object }}
+    defaults:
+      run:
+        working-directory: release
+    steps:
+      - name: Check out the trusted dispatch policy
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: release-policy
+          persist-credentials: false
+
+      - name: Check out the published commit without stored credentials
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit }}
+          path: release
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up the pinned Node.js release toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: release-policy/.nvmrc
+
+      - name: Retrieve the exact VSIX published to Marketplace
+        uses: actions/download-artifact@v4
+        with:
+          name: marketplace-release-${{ inputs.commit }}
+          path: release
+
+      - name: Recheck tag, package checksum, version and release notes
+        shell: bash
+        run: |
+          node ../release-policy/scripts/verify-release.cjs "$RELEASE_TAG" "$RELEASE_COMMIT"
+          current_tag_object="$(git ls-remote --refs origin "refs/tags/$RELEASE_TAG" | cut -f1)"
+          if [[ -z "$VERIFIED_TAG_OBJECT" || "$current_tag_object" != "$VERIFIED_TAG_OBJECT" ]]; then
+            echo 'Release tag changed after publishing; GitHub Release rejected.' >&2
+            exit 1
+          fi
+          sha256sum --check validator-ci.vsix.sha256
+          node ../release-policy/scripts/prepare-github-release.cjs "$RELEASE_TAG" "$RELEASE_COMMIT" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
+      - name: Create GitHub Release using the tested VSIX and checksum
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Existing releases are not overwritten. Never rerun Marketplace
+          # publishing merely to retry an incomplete GitHub Release.
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'GitHub Release already exists; refusing to replace its assets.' >&2
+            exit 1
+          fi
+          gh release create "$RELEASE_TAG" \
+            "github-release/tuflow-path-validator-${RELEASE_TAG#v}.vsix" \
+            "github-release/tuflow-path-validator-${RELEASE_TAG#v}.vsix.sha256" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "TUFLOW Path Validator ${RELEASE_TAG#v}" \
+            --notes-file github-release/RELEASE_NOTES.md \
+            --latest
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --json tagName,isDraft,isPrerelease,assets \
+            --jq '{tagName,isDraft,isPrerelease,assets:[.assets[].name]}'

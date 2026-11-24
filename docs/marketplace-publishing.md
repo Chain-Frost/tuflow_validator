@@ -1,6 +1,6 @@
 # Marketplace publishing
 
-Status reviewed: **23 November 2026**. Scope: **Path Validator only**
+Status reviewed: **24 November 2026**. Scope: **Path Validator only**
 (`Chain-Frost.tuflow-path-validator`). TUFLOW Helper's Marketplace identity and
 publishing arrangements are outside this work.
 
@@ -20,16 +20,17 @@ Primary sources:
 | Component | Verified status for this preparation |
 | --- | --- |
 | Microsoft service and GitHub policy support | Available according to Microsoft's current documentation. |
-| Repository workflow and local tooling | Prepared in this change; PR tests do not invoke publishing. |
-| GitHub `production` environment | **Not configured** when the public repository environments API was inspected on 23 November 2026 (HTTP 200, empty environment list). |
-| Marketplace policy for publisher `Chain-Frost` | **Unverified**. The authenticated publisher portal has not been inspected or modified. |
-| Real OIDC exchange and Marketplace publication | **Not performed**. A successful mocked client test is not an end-to-end publishing test. |
+| Repository workflow and local tooling | Manual-only, version-pinned workflow; first production OIDC release of 0.2.7 succeeded in [run 45228773579](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45228773579). |
+| GitHub `production` environment | Configured with required reviewer `Chain-Frost`, workable self-approval, no admin bypass, and deployment branch `main` only. |
+| Marketplace policy for publisher `Chain-Frost` | Owner-verified Active: `Path Validator production`, repository `Chain-Frost/tuflow_validator`, workflow filename `publish-vscode.yml`, environment `production`. |
+| Real OIDC exchange and Marketplace publication | **Succeeded** for 0.2.7 through the approved production job on 23 November 2026. Marketplace package and normal installed-profile acceptance are separate checks tracked in #10. |
+| GitHub Release automation | Issue #36 adds a post-publish job; it runs only after approved Marketplace publication, with isolated `contents: write`, and attaches that run's verified VSIX/checksum. The already-published 0.2.7 needs a separately authorised one-time backfill. |
 
-Do not describe this repository as configured for production publishing until
-the environment and Marketplace policy have actually been verified. No extension
-version, release tag or Marketplace release is created by this change. Issue
-[#12](https://github.com/Chain-Frost/tuflow_validator/issues/12) remains open for
-that external configuration and eventual separately authorised release.
+These settings have been verified and the first `v0.2.7` Marketplace publish
+completed. Issue [#12](https://github.com/Chain-Frost/tuflow_validator/issues/12)
+tracks final delivery acceptance; [#10](https://github.com/Chain-Frost/tuflow_validator/issues/10)
+tracks the user's normal installed build. A GitHub Release page alone is not
+proof of Marketplace-delivered runtime equivalence.
 
 ## Reproducible tooling and runtime boundary
 
@@ -55,9 +56,9 @@ version with `npx`. The workflow publishes the previously tested VSIX with
 
 ## Exact configuration required before a release
 
-Create the GitHub **production** environment in this repository. Configure at
-least one required reviewer and restrict deployment to `main`. Choose reviewer
-and self-approval rules appropriate to the people who can authorise releases.
+Before future releases, **reverify** the existing GitHub `production` environment,
+its actual required reviewer, branch restriction to `main`, owner self-approval
+arrangement and administrator-bypass prohibition.
 The workflow checks that a nonempty required-reviewer rule exists; an absent or
 unprotected environment fails before the publishing job. Writing
 `environment: production` in YAML alone does not create an approval policy.
@@ -109,8 +110,12 @@ prerelease version strings; this workflow deliberately accepts stable versions.
 
 A shared concurrency group prevents overlapping Marketplace publishing jobs;
 an active release is not cancelled by a newer dispatch. Checkout credentials are
-not persisted. There is no automatic GitHub Release trigger, PAT secret,
-version auto-increment or duplicate-version bypass.
+not persisted. There is no automatic release trigger, PAT secret, version
+auto-increment or duplicate-version bypass. After publication succeeds, a
+third job creates the **GitHub Release** using the verified same-run VSIX
+and SHA-256 sidecar, with permission `contents: write` only in that job.
+It uses `gh release create --verify-tag` and will not replace an existing
+release. A publish failure cannot create a GitHub Release.
 
 OIDC failures stop the job. Inspection of the pinned vsce client confirms that
 `--oidc` selects OIDC authentication and propagates exchange errors rather than
@@ -127,11 +132,16 @@ archive boundary. `.nvmrc`, scripts, tests, dependencies and documentation are
 excluded from the shipped archive. The existing verifier expects 17 entries,
 including 11 runtime JavaScript modules.
 
-Before the first real OIDC release, confirm the environment protections, tag
-rules and exact Marketplace policy. Then obtain approval for a new version and
-its release commit. Do not use an existing Marketplace version as a test, and
-do not dispatch the publishing workflow merely to test authentication. Until
-that authorised release succeeds, record end-to-end OIDC as unverified.
+For each future OIDC release, confirm environment protections, tag rules,
+the exact Marketplace policy, available new version and explicit owner
+authorisation for the approved source/tag/dispatch. Do not use an existing
+Marketplace version as an authentication test. The first real OIDC publish
+completed for `v0.2.7` in [run 45228773579](https://github.com/Chain-Frost/tuflow_validator/actions/runs/45228773579).
+The original `v0.2.7` workflow did not yet create a GitHub Release.
+Do **not** rerun its Marketplace publication to backfill the Release:
+recover only from the verified same-run artifact, under separate owner approval.
+The GitHub Release is created after OIDC success; actual Marketplace-delivered
+package and installed-host acceptance remain distinct.
 
 ## Dependency audit snapshot
 
