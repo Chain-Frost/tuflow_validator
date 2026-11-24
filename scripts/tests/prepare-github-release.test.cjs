@@ -94,7 +94,7 @@ test('fails closed on missing or malformed release notes', t => {
 test('workflow requires successful Marketplace publish and separates credentials', () => {
     const workflow = fs.readFileSync(
         path.resolve(__dirname, '../../.github/workflows/publish-vscode.yml'), 'utf8'
-    );
+    ).replace(/\r\n/g, '\n');
     const releaseStart = workflow.indexOf('\n  github_release:\n');
     const publishStart = workflow.indexOf('\n  publish:\n');
     assert.ok(publishStart > 0 && releaseStart > publishStart);
