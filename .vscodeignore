@@ -28,4 +28,5 @@
 **/fixtures/**
 **/coverage/**
 **/package-lock.json
+**/github-release/**
 **/*.vsix
